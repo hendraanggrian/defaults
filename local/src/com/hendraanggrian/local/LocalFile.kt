@@ -3,7 +3,9 @@ package com.hendraanggrian.local
 import java.io.File
 import java.util.Properties
 
-internal class LocalFile(private val file: File) : Local<LocalFile.Editor> {
+infix fun Local.Companion.file(file: File): Local<*> = LocalFile(file)
+
+private class LocalFile(private val file: File) : Local<LocalFile.Editor> {
 
     private val properties = Properties()
 
@@ -25,8 +27,6 @@ internal class LocalFile(private val file: File) : Local<LocalFile.Editor> {
         override fun setString(key: String, value: String?) {
             properties.setProperty(key, value)
         }
-
-        override fun setInt(key: String, value: Int) = setString(key, value.toString())
 
         override fun save() {
             file.outputStream().use {

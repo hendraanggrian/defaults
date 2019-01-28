@@ -27,7 +27,7 @@ class AndroidLocalTest {
 
     @Test
     fun sharedPreferences() {
-        val preferences = Local sharedPreferences testPreferences
+        val preferences = Local android testPreferences
         preferences.edit {
             set("name", "Hendra")
             setInt("age", 25)
@@ -37,8 +37,8 @@ class AndroidLocalTest {
     }
 
     @Test
-    fun context(){
-        val preferences = Local context context
+    fun context() {
+        val preferences = Local android context
         preferences.edit {
             set("name", "Hendra")
             setInt("age", 25)

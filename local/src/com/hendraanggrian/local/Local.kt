@@ -1,13 +1,8 @@
 package com.hendraanggrian.local
 
-import java.io.File
-
 interface Local<E : Local.Editor> {
 
-    companion object {
-
-        infix fun file(file: File): Local<*> = LocalFile(file)
-    }
+    companion object;
 
     operator fun contains(key: String): Boolean
 
@@ -16,6 +11,12 @@ interface Local<E : Local.Editor> {
     fun getString(key: String): String
 
     fun getInt(key: String): Int = getString(key).toInt()
+
+    fun getLong(key: String): Long = getString(key).toLong()
+
+    fun getFloat(key: String): Float = getString(key).toFloat()
+
+    fun getBoolean(key: String): Boolean = getString(key).toBoolean()
 
     fun getEditor(): E
 
@@ -27,7 +28,13 @@ interface Local<E : Local.Editor> {
 
         fun setString(key: String, value: String?)
 
-        fun setInt(key: String, value: Int)
+        fun setInt(key: String, value: Int) = setString(key, value.toString())
+
+        fun setLong(key: String, value: Long) = setString(key, value.toString())
+
+        fun setFloat(key: String, value: Float) = setString(key, value.toString())
+
+        fun setBoolean(key: String, value: Boolean) = setString(key, value.toString())
 
         fun save()
     }
