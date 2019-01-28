@@ -32,7 +32,6 @@ dependencies {
     compile(google("guava", VERSION_GUAVA))
     compile(square("javapoet", VERSION_JAVAPOET))
 
-    compileOnly(androidx("annotation", version = "1.0.0"))
     compileOnly(files(org.gradle.internal.jvm.Jvm.current().toolsJar))
 
     testImplementation(junit())

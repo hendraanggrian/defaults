@@ -17,7 +17,7 @@ import javax.lang.model.element.TypeElement
 
 class LocalProcessor : AbstractProcessor() {
 
-    private lateinit var mFiler: Filer
+    private lateinit var _filer: Filer
 
     override fun getSupportedSourceVersion(): SourceVersion = latestSupported()
 
@@ -27,7 +27,7 @@ class LocalProcessor : AbstractProcessor() {
     @Synchronized
     override fun init(processingEnv: ProcessingEnvironment) {
         super.init(processingEnv)
-        mFiler = processingEnv.filer
+        _filer = processingEnv.filer
     }
 
     override fun process(annotations: Set<TypeElement>, roundEnv: RoundEnvironment): Boolean {
@@ -47,7 +47,7 @@ class LocalProcessor : AbstractProcessor() {
                 .toJavaFile()
         }.forEach { javaFile ->
             try {
-                javaFile.writeTo(mFiler)
+                javaFile.writeTo(_filer)
             } catch (e: IOException) {
                 throw RuntimeException(e)
             }

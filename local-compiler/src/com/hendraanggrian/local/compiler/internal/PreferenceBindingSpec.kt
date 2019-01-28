@@ -1,8 +1,5 @@
 package com.hendraanggrian.local.compiler.internal
 
-import androidx.annotation.AnyThread
-import androidx.annotation.CallSuper
-import androidx.annotation.WorkerThread
 import com.google.auto.common.MoreElements.getPackage
 import com.google.auto.common.MoreTypes.asTypeElement
 import com.hendraanggrian.local.Local
@@ -25,10 +22,9 @@ internal class PreferenceBindingSpec(typeElement: TypeElement) {
     companion object {
         private const val TARGET = "target"
         private const val SOURCE = "source"
-        private val TYPE_PREFERENCE_BINDING =
-            get("com.hendraanggrian.preferencer.internal", "PreferenceBinding")!!
-        private val TYPE_SHARED_PREFERENCES = get("android.content", "SharedPreferences")
-        private val TYPE_EDITOR = get("android.content.SharedPreferences", "Editor")
+        private val TYPE_LOCAL_BINDING = get("com.hendraanggrian.local.internal", "LocalBinding")!!
+        private val TYPE_LOCAL_SETTINGS = get("com.hendraanggrian.local", "LocalSettings")!!
+        private val TYPE_EDITOR = get("com.hendraanggrian.local.LocalSettings", "Editor")!!
     }
 
     private val mPackageName = getPackage(typeElement).qualifiedName.toString()
@@ -41,16 +37,12 @@ internal class PreferenceBindingSpec(typeElement: TypeElement) {
     private val mConstructorMethod = constructorBuilder()
         .addModifiers(PUBLIC)
         .addParameter(mClassName, TARGET)
-        .addParameter(TYPE_SHARED_PREFERENCES, SOURCE)
+        .addParameter(TYPE_LOCAL_SETTINGS, SOURCE)
     private val mSaveMethod = methodBuilder("save")
         .addAnnotation(Override::class.java)
-        .addAnnotation(CallSuper::class.java)
-        .addAnnotation(WorkerThread::class.java)
         .addModifiers(PUBLIC)
     private val mSaveAsyncMethod = methodBuilder("saveAsync")
         .addAnnotation(Override::class.java)
-        .addAnnotation(CallSuper::class.java)
-        .addAnnotation(AnyThread::class.java)
         .addModifiers(PUBLIC)
 
     fun superclass(generatedClassNames: Collection<String>): PreferenceBindingSpec {
@@ -63,7 +55,7 @@ internal class PreferenceBindingSpec(typeElement: TypeElement) {
             }
         }
         if (!hasSuperclass) {
-            mClass.superclass(TYPE_PREFERENCE_BINDING)
+            mClass.superclass(TYPE_LOCAL_BINDING)
             mConstructorMethod.addStatement("super(\$L)", SOURCE)
         } else {
             mConstructorMethod.addStatement("super(\$L, \$L)", TARGET, SOURCE)
@@ -83,7 +75,6 @@ internal class PreferenceBindingSpec(typeElement: TypeElement) {
             val field = element.simpleName.toString()
             val preference = element.getAnnotation(Local::class.java)
             val key = "\"" + (if (!preference!!.value.isEmpty()) preference.value else field) + "\""
-            val targetName = "${mClassName.simpleName()}.$field"
             if (PreferenceType.valueOf(element) == null) {
                 mConstructorMethod.addStatement(
                     "this.target.\$L = (\$L) target.findPreference(\$L)",
@@ -91,21 +82,18 @@ internal class PreferenceBindingSpec(typeElement: TypeElement) {
                 )
             } else {
                 mConstructorMethod.addStatement(
-                    "this.target.\$L = getValue(\$L, target.\$L, \$S)",
-                    field, key, field, targetName
+                    "this.target.\$L = getValue(\$L, target.\$L)", field, key, field
                 )
                 mSaveMethod.addStatement(
-                    "putValue(editor, \$L, target.\$L, \$S)",
-                    key, field, targetName
+                    "setValue(editor, \$L, target.\$L)", key, field
                 )
                 mSaveAsyncMethod.addStatement(
-                    "putValue(editor, \$L, target.\$L, \$S)",
-                    key, field, targetName
+                    "setValue(editor, \$L, target.\$L)", key, field
                 )
             }
         }
-        mSaveMethod.addStatement("editor.commit()")
-        mSaveAsyncMethod.addStatement("editor.apply()")
+        mSaveMethod.addStatement("editor.save()")
+        mSaveAsyncMethod.addStatement("editor.saveAsync()")
         return this
     }
 

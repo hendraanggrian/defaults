@@ -11,13 +11,15 @@ plugins {
 
 sourceSets {
     get("main").java.srcDir("src")
+    get("test").java.srcDir("tests/src")
 }
 
 val configuration = configurations.register("ktlint")
 
 dependencies {
-    api(project(":$RELEASE_ARTIFACT-annotations"))
+    api(project(":$RELEASE_ARTIFACT"))
     api(kotlin("stdlib", VERSION_KOTLIN))
+    api(kotlinx("coroutines-core", VERSION_COROUTINES))
 
     testImplementation(kotlin("test", VERSION_KOTLIN))
     testImplementation(junit())

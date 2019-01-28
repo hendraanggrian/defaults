@@ -15,16 +15,15 @@ private class AndroidLocalSettings(private val preferences: SharedPreferences) :
     LocalSettings<AndroidLocalSettings.Editor>,
     SharedPreferences by preferences {
 
-    override fun getString(key: String): String = preferences.getString(key, null).orEmpty()
+    override fun getString(key: String): String = getString(key, null).orEmpty()
 
-    override fun getInt(key: String): Int = preferences.getInt(key, 0)
+    override fun getInt(key: String): Int = getInt(key, 0)
 
-    override fun getLong(key: String, defValue: Long): Long = preferences.getLong(key, 0L)
+    override fun getLong(key: String): Long = getLong(key, 0L)
 
-    override fun getFloat(key: String?, defValue: Float): Float = preferences.getFloat(key, 0f)
+    override fun getFloat(key: String): Float = getFloat(key, 0f)
 
-    override fun getBoolean(key: String?, defValue: Boolean): Boolean =
-        preferences.getBoolean(key, false)
+    override fun getBoolean(key: String): Boolean = getBoolean(key, false)
 
     override fun getEditor(): Editor = Editor(preferences.edit())
 
@@ -53,6 +52,10 @@ private class AndroidLocalSettings(private val preferences: SharedPreferences) :
 
         override fun save() {
             editor.commit()
+        }
+
+        override fun saveAsync() {
+            editor.apply()
         }
     }
 }
