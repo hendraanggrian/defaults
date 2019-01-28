@@ -50,9 +50,25 @@ private class LocalFileSettings(private val file: File) : LocalSettings<LocalFil
 
     inner class Editor : LocalSettings.Editor {
 
-        override fun setString(key: String, value: String?) {
+        override fun minusAssign(key: String) {
+            properties.remove(key)
+        }
+
+        override fun reset() {
+            properties.clear()
+        }
+
+        override fun set(key: String, value: String?) {
             properties.setProperty(key, value)
         }
+
+        override fun set(key: String, value: Int) = set(key, value.toString())
+
+        override fun set(key: String, value: Long) = set(key, value.toString())
+
+        override fun set(key: String, value: Float) = set(key, value.toString())
+
+        override fun set(key: String, value: Boolean) = set(key, value.toString())
 
         override fun save() {
             GlobalScope.launch(Dispatchers.IO) {

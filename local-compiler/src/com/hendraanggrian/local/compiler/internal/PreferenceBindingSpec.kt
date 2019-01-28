@@ -82,13 +82,13 @@ internal class PreferenceBindingSpec(typeElement: TypeElement) {
                 )
             } else {
                 mConstructorMethod.addStatement(
-                    "this.target.\$L = getValue(\$L, target.\$L)", field, key, field
+                    "this.target.\$L = get(\$L, target.\$L)", field, key, field
                 )
                 mSaveMethod.addStatement(
-                    "setValue(editor, \$L, target.\$L)", key, field
+                    "editor.set(\$L, target.\$L)", key, field
                 )
                 mSaveAsyncMethod.addStatement(
-                    "setValue(editor, \$L, target.\$L)", key, field
+                    "editor.set(\$L, target.\$L)", key, field
                 )
             }
         }

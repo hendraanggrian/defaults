@@ -14,7 +14,8 @@ sourceSets {
 dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
 
-    implementation(project(":$RELEASE_ARTIFACT"))
+    implementation(apache("commons-lang3", VERSION_COMMONS_LANG))
+    implementation(project(":$RELEASE_ARTIFACT-jre"))
     kapt(project(":$RELEASE_ARTIFACT-compiler"))
 
     testImplementation(kotlin("test", VERSION_KOTLIN))

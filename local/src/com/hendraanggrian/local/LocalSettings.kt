@@ -67,33 +67,47 @@ interface LocalSettings<E : LocalSettings.Editor> {
 
     fun edit(edit: (E.() -> Unit)) = getEditor().apply { edit() }.save()
 
-    interface Editor {
+    interface Editor : Saver {
 
-        operator fun set(key: String, value: String?) = setString(key, value)
+        operator fun minusAssign(key: String)
 
-        fun setString(key: String, value: String?)
+        fun reset()
 
-        fun setInt(key: String, value: Int) = setString(key, value.toString())
+        operator fun set(key: String, value: String?)
 
-        fun setLong(key: String, value: Long) = setString(key, value.toString())
+        operator fun set(key: String, value: Int)
 
-        fun setFloat(key: String, value: Float) = setString(key, value.toString())
+        operator fun set(key: String, value: Long)
 
-        fun setBoolean(key: String, value: Boolean) = setString(key, value.toString())
+        operator fun set(key: String, value: Float)
+
+        operator fun set(key: String, value: Boolean)
+    }
+
+    interface Saver {
 
         fun save()
 
         fun saveAsync()
+
+        companion object {
+
+            val EMPTY: Saver = object : Saver {
+                override fun save() {}
+
+                override fun saveAsync() {}
+            }
+        }
     }
 }
 
-infix fun LocalSettings<*>.bind(target: Any): Saver {
+infix fun LocalSettings<*>.bind(target: Any): LocalSettings.Saver {
     val targetClass = target.javaClass
     LocalSettings.debugger?.invoke("Looking up binding for ${targetClass.name}")
     val constructor = LocalSettings.findBindingConstructor(targetClass)
     if (constructor == null) {
         LocalSettings.debugger?.invoke("${targetClass.name} binding not found, returning empty Committer.")
-        return Saver.EMPTY
+        return LocalSettings.Saver.EMPTY
     }
     try {
         return constructor.newInstance(target, this)

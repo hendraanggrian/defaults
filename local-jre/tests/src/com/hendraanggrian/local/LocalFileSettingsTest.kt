@@ -22,7 +22,7 @@ class LocalFileSettingsTest {
         val preferences = LocalSettings file testFile
         preferences.edit {
             set("name", "Hendra")
-            setInt("age", 25)
+            set("age", 25)
         }
         assertEquals("Hendra", preferences["name"])
         assertEquals(25, preferences.getInt("age"))

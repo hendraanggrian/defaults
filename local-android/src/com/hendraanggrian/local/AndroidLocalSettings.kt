@@ -30,23 +30,31 @@ private class AndroidLocalSettings(private val preferences: SharedPreferences) :
     class Editor(private val editor: SharedPreferences.Editor) : LocalSettings.Editor,
         SharedPreferences.Editor by editor {
 
-        override fun setString(key: String, value: String?) {
+        override fun minusAssign(key: String) {
+            editor.remove(key)
+        }
+
+        override fun reset() {
+            editor.clear()
+        }
+
+        override fun set(key: String, value: String?) {
             editor.putString(key, value)
         }
 
-        override fun setInt(key: String, value: Int) {
+        override fun set(key: String, value: Int) {
             editor.putInt(key, value)
         }
 
-        override fun setLong(key: String, value: Long) {
+        override fun set(key: String, value: Long) {
             editor.putLong(key, value)
         }
 
-        override fun setFloat(key: String, value: Float) {
+        override fun set(key: String, value: Float) {
             editor.putFloat(key, value)
         }
 
-        override fun setBoolean(key: String, value: Boolean) {
+        override fun set(key: String, value: Boolean) {
             editor.putBoolean(key, value)
         }
 

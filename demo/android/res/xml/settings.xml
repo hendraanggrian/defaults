@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.preference.PreferenceCategory
+        android:title="Commons">
+
+        <androidx.preference.EditTextPreference
+            android:key="name"
+            android:title="Name"/>
+
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="married"
+            android:title="Married"/>
+
+        <androidx.preference.EditTextPreference
+            android:defaultValue="Default value"
+            android:key="key2"
+            android:summary="EditText Summary"
+            android:title="EditText Preference"/>
+
+        <androidx.preference.CheckBoxPreference
+            android:defaultValue="true"
+            android:key="key3"
+            android:summary="CheckBox Summary"
+            android:title="CheckBox Preference"/>
+    </androidx.preference.PreferenceCategory>
+</androidx.preference.PreferenceScreen>
