@@ -1,6 +1,16 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.plugin.use.PluginDependenciesSpec
 
+fun DependencyHandler.square(module: String, version: String) = "com.squareup:$module:$version"
+
+fun DependencyHandler.google(module: String, version: String, vararg suffixes: String) = when {
+    suffixes.isEmpty() -> "com.google.${module.substringBefore("-")}:$module:$version"
+    else -> "com.google${StringBuilder().apply { suffixes.forEach { append(".$it") } }}:$module:$version"
+}
+
+fun DependencyHandler.javaParser(module: String) =
+    "com.github.javaparser:javaparser-$module:$VERSION_JAVAPARSER"
+
 fun DependencyHandler.kotlinx(
     module: String,
     version: String? = null

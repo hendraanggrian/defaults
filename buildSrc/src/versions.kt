@@ -13,12 +13,17 @@ const val VERSION_ESPRESSO = "3.1.0"
 const val VERSION_RUNNER = "1.1.0"
 const val VERSION_RULES = "1.1.0"
 
+const val VERSION_JAVAPOET = "1.11.1"
+const val VERSION_JAVAPARSER = "3.6.24"
+const val VERSION_AUTOCOMMON = "0.10"
+const val VERSION_GUAVA = "27.0.1-jre"
+const val VERSION_TRUTH = "0.42"
+
 const val VERSION_COMMONS_LANG = "3.8.1"
 const val VERSION_KTFX = "8.4.8"
 
 internal const val VERSION_DOKKA = "0.9.17"
 internal const val VERSION_TESTFX = "4.0.15-alpha"
-internal const val VERSION_TRUTH = "0.42"
 internal const val VERSION_JUNIT = "4.12"
 internal const val VERSION_SHADOW = "4.0.1"
 internal const val VERSION_GIT_PUBLISH = "0.3.3"
