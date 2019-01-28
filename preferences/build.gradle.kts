@@ -1,3 +1,5 @@
+import javax.xml.ws.Endpoint.publish
+
 group = RELEASE_GROUP
 version = RELEASE_VERSION
 
@@ -5,6 +7,8 @@ plugins {
     `java-library`
     kotlin("jvm")
     dokka()
+    bintray
+    `bintray-release`
 }
 
 sourceSets {
@@ -53,4 +57,18 @@ tasks {
         outputDirectory = "$buildDir/docs"
         doFirst { file(outputDirectory).deleteRecursively() }
     }
+}
+
+publish {
+    bintrayUser = BINTRAY_USER
+    bintrayKey = BINTRAY_KEY
+    dryRun = false
+    repoName = RELEASE_ARTIFACT
+
+    userOrg = RELEASE_USER
+    groupId = RELEASE_GROUP
+    artifactId = RELEASE_ARTIFACT
+    publishVersion = VERSION_ANDROIDX
+    desc = RELEASE_DESC
+    website = RELEASE_WEBSITE
 }

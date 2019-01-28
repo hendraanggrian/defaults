@@ -1,27 +1,34 @@
 package com.hendraanggrian.preferences
 
-interface Preferences {
+import java.io.File
+
+interface Preferences<E : Preferences.Editor> {
+
+    companion object {
+
+        fun file(file: File): Preferences<*> = FilePreferences(file)
+    }
 
     operator fun contains(key: String): Boolean
 
-    operator fun get(key: String): String = getString(key)!!
+    operator fun get(key: String): String = getString(key)
 
-    fun getString(key: String): String?
+    fun getString(key: String): String
 
-    fun getInt(key: String): Int? = getString(key)?.toInt()
+    fun getInt(key: String): Int = getString(key).toInt()
 
-    fun getEditor(): Editor
+    fun getEditor(): E
 
-    fun Editor.save()
-
-    fun edit(edit: Editor.() -> Unit) = getEditor().apply { edit() }.save()
+    fun edit(edit: (E.() -> Unit)) = getEditor().apply { edit() }.save()
 
     interface Editor {
 
-        operator fun Editor.set(key: String, value: String?) = setString(key, value)
+        operator fun set(key: String, value: String?) = setString(key, value)
 
-        fun Editor.setString(key: String, value: String?)
+        fun setString(key: String, value: String?)
 
-        fun Editor.setInt(key: String, value: Int)
+        fun setInt(key: String, value: Int)
+
+        fun save()
     }
 }

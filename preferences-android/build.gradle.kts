@@ -1,7 +1,11 @@
+import javax.xml.ws.Endpoint.publish
+
 plugins {
     android("library")
     kotlin("android")
     dokka("android")
+    bintray
+    `bintray-release`
 }
 
 android {
@@ -10,8 +14,8 @@ android {
     defaultConfig {
         minSdkVersion(SDK_MIN)
         targetSdkVersion(SDK_TARGET)
-        versionCode = 1
         versionName = RELEASE_VERSION
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     sourceSets {
         getByName("main") {
@@ -20,14 +24,21 @@ android {
             res.srcDir("res")
             resources.srcDir("src")
         }
+        getByName("androidTest") {
+            setRoot("tests")
+            manifest.srcFile("tests/AndroidManifest.xml")
+            java.srcDir("tests/src")
+            res.srcDir("tests/res")
+            resources.srcDir("tests/src")
+        }
+    }
+    lintOptions {
+        isCheckTestSources = true
     }
     libraryVariants.all {
         generateBuildConfigProvider?.configure {
             enabled = false
         }
-    }
-    lintOptions {
-        isAbortOnError = false
     }
 }
 
@@ -36,6 +47,15 @@ val configuration = configurations.register("ktlint")
 dependencies {
     api(project(":$RELEASE_ARTIFACT"))
     api(kotlinx("coroutines-android", VERSION_COROUTINES))
+
+    testImplementation(junit())
+    testImplementation(truth())
+    androidTestImplementation(truth())
+    androidTestImplementation(kotlin("stdlib", VERSION_KOTLIN))
+    androidTestImplementation(kotlin("test", VERSION_KOTLIN))
+    androidTestImplementation(androidx("test.espresso", "espresso-core", VERSION_ESPRESSO))
+    androidTestImplementation(androidx("test", "runner", VERSION_RUNNER))
+    androidTestImplementation(androidx("test", "rules", VERSION_RULES))
 
     configuration {
         invoke(ktlint())
@@ -69,4 +89,18 @@ tasks {
         outputDirectory = "$buildDir/docs"
         doFirst { file(outputDirectory).deleteRecursively() }
     }
+}
+
+publish {
+    bintrayUser = BINTRAY_USER
+    bintrayKey = BINTRAY_KEY
+    dryRun = false
+    repoName = RELEASE_ARTIFACT
+
+    userOrg = RELEASE_USER
+    groupId = RELEASE_GROUP
+    artifactId = RELEASE_ARTIFACT
+    publishVersion = VERSION_ANDROIDX
+    desc = RELEASE_DESC
+    website = RELEASE_WEBSITE
 }
