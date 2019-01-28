@@ -1,9 +1,9 @@
-package com.hendraanggrian.preferences
+package com.hendraanggrian.local
 
 import android.content.SharedPreferences
 
-internal class AndroidPreferences(private val preferences: SharedPreferences) :
-    Preferences<AndroidPreferences.Editor>,
+internal class AndroidLocal(private val preferences: SharedPreferences) :
+    Local<AndroidLocal.Editor>,
     SharedPreferences by preferences {
 
     override fun getString(key: String): String = preferences.getString(key, null).orEmpty()
@@ -12,7 +12,7 @@ internal class AndroidPreferences(private val preferences: SharedPreferences) :
 
     override fun getEditor(): Editor = Editor(preferences.edit())
 
-    class Editor(private val editor: SharedPreferences.Editor) : Preferences.Editor,
+    class Editor(private val editor: SharedPreferences.Editor) : Local.Editor,
         SharedPreferences.Editor by editor {
 
         override fun setString(key: String, value: String?) {

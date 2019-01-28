@@ -1,11 +1,11 @@
-package com.hendraanggrian.preferences
+package com.hendraanggrian.local
 
 import org.junit.Before
 import org.junit.Test
 import java.io.File
 import kotlin.test.assertEquals
 
-class FilePreferencesTest {
+class LocalFileTest {
 
     private lateinit var testFile: File
 
@@ -19,7 +19,7 @@ class FilePreferencesTest {
 
     @Test
     fun test() {
-        val preferences = Preferences.file(testFile)
+        val preferences = Local file testFile
         preferences.edit {
             set("name", "Hendra")
             setInt("age", 25)

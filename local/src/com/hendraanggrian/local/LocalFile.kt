@@ -1,9 +1,9 @@
-package com.hendraanggrian.preferences
+package com.hendraanggrian.local
 
 import java.io.File
 import java.util.Properties
 
-internal class FilePreferences(private val file: File) : Preferences<FilePreferences.Editor> {
+internal class LocalFile(private val file: File) : Local<LocalFile.Editor> {
 
     private val properties = Properties()
 
@@ -20,7 +20,7 @@ internal class FilePreferences(private val file: File) : Preferences<FilePrefere
 
     override fun getEditor(): Editor = Editor()
 
-    inner class Editor : Preferences.Editor {
+    inner class Editor : Local.Editor {
 
         override fun setString(key: String, value: String?) {
             properties.setProperty(key, value)

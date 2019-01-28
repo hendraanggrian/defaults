@@ -1,12 +1,12 @@
-package com.hendraanggrian.preferences
+package com.hendraanggrian.local
 
 import java.io.File
 
-interface Preferences<E : Preferences.Editor> {
+interface Local<E : Local.Editor> {
 
     companion object {
 
-        fun file(file: File): Preferences<*> = FilePreferences(file)
+        infix fun file(file: File): Local<*> = LocalFile(file)
     }
 
     operator fun contains(key: String): Boolean

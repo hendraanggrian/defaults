@@ -46,7 +46,6 @@ val configuration = configurations.register("ktlint")
 
 dependencies {
     api(project(":$RELEASE_ARTIFACT"))
-    api(kotlinx("coroutines-android", VERSION_COROUTINES))
 
     testImplementation(junit())
     testImplementation(truth())

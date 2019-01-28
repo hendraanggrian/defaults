@@ -1,4 +1,4 @@
-package com.hendraanggrian.preferences
+package com.hendraanggrian.local
 
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
@@ -12,7 +12,7 @@ import kotlin.test.assertEquals
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class AndroidPreferencesTest {
+class AndroidLocalTest {
 
     private lateinit var testPreferences: SharedPreferences
 
@@ -25,7 +25,7 @@ class AndroidPreferencesTest {
 
     @Test
     fun test() {
-        val preferences = Preferences.android(testPreferences)
+        val preferences = Local sharedPreferences testPreferences
         preferences.edit {
             set("name", "Hendra")
             setInt("age", 25)
