@@ -1,5 +1,6 @@
 package com.hendraanggrian.local
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.test.InstrumentationRegistry
@@ -14,18 +15,30 @@ import kotlin.test.assertEquals
 @LargeTest
 class AndroidLocalTest {
 
+    private lateinit var context: Context
     private lateinit var testPreferences: SharedPreferences
 
     @Before
     fun createTest() {
-        testPreferences =
-            PreferenceManager.getDefaultSharedPreferences(InstrumentationRegistry.getContext())
+        context = InstrumentationRegistry.getContext()
+        testPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         testPreferences.edit().clear().commit()
     }
 
     @Test
-    fun test() {
+    fun sharedPreferences() {
         val preferences = Local sharedPreferences testPreferences
+        preferences.edit {
+            set("name", "Hendra")
+            setInt("age", 25)
+        }
+        assertEquals("Hendra", preferences["name"])
+        assertEquals(25, preferences.getInt("age"))
+    }
+
+    @Test
+    fun context(){
+        val preferences = Local context context
         preferences.edit {
             set("name", "Hendra")
             setInt("age", 25)
