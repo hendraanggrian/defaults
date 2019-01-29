@@ -2,8 +2,6 @@ package com.hendraanggrian.defaults
 
 import com.google.auto.common.MoreElements.asType
 import com.google.common.collect.LinkedHashMultimap.create
-import com.hendraanggrian.defaults.internal.DefaultBindingSpec
-import com.hendraanggrian.defaults.internal.measuredName
 import java.io.IOException
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.Filer

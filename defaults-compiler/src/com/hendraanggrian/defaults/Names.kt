@@ -1,7 +1,6 @@
-package com.hendraanggrian.defaults.internal
+package com.hendraanggrian.defaults
 
 import com.google.auto.common.MoreElements.asType
-import com.hendraanggrian.defaults.Default
 import java.util.Collections.reverse
 import javax.lang.model.element.TypeElement
 

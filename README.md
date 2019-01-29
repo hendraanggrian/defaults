@@ -17,8 +17,9 @@ repositories {
     jcenter()
 }
 dependencies {
+    // features, mixing may be supported
     compile "com.hendraanggrian.defaults:defaults-jre:$version"
-    compile "com.hendraanggrian.defaults:defaults-android:$version" // for Android project
+    compile "com.hendraanggrian.defaults:defaults-android:$version"
     
     // optional annotation processor
     annotationProcessor "com.hendraanggrian.defaults:defaults-compiler:$version" // or kapt
@@ -35,11 +36,11 @@ Create defaults instance from `File`, or `SharedPreferences` in Android.
 ```kotlin
 import com.hendraanggrian.defaults.Defaults
 
-val fileDefaults = Defaults file mFile
-val androidDefaults = Defaults sharedPreferences mContext
+val fileDefaults = Defaults.from(mFile)
+val androidDefaults = Defaults.from(mContext)
 
 val name = fileDefaults["name"]
-val age = fileDefaults.getAge("age", 0)
+val age = fileDefaults.getInt("age", 0)
 
 androidDefaults {
     set("name", "Hendra")
@@ -59,7 +60,7 @@ import com.hendraanggrian.defaults.bindDefaults
 @Bind @JvmField var age: Int = 0
 
 init {
-    bindDefaults(Defaults file mFile)
+    bindDefaults(Defaults.from(mFile))
 }
 ```
 

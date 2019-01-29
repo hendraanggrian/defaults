@@ -1,8 +1,7 @@
-package com.hendraanggrian.defaults.internal
+package com.hendraanggrian.defaults
 
 import com.google.auto.common.MoreElements.getPackage
 import com.google.auto.common.MoreTypes.asTypeElement
-import com.hendraanggrian.defaults.Default
 import com.squareup.javapoet.ClassName.get
 import com.squareup.javapoet.CodeBlock.of
 import com.squareup.javapoet.JavaFile
@@ -106,22 +105,15 @@ internal class DefaultBindingSpec(typeElement: TypeElement) {
             val field = element.simpleName.toString()
             val preference = element.getAnnotation(Default::class.java)
             val key = "\"" + (if (!preference!!.value.isEmpty()) preference.value else field) + "\""
-            if (DefaultType.valueOf(element) == null) {
-                mConstructorMethod.addStatement(
-                    "this.target.\$L = (\$L) target.findPreference(\$L)",
-                    field, get(element.asType()), key
-                )
-            } else {
-                mConstructorMethod.addStatement(
-                    "this.target.\$L = get(\$L, target.\$L)", field, key, field
-                )
-                mSaveMethod.addStatement(
-                    "editor.set(\$L, target.\$L)", key, field
-                )
-                mSaveAsyncMethod.addStatement(
-                    "editor.set(\$L, target.\$L)", key, field
-                )
-            }
+            mConstructorMethod.addStatement(
+                "this.target.\$L = get(\$L, target.\$L)", field, key, field
+            )
+            mSaveMethod.addStatement(
+                "editor.set(\$L, target.\$L)", key, field
+            )
+            mSaveAsyncMethod.addStatement(
+                "editor.set(\$L, target.\$L)", key, field
+            )
         }
         mSaveMethod.addStatement("editor.save()")
         mSaveAsyncMethod.addStatement("editor.saveAsync()")

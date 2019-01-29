@@ -35,7 +35,7 @@ class Demo2Activity : AppCompatActivity() {
 
     class SettingsFragment : PreferenceFragmentCompat() {
         @Default("name") lateinit var name: String
-        @Default lateinit var preferenceName: EditTextPreference
+        lateinit var preferenceName: EditTextPreference
         lateinit var preferenceMarried: SwitchPreferenceCompat
 
         override fun onAttach(context: Context) {
