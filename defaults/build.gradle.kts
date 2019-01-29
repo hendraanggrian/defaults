@@ -19,6 +19,8 @@ dependencies {
     api(project(":$RELEASE_ARTIFACT-annotations"))
     api(kotlin("stdlib", VERSION_KOTLIN))
 
+    compileOnly(androidx("annotation", version = "1.0.0"))
+
     testImplementation(kotlin("test", VERSION_KOTLIN))
     testImplementation(junit())
     testImplementation(truth())

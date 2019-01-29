@@ -29,8 +29,8 @@ class SharedPreferencesDefaultsTest {
     fun sharedPreferences() {
         val defaults = Defaults.from(testPreferences)
         defaults {
-            set("name", "Hendra")
-            set("age", 25)
+            it["name"] = "Hendra"
+            it["age"] = 25
         }
         assertEquals("Hendra", defaults["name"])
         assertEquals(25, defaults.getInt("age"))
@@ -40,8 +40,8 @@ class SharedPreferencesDefaultsTest {
     fun context() {
         val defaults = Defaults.from(context)
         defaults {
-            set("name", "Hendra")
-            set("age", 25)
+            it["name"] = "Hendra"
+            it["age"] = 25
         }
         assertEquals("Hendra", defaults["name"])
         assertEquals(25, defaults.getInt("age"))

@@ -2,6 +2,7 @@ package com.hendraanggrian.defaults.internal
 
 import com.hendraanggrian.defaults.Defaults
 
+/** Internal component, keep out. */
 abstract class DefaultBinding(protected val source: Defaults<*>) : Defaults.Saver {
 
     protected fun get(key: String, defaultValue: String?): String? =

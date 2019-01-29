@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
+/** Creates defaults instance from shared preferences. */
 fun Defaults.Companion.from(sharedPreferences: SharedPreferences): Defaults<*> =
     SharedPreferencesDefaults(sharedPreferences)
 
+/** Creates defaults instance from default shared preferences in context. */
 @Suppress("NOTHING_TO_INLINE")
 inline fun Defaults.Companion.from(context: Context): Defaults<*> =
     from(PreferenceManager.getDefaultSharedPreferences(context))

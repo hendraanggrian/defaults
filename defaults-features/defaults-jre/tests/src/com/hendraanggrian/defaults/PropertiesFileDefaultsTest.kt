@@ -21,8 +21,8 @@ class PropertiesFileDefaultsTest {
     fun test() {
         val defaults = Defaults.from(testFile)
         defaults {
-            set("name", "Hendra")
-            set("age", 25)
+            it["name"] = "Hendra"
+            it["age"] = 25
         }
         assertEquals("Hendra", defaults["name"])
         assertEquals(25, defaults.getInt("age"))

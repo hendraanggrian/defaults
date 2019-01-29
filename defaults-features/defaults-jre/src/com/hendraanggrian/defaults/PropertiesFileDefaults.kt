@@ -6,6 +6,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.util.Properties
 
+/** Creates defaults instance from file. */
 fun Defaults.Companion.from(file: File): Defaults<*> = PropertiesFileDefaults(file)
 
 private class PropertiesFileDefaults(private val file: File) :

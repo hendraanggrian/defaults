@@ -7,7 +7,12 @@ Defaults
 ========
 ![icon](/art/ic_launcher_small.png)
 
-Local settings library for JVM and Android.
+Local settings library that runs in plain Java and Android.
+Comes with optional annotation processor to bind settings to variables.
+
+Roadmap
+-------
+* More features: `defaults-nosql`, `defaults-snapydb`.
 
 Download
 --------
@@ -20,7 +25,7 @@ dependencies {
     // features, mixing may be supported
     compile "com.hendraanggrian.defaults:defaults-jre:$version"
     compile "com.hendraanggrian.defaults:defaults-android:$version"
-    
+
     // optional annotation processor
     annotationProcessor "com.hendraanggrian.defaults:defaults-compiler:$version" // or kapt
 }

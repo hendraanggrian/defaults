@@ -4,5 +4,8 @@ package com.hendraanggrian.defaults
 
 import android.util.Log
 
+@PublishedApi internal const val TAG = "Defaults"
+
+/** Android debugger, prints to [Log.DEBUG]. */
 inline val DefaultsDebugger.Companion.Android: DefaultsDebugger
-    get() = DefaultsDebugger { Log.d(Defaults.TAG, it) }
+    get() = DefaultsDebugger { Log.d(TAG, it) }
