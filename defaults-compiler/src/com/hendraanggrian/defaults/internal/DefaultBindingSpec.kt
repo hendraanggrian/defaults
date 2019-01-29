@@ -17,14 +17,14 @@ import javax.lang.model.element.TypeElement
 import javax.lang.model.type.TypeKind.NONE
 import javax.lang.model.type.TypeKind.VOID
 
-internal class DefaultsBindingSpec(typeElement: TypeElement) {
+internal class DefaultBindingSpec(typeElement: TypeElement) {
 
     companion object {
         private const val TARGET = "target"
         private const val SOURCE = "source"
-        private val TYPE_DEFAULT_BINDING = get("com.hendraanggrian.tools.defaults.internal", "DefaultBinding")!!
-        private val TYPE_DEFAULTS = get("com.hendraanggrian.tools.defaults", "Defaults")!!
-        private val TYPE_DEFAULTS_EDITOR = get("com.hendraanggrian.tools.defaults.Defaults", "Editor")!!
+        private val TYPE_DEFAULT_BINDING = get("com.hendraanggrian.defaults.internal", "DefaultBinding")!!
+        private val TYPE_DEFAULTS = get("com.hendraanggrian.defaults", "Defaults")!!
+        private val TYPE_DEFAULTS_EDITOR = get("com.hendraanggrian.defaults.Defaults", "Editor")!!
     }
 
     private val mPackageName = getPackage(typeElement).qualifiedName.toString()
@@ -51,7 +51,7 @@ internal class DefaultsBindingSpec(typeElement: TypeElement) {
         .addAnnotation(Override::class.java)
         .addModifiers(PUBLIC)
 
-    fun superclass(generatedClassNames: Collection<String>): DefaultsBindingSpec {
+    fun superclass(generatedClassNames: Collection<String>): DefaultBindingSpec {
         var hasSuperclass = false
         if (mSuperclass.kind != NONE && mSuperclass.kind != VOID) {
             val className = asTypeElement(mSuperclass).measuredName
@@ -80,7 +80,7 @@ internal class DefaultsBindingSpec(typeElement: TypeElement) {
         return this
     }
 
-    fun statement(fieldElements: Iterable<Element>): DefaultsBindingSpec {
+    fun statement(fieldElements: Iterable<Element>): DefaultBindingSpec {
         // save
         mSaveMethod.addCode(of("\$T editor = getEditor();\n",
             TYPE_DEFAULTS_EDITOR

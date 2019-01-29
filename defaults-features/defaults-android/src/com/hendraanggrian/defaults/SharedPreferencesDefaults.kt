@@ -3,7 +3,6 @@ package com.hendraanggrian.defaults
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import com.hendraanggrian.tools.defaults.Defaults
 
 infix fun Defaults.Companion.sharedPreferences(sharedPreferences: SharedPreferences): Defaults<*> =
     SharedPreferencesDefaults(sharedPreferences)

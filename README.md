@@ -1,4 +1,4 @@
-[![bintray](https://img.shields.io/badge/bintray-tools-brightgreen.svg)](https://bintray.com/hendraanggrian/tools)
+[![bintray](https://img.shields.io/badge/bintray-defaults-brightgreen.svg)](https://bintray.com/hendraanggrian/defaults)
 [![download](https://api.bintray.com/packages/hendraanggrian/tools/local-settings/images/download.svg) ](https://bintray.com/hendraanggrian/tools/local-settings/_latestVersion)
 [![build](https://travis-ci.com/hendraanggrian/local-settings.svg)](https://travis-ci.com/hendraanggrian/local-settings)
 [![license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
@@ -9,5 +9,72 @@ Defaults
 
 Local settings library for JVM and Android.
 
+Download
+--------
+
+```gradle
+repositories {
+    jcenter()
+}
+dependencies {
+    compile "com.hendraanggrian.defaults:defaults-jre:$version"
+    compile "com.hendraanggrian.defaults:defaults-android:$version" // for Android project
+    
+    // optional annotation processor
+    annotationProcessor "com.hendraanggrian.defaults:defaults-compiler:$version" // or kapt
+}
+```
+
 Usage
 -----
+
+#### Defaults and editor
+
+Create defaults instance from `File`, or `SharedPreferences` in Android.
+
+```kotlin
+import com.hendraanggrian.defaults.Defaults
+
+val fileDefaults = Defaults file mFile
+val androidDefaults = Defaults sharedPreferences mContext
+
+val name = fileDefaults["name"]
+val age = fileDefaults.getAge("age", 0)
+
+androidDefaults {
+    set("name", "Hendra")
+    set("age", 25)
+}
+```
+
+#### Defaults saver
+
+With optional annotation processor, bind these local settings to local variables.
+
+```kotlin
+import com.hendraanggrian.defaults.Defaults
+import com.hendraanggrian.defaults.bindDefault
+
+@Bind lateinit var name: String
+@Bind @JvmField var age: Int = 0
+
+init {
+    bindDefaults(Defaults file mFile)
+}
+```
+
+License
+-------
+    Copyright 2019 Hendra Anggrian
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.

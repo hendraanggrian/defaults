@@ -1,6 +1,6 @@
-package com.hendraanggrian.tools.defaults.internal
+package com.hendraanggrian.defaults.internal
 
-import com.hendraanggrian.tools.defaults.Defaults
+import com.hendraanggrian.defaults.Defaults
 
 abstract class DefaultBinding(protected val source: Defaults<*>) : Defaults.Saver {
 

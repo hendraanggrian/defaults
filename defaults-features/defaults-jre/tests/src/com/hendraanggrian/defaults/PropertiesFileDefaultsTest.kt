@@ -1,7 +1,6 @@
 package com.hendraanggrian.defaults
 
-import com.hendraanggrian.defaults.file
-import com.hendraanggrian.tools.defaults.Defaults
+import com.hendraanggrian.defaults.Defaults
 import org.junit.Before
 import org.junit.Test
 import java.io.File

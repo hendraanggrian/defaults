@@ -1,6 +1,5 @@
 package com.hendraanggrian.defaults
 
-import com.hendraanggrian.tools.defaults.Defaults
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -81,7 +80,7 @@ private class PropertiesFileDefaults(private val file: File) :
 
         override fun saveAsync() {
             file.outputStream().use {
-                properties.save(it, null)
+                properties.store(it, null)
             }
         }
     }

@@ -2,8 +2,8 @@ package com.hendraanggrian.defaults.demo
 
 import com.hendraanggrian.defaults.Default
 import com.hendraanggrian.defaults.file
-import com.hendraanggrian.tools.defaults.Defaults
-import com.hendraanggrian.tools.defaults.bindLocal
+import com.hendraanggrian.defaults.Defaults
+import com.hendraanggrian.defaults.bindDefaults
 import org.apache.commons.lang3.SystemUtils
 import java.io.File
 
@@ -22,7 +22,7 @@ class DemoApplication {
 
     init {
         val file = File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties")
-        val saver = bindLocal(Defaults file file)
+        val saver = bindDefaults(Defaults file file)
         name = "Hendra Anggrian"
         age = 25
         saver.saveAsync()

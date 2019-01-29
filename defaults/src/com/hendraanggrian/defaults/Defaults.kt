@@ -1,6 +1,5 @@
-package com.hendraanggrian.tools.defaults
+package com.hendraanggrian.defaults
 
-import com.hendraanggrian.defaults.Default
 import java.lang.reflect.Constructor
 import java.lang.reflect.InvocationTargetException
 import java.util.WeakHashMap
@@ -10,6 +9,12 @@ interface Defaults<E : Defaults.Editor> {
     companion object {
         internal var debugger: ((String) -> Unit)? = { println(it) }
         private lateinit var bindings: MutableMap<Class<*>, Constructor<Saver>>
+
+        internal val EMPTY_SAVER: Saver = object : Saver {
+            override fun save() {}
+
+            override fun saveAsync() {}
+        }
 
         @Suppress("UNCHECKED_CAST")
         internal fun findBindingConstructor(cls: Class<*>): Constructor<Saver>? {
@@ -94,27 +99,17 @@ interface Defaults<E : Defaults.Editor> {
         fun save()
 
         fun saveAsync()
-
-        companion object {
-
-            val EMPTY: Saver = object :
-                Saver {
-                override fun save() {}
-
-                override fun saveAsync() {}
-            }
-        }
     }
 }
 
-infix fun Any.bindLocal(source: Defaults<*>): Defaults.Saver {
+infix fun Any.bindDefaults(source: Defaults<*>): Defaults.Saver {
     val targetClass = javaClass
     Defaults.debugger?.invoke("Looking up binding for ${targetClass.name}")
     val constructor =
         Defaults.findBindingConstructor(targetClass)
     if (constructor == null) {
         Defaults.debugger?.invoke("${targetClass.name} binding not found, returning empty Committer.")
-        return Defaults.Saver.EMPTY
+        return Defaults.EMPTY_SAVER
     }
     try {
         return constructor.newInstance(this, source)

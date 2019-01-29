@@ -9,10 +9,9 @@ import androidx.preference.Preference.OnPreferenceChangeListener
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.hendraanggrian.defaults.Default
-import com.hendraanggrian.tools.defaults.Defaults
-import com.hendraanggrian.tools.defaults.bindLocal
+import com.hendraanggrian.defaults.Defaults
+import com.hendraanggrian.defaults.bindDefaults
 import com.hendraanggrian.defaults.sharedPreferences
-import com.hendraanggrian.tools.defaults.demo.R
 import kotlinx.android.synthetic.main.activity_demo2.*
 
 class Demo2Activity : AppCompatActivity() {
@@ -41,7 +40,7 @@ class Demo2Activity : AppCompatActivity() {
 
         override fun onAttach(context: Context) {
             super.onAttach(context)
-            bindLocal(Defaults sharedPreferences context)
+            bindDefaults(Defaults sharedPreferences context)
         }
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
