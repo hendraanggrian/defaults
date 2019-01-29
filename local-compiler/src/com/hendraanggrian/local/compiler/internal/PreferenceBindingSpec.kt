@@ -2,7 +2,7 @@ package com.hendraanggrian.local.compiler.internal
 
 import com.google.auto.common.MoreElements.getPackage
 import com.google.auto.common.MoreTypes.asTypeElement
-import com.hendraanggrian.local.Local
+import com.hendraanggrian.local.BindLocal
 import com.squareup.javapoet.ClassName.get
 import com.squareup.javapoet.CodeBlock.of
 import com.squareup.javapoet.JavaFile
@@ -73,7 +73,7 @@ internal class PreferenceBindingSpec(typeElement: TypeElement) {
         // constructor, save
         fieldElements.forEach { element ->
             val field = element.simpleName.toString()
-            val preference = element.getAnnotation(Local::class.java)
+            val preference = element.getAnnotation(BindLocal::class.java)
             val key = "\"" + (if (!preference!!.value.isEmpty()) preference.value else field) + "\""
             if (PreferenceType.valueOf(element) == null) {
                 mConstructorMethod.addStatement(

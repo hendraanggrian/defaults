@@ -6,7 +6,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.util.Properties
 
-infix fun LocalSettings.Companion.file(file: File): LocalSettings<*> = LocalFileSettings(file)
+fun File.localSettings(): LocalSettings<*> = LocalFileSettings(this)
 
 private class LocalFileSettings(private val file: File) : LocalSettings<LocalFileSettings.Editor> {
 

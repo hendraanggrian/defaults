@@ -13,7 +13,7 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
  */
 @Retention(CLASS)
 @Target(FIELD)
-public @interface Local {
+public @interface BindLocal {
 
     String SUFFIX = "_LocalBinding";
 

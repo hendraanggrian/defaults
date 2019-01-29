@@ -24,7 +24,7 @@ interface LocalSettings<E : LocalSettings.Editor> {
             }
             try {
                 binding = cls.classLoader!!
-                    .loadClass(cls.name + Local.SUFFIX)
+                    .loadClass(cls.name + BindLocal.SUFFIX)
                     .getConstructor(cls, LocalSettings::class.java) as Constructor<Saver>
                 debugger?.invoke("HIT: Loaded binding class, caching in weak map.")
             } catch (e: ClassNotFoundException) {
@@ -101,8 +101,8 @@ interface LocalSettings<E : LocalSettings.Editor> {
     }
 }
 
-infix fun LocalSettings<*>.bind(target: Any): LocalSettings.Saver {
-    val targetClass = target.javaClass
+infix fun Any.bindLocal(source: LocalSettings<*>): LocalSettings.Saver {
+    val targetClass = javaClass
     LocalSettings.debugger?.invoke("Looking up binding for ${targetClass.name}")
     val constructor = LocalSettings.findBindingConstructor(targetClass)
     if (constructor == null) {
@@ -110,7 +110,7 @@ infix fun LocalSettings<*>.bind(target: Any): LocalSettings.Saver {
         return LocalSettings.Saver.EMPTY
     }
     try {
-        return constructor.newInstance(target, this)
+        return constructor.newInstance(this, source)
     } catch (e: IllegalAccessException) {
         throw RuntimeException("Unable to invoke \$constructor", e)
     } catch (e: InstantiationException) {

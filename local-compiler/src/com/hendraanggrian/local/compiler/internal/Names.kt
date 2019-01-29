@@ -1,7 +1,7 @@
 package com.hendraanggrian.local.compiler.internal
 
 import com.google.auto.common.MoreElements.asType
-import com.hendraanggrian.local.Local
+import com.hendraanggrian.local.BindLocal
 import java.util.Collections.reverse
 import javax.lang.model.element.TypeElement
 
@@ -16,5 +16,5 @@ internal val TypeElement.measuredName: String
         reverse(enclosings)
         var typeName = enclosings[0]
         for (i in 1 until enclosings.size) typeName += "$${enclosings[i]}"
-        return "$typeName${Local.SUFFIX}"
+        return "$typeName${BindLocal.SUFFIX}"
     }

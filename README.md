@@ -1,2 +1,6 @@
-# preferences
-Local settings library for JVM and Android
+local
+=====
+Local settings library for JVM and Android.
+
+Usage
+-----

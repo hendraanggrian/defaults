@@ -2,7 +2,7 @@ package com.hendraanggrian.local.compiler
 
 import com.google.auto.common.MoreElements.asType
 import com.google.common.collect.LinkedHashMultimap.create
-import com.hendraanggrian.local.Local
+import com.hendraanggrian.local.BindLocal
 import com.hendraanggrian.local.compiler.internal.PreferenceBindingSpec
 import com.hendraanggrian.local.compiler.internal.measuredName
 import java.io.IOException
@@ -22,7 +22,7 @@ class LocalProcessor : AbstractProcessor() {
     override fun getSupportedSourceVersion(): SourceVersion = latestSupported()
 
     override fun getSupportedAnnotationTypes(): Set<String> =
-        setOf(Local::class.java.canonicalName)
+        setOf(BindLocal::class.java.canonicalName)
 
     @Synchronized
     override fun init(processingEnv: ProcessingEnvironment) {
@@ -34,7 +34,7 @@ class LocalProcessor : AbstractProcessor() {
         // preparing elements
         val multimap = create<TypeElement, Element>()
         val measuredClassNames = mutableSetOf<String>()
-        roundEnv.getElementsAnnotatedWith(Local::class.java).forEach { element ->
+        roundEnv.getElementsAnnotatedWith(BindLocal::class.java).forEach { element ->
             val typeElement = asType(element.enclosingElement)
             multimap.put(typeElement, element)
             measuredClassNames.add(typeElement.measuredName)

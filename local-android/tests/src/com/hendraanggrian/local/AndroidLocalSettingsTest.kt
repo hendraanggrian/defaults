@@ -27,10 +27,10 @@ class AndroidLocalSettingsTest {
 
     @Test
     fun sharedPreferences() {
-        val preferences = LocalSettings android testPreferences
+        val preferences = testPreferences.localSettings()
         preferences.edit {
             set("name", "Hendra")
-            setInt("age", 25)
+            set("age", 25)
         }
         assertEquals("Hendra", preferences["name"])
         assertEquals(25, preferences.getInt("age"))
@@ -38,10 +38,10 @@ class AndroidLocalSettingsTest {
 
     @Test
     fun context() {
-        val preferences = LocalSettings android context
+        val preferences = context.localSettings()
         preferences.edit {
             set("name", "Hendra")
-            setInt("age", 25)
+            set("age", 25)
         }
         assertEquals("Hendra", preferences["name"])
         assertEquals(25, preferences.getInt("age"))

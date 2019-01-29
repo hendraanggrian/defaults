@@ -19,7 +19,7 @@ class LocalFileSettingsTest {
 
     @Test
     fun test() {
-        val preferences = LocalSettings file testFile
+        val preferences = testFile.localSettings()
         preferences.edit {
             set("name", "Hendra")
             set("age", 25)

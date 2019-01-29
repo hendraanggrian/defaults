@@ -4,12 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
-infix fun LocalSettings.Companion.android(preferences: SharedPreferences): LocalSettings<*> =
-    AndroidLocalSettings(preferences)
+fun SharedPreferences.localSettings(): LocalSettings<*> = AndroidLocalSettings(this)
 
 @Suppress("NOTHING_TO_INLINE")
-inline infix fun LocalSettings.Companion.android(context: Context): LocalSettings<*> =
-    android(PreferenceManager.getDefaultSharedPreferences(context))
+inline fun Context.localSettings(): LocalSettings<*> =
+    PreferenceManager.getDefaultSharedPreferences(this).localSettings()
 
 private class AndroidLocalSettings(private val preferences: SharedPreferences) :
     LocalSettings<AndroidLocalSettings.Editor>,
