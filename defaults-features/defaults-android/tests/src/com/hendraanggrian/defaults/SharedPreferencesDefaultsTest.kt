@@ -27,7 +27,7 @@ class SharedPreferencesDefaultsTest {
 
     @Test
     fun sharedPreferences() {
-        val defaults = Defaults sharedPreferences testPreferences
+        val defaults = Defaults.from(testPreferences)
         defaults {
             set("name", "Hendra")
             set("age", 25)
@@ -38,7 +38,7 @@ class SharedPreferencesDefaultsTest {
 
     @Test
     fun context() {
-        val defaults = Defaults sharedPreferences context
+        val defaults = Defaults.from(context)
         defaults {
             set("name", "Hendra")
             set("age", 25)

@@ -7,35 +7,39 @@ import java.util.WeakHashMap
 interface Defaults<E : Defaults.Editor> {
 
     companion object {
-        internal var debugger: ((String) -> Unit)? = { println(it) }
-        private lateinit var bindings: MutableMap<Class<*>, Constructor<Saver>>
+        const val TAG = "Defaults"
 
+        internal var DEBUGGER: DefaultsDebugger? = null
+        private lateinit var BINDINGS: MutableMap<Class<*>, Constructor<Saver>>
         internal val EMPTY_SAVER: Saver = object : Saver {
             override fun save() {}
-
             override fun saveAsync() {}
+        }
+
+        fun setDebug(debug: DefaultsDebugger?) {
+            DEBUGGER = debug
         }
 
         @Suppress("UNCHECKED_CAST")
         internal fun findBindingConstructor(cls: Class<*>): Constructor<Saver>? {
-            if (!Companion::bindings.isInitialized) bindings = WeakHashMap()
-            var binding = bindings[cls]
+            if (!Companion::BINDINGS.isInitialized) BINDINGS = WeakHashMap()
+            var binding = BINDINGS[cls]
             if (binding != null) {
-                debugger?.invoke("HIT: Cache found in binding weak map.")
+                DEBUGGER?.invoke("HIT: Cache found in binding weak map.")
                 return binding
             }
             if (cls.name.startsWith("android.") || cls.name.startsWith("java.")) {
-                debugger?.invoke("MISS: Reached framework class. Abandoning search.")
+                DEBUGGER?.invoke("MISS: Reached framework class. Abandoning search.")
                 return null
             }
             try {
                 binding = cls.classLoader!!
                     .loadClass(cls.name + Default.SUFFIX)
                     .getConstructor(cls, Defaults::class.java) as Constructor<Saver>
-                debugger?.invoke("HIT: Loaded binding class, caching in weak map.")
+                DEBUGGER?.invoke("HIT: Loaded binding class, caching in weak map.")
             } catch (e: ClassNotFoundException) {
                 val superclass = cls.superclass
-                debugger?.invoke("Not found. Trying superclass ${superclass!!.name}")
+                DEBUGGER?.invoke("Not found. Trying superclass ${superclass!!.name}")
                 binding =
                     findBindingConstructor(
                         superclass
@@ -43,7 +47,7 @@ interface Defaults<E : Defaults.Editor> {
             } catch (e: NoSuchMethodException) {
                 throw RuntimeException("Unable to find binding constructor for \$name", e)
             }
-            bindings[cls] = binding!!
+            BINDINGS[cls] = binding!!
             return binding
         }
     }
@@ -104,11 +108,11 @@ interface Defaults<E : Defaults.Editor> {
 
 infix fun Any.bindDefaults(source: Defaults<*>): Defaults.Saver {
     val targetClass = javaClass
-    Defaults.debugger?.invoke("Looking up binding for ${targetClass.name}")
+    Defaults.DEBUGGER?.invoke("Looking up binding for ${targetClass.name}")
     val constructor =
         Defaults.findBindingConstructor(targetClass)
     if (constructor == null) {
-        Defaults.debugger?.invoke("${targetClass.name} binding not found, returning empty Committer.")
+        Defaults.DEBUGGER?.invoke("${targetClass.name} binding not found, returning empty Committer.")
         return Defaults.EMPTY_SAVER
     }
     try {

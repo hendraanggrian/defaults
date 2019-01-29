@@ -1,6 +1,5 @@
 package com.hendraanggrian.defaults
 
-import com.hendraanggrian.defaults.Defaults
 import org.junit.Before
 import org.junit.Test
 import java.io.File
@@ -20,7 +19,7 @@ class PropertiesFileDefaultsTest {
 
     @Test
     fun test() {
-        val defaults = Defaults file testFile
+        val defaults = Defaults.from(testFile)
         defaults {
             set("name", "Hendra")
             set("age", 25)

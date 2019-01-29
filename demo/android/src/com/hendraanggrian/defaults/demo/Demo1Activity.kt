@@ -11,7 +11,7 @@ import androidx.preference.PreferenceManager
 import com.hendraanggrian.defaults.Default
 import com.hendraanggrian.defaults.Defaults
 import com.hendraanggrian.defaults.bindDefaults
-import com.hendraanggrian.defaults.sharedPreferences
+import com.hendraanggrian.defaults.from
 import kotlinx.android.synthetic.main.activity_demo1.*
 
 class Demo1Activity : AppCompatActivity(), View.OnClickListener {
@@ -28,7 +28,7 @@ class Demo1Activity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo1)
         setSupportActionBar(toolbar)
-        saver = bindDefaults(Defaults sharedPreferences this)
+        saver = bindDefaults(Defaults.from(this))
 
         nameEditText.setText(name)
         marriedEditText.setText(married.toString())

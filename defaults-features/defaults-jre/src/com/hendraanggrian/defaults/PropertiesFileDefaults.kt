@@ -6,8 +6,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.util.Properties
 
-infix fun Defaults.Companion.file(file: File): Defaults<*> =
-    PropertiesFileDefaults(file)
+fun Defaults.Companion.from(file: File): Defaults<*> = PropertiesFileDefaults(file)
 
 private class PropertiesFileDefaults(private val file: File) :
     Defaults<PropertiesFileDefaults.Editor> {
@@ -50,7 +49,7 @@ private class PropertiesFileDefaults(private val file: File) :
 
     override fun getEditor(): Editor = Editor()
 
-    inner class Editor : Defaults.Editor {
+    private inner class Editor : Defaults.Editor {
 
         override fun minusAssign(key: String) {
             properties.remove(key)

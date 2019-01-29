@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
-infix fun Defaults.Companion.sharedPreferences(sharedPreferences: SharedPreferences): Defaults<*> =
+fun Defaults.Companion.from(sharedPreferences: SharedPreferences): Defaults<*> =
     SharedPreferencesDefaults(sharedPreferences)
 
 @Suppress("NOTHING_TO_INLINE")
-inline infix fun Defaults.Companion.sharedPreferences(context: Context): Defaults<*> =
-    sharedPreferences(PreferenceManager.getDefaultSharedPreferences(context))
+inline fun Defaults.Companion.from(context: Context): Defaults<*> =
+    from(PreferenceManager.getDefaultSharedPreferences(context))
 
 private class SharedPreferencesDefaults(private val preferences: SharedPreferences) :
     Defaults<SharedPreferencesDefaults.Editor>,
@@ -28,7 +28,7 @@ private class SharedPreferencesDefaults(private val preferences: SharedPreferenc
     override fun getEditor(): Editor =
         Editor(preferences.edit())
 
-    class Editor(private val editor: SharedPreferences.Editor) : Defaults.Editor,
+    private class Editor(private val editor: SharedPreferences.Editor) : Defaults.Editor,
         SharedPreferences.Editor by editor {
 
         override fun minusAssign(key: String) {
