@@ -22,7 +22,8 @@ internal class DefaultBindingSpec(typeElement: TypeElement) {
     companion object {
         private const val TARGET = "target"
         private const val SOURCE = "source"
-        private val TYPE_DEFAULT_BINDING = get("com.hendraanggrian.defaults.internal", "DefaultBinding")!!
+        private val TYPE_DEFAULT_BINDING =
+            get("com.hendraanggrian.defaults.internal", "DefaultBinding")!!
         private val TYPE_DEFAULTS = get("com.hendraanggrian.defaults", "Defaults")!!
         private val TYPE_DEFAULTS_EDITOR = get("com.hendraanggrian.defaults.Defaults", "Editor")!!
     }
@@ -32,12 +33,15 @@ internal class DefaultBindingSpec(typeElement: TypeElement) {
     private val mSuperclass = typeElement.superclass
     private val mClass = classBuilder(typeElement.measuredName)
         .addModifiers(PUBLIC)
-        .addField(mClassName,
-            TARGET, PRIVATE, FINAL)
+        .addField(
+            mClassName,
+            TARGET, PRIVATE, FINAL
+        )
 
     private val mConstructorMethod = constructorBuilder()
         .addModifiers(PUBLIC)
-        .addParameter(mClassName,
+        .addParameter(
+            mClassName,
             TARGET
         )
         .addParameter(
@@ -62,18 +66,21 @@ internal class DefaultBindingSpec(typeElement: TypeElement) {
         }
         if (!hasSuperclass) {
             mClass.superclass(TYPE_DEFAULT_BINDING)
-            mConstructorMethod.addStatement("super(\$L)",
+            mConstructorMethod.addStatement(
+                "super(\$L)",
                 SOURCE
             )
         } else {
-            mConstructorMethod.addStatement("super(\$L, \$L)",
+            mConstructorMethod.addStatement(
+                "super(\$L, \$L)",
                 TARGET,
                 SOURCE
             )
             mSaveMethod.addStatement("super.save()")
             mSaveAsyncMethod.addStatement("super.saveAsync()")
         }
-        mConstructorMethod.addStatement("this.\$L = \$L",
+        mConstructorMethod.addStatement(
+            "this.\$L = \$L",
             TARGET,
             TARGET
         )
@@ -82,12 +89,18 @@ internal class DefaultBindingSpec(typeElement: TypeElement) {
 
     fun statement(fieldElements: Iterable<Element>): DefaultBindingSpec {
         // save
-        mSaveMethod.addCode(of("\$T editor = getEditor();\n",
-            TYPE_DEFAULTS_EDITOR
-        ))
-        mSaveAsyncMethod.addCode(of("\$T editor = getEditor();\n",
-            TYPE_DEFAULTS_EDITOR
-        ))
+        mSaveMethod.addCode(
+            of(
+                "\$T editor = getEditor();\n",
+                TYPE_DEFAULTS_EDITOR
+            )
+        )
+        mSaveAsyncMethod.addCode(
+            of(
+                "\$T editor = getEditor();\n",
+                TYPE_DEFAULTS_EDITOR
+            )
+        )
         // constructor, save
         fieldElements.forEach { element ->
             val field = element.simpleName.toString()
@@ -122,8 +135,8 @@ internal class DefaultBindingSpec(typeElement: TypeElement) {
             addMethod(mSaveAsyncMethod.build())
         }.build())
         .addFileComment(
-            "Preferencer generated class, " +
-                "do not modify! https://github.com/hendraanggrian/preferencer"
+            "Defaults generated class, " +
+                "do not modify! https://github.com/hendraanggrian/defaults"
         )
         .build()
 }

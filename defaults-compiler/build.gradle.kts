@@ -1,6 +1,7 @@
 plugins {
     `java-library`
     kotlin("jvm")
+    dokka()
     bintray
     `bintray-release`
 }
@@ -63,6 +64,11 @@ tasks {
         classpath = ktlint.get()
         main = "com.github.shyiko.ktlint.Main"
         args("-F", "src/**/*.kt")
+    }
+
+    named<org.jetbrains.dokka.gradle.DokkaTask>("dokka") {
+        outputDirectory = "$buildDir/docs"
+        doFirst { file(outputDirectory).deleteRecursively() }
     }
 }
 

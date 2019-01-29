@@ -5,5 +5,7 @@ include("$RELEASE_ARTIFACT-compiler")
 include("$RELEASE_ARTIFACT-features:$RELEASE_ARTIFACT-jre")
 include("$RELEASE_ARTIFACT-features:$RELEASE_ARTIFACT-android")
 
+include("website")
+
 include(":demo:jre")
 include(":demo:android")

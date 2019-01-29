@@ -53,7 +53,7 @@ With optional annotation processor, bind these local settings to local variables
 
 ```kotlin
 import com.hendraanggrian.defaults.Defaults
-import com.hendraanggrian.defaults.bindDefault
+import com.hendraanggrian.defaults.bindDefaults
 
 @Bind lateinit var name: String
 @Bind @JvmField var age: Int = 0

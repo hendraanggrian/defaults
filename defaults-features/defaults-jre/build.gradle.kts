@@ -67,8 +67,8 @@ publish {
 
     userOrg = RELEASE_USER
     groupId = RELEASE_GROUP
-    artifactId = RELEASE_ARTIFACT
-    publishVersion = VERSION_ANDROIDX
+    artifactId = "$RELEASE_ARTIFACT-jre"
+    publishVersion = RELEASE_VERSION
     desc = RELEASE_DESC
     website = RELEASE_WEBSITE
 }
