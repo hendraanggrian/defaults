@@ -6,9 +6,9 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.util.Properties
 
-fun File.localSettings(): LocalSettings<*> = LocalFileSettings(this)
+infix fun Local.Companion.file(file: File): Local<*> = LocalPropertiesFile(file)
 
-private class LocalFileSettings(private val file: File) : LocalSettings<LocalFileSettings.Editor> {
+private class LocalPropertiesFile(private val file: File) : Local<LocalPropertiesFile.Editor> {
 
     private val properties = Properties()
 
@@ -48,7 +48,7 @@ private class LocalFileSettings(private val file: File) : LocalSettings<LocalFil
 
     override fun getEditor(): Editor = Editor()
 
-    inner class Editor : LocalSettings.Editor {
+    inner class Editor : Local.Editor {
 
         override fun minusAssign(key: String) {
             properties.remove(key)

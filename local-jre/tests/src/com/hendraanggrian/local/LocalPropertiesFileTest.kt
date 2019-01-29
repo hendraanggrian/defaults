@@ -5,7 +5,7 @@ import org.junit.Test
 import java.io.File
 import kotlin.test.assertEquals
 
-class LocalFileSettingsTest {
+class LocalPropertiesFileTest {
 
     private lateinit var testFile: File
 
@@ -19,7 +19,7 @@ class LocalFileSettingsTest {
 
     @Test
     fun test() {
-        val preferences = testFile.localSettings()
+        val preferences = Local file testFile
         preferences.edit {
             set("name", "Hendra")
             set("age", 25)

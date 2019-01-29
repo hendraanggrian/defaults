@@ -4,7 +4,7 @@ import java.lang.reflect.Constructor
 import java.lang.reflect.InvocationTargetException
 import java.util.WeakHashMap
 
-interface LocalSettings<E : LocalSettings.Editor> {
+interface Local<E : Local.Editor> {
 
     companion object {
         internal var debugger: ((String) -> Unit)? = { println(it) }
@@ -25,7 +25,7 @@ interface LocalSettings<E : LocalSettings.Editor> {
             try {
                 binding = cls.classLoader!!
                     .loadClass(cls.name + BindLocal.SUFFIX)
-                    .getConstructor(cls, LocalSettings::class.java) as Constructor<Saver>
+                    .getConstructor(cls, Local::class.java) as Constructor<Saver>
                 debugger?.invoke("HIT: Loaded binding class, caching in weak map.")
             } catch (e: ClassNotFoundException) {
                 val superclass = cls.superclass
@@ -101,13 +101,13 @@ interface LocalSettings<E : LocalSettings.Editor> {
     }
 }
 
-infix fun Any.bindLocal(source: LocalSettings<*>): LocalSettings.Saver {
+infix fun Any.bindLocal(source: Local<*>): Local.Saver {
     val targetClass = javaClass
-    LocalSettings.debugger?.invoke("Looking up binding for ${targetClass.name}")
-    val constructor = LocalSettings.findBindingConstructor(targetClass)
+    Local.debugger?.invoke("Looking up binding for ${targetClass.name}")
+    val constructor = Local.findBindingConstructor(targetClass)
     if (constructor == null) {
-        LocalSettings.debugger?.invoke("${targetClass.name} binding not found, returning empty Committer.")
-        return LocalSettings.Saver.EMPTY
+        Local.debugger?.invoke("${targetClass.name} binding not found, returning empty Committer.")
+        return Local.Saver.EMPTY
     }
     try {
         return constructor.newInstance(this, source)

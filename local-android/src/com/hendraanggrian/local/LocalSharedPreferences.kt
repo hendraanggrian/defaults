@@ -4,14 +4,15 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
-fun SharedPreferences.localSettings(): LocalSettings<*> = AndroidLocalSettings(this)
+infix fun Local.Companion.sharedPreferences(sharedPreferences: SharedPreferences): Local<*> =
+    LocalSharedPreferences(sharedPreferences)
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun Context.localSettings(): LocalSettings<*> =
-    PreferenceManager.getDefaultSharedPreferences(this).localSettings()
+inline infix fun Local.Companion.sharedPreferences(context: Context): Local<*> =
+    sharedPreferences(PreferenceManager.getDefaultSharedPreferences(context))
 
-private class AndroidLocalSettings(private val preferences: SharedPreferences) :
-    LocalSettings<AndroidLocalSettings.Editor>,
+private class LocalSharedPreferences(private val preferences: SharedPreferences) :
+    Local<LocalSharedPreferences.Editor>,
     SharedPreferences by preferences {
 
     override fun getString(key: String): String = getString(key, null).orEmpty()
@@ -26,7 +27,7 @@ private class AndroidLocalSettings(private val preferences: SharedPreferences) :
 
     override fun getEditor(): Editor = Editor(preferences.edit())
 
-    class Editor(private val editor: SharedPreferences.Editor) : LocalSettings.Editor,
+    class Editor(private val editor: SharedPreferences.Editor) : Local.Editor,
         SharedPreferences.Editor by editor {
 
         override fun minusAssign(key: String) {

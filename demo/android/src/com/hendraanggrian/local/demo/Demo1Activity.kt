@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.hendraanggrian.local.BindLocal
-import com.hendraanggrian.local.LocalSettings
+import com.hendraanggrian.local.Local
 import com.hendraanggrian.local.bindLocal
-import com.hendraanggrian.local.localSettings
+import com.hendraanggrian.local.sharedPreferences
 import kotlinx.android.synthetic.main.activity_demo1.*
 
 class Demo1Activity : AppCompatActivity(), View.OnClickListener {
@@ -22,13 +22,13 @@ class Demo1Activity : AppCompatActivity(), View.OnClickListener {
     @BindLocal("long") @JvmField var mLong: Long = 0
     @BindLocal("float") @JvmField var mFloat: Float = 0.0f
 
-    private lateinit var saver: LocalSettings.Saver
+    private lateinit var saver: Local.Saver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo1)
         setSupportActionBar(toolbar)
-        saver = bindLocal(localSettings())
+        saver = bindLocal(Local sharedPreferences this)
 
         nameEditText.setText(name)
         marriedEditText.setText(married.toString())

@@ -13,7 +13,7 @@ import kotlin.test.assertEquals
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class AndroidLocalSettingsTest {
+class LocalSharedPreferencesTest {
 
     private lateinit var context: Context
     private lateinit var testPreferences: SharedPreferences
@@ -27,7 +27,7 @@ class AndroidLocalSettingsTest {
 
     @Test
     fun sharedPreferences() {
-        val preferences = testPreferences.localSettings()
+        val preferences = Local sharedPreferences testPreferences
         preferences.edit {
             set("name", "Hendra")
             set("age", 25)
@@ -38,7 +38,7 @@ class AndroidLocalSettingsTest {
 
     @Test
     fun context() {
-        val preferences = context.localSettings()
+        val preferences = Local sharedPreferences context
         preferences.edit {
             set("name", "Hendra")
             set("age", 25)

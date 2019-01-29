@@ -1,9 +1,9 @@
 package com.hendraanggrian.local.internal
 
-import com.hendraanggrian.local.LocalSettings
+import com.hendraanggrian.local.Local
 
-abstract class LocalBinding(protected val source: LocalSettings<*>) :
-    LocalSettings.Saver {
+abstract class LocalBinding(protected val source: Local<*>) :
+    Local.Saver {
 
     protected fun get(key: String, defaultValue: String?): String? =
         source.getString(key, defaultValue)
@@ -20,25 +20,25 @@ abstract class LocalBinding(protected val source: LocalSettings<*>) :
     protected fun get(key: String, defaultValue: Boolean): Boolean =
         source.getBoolean(key, defaultValue)
 
-    protected fun getEditor(): LocalSettings.Editor = source.getEditor()
+    protected fun getEditor(): Local.Editor = source.getEditor()
 
-    protected fun set(editor: LocalSettings.Editor, key: String, value: String?) {
+    protected fun set(editor: Local.Editor, key: String, value: String?) {
         editor[key] = value
     }
 
-    protected fun set(editor: LocalSettings.Editor, key: String, value: Int) {
+    protected fun set(editor: Local.Editor, key: String, value: Int) {
         editor[key] = value
     }
 
-    protected fun set(editor: LocalSettings.Editor, key: String, value: Long) {
+    protected fun set(editor: Local.Editor, key: String, value: Long) {
         editor[key] = value
     }
 
-    protected fun set(editor: LocalSettings.Editor, key: String, value: Float) {
+    protected fun set(editor: Local.Editor, key: String, value: Float) {
         editor[key] = value
     }
 
-    protected fun set(editor: LocalSettings.Editor, key: String, value: Boolean) {
+    protected fun set(editor: Local.Editor, key: String, value: Boolean) {
         editor[key] = value
     }
 }

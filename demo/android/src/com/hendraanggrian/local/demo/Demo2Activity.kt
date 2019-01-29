@@ -9,8 +9,9 @@ import androidx.preference.Preference.OnPreferenceChangeListener
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.hendraanggrian.local.BindLocal
+import com.hendraanggrian.local.Local
 import com.hendraanggrian.local.bindLocal
-import com.hendraanggrian.local.localSettings
+import com.hendraanggrian.local.sharedPreferences
 import kotlinx.android.synthetic.main.activity_demo2.*
 
 class Demo2Activity : AppCompatActivity() {
@@ -36,7 +37,7 @@ class Demo2Activity : AppCompatActivity() {
 
         override fun onAttach(context: Context) {
             super.onAttach(context)
-            bindLocal(context.localSettings())
+            bindLocal(Local sharedPreferences context)
         }
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

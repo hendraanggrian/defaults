@@ -23,8 +23,8 @@ internal class PreferenceBindingSpec(typeElement: TypeElement) {
         private const val TARGET = "target"
         private const val SOURCE = "source"
         private val TYPE_LOCAL_BINDING = get("com.hendraanggrian.local.internal", "LocalBinding")!!
-        private val TYPE_LOCAL_SETTINGS = get("com.hendraanggrian.local", "LocalSettings")!!
-        private val TYPE_EDITOR = get("com.hendraanggrian.local.LocalSettings", "Editor")!!
+        private val TYPE_LOCAL = get("com.hendraanggrian.local", "Local")!!
+        private val TYPE_LOCAL_EDITOR = get("com.hendraanggrian.local.Local", "Editor")!!
     }
 
     private val mPackageName = getPackage(typeElement).qualifiedName.toString()
@@ -37,7 +37,7 @@ internal class PreferenceBindingSpec(typeElement: TypeElement) {
     private val mConstructorMethod = constructorBuilder()
         .addModifiers(PUBLIC)
         .addParameter(mClassName, TARGET)
-        .addParameter(TYPE_LOCAL_SETTINGS, SOURCE)
+        .addParameter(TYPE_LOCAL, SOURCE)
     private val mSaveMethod = methodBuilder("save")
         .addAnnotation(Override::class.java)
         .addModifiers(PUBLIC)
@@ -68,8 +68,8 @@ internal class PreferenceBindingSpec(typeElement: TypeElement) {
 
     fun statement(fieldElements: Iterable<Element>): PreferenceBindingSpec {
         // save
-        mSaveMethod.addCode(of("\$T editor = getEditor();\n", TYPE_EDITOR))
-        mSaveAsyncMethod.addCode(of("\$T editor = getEditor();\n", TYPE_EDITOR))
+        mSaveMethod.addCode(of("\$T editor = getEditor();\n", TYPE_LOCAL_EDITOR))
+        mSaveAsyncMethod.addCode(of("\$T editor = getEditor();\n", TYPE_LOCAL_EDITOR))
         // constructor, save
         fieldElements.forEach { element ->
             val field = element.simpleName.toString()
