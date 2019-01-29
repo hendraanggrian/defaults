@@ -5,7 +5,7 @@
 
 Defaults
 ========
-![icon](/art/ic_launcher.png)
+![icon](/art/ic_launcher_small.png)
 
 Local settings library for JVM and Android.
 

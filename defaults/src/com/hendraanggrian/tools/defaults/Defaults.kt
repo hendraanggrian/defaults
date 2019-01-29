@@ -1,5 +1,6 @@
 package com.hendraanggrian.tools.defaults
 
+import com.hendraanggrian.defaults.Default
 import java.lang.reflect.Constructor
 import java.lang.reflect.InvocationTargetException
 import java.util.WeakHashMap
@@ -68,7 +69,8 @@ interface Defaults<E : Defaults.Editor> {
 
     fun getEditor(): E
 
-    fun edit(edit: (E.() -> Unit)) = getEditor().apply { edit() }.save()
+    infix operator fun invoke(edit: (E.() -> Unit)): Defaults<E> =
+        apply { getEditor().apply { edit() }.save() }
 
     interface Editor : Saver {
 

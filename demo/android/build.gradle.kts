@@ -11,7 +11,7 @@ android {
     defaultConfig {
         minSdkVersion(SDK_MIN)
         targetSdkVersion(SDK_TARGET)
-        applicationId = "$RELEASE_GROUP.$RELEASE_ARTIFACT.demo"
+        applicationId = "$RELEASE_GROUP.demo"
         versionName = RELEASE_VERSION
     }
     sourceSets {
