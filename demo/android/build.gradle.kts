@@ -11,7 +11,7 @@ android {
     defaultConfig {
         minSdkVersion(SDK_MIN)
         targetSdkVersion(SDK_TARGET)
-        applicationId = "$RELEASE_GROUP.demo"
+        applicationId = "$RELEASE_GROUP.$RELEASE_ARTIFACT.demo"
         versionName = RELEASE_VERSION
     }
     sourceSets {
@@ -49,7 +49,7 @@ dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
 
     implementation(apache("commons-lang3", VERSION_COMMONS_LANG))
-    implementation(project(":$RELEASE_ARTIFACT-android"))
+    implementation(project(":$RELEASE_ARTIFACT-features:$RELEASE_ARTIFACT-android"))
     kapt(project(":$RELEASE_ARTIFACT-compiler"))
 
     implementation(androidx("multidex", version = VERSION_MULTIDEX))
