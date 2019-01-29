@@ -1,0 +1,5 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:com.hendraanggrian.defaults$bindDefaults(kotlin.Any, com.hendraanggrian.defaults.Defaults((com.hendraanggrian.defaults.Defaults.Editor)))com.hendraanggrian.defaults/kotlin.-any/bind-defaults.html
+com.hendraanggrian.defaults
+com.hendraanggrian.defaults.internal
