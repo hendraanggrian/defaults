@@ -84,19 +84,19 @@
 <tbody>
 <tr>
 <td>
-<p><a href="../../-simple-defaults/-editor/index.html">Editor</a></p>
+<p><a href="../-no-editor/-fake-editor/index.html">FakeEditor</a></p>
 </td>
 <td>
-<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">Editor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Editor</span></a></code></td>
+<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">FakeEditor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Editor</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../../-simple-defaults/index.html">SimpleDefaults</a></p>
+<p><a href="../-no-editor/index.html">NoEditor</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">SimpleDefaults</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../index.html"><span class="identifier">Defaults</span></a><span class="symbol">&lt;</span><a href="../../-simple-defaults/-editor/index.html"><span class="identifier">Editor</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">Editor</span></a></code>
-<p>Represents local settings that always has access to read and write values, therefore making
-editor concept irrelevant.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">NoEditor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../index.html"><span class="identifier">Defaults</span></a><span class="symbol">&lt;</span><a href="../-no-editor/-fake-editor/index.html"><span class="identifier">FakeEditor</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">Editor</span></a></code>
+<p>Represents defaults that can directly write values without editor being created,
+though editor works and behaves like the defaults itself.</p>
 </td>
 </tr>
 </tbody>
