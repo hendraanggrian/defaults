@@ -10,8 +10,8 @@ import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.hendraanggrian.defaults.Default
 import com.hendraanggrian.defaults.Defaults
-import com.hendraanggrian.defaults.bindDefaults
 import com.hendraanggrian.defaults.from
+import com.hendraanggrian.defaults.bindDefaults
 import kotlinx.android.synthetic.main.activity_demo1.*
 
 class Demo1Activity : AppCompatActivity(), View.OnClickListener {

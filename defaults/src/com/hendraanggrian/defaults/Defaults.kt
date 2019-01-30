@@ -60,35 +60,37 @@ interface Defaults<E : Defaults.Editor> {
     /** Returns non-null string value. */
     operator fun get(key: String): String = getString(key)!!
 
-    /** Returns string value. */
     fun getString(key: String): String?
 
-    /** Returns string value, or default value if setting doesn't exist. */
     fun getString(key: String, defaultValue: String?): String?
 
-    /** Returns int value. */
-    fun getInt(key: String): Int
-
-    /** Returns int value, or default value if setting doesn't exist. */
-    fun getInt(key: String, defaultValue: Int): Int
-
-    /** Returns long value. */
-    fun getLong(key: String): Long
-
-    /** Returns long value, or default value if setting doesn't exist. */
-    fun getLong(key: String, defaultValue: Long): Long
-
-    /** Returns float value. */
-    fun getFloat(key: String): Float
-
-    /** Returns float value, or default value if setting doesn't exist. */
-    fun getFloat(key: String, defaultValue: Float): Float
-
-    /** Returns boolean value. */
     fun getBoolean(key: String): Boolean
 
-    /** Returns boolean value, or default value if setting doesn't exist. */
     fun getBoolean(key: String, defaultValue: Boolean): Boolean
+
+    fun getDouble(key: String): Double
+
+    fun getDouble(key: String, defaultValue: Double): Double
+
+    fun getFloat(key: String): Float
+
+    fun getFloat(key: String, defaultValue: Float): Float
+
+    fun getLong(key: String): Long
+
+    fun getLong(key: String, defaultValue: Long): Long
+
+    fun getInt(key: String): Int
+
+    fun getInt(key: String, defaultValue: Int): Int
+
+    fun getShort(key: String): Short
+
+    fun getShort(key: String, defaultValue: Short): Short
+
+    fun getByte(key: String): Byte
+
+    fun getByte(key: String, defaultValue: Byte): Byte
 
     /**
      * When editor instance is created, resources must be available (e.g.: opening sql transaction).
@@ -117,17 +119,26 @@ interface Defaults<E : Defaults.Editor> {
         /** Add/change string value. */
         operator fun set(key: String, value: String?)
 
-        /** Add/change int value. */
-        operator fun set(key: String, value: Int)
+        /** Add/change boolean value. */
+        operator fun set(key: String, value: Boolean)
 
-        /** Add/change long value. */
-        operator fun set(key: String, value: Long)
+        /** Add/change double value. */
+        operator fun set(key: String, value: Double)
 
         /** Add/change float value. */
         operator fun set(key: String, value: Float)
 
-        /** Add/change boolean value. */
-        operator fun set(key: String, value: Boolean)
+        /** Add/change long value. */
+        operator fun set(key: String, value: Long)
+
+        /** Add/change int value. */
+        operator fun set(key: String, value: Int)
+
+        /** Add/change short value. */
+        operator fun set(key: String, value: Short)
+
+        /** Add/change byte value. */
+        operator fun set(key: String, value: Byte)
     }
 
     /** Base interface to save changes to local settings. */
