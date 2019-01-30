@@ -2,7 +2,6 @@
 
 package com.hendraanggrian.defaults
 
-import com.hendraanggrian.defaults.internal.SimpleDefaults
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -10,7 +9,8 @@ import java.io.File
 import java.util.Properties
 
 /** Creates defaults instance from file. */
-inline fun Defaults.Companion.from(file: File): Defaults<*> = PropertiesFileDefaults(file)
+inline fun Defaults.Companion.from(file: File): PropertiesFileDefaults =
+    PropertiesFileDefaults(file)
 
 class PropertiesFileDefaults(private val file: File) : SimpleDefaults() {
     private val properties = Properties()

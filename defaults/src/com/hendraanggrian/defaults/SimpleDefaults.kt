@@ -1,6 +1,5 @@
-package com.hendraanggrian.defaults.internal
+package com.hendraanggrian.defaults
 
-import com.hendraanggrian.defaults.Defaults
 import java.lang.ref.WeakReference
 
 /**
