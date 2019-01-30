@@ -14,10 +14,6 @@ val defaults = Defaults.from(source)
 val username = defaults["username"]
 ```
 
-Roadmap
--------
-* More features: `defaults-nosql`, `defaults-snapydb`.
-
 Download
 --------
 
