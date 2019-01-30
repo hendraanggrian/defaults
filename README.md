@@ -10,6 +10,11 @@ Defaults
 Local settings library that runs in plain Java and Android.
 Comes with optional annotation processor to bind settings to variables.
 
+```kotlin
+val defaults = Defaults.from(source)
+...
+```
+
 Roadmap
 -------
 * More features: `defaults-nosql`, `defaults-snapydb`.
