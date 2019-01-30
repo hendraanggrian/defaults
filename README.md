@@ -5,7 +5,7 @@
 
 Defaults
 ========
-![icon](/art/ic_launcher_small.png)
+![icon](/art/defaults-small.png)
 
 Local settings library that runs in plain Java and Android.
 Comes with optional annotation processor to bind settings to variables.
