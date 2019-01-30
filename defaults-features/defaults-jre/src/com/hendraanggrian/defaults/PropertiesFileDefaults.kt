@@ -1,3 +1,5 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package com.hendraanggrian.defaults
 
 import com.hendraanggrian.defaults.internal.SimpleDefaults
@@ -8,9 +10,9 @@ import java.io.File
 import java.util.Properties
 
 /** Creates defaults instance from file. */
-fun Defaults.Companion.from(file: File): Defaults<*> = PropertiesFileDefaults(file)
+inline fun Defaults.Companion.from(file: File): Defaults<*> = PropertiesFileDefaults(file)
 
-private class PropertiesFileDefaults(private val file: File) : SimpleDefaults() {
+class PropertiesFileDefaults(private val file: File) : SimpleDefaults() {
     private val properties = Properties()
 
     init {

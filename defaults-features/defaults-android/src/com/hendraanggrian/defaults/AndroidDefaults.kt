@@ -1,3 +1,5 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package com.hendraanggrian.defaults
 
 import android.content.Context
@@ -5,17 +7,28 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
 /** Creates defaults instance from shared preferences. */
-fun Defaults.Companion.from(sharedPreferences: SharedPreferences): Defaults<*> =
-    SharedPreferencesDefaults(sharedPreferences)
+inline fun Defaults.Companion.from(sharedPreferences: SharedPreferences): AndroidDefaults =
+    AndroidDefaults(sharedPreferences)
 
 /** Creates defaults instance from default shared preferences in context. */
-@Suppress("NOTHING_TO_INLINE")
-inline fun Defaults.Companion.from(context: Context): Defaults<*> =
+inline fun Defaults.Companion.from(context: Context): AndroidDefaults =
     from(PreferenceManager.getDefaultSharedPreferences(context))
 
-private class SharedPreferencesDefaults(private val preferences: SharedPreferences) :
-    Defaults<SharedPreferencesDefaults.Editor>,
-    SharedPreferences by preferences {
+inline fun AndroidDefaults.addListener(
+    noinline listener: (Defaults<*>, String) -> Unit
+): SharedPreferences.OnSharedPreferenceChangeListener =
+    SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences, key ->
+        listener(Defaults.from(sharedPreferences), key)
+    }.also {
+        sharedPreferences.registerOnSharedPreferenceChangeListener(it)
+    }
+
+inline fun AndroidDefaults.removeListener(
+    listener: SharedPreferences.OnSharedPreferenceChangeListener
+) = sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener)
+
+class AndroidDefaults(val sharedPreferences: SharedPreferences) : Defaults<AndroidDefaults.Editor>,
+    SharedPreferences by sharedPreferences {
 
     override fun getString(key: String): String = getString(key, null).orEmpty()
 
@@ -43,9 +56,9 @@ private class SharedPreferencesDefaults(private val preferences: SharedPreferenc
         throw UnsupportedOperationException()
 
     override fun getEditor(): Editor =
-        Editor(preferences.edit())
+        Editor(sharedPreferences.edit())
 
-    private class Editor(private val editor: SharedPreferences.Editor) : Defaults.Editor,
+    class Editor(private val editor: SharedPreferences.Editor) : Defaults.Editor,
         SharedPreferences.Editor by editor {
 
         override fun minusAssign(key: String) {

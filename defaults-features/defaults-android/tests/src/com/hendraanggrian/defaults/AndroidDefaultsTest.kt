@@ -13,7 +13,7 @@ import kotlin.test.assertEquals
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class SharedPreferencesDefaultsTest {
+class AndroidDefaultsTest {
 
     private lateinit var context: Context
     private lateinit var testPreferences: SharedPreferences
