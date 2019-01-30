@@ -2,6 +2,7 @@ package com.hendraanggrian.defaults
 
 import androidx.annotation.AnyThread
 import androidx.annotation.WorkerThread
+import java.lang.ref.WeakReference
 import java.lang.reflect.Constructor
 import java.util.WeakHashMap
 
@@ -14,6 +15,9 @@ interface Defaults<E : Defaults.Editor> {
 
     /** Often used and extended to create [Defaults] instance from ranges of input. */
     companion object {
+
+        const val TAG = "com.hendraanggrian.defaults.Defaults"
+
         internal var DEBUGGER: DefaultsDebugger? = null
         private lateinit var BINDINGS: MutableMap<Class<*>, Constructor<Saver>>
 
@@ -58,39 +62,37 @@ interface Defaults<E : Defaults.Editor> {
     operator fun contains(key: String): Boolean
 
     /** Returns non-null string value. */
-    operator fun get(key: String): String = getString(key)!!
+    operator fun get(key: String): String? = get(key)
 
-    fun getString(key: String): String?
-
-    fun getString(key: String, defaultValue: String?): String?
+    fun get(key: String, def: String?): String?
 
     fun getBoolean(key: String): Boolean
 
-    fun getBoolean(key: String, defaultValue: Boolean): Boolean
+    fun getBoolean(key: String, def: Boolean): Boolean
 
     fun getDouble(key: String): Double
 
-    fun getDouble(key: String, defaultValue: Double): Double
+    fun getDouble(key: String, def: Double): Double
 
     fun getFloat(key: String): Float
 
-    fun getFloat(key: String, defaultValue: Float): Float
+    fun getFloat(key: String, def: Float): Float
 
     fun getLong(key: String): Long
 
-    fun getLong(key: String, defaultValue: Long): Long
+    fun getLong(key: String, def: Long): Long
 
     fun getInt(key: String): Int
 
-    fun getInt(key: String, defaultValue: Int): Int
+    fun getInt(key: String, def: Int): Int
 
     fun getShort(key: String): Short
 
-    fun getShort(key: String, defaultValue: Short): Short
+    fun getShort(key: String, def: Short): Short
 
     fun getByte(key: String): Byte
 
-    fun getByte(key: String, defaultValue: Byte): Byte
+    fun getByte(key: String, def: Byte): Byte
 
     /**
      * When editor instance is created, resources must be available (e.g.: opening sql transaction).
@@ -106,6 +108,25 @@ interface Defaults<E : Defaults.Editor> {
      */
     infix operator fun invoke(edit: (Defaults<E>.(E) -> Unit)): Defaults<E> =
         apply { getEditor().also { edit(it) }.save() }
+
+    /** Base interface to save changes to local settings. */
+    interface Saver {
+
+        companion object {
+            internal val EMPTY: Saver = object : Saver {
+                override fun save() {}
+                override fun saveAsync() {}
+            }
+        }
+
+        /** Non-blocking save in the background. */
+        @WorkerThread
+        fun save()
+
+        /** Blocking save. */
+        @AnyThread
+        fun saveAsync()
+    }
 
     /** Responsible of modifying settings. */
     interface Editor : Saver {
@@ -141,22 +162,22 @@ interface Defaults<E : Defaults.Editor> {
         operator fun set(key: String, value: Byte)
     }
 
-    /** Base interface to save changes to local settings. */
-    interface Saver {
+    /**
+     * Represents defaults that can directly write values without editor being created,
+     * though editor works and behaves like the defaults itself.
+     */
+    abstract class NoEditor : Defaults<NoEditor.FakeEditor>, Defaults.Editor {
+        private var editorRef: WeakReference<FakeEditor?> = WeakReference(null)
 
-        companion object {
-            internal val EMPTY: Saver = object : Saver {
-                override fun save() {}
-                override fun saveAsync() {}
+        override fun getEditor(): FakeEditor {
+            var editor = editorRef.get()
+            if (editor == null) {
+                editor = FakeEditor()
+                editorRef = WeakReference(editor)
             }
+            return editor
         }
 
-        /** Non-blocking save in the background. */
-        @WorkerThread
-        fun save()
-
-        /** Blocking save. */
-        @AnyThread
-        fun saveAsync()
+        inner class FakeEditor : Defaults.Editor by this
     }
 }

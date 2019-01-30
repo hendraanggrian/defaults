@@ -49,7 +49,7 @@ dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
 
     implementation(apache("commons-lang3", VERSION_COMMONS_LANG))
-    implementation(project(":$RELEASE_ARTIFACT-features:$RELEASE_ARTIFACT-android"))
+    implementation(project(":$RELEASE_ARTIFACT-platforms:$RELEASE_ARTIFACT-android"))
     kapt(project(":$RELEASE_ARTIFACT-compiler"))
 
     implementation(androidx("multidex", version = VERSION_MULTIDEX))

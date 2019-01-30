@@ -3,9 +3,10 @@ package com.hendraanggrian.defaults
 import org.junit.Before
 import org.junit.Test
 import java.io.File
+import java.util.prefs.Preferences
 import kotlin.test.assertEquals
 
-class PropertiesFileDefaultsTest {
+class JvmDefaultsTest {
 
     private lateinit var testFile: File
 
@@ -18,12 +19,19 @@ class PropertiesFileDefaultsTest {
     }
 
     @Test
-    fun test() {
+    fun file() {
         val defaults = Defaults.from(testFile)
-        defaults {
-            it["name"] = "Hendra"
-            it["age"] = 25
-        }
+        defaults["name"] = "Hendra"
+        defaults["age"] = 25
+        assertEquals("Hendra", defaults["name"])
+        assertEquals(25, defaults.getInt("age"))
+    }
+
+    @Test
+    fun preferences() {
+        val defaults = Defaults.from(Preferences.userRoot().node(Defaults.TAG))
+        defaults["name"] = "Hendra"
+        defaults["age"] = 25
         assertEquals("Hendra", defaults["name"])
         assertEquals(25, defaults.getInt("age"))
     }

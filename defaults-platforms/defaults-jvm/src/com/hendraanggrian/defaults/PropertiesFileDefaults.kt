@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package com.hendraanggrian.defaults
 
 import kotlinx.coroutines.Dispatchers
@@ -8,11 +6,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.util.Properties
 
-/** Creates defaults instance from file. */
-inline fun Defaults.Companion.from(file: File): PropertiesFileDefaults =
-    PropertiesFileDefaults(file)
-
-class PropertiesFileDefaults(private val file: File) : SimpleDefaults() {
+class PropertiesFileDefaults(val file: File) : Defaults.NoEditor() {
     private val properties = Properties()
 
     init {
@@ -24,45 +18,45 @@ class PropertiesFileDefaults(private val file: File) : SimpleDefaults() {
 
     override fun contains(key: String): Boolean = properties.containsKey(key)
 
-    override fun getString(key: String): String? = getString(key, null)
+    override fun get(key: String): String? = get(key, null)
 
-    override fun getString(key: String, defaultValue: String?): String? =
-        properties.getProperty(key) ?: defaultValue
+    override fun get(key: String, def: String?): String? =
+        properties.getProperty(key) ?: def
 
     override fun getBoolean(key: String): Boolean = getBoolean(key, false)
 
-    override fun getBoolean(key: String, defaultValue: Boolean): Boolean =
-        properties.getProperty(key)?.toBoolean() ?: defaultValue
+    override fun getBoolean(key: String, def: Boolean): Boolean =
+        properties.getProperty(key)?.toBoolean() ?: def
 
     override fun getDouble(key: String): Double = getDouble(key, 0.0)
 
-    override fun getDouble(key: String, defaultValue: Double): Double =
-        properties.getProperty(key)?.toDoubleOrNull() ?: defaultValue
+    override fun getDouble(key: String, def: Double): Double =
+        properties.getProperty(key)?.toDoubleOrNull() ?: def
 
     override fun getFloat(key: String): Float = getFloat(key, 0f)
 
-    override fun getFloat(key: String, defaultValue: Float): Float =
-        properties.getProperty(key)?.toFloatOrNull() ?: defaultValue
+    override fun getFloat(key: String, def: Float): Float =
+        properties.getProperty(key)?.toFloatOrNull() ?: def
 
     override fun getLong(key: String): Long = getLong(key, 0L)
 
-    override fun getLong(key: String, defaultValue: Long): Long =
-        properties.getProperty(key)?.toLongOrNull() ?: defaultValue
+    override fun getLong(key: String, def: Long): Long =
+        properties.getProperty(key)?.toLongOrNull() ?: def
 
     override fun getInt(key: String): Int = getInt(key, 0)
 
-    override fun getInt(key: String, defaultValue: Int): Int =
-        properties.getProperty(key)?.toIntOrNull() ?: defaultValue
+    override fun getInt(key: String, def: Int): Int =
+        properties.getProperty(key)?.toIntOrNull() ?: def
 
     override fun getShort(key: String): Short = getShort(key, 0)
 
-    override fun getShort(key: String, defaultValue: Short): Short =
-        properties.getProperty(key)?.toShortOrNull() ?: defaultValue
+    override fun getShort(key: String, def: Short): Short =
+        properties.getProperty(key)?.toShortOrNull() ?: def
 
     override fun getByte(key: String): Byte = getByte(key, 0)
 
-    override fun getByte(key: String, defaultValue: Byte): Byte =
-        properties.getProperty(key)?.toByteOrNull() ?: defaultValue
+    override fun getByte(key: String, def: Byte): Byte =
+        properties.getProperty(key)?.toByteOrNull() ?: def
 
     override fun minusAssign(key: String) {
         properties.remove(key)

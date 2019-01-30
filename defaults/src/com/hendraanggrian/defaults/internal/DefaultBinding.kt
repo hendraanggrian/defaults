@@ -5,20 +5,15 @@ import com.hendraanggrian.defaults.Defaults
 /** Internal component, keep out. */
 abstract class DefaultBinding(protected val source: Defaults<*>) : Defaults.Saver {
 
-    protected fun get(key: String, defaultValue: String?): String? =
-        source.getString(key, defaultValue)
+    protected fun get(key: String, def: String?): String? = source.get(key, def)
 
-    protected fun get(key: String, defaultValue: Int): Int =
-        source.getInt(key, defaultValue)
+    protected fun get(key: String, def: Int): Int = source.getInt(key, def)
 
-    protected fun get(key: String, defaultValue: Long): Long =
-        source.getLong(key, defaultValue)
+    protected fun get(key: String, def: Long): Long = source.getLong(key, def)
 
-    protected fun get(key: String, defaultValue: Float): Float =
-        source.getFloat(key, defaultValue)
+    protected fun get(key: String, def: Float): Float = source.getFloat(key, def)
 
-    protected fun get(key: String, defaultValue: Boolean): Boolean =
-        source.getBoolean(key, defaultValue)
+    protected fun get(key: String, def: Boolean): Boolean = source.getBoolean(key, def)
 
     protected fun getEditor(): Defaults.Editor = source.getEditor()
 

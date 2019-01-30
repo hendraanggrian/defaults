@@ -24,6 +24,6 @@ val artifacts: List<String>
     get() = listOf(
         "defaults",
         "defaults-compiler",
-        "defaults-features/defaults-jre",
-        "defaults-features/defaults-android"
+        "defaults-platforms/defaults-jvm",
+        "defaults-platforms/defaults-android"
     )

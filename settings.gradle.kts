@@ -1,11 +1,14 @@
 include(RELEASE_ARTIFACT)
 include("$RELEASE_ARTIFACT-annotations")
 include("$RELEASE_ARTIFACT-compiler")
-
-include("$RELEASE_ARTIFACT-features:$RELEASE_ARTIFACT-jre")
-include("$RELEASE_ARTIFACT-features:$RELEASE_ARTIFACT-android")
+includeAll("$RELEASE_ARTIFACT-platforms")
+includeAll("$RELEASE_ARTIFACT-features")
 
 include("website")
 
 include(":demo:jre")
 include(":demo:android")
+
+fun includeAll(path: String) = file(path).listFiles().forEach {
+    include("$path:${it.name}")
+}

@@ -1,42 +1,20 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package com.hendraanggrian.defaults
 
-import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
 
-/** Creates defaults instance from shared preferences. */
-inline fun Defaults.Companion.from(sharedPreferences: SharedPreferences): AndroidDefaults =
-    AndroidDefaults(sharedPreferences)
-
-/** Creates defaults instance from default shared preferences in context. */
-inline fun Defaults.Companion.from(context: Context): AndroidDefaults =
-    from(PreferenceManager.getDefaultSharedPreferences(context))
-
-inline fun AndroidDefaults.addListener(
-    noinline listener: (Defaults<*>, String) -> Unit
-): SharedPreferences.OnSharedPreferenceChangeListener =
-    SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences, key ->
-        listener(Defaults.from(sharedPreferences), key)
-    }.also {
-        sharedPreferences.registerOnSharedPreferenceChangeListener(it)
-    }
-
-inline fun AndroidDefaults.removeListener(
-    listener: SharedPreferences.OnSharedPreferenceChangeListener
-) = sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener)
-
-class AndroidDefaults(val sharedPreferences: SharedPreferences) : Defaults<AndroidDefaults.Editor>,
+class SharedPreferencesDefaults(private val sharedPreferences: SharedPreferences) :
+    Defaults<SharedPreferencesDefaults.Editor>,
     SharedPreferences by sharedPreferences {
 
-    override fun getString(key: String): String = getString(key, null).orEmpty()
+    override fun get(key: String): String? = getString(key, null)
+
+    override fun get(key: String, def: String?): String? = sharedPreferences.getString(key, def)
 
     override fun getBoolean(key: String): Boolean = getBoolean(key, false)
 
     override fun getDouble(key: String): Double = throw UnsupportedOperationException()
 
-    override fun getDouble(key: String, defaultValue: Double): Double =
+    override fun getDouble(key: String, def: Double): Double =
         throw UnsupportedOperationException()
 
     override fun getLong(key: String): Long = getLong(key, 0L)
@@ -47,12 +25,12 @@ class AndroidDefaults(val sharedPreferences: SharedPreferences) : Defaults<Andro
 
     override fun getShort(key: String): Short = throw UnsupportedOperationException()
 
-    override fun getShort(key: String, defaultValue: Short): Short =
+    override fun getShort(key: String, def: Short): Short =
         throw UnsupportedOperationException()
 
     override fun getByte(key: String): Byte = throw UnsupportedOperationException()
 
-    override fun getByte(key: String, defaultValue: Byte): Byte =
+    override fun getByte(key: String, def: Byte): Byte =
         throw UnsupportedOperationException()
 
     override fun getEditor(): Editor =
