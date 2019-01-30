@@ -9,9 +9,7 @@ import java.util.Properties
 /** Creates defaults instance from file. */
 fun Defaults.Companion.from(file: File): Defaults<*> = PropertiesFileDefaults(file)
 
-private class PropertiesFileDefaults(private val file: File) :
-    Defaults<PropertiesFileDefaults.Editor> {
-
+private class PropertiesFileDefaults(private val file: File) : SimpleDefaults() {
     private val properties = Properties()
 
     init {
@@ -48,40 +46,35 @@ private class PropertiesFileDefaults(private val file: File) :
     override fun getBoolean(key: String, defaultValue: Boolean): Boolean =
         properties.getProperty(key)?.toBoolean() ?: defaultValue
 
-    override fun getEditor(): Editor = Editor()
+    override fun minusAssign(key: String) {
+        properties.remove(key)
+    }
 
-    private inner class Editor : Defaults.Editor {
+    override fun reset() {
+        properties.clear()
+    }
 
-        override fun minusAssign(key: String) {
-            properties.remove(key)
+    override fun set(key: String, value: String?) {
+        properties.setProperty(key, value)
+    }
+
+    override fun set(key: String, value: Int) = set(key, value.toString())
+
+    override fun set(key: String, value: Long) = set(key, value.toString())
+
+    override fun set(key: String, value: Float) = set(key, value.toString())
+
+    override fun set(key: String, value: Boolean) = set(key, value.toString())
+
+    override fun save() {
+        GlobalScope.launch(Dispatchers.IO) {
+            saveAsync()
         }
+    }
 
-        override fun reset() {
-            properties.clear()
-        }
-
-        override fun set(key: String, value: String?) {
-            properties.setProperty(key, value)
-        }
-
-        override fun set(key: String, value: Int) = set(key, value.toString())
-
-        override fun set(key: String, value: Long) = set(key, value.toString())
-
-        override fun set(key: String, value: Float) = set(key, value.toString())
-
-        override fun set(key: String, value: Boolean) = set(key, value.toString())
-
-        override fun save() {
-            GlobalScope.launch(Dispatchers.IO) {
-                saveAsync()
-            }
-        }
-
-        override fun saveAsync() {
-            file.outputStream().use {
-                properties.store(it, null)
-            }
+    override fun saveAsync() {
+        file.outputStream().use {
+            properties.store(it, null)
         }
     }
 }

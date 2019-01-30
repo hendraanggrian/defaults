@@ -1,6 +1,5 @@
 [![bintray](https://img.shields.io/badge/bintray-defaults-brightgreen.svg)](https://bintray.com/hendraanggrian/defaults)
 [![download](https://api.bintray.com/packages/hendraanggrian/defaults/defaults/images/download.svg) ](https://bintray.com/hendraanggrian/defaults/defaults/_latestVersion)
-[![build](https://travis-ci.com/hendraanggrian/defaults.svg)](https://travis-ci.com/hendraanggrian/defaults)
 [![license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 Defaults
@@ -8,11 +7,11 @@ Defaults
 ![icon](/art/defaults-small.png)
 
 Local settings library that runs in plain Java and Android.
-Comes with optional annotation processor to bind settings to variables.
+Comes with optional annotation processor to bind properties with existing settings.
 
 ```kotlin
 val defaults = Defaults.from(source)
-...
+val username = defaults["username"]
 ```
 
 Roadmap
@@ -27,12 +26,12 @@ repositories {
     jcenter()
 }
 dependencies {
-    // features, mixing may be supported
+    // features, usually pick one of these
     compile "com.hendraanggrian.defaults:defaults-jre:$version"
     compile "com.hendraanggrian.defaults:defaults-android:$version"
 
-    // optional annotation processor
-    annotationProcessor "com.hendraanggrian.defaults:defaults-compiler:$version" // or kapt
+    // optional property binding, use kapt when necessary
+    annotationProcessor "com.hendraanggrian.defaults:defaults-compiler:$version"
 }
 ```
 
