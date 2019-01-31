@@ -16,9 +16,7 @@
 <p><a href="-defaults/index.html">Defaults</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">Defaults</span><span class="symbol">&lt;</span><span class="identifier">E</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-defaults/-editor/index.html"><span class="identifier">Editor</span></a><span class="symbol">&gt;</span></code>
-<p>Represents a set of key-value pairs used as local settings.</p>
-</td>
+<code><span class="keyword">interface </span><span class="identifier">Defaults</span><span class="symbol">&lt;</span><span class="identifier">E</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-defaults/-editor/index.html"><span class="identifier">Editor</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -27,6 +25,24 @@
 <td>
 <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DefaultsDebugger</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Represents a runnable with string param.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-readable-defaults/index.html">ReadableDefaults</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ReadableDefaults</span></code>
+<p>Represents a set of key-value pairs used as local settings.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-simple-defaults.html">SimpleDefaults</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">SimpleDefaults</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a><span class="symbol">, </span><a href="-defaults/-editor/index.html"><span class="identifier">Editor</span></a></code>
+<p>Represents a local settings that can directly write values without editor being created.</p>
 </td>
 </tr>
 </tbody>

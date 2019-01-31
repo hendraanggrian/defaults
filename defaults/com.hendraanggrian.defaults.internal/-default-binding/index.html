@@ -18,7 +18,7 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">DefaultBinding</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.internal.DefaultBinding$<init>(com.hendraanggrian.defaults.Defaults((com.hendraanggrian.defaults.Defaults.Editor)))/source">source</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.defaults/-defaults/index.html"><span class="identifier">Defaults</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span></code>
+<code><span class="identifier">DefaultBinding</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.internal.DefaultBinding$<init>(com.hendraanggrian.defaults.ReadableDefaults)/source">source</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.defaults/-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a><span class="symbol">)</span></code>
 <p>Internal component, keep out.</p>
 </td>
 </tr>
@@ -32,7 +32,7 @@
 <p><a href="source.html">source</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">source</span><span class="symbol">: </span><a href="../../com.hendraanggrian.defaults/-defaults/index.html"><span class="identifier">Defaults</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">val </span><span class="identifier">source</span><span class="symbol">: </span><a href="../../com.hendraanggrian.defaults/-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a></code></td>
 </tr>
 </tbody>
 </table>
@@ -55,7 +55,10 @@
 <p><a href="get-editor.html">getEditor</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">getEditor</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.hendraanggrian.defaults/-defaults/-editor/index.html"><span class="identifier">Editor</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">getEditor</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.hendraanggrian.defaults/-defaults/-editor/index.html"><span class="identifier">Editor</span></a></code>
+<p>Get editor instance from source defaults. Some defaults may need to open instance, while
+simple defaults already implements editor</p>
+</td>
 </tr>
 <tr>
 <td>
@@ -101,8 +104,10 @@
 <p><a href="../../com.hendraanggrian.defaults/kotlin.-any/bind-defaults.html">bindDefaults</a></p>
 </td>
 <td>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">.</span><span class="identifier">bindDefaults</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults$bindDefaults(kotlin.Any, com.hendraanggrian.defaults.ReadableDefaults)/source">source</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.defaults/-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.hendraanggrian.defaults/-defaults/-saver/index.html"><span class="identifier">Saver</span></a></code>
+<p>Bind fields in target (this) annotated with <a href="#">BindDefault</a> from <a href="../../com.hendraanggrian.defaults/kotlin.-any/bind-defaults.html#com.hendraanggrian.defaults$bindDefaults(kotlin.Any, com.hendraanggrian.defaults.ReadableDefaults)/source">source</a>.</p>
 <code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">.</span><span class="identifier">bindDefaults</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults$bindDefaults(kotlin.Any, com.hendraanggrian.defaults.Defaults((com.hendraanggrian.defaults.Defaults.Editor)))/source">source</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.defaults/-defaults/index.html"><span class="identifier">Defaults</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.hendraanggrian.defaults/-defaults/-saver/index.html"><span class="identifier">Saver</span></a></code>
-<p>Bind fields in target (this) annotated with <a href="#">Default</a> from <a href="../../com.hendraanggrian.defaults/kotlin.-any/bind-defaults.html#com.hendraanggrian.defaults$bindDefaults(kotlin.Any, com.hendraanggrian.defaults.Defaults((com.hendraanggrian.defaults.Defaults.Editor)))/source">source</a>.</p>
+<p>Convenient method to avoid ambiguity.</p>
 </td>
 </tr>
 </tbody>

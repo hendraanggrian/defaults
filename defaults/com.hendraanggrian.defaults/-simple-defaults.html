@@ -1,70 +1,21 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Defaults - defaults</title>
-<link rel="stylesheet" href="../../../style.css">
+<title>SimpleDefaults - defaults</title>
+<link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">defaults</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.defaults</a>&nbsp;/&nbsp;<a href="./index.html">Defaults</a><br/>
+<a href="../index.html">defaults</a>&nbsp;/&nbsp;<a href="index.html">com.hendraanggrian.defaults</a>&nbsp;/&nbsp;<a href="./-simple-defaults.html">SimpleDefaults</a><br/>
 <br/>
-<h1>Defaults</h1>
-<code><span class="keyword">interface </span><span class="identifier">Defaults</span><span class="symbol">&lt;</span><span class="identifier">E</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-editor/index.html"><span class="identifier">Editor</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a></code>
-<h3>Parameters</h3>
-<p><a name="E"></a>
-<code>E</code> - local settings editor</p>
-<h3>Types</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="-editor/index.html">Editor</a></p>
-</td>
-<td>
-<code><span class="keyword">interface </span><span class="identifier">Editor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-saver/index.html"><span class="identifier">Saver</span></a></code>
-<p>Responsible of modifying settings.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="-saver/index.html">Saver</a></p>
-</td>
-<td>
-<code><span class="keyword">interface </span><span class="identifier">Saver</span></code>
-<p>Base interface to save changes to local settings.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="get-editor.html">getEditor</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getEditor</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#E"><span class="identifier">E</span></a></code>
-<p>When editor instance is created, resources must be available (e.g.: opening sql transaction).
-Resources may be released upon <code>save</code> or <code>saveAsync</code>.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="invoke.html">invoke</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">infix</span> <span class="keyword">fun </span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.Defaults$invoke(kotlin.Function2((com.hendraanggrian.defaults.Defaults((com.hendraanggrian.defaults.Defaults.E)), , kotlin.Unit)))/edit">edit</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Defaults</span></a><span class="symbol">&lt;</span><a href="index.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><a href="index.html#E"><span class="identifier">E</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Defaults</span></a><span class="symbol">&lt;</span><a href="index.html#E"><span class="identifier">E</span></a><span class="symbol">&gt;</span></code>
-<p>Convenient method to quickly open an editor and apply changes in dsl.</p>
-</td>
-</tr>
-</tbody>
-</table>
+<h1>SimpleDefaults</h1>
+<code><span class="keyword">interface </span><span class="identifier">SimpleDefaults</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a><span class="symbol">, </span><a href="-defaults/-editor/index.html"><span class="identifier">Editor</span></a></code>
+<p>Represents a local settings that can directly write values without editor being created.</p>
 <h3>Inherited Functions</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="../-readable-defaults/contains.html">contains</a></p>
+<p><a href="-readable-defaults/contains.html">contains</a></p>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">contains</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.ReadableDefaults$contains(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
@@ -73,7 +24,7 @@ Resources may be released upon <code>save</code> or <code>saveAsync</code>.</p>
 </tr>
 <tr>
 <td>
-<p><a href="../-readable-defaults/get.html">get</a></p>
+<p><a href="-readable-defaults/get.html">get</a></p>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.ReadableDefaults$get(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
@@ -82,7 +33,7 @@ Resources may be released upon <code>save</code> or <code>saveAsync</code>.</p>
 </tr>
 <tr>
 <td>
-<p><a href="../-readable-defaults/get-boolean.html">getBoolean</a></p>
+<p><a href="-readable-defaults/get-boolean.html">getBoolean</a></p>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getBoolean</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.ReadableDefaults$getBoolean(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><br/>
@@ -90,7 +41,7 @@ Resources may be released upon <code>save</code> or <code>saveAsync</code>.</p>
 </tr>
 <tr>
 <td>
-<p><a href="../-readable-defaults/get-byte.html">getByte</a></p>
+<p><a href="-readable-defaults/get-byte.html">getByte</a></p>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getByte</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.ReadableDefaults$getByte(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a></code><br/>
@@ -98,7 +49,7 @@ Resources may be released upon <code>save</code> or <code>saveAsync</code>.</p>
 </tr>
 <tr>
 <td>
-<p><a href="../-readable-defaults/get-double.html">getDouble</a></p>
+<p><a href="-readable-defaults/get-double.html">getDouble</a></p>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getDouble</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.ReadableDefaults$getDouble(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a></code><br/>
@@ -106,7 +57,7 @@ Resources may be released upon <code>save</code> or <code>saveAsync</code>.</p>
 </tr>
 <tr>
 <td>
-<p><a href="../-readable-defaults/get-float.html">getFloat</a></p>
+<p><a href="-readable-defaults/get-float.html">getFloat</a></p>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getFloat</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.ReadableDefaults$getFloat(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a></code><br/>
@@ -114,7 +65,7 @@ Resources may be released upon <code>save</code> or <code>saveAsync</code>.</p>
 </tr>
 <tr>
 <td>
-<p><a href="../-readable-defaults/get-int.html">getInt</a></p>
+<p><a href="-readable-defaults/get-int.html">getInt</a></p>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getInt</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.ReadableDefaults$getInt(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code><br/>
@@ -122,7 +73,7 @@ Resources may be released upon <code>save</code> or <code>saveAsync</code>.</p>
 </tr>
 <tr>
 <td>
-<p><a href="../-readable-defaults/get-long.html">getLong</a></p>
+<p><a href="-readable-defaults/get-long.html">getLong</a></p>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getLong</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.ReadableDefaults$getLong(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code><br/>
@@ -130,36 +81,51 @@ Resources may be released upon <code>save</code> or <code>saveAsync</code>.</p>
 </tr>
 <tr>
 <td>
-<p><a href="../-readable-defaults/get-short.html">getShort</a></p>
+<p><a href="-readable-defaults/get-short.html">getShort</a></p>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getShort</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.ReadableDefaults$getShort(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a></code><br/>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getShort</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.ReadableDefaults$getShort(kotlin.String, kotlin.Short)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.defaults.ReadableDefaults$getShort(kotlin.String, kotlin.Short)/def">def</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a></code></td>
 </tr>
-</tbody>
-</table>
-<h3>Companion Object Properties</h3>
-<table>
-<tbody>
 <tr>
 <td>
-<p><a href="-t-a-g.html">TAG</a></p>
+<p><a href="-defaults/-editor/minus-assign.html">minusAssign</a></p>
 </td>
 <td>
-<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">TAG</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">minusAssign</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$minusAssign(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Removes a setting.</p>
+</td>
 </tr>
-</tbody>
-</table>
-<h3>Companion Object Functions</h3>
-<table>
-<tbody>
 <tr>
 <td>
-<p><a href="set-debug.html">setDebug</a></p>
+<p><a href="-defaults/-editor/reset.html">reset</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">setDebug</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Companion$setDebug(com.hendraanggrian.defaults.DefaultsDebugger)/debug">debug</span><span class="symbol">:</span>&nbsp;<a href="../-defaults-debugger/index.html"><span class="identifier">DefaultsDebugger</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Modify debugging behavior, default is none.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">reset</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Removes all settings.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-defaults/-editor/set.html">set</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.String)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change string value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Boolean)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Boolean)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change boolean value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Double)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Double)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change double value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Float)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Float)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change float value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Long)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Long)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change long value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Int)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Int)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change int value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Short)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Short)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change short value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Byte)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.defaults.Defaults.Editor$set(kotlin.String, kotlin.Byte)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change byte value.</p>
 </td>
 </tr>
 </tbody>
@@ -169,12 +135,12 @@ Resources may be released upon <code>save</code> or <code>saveAsync</code>.</p>
 <tbody>
 <tr>
 <td>
-<p><a href="../kotlin.-any/bind-defaults.html">bindDefaults</a></p>
+<p><a href="kotlin.-any/bind-defaults.html">bindDefaults</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">.</span><span class="identifier">bindDefaults</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults$bindDefaults(kotlin.Any, com.hendraanggrian.defaults.ReadableDefaults)/source">source</span><span class="symbol">:</span>&nbsp;<a href="../-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-saver/index.html"><span class="identifier">Saver</span></a></code>
-<p>Bind fields in target (this) annotated with <a href="#">BindDefault</a> from <a href="../kotlin.-any/bind-defaults.html#com.hendraanggrian.defaults$bindDefaults(kotlin.Any, com.hendraanggrian.defaults.ReadableDefaults)/source">source</a>.</p>
-<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">.</span><span class="identifier">bindDefaults</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults$bindDefaults(kotlin.Any, com.hendraanggrian.defaults.Defaults((com.hendraanggrian.defaults.Defaults.Editor)))/source">source</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Defaults</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="-saver/index.html"><span class="identifier">Saver</span></a></code>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">.</span><span class="identifier">bindDefaults</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults$bindDefaults(kotlin.Any, com.hendraanggrian.defaults.ReadableDefaults)/source">source</span><span class="symbol">:</span>&nbsp;<a href="-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-defaults/-saver/index.html"><span class="identifier">Saver</span></a></code>
+<p>Bind fields in target (this) annotated with <a href="#">BindDefault</a> from <a href="kotlin.-any/bind-defaults.html#com.hendraanggrian.defaults$bindDefaults(kotlin.Any, com.hendraanggrian.defaults.ReadableDefaults)/source">source</a>.</p>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">.</span><span class="identifier">bindDefaults</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults$bindDefaults(kotlin.Any, com.hendraanggrian.defaults.Defaults((com.hendraanggrian.defaults.Defaults.Editor)))/source">source</span><span class="symbol">:</span>&nbsp;<a href="-defaults/index.html"><span class="identifier">Defaults</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="-defaults/-saver/index.html"><span class="identifier">Saver</span></a></code>
 <p>Convenient method to avoid ambiguity.</p>
 </td>
 </tr>
