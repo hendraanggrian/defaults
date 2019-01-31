@@ -36,10 +36,6 @@ fun Any.bindDefaults(source: ReadableDefaults): Defaults.Saver {
     }
 }
 
-/** Convenient method to avoid ambiguity. */
-inline fun Any.bindDefaults(source: Defaults<*>): Defaults.Saver =
-    bindDefaults(source as ReadableDefaults)
-
 /**
  * @param E local settings editor
  */
@@ -50,7 +46,7 @@ interface Defaults<E : Defaults.Editor> : ReadableDefaults {
         const val TAG = "com.hendraanggrian.defaults.Defaults"
 
         internal var DEBUGGER: DefaultsDebugger? = null
-        private lateinit var BINDINGS: MutableMap<Class<*>, Constructor<Saver>>
+        private lateinit var BINDINGS: MutableMap<Class<*>, Constructor<Defaults.Saver>>
 
         /** Modify debugging behavior, default is none. */
         fun setDebug(debug: DefaultsDebugger?) {
@@ -58,7 +54,7 @@ interface Defaults<E : Defaults.Editor> : ReadableDefaults {
         }
 
         @Suppress("UNCHECKED_CAST")
-        internal fun findBindingConstructor(cls: Class<*>): Constructor<Saver>? {
+        internal fun findBindingConstructor(cls: Class<*>): Constructor<Defaults.Saver>? {
             if (!::BINDINGS.isInitialized) BINDINGS = WeakHashMap()
             var binding = BINDINGS[cls]
             if (binding != null) {
@@ -75,7 +71,7 @@ interface Defaults<E : Defaults.Editor> : ReadableDefaults {
                     .getConstructor(
                         cls,
                         com.hendraanggrian.defaults.Defaults::class.java
-                    ) as Constructor<Saver>
+                    ) as Constructor<Defaults.Saver>
                 DEBUGGER?.invoke("HIT: Loaded binding class, caching in weak map.")
             } catch (e: ClassNotFoundException) {
                 val superclass = cls.superclass

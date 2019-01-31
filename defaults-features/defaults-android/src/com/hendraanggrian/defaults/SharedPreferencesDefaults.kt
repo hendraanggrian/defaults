@@ -2,7 +2,7 @@ package com.hendraanggrian.defaults
 
 import android.content.SharedPreferences
 
-class SharedPreferencesDefaults(private val sharedPreferences: SharedPreferences) :
+class SharedPreferencesDefaults(val sharedPreferences: SharedPreferences) :
     Defaults<SharedPreferencesDefaults.Editor>,
     SharedPreferences by sharedPreferences {
 

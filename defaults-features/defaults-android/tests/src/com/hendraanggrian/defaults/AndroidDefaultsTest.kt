@@ -28,7 +28,7 @@ class AndroidDefaultsTest {
     @Test
     fun sharedPreferences() {
         val defaults = Defaults[testPreferences]
-        defaults {
+        defaults.invoke {
             it["name"] = "Hendra"
             it["age"] = 25
         }
