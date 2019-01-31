@@ -27,7 +27,7 @@ class AndroidDefaultsTest {
 
     @Test
     fun sharedPreferences() {
-        val defaults = Defaults.from(testPreferences)
+        val defaults = Defaults[testPreferences]
         defaults {
             it["name"] = "Hendra"
             it["age"] = 25
@@ -38,7 +38,7 @@ class AndroidDefaultsTest {
 
     @Test
     fun context() {
-        val defaults = Defaults.from(context)
+        val defaults = Defaults[context]
         defaults {
             it["name"] = "Hendra"
             it["age"] = 25

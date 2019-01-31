@@ -7,20 +7,18 @@ import java.util.prefs.Preferences
 import kotlin.test.assertEquals
 
 class JvmDefaultsTest {
-
-    private lateinit var testFile: File
+    private lateinit var file: File
+    private lateinit var preferences: Preferences
 
     @Before
     fun createTest() {
-        testFile = File("test.properties")
-        if (testFile.exists()) {
-            testFile.delete()
-        }
+        file = File("test.properties").apply { if (exists()) delete() }
+        preferences = Preferences.userRoot().node(Defaults.TAG)
     }
 
     @Test
     fun file() {
-        val defaults = Defaults[testFile]
+        val defaults = Defaults[file]
         defaults["name"] = "Hendra"
         defaults["age"] = 25
         assertEquals("Hendra", defaults["name"])
@@ -29,7 +27,7 @@ class JvmDefaultsTest {
 
     @Test
     fun preferences() {
-        val defaults = Defaults[Preferences.userRoot().node(Defaults.TAG)]
+        val defaults = Defaults[preferences]
         defaults["name"] = "Hendra"
         defaults["age"] = 25
         assertEquals("Hendra", defaults["name"])

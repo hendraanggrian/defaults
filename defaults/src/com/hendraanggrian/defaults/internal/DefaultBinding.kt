@@ -1,9 +1,10 @@
 package com.hendraanggrian.defaults.internal
 
 import com.hendraanggrian.defaults.Defaults
+import com.hendraanggrian.defaults.ReadableDefaults
 
 /** Internal component, keep out. */
-abstract class DefaultBinding(protected val source: Defaults<*>) : Defaults.Saver {
+abstract class DefaultBinding(protected val source: ReadableDefaults) : Defaults.Saver {
 
     protected fun get(key: String, def: String?): String? = source.get(key, def)
 
@@ -15,7 +16,17 @@ abstract class DefaultBinding(protected val source: Defaults<*>) : Defaults.Save
 
     protected fun get(key: String, def: Boolean): Boolean = source.getBoolean(key, def)
 
-    protected fun getEditor(): Defaults.Editor = source.getEditor()
+    /**
+     * Get editor instance from source defaults. Some defaults may need to open instance, while
+     * simple defaults already implements editor
+     *
+     * @throws IllegalStateException unsupported behavior, contact `github.com/hendraanggrian/defaults/issues`
+     */
+    protected fun getEditor(): Defaults.Editor = when (source) {
+        is Defaults<*> -> source.getEditor()
+        is Defaults.Editor -> source //
+        else -> throw IllegalStateException()
+    }
 
     protected fun set(editor: Defaults.Editor, key: String, value: String?) {
         editor[key] = value

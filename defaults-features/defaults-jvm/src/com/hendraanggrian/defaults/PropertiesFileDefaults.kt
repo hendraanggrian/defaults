@@ -6,7 +6,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.util.Properties
 
-class PropertiesFileDefaults(val file: File) : Defaults.NoEditor() {
+class PropertiesFileDefaults(val file: File) : SimpleDefaults {
     private val properties = Properties()
 
     init {

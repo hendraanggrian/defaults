@@ -10,7 +10,7 @@ Local settings library that runs in plain Java and Android.
 Comes with optional annotation processor to bind properties with existing settings.
 
 ```kotlin
-val defaults = Defaults.from(source)
+val defaults = Defaults[source]
 val username = defaults["username"]
 ```
 
@@ -41,15 +41,18 @@ Create defaults instance from `File`, or `SharedPreferences` in Android.
 ```kotlin
 import com.hendraanggrian.defaults.Defaults
 
-val fileDefaults = Defaults.from(mFile)
-val androidDefaults = Defaults.from(mContext)
-
+// file defaults can set/get
+val fileDefaults = Defaults[file]
 val name = fileDefaults["name"]
 val age = fileDefaults.getInt("age", 0)
+fileDefaults["name"] = "Hendra"
+fileDefaults["age"] = 25
 
+// shared preferences must open to set
+val androidDefaults = Defaults[context]
 androidDefaults {
-    set("name", "Hendra")
-    set("age", 25)
+    it["name"] = "Hendra"
+    it["age"] = 25
 }
 ```
 
@@ -61,11 +64,11 @@ With optional annotation processor, bind these local settings to local variables
 import com.hendraanggrian.defaults.Defaults
 import com.hendraanggrian.defaults.bindDefaults
 
-@Bind lateinit var name: String
-@Bind @JvmField var age: Int = 0
+@BindDefault lateinit var name: String
+@BindDefault @JvmField var age: Int = 0
 
 init {
-    bindDefaults(Defaults.from(mFile))
+    bindDefaults(Defaults[file])
 }
 ```
 

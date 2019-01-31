@@ -3,10 +3,10 @@ package com.hendraanggrian.defaults
 import com.google.auto.common.MoreElements.getPackage
 import com.google.auto.common.MoreTypes.asTypeElement
 import com.squareup.javapoet.ClassName.get
-import com.squareup.javapoet.CodeBlock.of
+import com.squareup.javapoet.CodeBlock
 import com.squareup.javapoet.JavaFile
+import com.squareup.javapoet.MethodSpec
 import com.squareup.javapoet.MethodSpec.constructorBuilder
-import com.squareup.javapoet.MethodSpec.methodBuilder
 import com.squareup.javapoet.TypeSpec.classBuilder
 import javax.lang.model.element.Element
 import javax.lang.model.element.Modifier.FINAL
@@ -27,58 +27,58 @@ internal class DefaultBindingSpec(typeElement: TypeElement) {
         private val TYPE_DEFAULTS_EDITOR = get("com.hendraanggrian.defaults.Defaults", "Editor")!!
     }
 
-    private val mPackageName = getPackage(typeElement).qualifiedName.toString()
-    private val mClassName = get(typeElement)
-    private val mSuperclass = typeElement.superclass
-    private val mClass = classBuilder(typeElement.measuredName)
+    private val packageName = getPackage(typeElement).qualifiedName.toString()
+    private val className = get(typeElement)
+    private val superclass = typeElement.superclass
+    private val klass = classBuilder(typeElement.measuredName)
         .addModifiers(PUBLIC)
         .addField(
-            mClassName,
+            className,
             TARGET, PRIVATE, FINAL
         )
 
-    private val mConstructorMethod = constructorBuilder()
+    private val constructorMethod = constructorBuilder()
         .addModifiers(PUBLIC)
         .addParameter(
-            mClassName,
+            className,
             TARGET
         )
         .addParameter(
             TYPE_DEFAULTS,
             SOURCE
         )
-    private val mSaveMethod = methodBuilder("save")
+    private val saveMethod = MethodSpec.methodBuilder("save")
         .addAnnotation(Override::class.java)
         .addModifiers(PUBLIC)
-    private val mSaveAsyncMethod = methodBuilder("saveAsync")
+    private val saveAsyncMethod = MethodSpec.methodBuilder("saveAsync")
         .addAnnotation(Override::class.java)
         .addModifiers(PUBLIC)
 
     fun superclass(generatedClassNames: Collection<String>): DefaultBindingSpec {
         var hasSuperclass = false
-        if (mSuperclass.kind != NONE && mSuperclass.kind != VOID) {
-            val className = asTypeElement(mSuperclass).measuredName
+        if (superclass.kind != NONE && superclass.kind != VOID) {
+            val className = asTypeElement(superclass).measuredName
             if (generatedClassNames.contains(className)) {
-                mClass.superclass(get(mPackageName, className))
+                klass.superclass(get(packageName, className))
                 hasSuperclass = true
             }
         }
         if (!hasSuperclass) {
-            mClass.superclass(TYPE_DEFAULT_BINDING)
-            mConstructorMethod.addStatement(
+            klass.superclass(TYPE_DEFAULT_BINDING)
+            constructorMethod.addStatement(
                 "super(\$L)",
                 SOURCE
             )
         } else {
-            mConstructorMethod.addStatement(
+            constructorMethod.addStatement(
                 "super(\$L, \$L)",
                 TARGET,
                 SOURCE
             )
-            mSaveMethod.addStatement("super.save()")
-            mSaveAsyncMethod.addStatement("super.saveAsync()")
+            saveMethod.addStatement("super.save()")
+            saveAsyncMethod.addStatement("super.saveAsync()")
         }
-        mConstructorMethod.addStatement(
+        constructorMethod.addStatement(
             "this.\$L = \$L",
             TARGET,
             TARGET
@@ -88,43 +88,33 @@ internal class DefaultBindingSpec(typeElement: TypeElement) {
 
     fun statement(fieldElements: Iterable<Element>): DefaultBindingSpec {
         // save
-        mSaveMethod.addCode(
-            of(
-                "\$T editor = getEditor();\n",
-                TYPE_DEFAULTS_EDITOR
-            )
-        )
-        mSaveAsyncMethod.addCode(
-            of(
-                "\$T editor = getEditor();\n",
-                TYPE_DEFAULTS_EDITOR
-            )
-        )
+        saveMethod.addCode(CodeBlock.of("\$T editor = getEditor();\n", TYPE_DEFAULTS_EDITOR))
+        saveAsyncMethod.addCode(CodeBlock.of("\$T editor = getEditor();\n", TYPE_DEFAULTS_EDITOR))
         // constructor, save
         fieldElements.forEach { element ->
             val field = element.simpleName.toString()
             val preference = element.getAnnotation(BindDefault::class.java)
             val key = "\"" + (if (!preference!!.value.isEmpty()) preference.value else field) + "\""
-            mConstructorMethod.addStatement(
+            constructorMethod.addStatement(
                 "this.target.\$L = get(\$L, target.\$L)", field, key, field
             )
-            mSaveMethod.addStatement(
+            saveMethod.addStatement(
                 "editor.set(\$L, target.\$L)", key, field
             )
-            mSaveAsyncMethod.addStatement(
+            saveAsyncMethod.addStatement(
                 "editor.set(\$L, target.\$L)", key, field
             )
         }
-        mSaveMethod.addStatement("editor.save()")
-        mSaveAsyncMethod.addStatement("editor.saveAsync()")
+        saveMethod.addStatement("editor.save()")
+        saveAsyncMethod.addStatement("editor.saveAsync()")
         return this
     }
 
     fun toJavaFile(): JavaFile = JavaFile
-        .builder(mPackageName, mClass.apply {
-            addMethod(mConstructorMethod.build())
-            addMethod(mSaveMethod.build())
-            addMethod(mSaveAsyncMethod.build())
+        .builder(packageName, klass.apply {
+            addMethod(constructorMethod.build())
+            addMethod(saveMethod.build())
+            addMethod(saveAsyncMethod.build())
         }.build())
         .addFileComment(
             "Defaults generated class, " +
