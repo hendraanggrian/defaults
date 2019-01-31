@@ -40,7 +40,7 @@ interface Defaults<E : Defaults.Editor> {
             }
             try {
                 binding = cls.classLoader!!
-                    .loadClass(cls.name + Default.SUFFIX)
+                    .loadClass(cls.name + BindDefault.SUFFIX)
                     .getConstructor(cls, Defaults::class.java) as Constructor<Saver>
                 DEBUGGER?.invoke("HIT: Loaded binding class, caching in weak map.")
             } catch (e: ClassNotFoundException) {

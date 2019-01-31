@@ -14,9 +14,9 @@ inline val DefaultsDebugger.Companion.Android: DefaultsDebugger
     get() = DefaultsDebugger { Log.d(TAG, it) }
 
 /** Creates defaults instance from shared preferences. */
-inline fun Defaults.Companion.from(sharedPreferences: SharedPreferences): SharedPreferencesDefaults =
-    SharedPreferencesDefaults(sharedPreferences)
+inline operator fun Defaults.Companion.get(pref: SharedPreferences): SharedPreferencesDefaults =
+    SharedPreferencesDefaults(pref)
 
 /** Creates defaults instance from default shared preferences in context. */
-inline fun Defaults.Companion.from(context: Context): SharedPreferencesDefaults =
-    from(PreferenceManager.getDefaultSharedPreferences(context))
+inline operator fun Defaults.Companion.get(context: Context): SharedPreferencesDefaults =
+    get(PreferenceManager.getDefaultSharedPreferences(context))

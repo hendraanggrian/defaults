@@ -8,19 +8,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
-import com.hendraanggrian.defaults.Default
+import com.hendraanggrian.defaults.BindDefault
 import com.hendraanggrian.defaults.Defaults
-import com.hendraanggrian.defaults.from
 import com.hendraanggrian.defaults.bindDefaults
+import com.hendraanggrian.defaults.get
 import kotlinx.android.synthetic.main.activity_demo1.*
 
 class Demo1Activity : AppCompatActivity(), View.OnClickListener {
 
-    @Default("name") lateinit var name: String
-    @Default("married") @JvmField var married: Boolean = false
-    @Default("int") @JvmField var mInt: Int = 0
-    @Default("long") @JvmField var mLong: Long = 0
-    @Default("float") @JvmField var mFloat: Float = 0.0f
+    @BindDefault("name") lateinit var name: String
+    @BindDefault("married") @JvmField var married: Boolean = false
+    @BindDefault("int") @JvmField var mInt: Int = 0
+    @BindDefault("long") @JvmField var mLong: Long = 0
+    @BindDefault("float") @JvmField var mFloat: Float = 0.0f
 
     private lateinit var saver: Defaults.Saver
 
@@ -28,7 +28,7 @@ class Demo1Activity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo1)
         setSupportActionBar(toolbar)
-        saver = bindDefaults(Defaults.from(this))
+        saver = bindDefaults(Defaults[this])
 
         nameEditText.setText(name)
         marriedEditText.setText(married.toString())

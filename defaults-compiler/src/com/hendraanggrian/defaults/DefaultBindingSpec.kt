@@ -103,7 +103,7 @@ internal class DefaultBindingSpec(typeElement: TypeElement) {
         // constructor, save
         fieldElements.forEach { element ->
             val field = element.simpleName.toString()
-            val preference = element.getAnnotation(Default::class.java)
+            val preference = element.getAnnotation(BindDefault::class.java)
             val key = "\"" + (if (!preference!!.value.isEmpty()) preference.value else field) + "\""
             mConstructorMethod.addStatement(
                 "this.target.\$L = get(\$L, target.\$L)", field, key, field

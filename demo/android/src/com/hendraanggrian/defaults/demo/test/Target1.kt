@@ -1,7 +1,7 @@
 package com.hendraanggrian.defaults.demo.test
 
-import com.hendraanggrian.defaults.Default
+import com.hendraanggrian.defaults.BindDefault
 
 open class Target1 {
-    @Default lateinit var test1: String
+    @BindDefault lateinit var test1: String
 }

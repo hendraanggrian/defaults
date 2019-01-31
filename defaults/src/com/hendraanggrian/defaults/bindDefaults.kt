@@ -2,7 +2,7 @@ package com.hendraanggrian.defaults
 
 import java.lang.reflect.InvocationTargetException
 
-/** Bind fields in target (this) annotated with [Default] from [source]. */
+/** Bind fields in target (this) annotated with [BindDefault] from [source]. */
 fun Any.bindDefaults(source: Defaults<*>): Defaults.Saver {
     val targetClass = javaClass
     Defaults.DEBUGGER?.invoke("Looking up binding for ${targetClass.name}")

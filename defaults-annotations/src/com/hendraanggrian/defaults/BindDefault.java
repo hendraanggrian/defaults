@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.CLASS)
 @Target(ElementType.FIELD)
-public @interface Default {
+public @interface BindDefault {
 
     String SUFFIX = "_DefaultBinding";
 

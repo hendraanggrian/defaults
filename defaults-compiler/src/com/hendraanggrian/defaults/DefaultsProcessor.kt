@@ -19,7 +19,7 @@ class DefaultsProcessor : AbstractProcessor() {
     override fun getSupportedSourceVersion(): SourceVersion = latestSupported()
 
     override fun getSupportedAnnotationTypes(): Set<String> =
-        setOf(Default::class.java.canonicalName)
+        setOf(BindDefault::class.java.canonicalName)
 
     @Synchronized
     override fun init(processingEnv: ProcessingEnvironment) {
@@ -31,7 +31,7 @@ class DefaultsProcessor : AbstractProcessor() {
         // preparing elements
         val multimap = create<TypeElement, Element>()
         val measuredClassNames = mutableSetOf<String>()
-        roundEnv.getElementsAnnotatedWith(Default::class.java).forEach { element ->
+        roundEnv.getElementsAnnotatedWith(BindDefault::class.java).forEach { element ->
             val typeElement = asType(element.enclosingElement)
             multimap.put(typeElement, element)
             measuredClassNames.add(typeElement.measuredName)

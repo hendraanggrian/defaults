@@ -1,7 +1,6 @@
 include(RELEASE_ARTIFACT)
 include("$RELEASE_ARTIFACT-annotations")
 include("$RELEASE_ARTIFACT-compiler")
-includeAll("$RELEASE_ARTIFACT-platforms")
 includeAll("$RELEASE_ARTIFACT-features")
 
 include("website")

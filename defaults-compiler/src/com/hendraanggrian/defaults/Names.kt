@@ -15,5 +15,5 @@ internal val TypeElement.measuredName: String
         reverse(enclosings)
         var typeName = enclosings[0]
         for (i in 1 until enclosings.size) typeName += "$${enclosings[i]}"
-        return "$typeName${Default.SUFFIX}"
+        return "$typeName${BindDefault.SUFFIX}"
     }

@@ -20,7 +20,7 @@ class JvmDefaultsTest {
 
     @Test
     fun file() {
-        val defaults = Defaults.from(testFile)
+        val defaults = Defaults[testFile]
         defaults["name"] = "Hendra"
         defaults["age"] = 25
         assertEquals("Hendra", defaults["name"])
@@ -29,7 +29,7 @@ class JvmDefaultsTest {
 
     @Test
     fun preferences() {
-        val defaults = Defaults.from(Preferences.userRoot().node(Defaults.TAG))
+        val defaults = Defaults[Preferences.userRoot().node(Defaults.TAG)]
         defaults["name"] = "Hendra"
         defaults["age"] = 25
         assertEquals("Hendra", defaults["name"])
