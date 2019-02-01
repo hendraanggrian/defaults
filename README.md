@@ -9,13 +9,25 @@ Defaults
 Local settings library that runs in plain Java and Android.
 Comes with optional annotation processor to bind properties with existing settings.
 
+##### Java
+
+```java
+Defaults defaults = DefaultsKt.get(source);
+String username = defaults.get("username");
+int age = defaults.getInt("age");
+```
+
+##### Kotlin
+
 ```kotlin
 val defaults = Defaults[source]
 val username = defaults["username"]
+val age = defaults.getInt("age")
 ```
 
 Download
 --------
+All artifacts should be linked to JCenter, otherwise add maven url `https://dl.bintray.com/hendraanggrian/defaults`.
 
 ```gradle
 repositories {
@@ -23,7 +35,7 @@ repositories {
 }
 dependencies {
     // features, usually pick one of these
-    compile "com.hendraanggrian.defaults:defaults-jre:$version"
+    compile "com.hendraanggrian.defaults:defaults-jvm:$version"
     compile "com.hendraanggrian.defaults:defaults-android:$version"
 
     // optional property binding, use kapt when necessary
@@ -67,8 +79,16 @@ import com.hendraanggrian.defaults.bindDefaults
 @BindDefault lateinit var name: String
 @BindDefault @JvmField var age: Int = 0
 
+lateinit var saver: Defaults.Saver
+
 init {
-    bindDefaults(Defaults[file])
+    saver = bindDefaults(Defaults[file])
+}
+
+fun applyChanges(name: String, age: Int) {
+    this.name = name
+    this.age = age
+    saver.saveAsync()
 }
 ```
 
