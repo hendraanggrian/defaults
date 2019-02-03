@@ -20,19 +20,15 @@ class JvmDefaultsTest {
     fun file() {
         val defaults = Defaults[file]
         defaults["name"] = "Hendra"
-        defaults["age"] = 25
         defaults.saveAsync()
         assertEquals("Hendra", defaults["name"])
-        assertEquals(25, defaults.getInt("age"))
     }
 
     @Test
     fun preferences() {
         val defaults = Defaults[preferences]
         defaults["name"] = "Hendra"
-        defaults["age"] = 25
         defaults.saveAsync()
         assertEquals("Hendra", defaults["name"])
-        assertEquals(25, defaults.getInt("age"))
     }
 }

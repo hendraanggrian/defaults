@@ -19,8 +19,8 @@ class Demo1Activity : AppCompatActivity(), View.OnClickListener {
     @BindDefault("name") lateinit var name: String
     @BindDefault("married") @JvmField var married: Boolean = false
     @BindDefault("int") @JvmField var mInt: Int = 0
-    @BindDefault("long") @JvmField var mLong: Long = 0
-    @BindDefault("float") @JvmField var mFloat: Float = 0.0f
+    @BindDefault("long") @JvmField var mLong: Long = 0L
+    @BindDefault("float") @JvmField var mFloat: Float = 0f
 
     private lateinit var saver: Defaults.Saver
 
@@ -39,10 +39,10 @@ class Demo1Activity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         name = nameEditText.text.toString()
-        married = java.lang.Boolean.parseBoolean(marriedEditText.text.toString())
-        mInt = Integer.parseInt(intEditText.text.toString())
-        mLong = java.lang.Long.parseLong(longEditText.text.toString())
-        mFloat = java.lang.Float.parseFloat(floatEditText.text.toString())
+        married = marriedEditText.text.toString().toBoolean()
+        mInt = intEditText.text.toString().toInt()
+        mLong = longEditText.text.toString().toLong()
+        mFloat = floatEditText.text.toString().toFloat()
         saver.saveAsync()
         Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
     }

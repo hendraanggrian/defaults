@@ -12,10 +12,9 @@ import java.util.WeakHashMap
 fun Any.bindDefaults(source: ReadableDefaults): Defaults.Saver {
     val targetClass = javaClass
     Defaults.DEBUGGER?.invoke("Looking up binding for ${targetClass.name}")
-    val constructor =
-        Defaults.findBindingConstructor(targetClass)
+    val constructor = Defaults.findBindingConstructor(targetClass)
     if (constructor == null) {
-        Defaults.DEBUGGER?.invoke("${targetClass.name} binding not found, returning empty Committer.")
+        Defaults.DEBUGGER?.invoke("${targetClass.name} binding not found, returning empty saver.")
         return Defaults.Saver.EMPTY
     }
     try {

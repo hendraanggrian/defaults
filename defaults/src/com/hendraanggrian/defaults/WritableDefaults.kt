@@ -9,9 +9,8 @@ interface WritableDefaults : ReadableDefaults, Defaults.Editor {
      * @param edit receiver is [Defaults] for access to settings' contents, next param is [Writer]
      *        for custom editing.
      */
-    infix operator fun invoke(edit: (WritableDefaults.() -> Unit)): WritableDefaults =
-        also {
-            edit(it)
-            it.saveAsync()
-        }
+    infix operator fun invoke(edit: (WritableDefaults.() -> Unit)): WritableDefaults = also {
+        edit(it)
+        it.saveAsync()
+    }
 }

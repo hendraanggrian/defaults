@@ -18,45 +18,21 @@ class PropertiesFileDefaults(val file: File) : WritableDefaults {
 
     override fun contains(key: String): Boolean = properties.containsKey(key)
 
-    override fun get(key: String): String? = get(key, null)
+    override fun get(key: String): String? = properties.getProperty(key)
 
-    override fun get(key: String, def: String?): String? =
-        properties.getProperty(key) ?: def
+    override fun getBoolean(key: String): Boolean? = throw UnsupportedOperationException()
 
-    override fun getBoolean(key: String): Boolean = getBoolean(key, false)
+    override fun getDouble(key: String): Double? = throw UnsupportedOperationException()
 
-    override fun getBoolean(key: String, def: Boolean): Boolean =
-        properties.getProperty(key)?.toBoolean() ?: def
+    override fun getFloat(key: String): Float? = throw UnsupportedOperationException()
 
-    override fun getDouble(key: String): Double = getDouble(key, 0.0)
+    override fun getLong(key: String): Long? = throw UnsupportedOperationException()
 
-    override fun getDouble(key: String, def: Double): Double =
-        properties.getProperty(key)?.toDoubleOrNull() ?: def
+    override fun getInt(key: String): Int? = throw UnsupportedOperationException()
 
-    override fun getFloat(key: String): Float = getFloat(key, 0f)
+    override fun getShort(key: String): Short? = throw UnsupportedOperationException()
 
-    override fun getFloat(key: String, def: Float): Float =
-        properties.getProperty(key)?.toFloatOrNull() ?: def
-
-    override fun getLong(key: String): Long = getLong(key, 0L)
-
-    override fun getLong(key: String, def: Long): Long =
-        properties.getProperty(key)?.toLongOrNull() ?: def
-
-    override fun getInt(key: String): Int = getInt(key, 0)
-
-    override fun getInt(key: String, def: Int): Int =
-        properties.getProperty(key)?.toIntOrNull() ?: def
-
-    override fun getShort(key: String): Short = getShort(key, 0)
-
-    override fun getShort(key: String, def: Short): Short =
-        properties.getProperty(key)?.toShortOrNull() ?: def
-
-    override fun getByte(key: String): Byte = getByte(key, 0)
-
-    override fun getByte(key: String, def: Byte): Byte =
-        properties.getProperty(key)?.toByteOrNull() ?: def
+    override fun getByte(key: String): Byte? = throw UnsupportedOperationException()
 
     override fun minusAssign(key: String) {
         properties.remove(key)
@@ -70,19 +46,19 @@ class PropertiesFileDefaults(val file: File) : WritableDefaults {
         properties.setProperty(key, value)
     }
 
-    override fun set(key: String, value: Boolean) = set(key, value.toString())
+    override fun set(key: String, value: Boolean) = throw UnsupportedOperationException()
 
-    override fun set(key: String, value: Double) = set(key, value.toString())
+    override fun set(key: String, value: Double) = throw UnsupportedOperationException()
 
-    override fun set(key: String, value: Float) = set(key, value.toString())
+    override fun set(key: String, value: Float) = throw UnsupportedOperationException()
 
-    override fun set(key: String, value: Long) = set(key, value.toString())
+    override fun set(key: String, value: Long) = throw UnsupportedOperationException()
 
-    override fun set(key: String, value: Int) = set(key, value.toString())
+    override fun set(key: String, value: Int) = throw UnsupportedOperationException()
 
-    override fun set(key: String, value: Short) = set(key, value.toString())
+    override fun set(key: String, value: Short) = throw UnsupportedOperationException()
 
-    override fun set(key: String, value: Byte) = set(key, value.toString())
+    override fun set(key: String, value: Byte) = throw UnsupportedOperationException()
 
     override fun save() {
         GlobalScope.launch(Dispatchers.IO) {

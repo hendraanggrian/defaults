@@ -5,57 +5,65 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.prefs.Preferences
 
-class PreferencesDefaults(val preferences: Preferences) : WritableDefaults {
+class PreferencesDefaults(private val nativePreferences: Preferences) : WritableDefaults {
 
-    override fun contains(key: String): Boolean = preferences.nodeExists(key)
+    override fun contains(key: String): Boolean = nativePreferences.nodeExists(key)
 
-    override fun get(key: String): String? = get(key, null)
+    override fun get(key: String): String? =
+        nativePreferences.get(key, null)
 
-    override fun get(key: String, def: String?): String? = preferences.get(key, def)
+    override fun getOrDefault(key: String, defaultValue: String): String =
+        nativePreferences.get(key, defaultValue)
 
-    override fun getBoolean(key: String): Boolean = getBoolean(key, false)
+    override fun getBoolean(key: String): Boolean =
+        nativePreferences.getBoolean(key, false)
 
-    override fun getBoolean(key: String, def: Boolean): Boolean = preferences.getBoolean(key, def)
+    override fun getBooleanOrDefault(key: String, defaultValue: Boolean): Boolean =
+        nativePreferences.getBoolean(key, defaultValue)
 
-    override fun getDouble(key: String): Double = getDouble(key, 0.0)
+    override fun getDouble(key: String): Double =
+        nativePreferences.getDouble(key, 0.0)
 
-    override fun getDouble(key: String, def: Double): Double = preferences.getDouble(key, def)
+    override fun getDoubleOrDefault(key: String, defaultValue: Double): Double =
+        nativePreferences.getDouble(key, defaultValue)
 
-    override fun getFloat(key: String): Float = getFloat(key, 0f)
+    override fun getFloat(key: String): Float =
+        nativePreferences.getFloat(key, 0f)
 
-    override fun getFloat(key: String, def: Float): Float = preferences.getFloat(key, def)
+    override fun getFloatOrDefault(key: String, defaultValue: Float): Float =
+        nativePreferences.getFloat(key, defaultValue)
 
-    override fun getLong(key: String): Long = getLong(key, 0L)
+    override fun getLong(key: String): Long =
+        nativePreferences.getLong(key, 0L)
 
-    override fun getLong(key: String, def: Long): Long = preferences.getLong(key, def)
+    override fun getLongOrDefault(key: String, defaultValue: Long): Long =
+        nativePreferences.getLong(key, defaultValue)
 
-    override fun getInt(key: String): Int = getInt(key, 0)
+    override fun getInt(key: String): Int =
+        nativePreferences.getInt(key, 0)
 
-    override fun getInt(key: String, def: Int): Int = preferences.getInt(key, def)
+    override fun getIntOrDefault(key: String, defaultValue: Int): Int =
+        nativePreferences.getInt(key, defaultValue)
 
     override fun getShort(key: String): Short = throw UnsupportedOperationException()
 
-    override fun getShort(key: String, def: Short): Short = throw UnsupportedOperationException()
-
     override fun getByte(key: String): Byte = throw UnsupportedOperationException()
 
-    override fun getByte(key: String, def: Byte): Byte = throw UnsupportedOperationException()
+    override fun minusAssign(key: String) = nativePreferences.remove(key)
 
-    override fun minusAssign(key: String) = preferences.remove(key)
+    override fun reset() = nativePreferences.clear()
 
-    override fun reset() = preferences.clear()
+    override fun set(key: String, value: String?) = nativePreferences.put(key, value)
 
-    override fun set(key: String, value: String?) = preferences.put(key, value)
+    override fun set(key: String, value: Boolean) = nativePreferences.putBoolean(key, value)
 
-    override fun set(key: String, value: Boolean) = preferences.putBoolean(key, value)
+    override fun set(key: String, value: Double) = nativePreferences.putDouble(key, value)
 
-    override fun set(key: String, value: Double) = preferences.putDouble(key, value)
+    override fun set(key: String, value: Float) = nativePreferences.putFloat(key, value)
 
-    override fun set(key: String, value: Float) = preferences.putFloat(key, value)
+    override fun set(key: String, value: Long) = nativePreferences.putLong(key, value)
 
-    override fun set(key: String, value: Long) = preferences.putLong(key, value)
-
-    override fun set(key: String, value: Int) = preferences.putInt(key, value)
+    override fun set(key: String, value: Int) = nativePreferences.putInt(key, value)
 
     override fun set(key: String, value: Short) = throw UnsupportedOperationException()
 
@@ -68,7 +76,7 @@ class PreferencesDefaults(val preferences: Preferences) : WritableDefaults {
     }
 
     override fun saveAsync() {
-        preferences.run {
+        nativePreferences.run {
             sync()
             flush()
         }
