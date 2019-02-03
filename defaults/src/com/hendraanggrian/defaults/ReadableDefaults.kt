@@ -94,7 +94,7 @@ interface ReadableDefaults {
     fun getByteOrElse(key: String, defaultValue: () -> Byte): Byte =
         getByteOrDefault(key, defaultValue())
 
-    fun <T> findValue(
+    private inline fun <T> findValue(
         key: String,
         defaultValue: T,
         getValue: (String) -> T?

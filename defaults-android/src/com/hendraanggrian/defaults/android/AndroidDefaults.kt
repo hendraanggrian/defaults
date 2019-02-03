@@ -16,8 +16,7 @@ inline operator fun Defaults.Companion.get(pref: SharedPreferences): SharedPrefe
 inline fun Defaults.Companion.bind(
     pref: SharedPreferences,
     target: Any
-): DefaultsSaver =
-    bind(get(pref), target)
+): DefaultsSaver = bind(get(pref), target)
 
 /** Creates defaults instance from default shared preferences in context. */
 inline operator fun Defaults.Companion.get(context: Context): SharedPreferencesDefaults =

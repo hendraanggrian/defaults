@@ -2,7 +2,6 @@ package com.hendraanggrian.defaults.demo
 
 import com.hendraanggrian.defaults.BindDefault
 import com.hendraanggrian.defaults.Defaults
-import com.hendraanggrian.defaults.jvm.bind
 import com.hendraanggrian.defaults.DefaultsDebugger
 import org.apache.commons.lang3.SystemUtils
 import java.io.File

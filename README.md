@@ -9,20 +9,18 @@ Defaults
 Local settings library that runs in plain Java and Android.
 Comes with optional annotation processor to bind properties with existing settings.
 
-##### Java
-
-```java
-Defaults defaults = DefaultsKt.get(source);
-String username = defaults.get("username");
-int age = defaults.getInt("age");
-```
-
-##### Kotlin
+##### JVM
 
 ```kotlin
-val defaults = Defaults[source]
+val defaults = Defaults[preferences]
 val username = defaults["username"]
-val age = defaults.getInt("age")
+```
+
+##### Android
+
+```kotlin
+val defaults = Defaults[context]
+val username = defaults["username"]
 ```
 
 Download

@@ -1,6 +1,5 @@
-package com.hendraanggrian.defaults.jvm
+package com.hendraanggrian.defaults
 
-import com.hendraanggrian.defaults.WritableDefaults
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

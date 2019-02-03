@@ -11,6 +11,7 @@ plugins {
 
 sourceSets {
     get("main").java.srcDir("src")
+    get("test").java.srcDir("tests/src")
 }
 
 val configuration = configurations.register("ktlint")
@@ -18,6 +19,7 @@ val configuration = configurations.register("ktlint")
 dependencies {
     api(project(":$RELEASE_ARTIFACT-annotations"))
     api(kotlin("stdlib", VERSION_KOTLIN))
+    api(kotlinx("coroutines-core", VERSION_COROUTINES))
 
     compileOnly(androidx("annotation", version = "1.0.0"))
 

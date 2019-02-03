@@ -16,8 +16,8 @@ import kotlinx.android.synthetic.main.activity_demo1.*
 
 class Demo1Activity : AppCompatActivity(), View.OnClickListener {
 
-    @BindDefault("name") lateinit var name: String
-    @BindDefault("") @JvmField var married: Boolean = false
+    @BindDefault("name") @JvmField var name: String? = null
+    @BindDefault("married") @JvmField var married: Boolean = false
     @BindDefault("int") @JvmField var mInt: Int = 0
     @BindDefault("long") @JvmField var mLong: Long = 0L
     @BindDefault("float") @JvmField var mFloat: Float = 0f

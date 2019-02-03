@@ -1,7 +1,7 @@
-include(RELEASE_ARTIFACT) // base concept without a builder
-include("$RELEASE_ARTIFACT-annotations") // jvm-7 annotation used in client and compiler
-include("$RELEASE_ARTIFACT-compiler") // generates local settings binding
-includeAll("$RELEASE_ARTIFACT-features")
+include(RELEASE_ARTIFACT)
+include("$RELEASE_ARTIFACT-android")
+include("$RELEASE_ARTIFACT-annotations")
+include("$RELEASE_ARTIFACT-compiler")
 
 include("website")
 

@@ -29,7 +29,11 @@ class SharedPreferencesDefaults(private val nativePreferences: SharedPreferences
     override fun getFloatOrDefault(key: String, defaultValue: Float): Float =
         nativePreferences.getFloat(key, defaultValue)
 
-    override fun getLong(key: String): Long? = throw UnsupportedOperationException()
+    override fun getLong(key: String): Long? =
+        nativePreferences.getLong(key, 0L)
+
+    override fun getLongOrDefault(key: String, defaultValue: Long): Long =
+        nativePreferences.getLong(key, defaultValue)
 
     override fun getInt(key: String): Int =
         nativePreferences.getInt(key, 0)

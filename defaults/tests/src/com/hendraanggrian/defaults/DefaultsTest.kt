@@ -1,13 +1,13 @@
-package com.hendraanggrian.defaults.jvm
+package com.hendraanggrian.defaults
 
-import com.hendraanggrian.defaults.Defaults
 import org.junit.Before
 import org.junit.Test
 import java.io.File
 import java.util.prefs.Preferences
 import kotlin.test.assertEquals
 
-class JvmDefaultsTest {
+class DefaultsTest {
+
     private lateinit var file: File
     private lateinit var preferences: Preferences
 
