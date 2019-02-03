@@ -16,7 +16,9 @@
 <p><a href="-defaults/index.html">Defaults</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">Defaults</span><span class="symbol">&lt;</span><span class="identifier">E</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-defaults/-editor/index.html"><span class="identifier">Editor</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">Defaults</span><span class="symbol">&lt;</span><span class="identifier">E</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-defaults-editor/index.html"><span class="identifier">DefaultsEditor</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a></code>
+<p>A set of readable local settings, modify value with editor created with <a href="-defaults/get-editor.html">getEditor</a>.</p>
+</td>
 </tr>
 <tr>
 <td>
@@ -26,6 +28,38 @@
 <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DefaultsDebugger</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Represents a runnable with string param.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="-defaults-editor/index.html">DefaultsEditor</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">DefaultsEditor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-defaults-saver/index.html"><span class="identifier">DefaultsSaver</span></a></code>
+<p>Settings value modifier with Kotlin operators.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-defaults-saver/index.html">DefaultsSaver</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">DefaultsSaver</span></code>
+<p>Base interface to save changes to local settings.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-preferences-defaults/index.html">PreferencesDefaults</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">PreferencesDefaults</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-writable-defaults/index.html"><span class="identifier">WritableDefaults</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-properties-file-defaults/index.html">PropertiesFileDefaults</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">PropertiesFileDefaults</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-writable-defaults/index.html"><span class="identifier">WritableDefaults</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -41,8 +75,8 @@
 <p><a href="-writable-defaults/index.html">WritableDefaults</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">WritableDefaults</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a><span class="symbol">, </span><a href="-defaults/-editor/index.html"><span class="identifier">Editor</span></a></code>
-<p>Represents a local settings that can directly write values without editor being created.</p>
+<code><span class="keyword">interface </span><span class="identifier">WritableDefaults</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a><span class="symbol">, </span><a href="-defaults-editor/index.html"><span class="identifier">DefaultsEditor</span></a></code>
+<p>A set of writable local settings, no instance of <a href="-defaults-editor/index.html">DefaultsEditor</a> is created.</p>
 </td>
 </tr>
 </tbody>
@@ -52,9 +86,30 @@
 <tbody>
 <tr>
 <td>
-<p><a href="kotlin.-any/index.html">kotlin.Any</a></p>
+<p><a href="java.io.-file/index.html">java.io.File</a></p>
 </td>
 <td>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="java.util.prefs.-preferences/index.html">java.util.prefs.Preferences</a></p>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="bind-defaults.html">bindDefaults</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-readable-defaults/index.html"><span class="identifier">ReadableDefaults</span></a><span class="symbol">.</span><span class="identifier">bindDefaults</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults$bindDefaults(com.hendraanggrian.defaults.ReadableDefaults, kotlin.Any)/target">target</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-defaults-saver/index.html"><span class="identifier">DefaultsSaver</span></a></code>
+<p>Bind fields in target (this) annotated with <a href="#">BindDefault</a> from this defaults.</p>
 </td>
 </tr>
 </tbody>
