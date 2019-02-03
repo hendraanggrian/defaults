@@ -9,8 +9,7 @@ import androidx.preference.Preference.OnPreferenceChangeListener
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.hendraanggrian.defaults.BindDefault
-import com.hendraanggrian.defaults.Defaults
-import com.hendraanggrian.defaults.android.bind
+import com.hendraanggrian.defaults.bindDefaults
 import kotlinx.android.synthetic.main.activity_demo2.*
 
 class Demo2Activity : AppCompatActivity() {
@@ -33,20 +32,20 @@ class Demo2Activity : AppCompatActivity() {
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
-        @BindDefault("name") lateinit var name: String
+        @BindDefault("name") @JvmField var name: String? = null
         lateinit var preferenceName: EditTextPreference
         lateinit var preferenceMarried: SwitchPreferenceCompat
 
         override fun onAttach(context: Context) {
             super.onAttach(context)
-            Defaults.bind(context, this)
+            bindDefaults()
         }
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             addPreferencesFromResource(R.xml.settings)
             preferenceName = findPreference("name") as EditTextPreference
             preferenceMarried = findPreference("married") as SwitchPreferenceCompat
-            preferenceName.summary = name
+            preferenceName.summary = name.orEmpty()
             preferenceName.onPreferenceChangeListener = OnPreferenceChangeListener { _, newValue ->
                 preferenceName.summary = newValue as String
                 true

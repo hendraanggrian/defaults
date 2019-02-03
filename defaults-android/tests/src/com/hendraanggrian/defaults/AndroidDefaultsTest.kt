@@ -1,4 +1,4 @@
-package com.hendraanggrian.defaults.android
+package com.hendraanggrian.defaults
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -6,7 +6,6 @@ import android.preference.PreferenceManager
 import androidx.test.InstrumentationRegistry
 import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
-import com.hendraanggrian.defaults.Defaults
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,7 +27,7 @@ class AndroidDefaultsTest {
 
     @Test
     fun sharedPreferences() {
-        val defaults = Defaults[testPreferences]
+        val defaults = testPreferences.toDefaults()
         defaults.invoke {
             it["name"] = "Hendra"
             it["age"] = 25
@@ -39,7 +38,7 @@ class AndroidDefaultsTest {
 
     @Test
     fun context() {
-        val defaults = Defaults[context]
+        val defaults = context.toDefaults()
         defaults {
             it["name"] = "Hendra"
             it["age"] = 25

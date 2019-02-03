@@ -12,14 +12,14 @@ Comes with optional annotation processor to bind properties with existing settin
 ##### JVM
 
 ```kotlin
-val defaults = Defaults[preferences]
+val defaults = preferences.toDefaults()
 val username = defaults["username"]
 ```
 
 ##### Android
 
 ```kotlin
-val defaults = Defaults[context]
+val defaults = toDefaults() // if this is context/activity, or use `sharedPreferences.toDefaults `
 val username = defaults["username"]
 ```
 
@@ -32,9 +32,8 @@ repositories {
     jcenter()
 }
 dependencies {
-    // features, usually pick one of these
-    compile "com.hendraanggrian.defaults:defaults-jvm:$version"
-    compile "com.hendraanggrian.defaults:defaults-android:$version"
+    compile "com.hendraanggrian.defaults:defaults:$version"
+    api "com.hendraanggrian.defaults:defaults-android:$version" // for Android
 
     // optional property binding, use kapt when necessary
     annotationProcessor "com.hendraanggrian.defaults:defaults-compiler:$version"
@@ -44,43 +43,44 @@ dependencies {
 Usage
 -----
 
-#### Defaults and editor
+#### Manual get/set
 
 Create defaults instance from `File`, or `SharedPreferences` in Android.
 
 ```kotlin
-import com.hendraanggrian.defaults.Defaults
+import com.hendraanggrian.defaults.toDefaults
 
 // file defaults can set/get
-val fileDefaults = Defaults[file]
+val fileDefaults = file.toDefaults()
 val name = fileDefaults["name"]
 val age = fileDefaults.getInt("age", 0)
 fileDefaults["name"] = "Hendra"
 fileDefaults["age"] = 25
 
 // shared preferences must open to set
-val androidDefaults = Defaults[context]
+val androidDefaults = context.toDefaults()
 androidDefaults {
     it["name"] = "Hendra"
     it["age"] = 25
 }
 ```
 
-#### Defaults saver
+#### Bind properties
 
 With optional annotation processor, bind these local settings to local variables.
 
 ```kotlin
-import com.hendraanggrian.defaults.Defaults
+import com.hendraanggrian.defaults.DefaultsSaver
+import com.hendraanggrian.defaults.BindDefault
 import com.hendraanggrian.defaults.bindDefaults
 
 @BindDefault lateinit var name: String
 @BindDefault @JvmField var age: Int = 0
 
-lateinit var saver: Defaults.Saver
+lateinit var saver: DefaultsSaver
 
 init {
-    saver = bindDefaults(Defaults[file])
+    saver = file.bindDefaults(this)
 }
 
 fun applyChanges(name: String, age: Int) {

@@ -14,22 +14,22 @@ class DefaultsTest {
     @Before
     fun createTest() {
         file = File("test.properties").apply { if (exists()) delete() }
-        preferences = Preferences.userRoot().node(Defaults.TAG)
+        preferences = Preferences.userRoot().node(Defaults::class.java.canonicalName)
     }
 
     @Test
     fun file() {
-        val defaults = Defaults[file] {
-            set("name", "Hendra")
-        }
+        val defaults = file.toDefaults()
+        defaults["name"] = "Hendra"
+        defaults.save()
         assertEquals("Hendra", defaults["name"])
     }
 
     @Test
     fun preferences() {
-        val defaults = Defaults[preferences] {
-            set("name", "Hendra")
-        }
+        val defaults = preferences.toDefaults()
+        defaults["name"] = "Hendra"
+        defaults.save()
         assertEquals("Hendra", defaults["name"])
     }
 }

@@ -1,8 +1,6 @@
-package com.hendraanggrian.defaults.android
+package com.hendraanggrian.defaults
 
 import android.content.SharedPreferences
-import com.hendraanggrian.defaults.Defaults
-import com.hendraanggrian.defaults.DefaultsEditor
 
 class SharedPreferencesDefaults(private val nativePreferences: SharedPreferences) :
     Defaults<SharedPreferencesDefaults.Editor> {

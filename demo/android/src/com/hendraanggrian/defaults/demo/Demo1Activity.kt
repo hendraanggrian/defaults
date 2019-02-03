@@ -9,9 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.hendraanggrian.defaults.BindDefault
-import com.hendraanggrian.defaults.Defaults
 import com.hendraanggrian.defaults.DefaultsSaver
-import com.hendraanggrian.defaults.android.bind
+import com.hendraanggrian.defaults.bindDefaults
 import kotlinx.android.synthetic.main.activity_demo1.*
 
 class Demo1Activity : AppCompatActivity(), View.OnClickListener {
@@ -28,7 +27,7 @@ class Demo1Activity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo1)
         setSupportActionBar(toolbar)
-        saver = Defaults.bind(this)
+        saver = bindDefaults()
 
         nameEditText.setText(name)
         marriedEditText.setText(married.toString())
