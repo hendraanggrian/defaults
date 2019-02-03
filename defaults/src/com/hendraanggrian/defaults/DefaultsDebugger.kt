@@ -6,7 +6,7 @@ open class DefaultsDebugger(debug: (String) -> Unit) : ((String) -> Unit) by deb
     /** Features often use this companion as receiver. */
     companion object {
 
-        /** BindDefault debugger, which just prints it in system. */
+        /** BindDefault debugger, which just prints in system. */
         val Default: DefaultsDebugger get() = DefaultsDebugger { println(it) }
     }
 }

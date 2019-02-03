@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface BindDefault {
 
-    String SUFFIX = "_DefaultBinding";
+    String SUFFIX = "_DefaultsBinding";
 
     String value() default "";
 }

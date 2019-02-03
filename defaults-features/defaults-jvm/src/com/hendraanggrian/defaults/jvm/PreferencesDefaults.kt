@@ -1,11 +1,13 @@
-package com.hendraanggrian.defaults
+package com.hendraanggrian.defaults.jvm
 
+import com.hendraanggrian.defaults.WritableDefaults
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.prefs.Preferences
 
-class PreferencesDefaults(private val nativePreferences: Preferences) : WritableDefaults {
+class PreferencesDefaults(private val nativePreferences: Preferences) :
+    WritableDefaults {
 
     override fun contains(key: String): Boolean = nativePreferences.nodeExists(key)
 
@@ -51,7 +53,7 @@ class PreferencesDefaults(private val nativePreferences: Preferences) : Writable
 
     override fun minusAssign(key: String) = nativePreferences.remove(key)
 
-    override fun reset() = nativePreferences.clear()
+    override fun clear() = nativePreferences.clear()
 
     override fun set(key: String, value: String?) = nativePreferences.put(key, value)
 

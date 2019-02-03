@@ -1,5 +1,6 @@
-package com.hendraanggrian.defaults
+package com.hendraanggrian.defaults.jvm
 
+import com.hendraanggrian.defaults.WritableDefaults
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -38,7 +39,7 @@ class PropertiesFileDefaults(val file: File) : WritableDefaults {
         properties.remove(key)
     }
 
-    override fun reset() {
+    override fun clear() {
         properties.clear()
     }
 

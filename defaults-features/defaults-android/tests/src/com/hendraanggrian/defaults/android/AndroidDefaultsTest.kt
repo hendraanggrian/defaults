@@ -1,4 +1,4 @@
-package com.hendraanggrian.defaults
+package com.hendraanggrian.defaults.android
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -6,6 +6,7 @@ import android.preference.PreferenceManager
 import androidx.test.InstrumentationRegistry
 import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
+import com.hendraanggrian.defaults.Defaults
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

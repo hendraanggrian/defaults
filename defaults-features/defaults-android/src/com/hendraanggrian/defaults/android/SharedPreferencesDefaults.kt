@@ -1,6 +1,8 @@
-package com.hendraanggrian.defaults
+package com.hendraanggrian.defaults.android
 
 import android.content.SharedPreferences
+import com.hendraanggrian.defaults.Defaults
+import com.hendraanggrian.defaults.DefaultsEditor
 
 class SharedPreferencesDefaults(private val nativePreferences: SharedPreferences) :
     Defaults<SharedPreferencesDefaults.Editor> {
@@ -39,17 +41,19 @@ class SharedPreferencesDefaults(private val nativePreferences: SharedPreferences
 
     override fun getByte(key: String): Byte = throw UnsupportedOperationException()
 
-    override fun getEditor(): Editor = Editor(nativePreferences.edit())
+    override fun getEditor(): Editor =
+        Editor(nativePreferences.edit())
 
     fun toSharedPreferences(): SharedPreferences = nativePreferences
 
-    class Editor(private val nativeEditor: SharedPreferences.Editor) : Defaults.Editor {
+    class Editor(private val nativeEditor: SharedPreferences.Editor) :
+        DefaultsEditor {
 
         override fun minusAssign(key: String) {
             nativeEditor.remove(key)
         }
 
-        override fun reset() {
+        override fun clear() {
             nativeEditor.clear()
         }
 

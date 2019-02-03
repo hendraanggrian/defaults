@@ -1,5 +1,6 @@
-package com.hendraanggrian.defaults
+package com.hendraanggrian.defaults.jvm
 
+import com.hendraanggrian.defaults.Defaults
 import org.junit.Before
 import org.junit.Test
 import java.io.File
@@ -18,17 +19,17 @@ class JvmDefaultsTest {
 
     @Test
     fun file() {
-        val defaults = Defaults[file]
-        defaults["name"] = "Hendra"
-        defaults.saveAsync()
+        val defaults = Defaults[file] {
+            set("name", "Hendra")
+        }
         assertEquals("Hendra", defaults["name"])
     }
 
     @Test
     fun preferences() {
-        val defaults = Defaults[preferences]
-        defaults["name"] = "Hendra"
-        defaults.saveAsync()
+        val defaults = Defaults[preferences] {
+            set("name", "Hendra")
+        }
         assertEquals("Hendra", defaults["name"])
     }
 }

@@ -2,66 +2,68 @@
 
 package com.hendraanggrian.defaults
 
-import androidx.annotation.AnyThread
-import androidx.annotation.WorkerThread
 import java.lang.reflect.Constructor
 import java.lang.reflect.InvocationTargetException
 import java.util.WeakHashMap
 
-/** Bind fields in target (this) annotated with [BindDefault] from [source]. */
-fun Any.bindDefaults(source: ReadableDefaults): Defaults.Saver {
-    val targetClass = javaClass
-    Defaults.DEBUGGER?.invoke("Looking up binding for ${targetClass.name}")
-    val constructor = Defaults.findBindingConstructor(targetClass)
-    if (constructor == null) {
-        Defaults.DEBUGGER?.invoke("${targetClass.name} binding not found, returning empty saver.")
-        return Defaults.Saver.EMPTY
-    }
-    try {
-        return constructor.newInstance(this, source)
-    } catch (e: IllegalAccessException) {
-        throw RuntimeException("Unable to invoke \$constructor", e)
-    } catch (e: InstantiationException) {
-        throw RuntimeException("Unable to invoke \$constructor", e)
-    } catch (e: InvocationTargetException) {
-        val cause = e.cause
-        if (cause is RuntimeException) {
-            throw cause
-        }
-        if (cause is Error) {
-            throw cause
-        }
-        throw RuntimeException("Unable to create binding instance.", cause)
-    }
-}
-
 /**
  * @param E local settings editor
  */
-interface Defaults<E : Defaults.Editor> : ReadableDefaults {
+interface Defaults<E : DefaultsEditor> : ReadableDefaults {
 
     /** Often used and extended to create [Defaults] instance from ranges of input. */
     companion object {
         const val TAG = "com.hendraanggrian.defaults.Defaults"
 
-        internal var DEBUGGER: DefaultsDebugger? = null
-        private lateinit var BINDINGS: MutableMap<Class<*>, Constructor<Defaults.Saver>>
+        private var debugger: DefaultsDebugger? = null
+        private lateinit var bindings: MutableMap<Class<*>, Constructor<DefaultsSaver>>
 
         /** Modify debugging behavior, default is none. */
-        fun setDebug(debug: DefaultsDebugger?) {
-            DEBUGGER = debug
+        fun setDebugger(debug: DefaultsDebugger?) {
+            debugger = debug
+        }
+
+        internal fun debug(message: String) {
+            debugger?.invoke(message)
+        }
+
+        /** Bind fields in target (this) annotated with [BindDefault] from this defaults. */
+        fun bind(source: ReadableDefaults, target: Any): DefaultsSaver {
+            val targetClass = target.javaClass
+            debug("Looking up binding for ${targetClass.name}")
+            val constructor = findBindingConstructor(targetClass)
+            if (constructor == null) {
+                debug("${targetClass.name} binding not found, returning empty saver.")
+                return DefaultsSaver.EMPTY
+            }
+            try {
+                return constructor.newInstance(target, source)
+            } catch (e: IllegalAccessException) {
+                throw RuntimeException("Unable to invoke \$constructor", e)
+            } catch (e: InstantiationException) {
+                throw RuntimeException("Unable to invoke \$constructor", e)
+            } catch (e: InvocationTargetException) {
+                val cause = e.cause
+                if (cause is RuntimeException) {
+                    throw cause
+                }
+                if (cause is Error) {
+                    throw cause
+                }
+                throw RuntimeException("Unable to create binding instance.", cause)
+            }
         }
 
         @Suppress("UNCHECKED_CAST")
-        internal fun findBindingConstructor(cls: Class<*>): Constructor<Defaults.Saver>? {
-            if (!::BINDINGS.isInitialized) BINDINGS = WeakHashMap()
-            var binding = BINDINGS[cls]
+        internal fun findBindingConstructor(cls: Class<*>): Constructor<DefaultsSaver>? {
+            if (!::bindings.isInitialized) bindings = WeakHashMap()
+            var binding = bindings[cls]
             if (binding != null) {
-                DEBUGGER?.invoke("HIT: Cache found in binding weak map.")
+                debug("HIT: Cache found in binding weak map.")
                 return binding
             }
             if (cls.name.startsWith("android.") || cls.name.startsWith("java.")) {
-                DEBUGGER?.invoke("MISS: Reached framework class. Abandoning search.")
+                debug("MISS: Reached framework class. Abandoning search.")
                 return null
             }
             try {
@@ -70,11 +72,11 @@ interface Defaults<E : Defaults.Editor> : ReadableDefaults {
                     .getConstructor(
                         cls,
                         com.hendraanggrian.defaults.Defaults::class.java
-                    ) as Constructor<Defaults.Saver>
-                DEBUGGER?.invoke("HIT: Loaded binding class, caching in weak map.")
+                    ) as Constructor<DefaultsSaver>
+                debug("HIT: Loaded binding class, caching in weak map.")
             } catch (e: ClassNotFoundException) {
                 val superclass = cls.superclass
-                DEBUGGER?.invoke("Not found. Trying superclass ${superclass!!.name}")
+                debug("Not found. Trying superclass ${superclass!!.name}")
                 binding =
                     findBindingConstructor(
                         superclass
@@ -82,7 +84,7 @@ interface Defaults<E : Defaults.Editor> : ReadableDefaults {
             } catch (e: NoSuchMethodException) {
                 throw RuntimeException("Unable to find binding constructor for \$name", e)
             }
-            BINDINGS[cls] = binding!!
+            bindings[cls] = binding!!
             return binding
         }
     }
@@ -96,62 +98,9 @@ interface Defaults<E : Defaults.Editor> : ReadableDefaults {
     /**
      * Convenient method to quickly open an editor and apply changes in dsl.
      *
-     * @param edit receiver is [Defaults] for access to settings' contents, next param is [Writer]
+     * @param edit receiver is [Defaults] for access to settings' contents, next param is editor
      *        for custom editing.
      */
-    infix operator fun invoke(edit: (Defaults<E>.(E) -> Unit)): Defaults<E> =
+    operator fun invoke(edit: (ReadableDefaults.(E) -> Unit)): Defaults<E> =
         apply { getEditor().also { edit(it) }.save() }
-
-    /** Responsible of modifying settings. */
-    interface Editor : Saver {
-
-        /** Removes a setting. */
-        operator fun minusAssign(key: String)
-
-        /** Removes all settings. */
-        fun reset()
-
-        /** Add/change string value. */
-        operator fun set(key: String, value: String?)
-
-        /** Add/change boolean value. */
-        operator fun set(key: String, value: Boolean)
-
-        /** Add/change double value. */
-        operator fun set(key: String, value: Double)
-
-        /** Add/change float value. */
-        operator fun set(key: String, value: Float)
-
-        /** Add/change long value. */
-        operator fun set(key: String, value: Long)
-
-        /** Add/change int value. */
-        operator fun set(key: String, value: Int)
-
-        /** Add/change short value. */
-        operator fun set(key: String, value: Short)
-
-        /** Add/change byte value. */
-        operator fun set(key: String, value: Byte)
-    }
-
-    /** Base interface to save changes to local settings. */
-    interface Saver {
-
-        companion object {
-            internal val EMPTY: Saver = object : Saver {
-                override fun save() {}
-                override fun saveAsync() {}
-            }
-        }
-
-        /** Non-blocking save in the background. */
-        @WorkerThread
-        fun save()
-
-        /** Blocking save. */
-        @AnyThread
-        fun saveAsync()
-    }
 }

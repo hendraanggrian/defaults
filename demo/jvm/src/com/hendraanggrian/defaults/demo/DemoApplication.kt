@@ -2,9 +2,8 @@ package com.hendraanggrian.defaults.demo
 
 import com.hendraanggrian.defaults.BindDefault
 import com.hendraanggrian.defaults.Defaults
+import com.hendraanggrian.defaults.jvm.bind
 import com.hendraanggrian.defaults.DefaultsDebugger
-import com.hendraanggrian.defaults.bindDefaults
-import com.hendraanggrian.defaults.get
 import org.apache.commons.lang3.SystemUtils
 import java.io.File
 
@@ -14,7 +13,7 @@ class DemoApplication {
 
         @JvmStatic
         fun main(@Suppress("UnusedMainParameter") args: Array<String>) {
-            Defaults.setDebug(DefaultsDebugger.Default)
+            Defaults.setDebugger(DefaultsDebugger.Default)
             DemoApplication()
         }
     }
@@ -24,7 +23,7 @@ class DemoApplication {
 
     init {
         val file = File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties")
-        val saver = bindDefaults(Defaults[file])
+        val saver = Defaults.bind(file, this)
         name = "Hendra Anggrian"
         age = 25
         saver.saveAsync()

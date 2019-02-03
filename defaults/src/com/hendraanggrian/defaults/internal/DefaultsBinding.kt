@@ -1,10 +1,12 @@
 package com.hendraanggrian.defaults.internal
 
 import com.hendraanggrian.defaults.Defaults
+import com.hendraanggrian.defaults.DefaultsEditor
+import com.hendraanggrian.defaults.DefaultsSaver
 import com.hendraanggrian.defaults.ReadableDefaults
 
 /** Internal component, keep out. */
-abstract class DefaultBinding(protected val source: ReadableDefaults) : Defaults.Saver {
+abstract class DefaultsBinding(protected val source: ReadableDefaults) : DefaultsSaver {
 
     protected fun get(key: String, defaultValue: String?): String? =
         source[key] ?: defaultValue
@@ -27,29 +29,29 @@ abstract class DefaultBinding(protected val source: ReadableDefaults) : Defaults
      *
      * @throws IllegalStateException unsupported behavior, contact `github.com/hendraanggrian/defaults/issues`
      */
-    protected fun getEditor(): Defaults.Editor = when (source) {
+    protected fun getEditor(): DefaultsEditor = when (source) {
         is Defaults<*> -> source.getEditor()
-        is Defaults.Editor -> source //
+        is DefaultsEditor -> source
         else -> throw IllegalStateException()
     }
 
-    protected fun set(editor: Defaults.Editor, key: String, value: String?) {
+    protected fun set(editor: DefaultsEditor, key: String, value: String?) {
         editor[key] = value
     }
 
-    protected fun set(editor: Defaults.Editor, key: String, value: Int) {
+    protected fun set(editor: DefaultsEditor, key: String, value: Int) {
         editor[key] = value
     }
 
-    protected fun set(editor: Defaults.Editor, key: String, value: Long) {
+    protected fun set(editor: DefaultsEditor, key: String, value: Long) {
         editor[key] = value
     }
 
-    protected fun set(editor: Defaults.Editor, key: String, value: Float) {
+    protected fun set(editor: DefaultsEditor, key: String, value: Float) {
         editor[key] = value
     }
 
-    protected fun set(editor: Defaults.Editor, key: String, value: Boolean) {
+    protected fun set(editor: DefaultsEditor, key: String, value: Boolean) {
         editor[key] = value
     }
 }

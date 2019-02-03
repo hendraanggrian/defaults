@@ -10,6 +10,6 @@ class DemoApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Defaults.setDebug(DefaultsDebugger.Android)
+        Defaults.setDebugger(DefaultsDebugger.Android)
     }
 }

@@ -21,10 +21,10 @@ internal class DefaultBindingSpec(typeElement: TypeElement) {
     companion object {
         private const val TARGET = "target"
         private const val SOURCE = "source"
-        private val TYPE_DEFAULT_BINDING =
-            get("com.hendraanggrian.defaults.internal", "DefaultBinding")!!
+        private val TYPE_DEFAULTS_BINDING =
+            get("com.hendraanggrian.defaults.internal", "DefaultsBinding")!!
         private val TYPE_DEFAULTS = get("com.hendraanggrian.defaults", "Defaults")!!
-        private val TYPE_DEFAULTS_EDITOR = get("com.hendraanggrian.defaults.Defaults", "Editor")!!
+        private val TYPE_DEFAULTS_EDITOR = get("com.hendraanggrian.defaults", "DefaultsEditor")!!
     }
 
     private val packageName = getPackage(typeElement).qualifiedName.toString()
@@ -64,7 +64,7 @@ internal class DefaultBindingSpec(typeElement: TypeElement) {
             }
         }
         if (!hasSuperclass) {
-            klass.superclass(TYPE_DEFAULT_BINDING)
+            klass.superclass(TYPE_DEFAULTS_BINDING)
             constructorMethod.addStatement(
                 "super(\$L)",
                 SOURCE

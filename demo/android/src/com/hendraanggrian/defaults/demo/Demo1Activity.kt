@@ -10,25 +10,25 @@ import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.hendraanggrian.defaults.BindDefault
 import com.hendraanggrian.defaults.Defaults
-import com.hendraanggrian.defaults.bindDefaults
-import com.hendraanggrian.defaults.get
+import com.hendraanggrian.defaults.DefaultsSaver
+import com.hendraanggrian.defaults.android.bind
 import kotlinx.android.synthetic.main.activity_demo1.*
 
 class Demo1Activity : AppCompatActivity(), View.OnClickListener {
 
     @BindDefault("name") lateinit var name: String
-    @BindDefault("married") @JvmField var married: Boolean = false
+    @BindDefault("") @JvmField var married: Boolean = false
     @BindDefault("int") @JvmField var mInt: Int = 0
     @BindDefault("long") @JvmField var mLong: Long = 0L
     @BindDefault("float") @JvmField var mFloat: Float = 0f
 
-    private lateinit var saver: Defaults.Saver
+    private lateinit var saver: DefaultsSaver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo1)
         setSupportActionBar(toolbar)
-        saver = bindDefaults(Defaults[this])
+        saver = Defaults.bind(this)
 
         nameEditText.setText(name)
         marriedEditText.setText(married.toString())
