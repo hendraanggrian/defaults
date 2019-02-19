@@ -18,7 +18,6 @@ dependencies {
     implementation(project(":$RELEASE_ARTIFACT"))
     kapt(project(":$RELEASE_ARTIFACT-compiler"))
 
-    testImplementation(kotlin("test", VERSION_KOTLIN))
-    testImplementation(junit())
+    testImplementation(kotlin("test-junit", VERSION_KOTLIN))
     testImplementation(truth())
 }

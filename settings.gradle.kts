@@ -2,12 +2,10 @@ include(RELEASE_ARTIFACT)
 include("$RELEASE_ARTIFACT-android")
 include("$RELEASE_ARTIFACT-annotations")
 include("$RELEASE_ARTIFACT-compiler")
-
 include("website")
+includeDir("demo")
 
-includeAll("demo")
-
-fun includeAll(path: String) = file(path)
+fun includeDir(path: String) = file(path)
     .listFiles()
     .filter { it.isDirectory }
     .forEach { include("$path:${it.name}") }

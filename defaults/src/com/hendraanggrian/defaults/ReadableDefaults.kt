@@ -7,7 +7,7 @@ interface ReadableDefaults {
     operator fun contains(key: String): Boolean
 
     /** Returns string value. */
-    operator fun get(key: String): String? = get(key)
+    operator fun get(key: String): String?
 
     /** Returns string value, or [defaultValue] if no such value exists. */
     fun getOrDefault(key: String, defaultValue: String): String =

@@ -38,9 +38,7 @@ class PropertiesFileDefaults(val file: File) : WritableDefaults {
         properties.remove(key)
     }
 
-    override fun clear() {
-        properties.clear()
-    }
+    override fun clear() = properties.clear()
 
     override fun set(key: String, value: String?) {
         properties.setProperty(key, value)

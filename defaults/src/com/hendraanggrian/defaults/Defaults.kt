@@ -59,9 +59,9 @@ fun ReadableDefaults.bindDefaults(target: Any): DefaultsSaver {
     try {
         return constructor.newInstance(target, this)
     } catch (e: IllegalAccessException) {
-        throw RuntimeException("Unable to invoke \$constructor", e)
+        throw RuntimeException("Unable to invoke $constructor", e)
     } catch (e: InstantiationException) {
-        throw RuntimeException("Unable to invoke \$constructor", e)
+        throw RuntimeException("Unable to invoke $constructor", e)
     } catch (e: InvocationTargetException) {
         val cause = e.cause
         if (cause is RuntimeException) {
@@ -93,20 +93,14 @@ private fun findBindingConstructor(cls: Class<*>): Constructor<DefaultsSaver>? {
     try {
         binding = cls.classLoader!!
             .loadClass(cls.name + BindDefault.SUFFIX)
-            .getConstructor(
-                cls,
-                com.hendraanggrian.defaults.Defaults::class.java
-            ) as Constructor<DefaultsSaver>
+            .getConstructor(cls, ReadableDefaults::class.java) as Constructor<DefaultsSaver>
         Defaults.debug("HIT: Loaded binding class, caching in weak map.")
     } catch (e: ClassNotFoundException) {
         val superclass = cls.superclass
         Defaults.debug("Not found. Trying superclass ${superclass!!.name}")
-        binding =
-            findBindingConstructor(
-                superclass
-            )
+        binding = findBindingConstructor(superclass)
     } catch (e: NoSuchMethodException) {
-        throw RuntimeException("Unable to find binding constructor for \$name", e)
+        throw RuntimeException("Unable to find binding constructor for ${cls.name}", e)
     }
     bindings[cls] = binding!!
     return binding

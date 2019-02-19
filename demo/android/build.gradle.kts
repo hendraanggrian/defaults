@@ -60,7 +60,6 @@ dependencies {
     implementation(androidx("recyclerview", version = "$VERSION_ANDROIDX-alpha01"))
     implementation(material("$VERSION_ANDROIDX-alpha02"))
 
-    testImplementation(kotlin("test", VERSION_KOTLIN))
-    testImplementation(junit())
+    testImplementation(kotlin("test-junit", VERSION_KOTLIN))
     testImplementation(truth())
 }

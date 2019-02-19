@@ -20,8 +20,8 @@ sourceSets {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 val ktlint by configurations.registering
@@ -31,11 +31,11 @@ dependencies {
     compile(project(":$RELEASE_ARTIFACT-annotations"))
     compile(google("auto-common", VERSION_AUTOCOMMON))
     compile(google("guava", VERSION_GUAVA))
-    compile(square("javapoet", VERSION_JAVAPOET))
+    compile(hendraanggrian("javapoet-dsl", "0.2"))
 
     compileOnly(files(org.gradle.internal.jvm.Jvm.current().toolsJar))
 
-    testImplementation(junit())
+    testImplementation(kotlin("test-junit", VERSION_KOTLIN))
     testImplementation(google("truth", VERSION_TRUTH))
 
     ktlint {
@@ -44,6 +44,12 @@ dependencies {
 }
 
 tasks {
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+
     register<JavaExec>("ktlint") {
         group = LifecycleBasePlugin.VERIFICATION_GROUP
         inputs.dir("src")

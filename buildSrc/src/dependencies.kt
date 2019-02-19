@@ -34,9 +34,12 @@ fun DependencyHandler.androidx(
 fun DependencyHandler.material(version: String = VERSION_ANDROIDX) =
     "com.google.android.material:material:$version"
 
+fun DependencyHandler.hendraanggrian(module: String, version: String) =
+    "com.hendraanggrian:$module:$version"
+
 fun DependencyHandler.hendraanggrian(
     repository: String,
-    module: String = repository,
+    module: String,
     version: String
 ) = "com.hendraanggrian.$repository:$module:$version"
 
@@ -46,8 +49,6 @@ fun DependencyHandler.apache(module: String, version: String) =
 fun DependencyHandler.testFx(module: String) = "org.testfx:testfx-$module:$VERSION_TESTFX"
 
 fun DependencyHandler.truth() = "com.google.truth:truth:$VERSION_TRUTH"
-
-fun DependencyHandler.junit() = "junit:junit:$VERSION_JUNIT"
 
 fun DependencyHandler.shadow() = "com.github.jengelman.gradle.plugins:shadow:$VERSION_SHADOW"
 

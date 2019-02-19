@@ -23,8 +23,7 @@ dependencies {
 
     compileOnly(androidx("annotation", version = "1.0.0"))
 
-    testImplementation(kotlin("test", VERSION_KOTLIN))
-    testImplementation(junit())
+    testImplementation(kotlin("test-junit", VERSION_KOTLIN))
     testImplementation(truth())
 
     configuration {
