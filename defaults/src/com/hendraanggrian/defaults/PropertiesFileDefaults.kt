@@ -20,6 +20,9 @@ class PropertiesFileDefaults(val file: File) : WritableDefaults {
 
     override fun get(key: String): String? = properties.getProperty(key)
 
+    override fun getOrDefault(key: String, defaultValue: String): String =
+        properties.getProperty(key, defaultValue)
+
     override fun getBoolean(key: String): Boolean? = throw UnsupportedOperationException()
 
     override fun getDouble(key: String): Double? = throw UnsupportedOperationException()
