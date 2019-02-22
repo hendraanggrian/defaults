@@ -6,12 +6,12 @@ const val SDK_MIN = 14
 const val SDK_TARGET = 28
 const val BUILD_TOOLS = "28.0.3"
 
-internal const val VERSION_ANDROID_PLUGIN = "3.5.0-alpha04"
+internal const val VERSION_ANDROID_PLUGIN = "3.5.0-alpha05"
 const val VERSION_MULTIDEX = "2.0.1"
 const val VERSION_ANDROIDX = "1.1.0"
-const val VERSION_ESPRESSO = "3.1.0"
-const val VERSION_RUNNER = "1.1.0"
-const val VERSION_RULES = "1.1.0"
+const val VERSION_ESPRESSO = "3.1.1"
+const val VERSION_RUNNER = "1.1.1"
+const val VERSION_RULES = "1.1.1"
 
 const val VERSION_JAVAPARSER = "3.6.24"
 const val VERSION_AUTOCOMMON = "0.10"

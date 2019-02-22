@@ -23,19 +23,40 @@ class PropertiesFileDefaults(val file: File) : WritableDefaults {
     override fun getOrDefault(key: String, defaultValue: String): String =
         properties.getProperty(key, defaultValue)
 
-    override fun getBoolean(key: String): Boolean? = throw UnsupportedOperationException()
+    override fun getBoolean(key: String): Boolean? = get(key)?.toBoolean()
 
-    override fun getDouble(key: String): Double? = throw UnsupportedOperationException()
+    override fun getBooleanOrDefault(key: String, defaultValue: Boolean): Boolean =
+        getOrDefault(key, defaultValue.toString()).toBoolean()
 
-    override fun getFloat(key: String): Float? = throw UnsupportedOperationException()
+    override fun getDouble(key: String): Double? = get(key)?.toDoubleOrNull()
 
-    override fun getLong(key: String): Long? = throw UnsupportedOperationException()
+    override fun getDoubleOrDefault(key: String, defaultValue: Double): Double =
+        getOrDefault(key, defaultValue.toString()).toDouble()
 
-    override fun getInt(key: String): Int? = throw UnsupportedOperationException()
+    override fun getFloat(key: String): Float? = get(key)?.toFloatOrNull()
 
-    override fun getShort(key: String): Short? = throw UnsupportedOperationException()
+    override fun getFloatOrDefault(key: String, defaultValue: Float): Float =
+        getOrDefault(key, defaultValue.toString()).toFloat()
 
-    override fun getByte(key: String): Byte? = throw UnsupportedOperationException()
+    override fun getLong(key: String): Long? = get(key)?.toLongOrNull()
+
+    override fun getLongOrDefault(key: String, defaultValue: Long): Long =
+        getOrDefault(key, defaultValue.toString()).toLong()
+
+    override fun getInt(key: String): Int? = get(key)?.toIntOrNull()
+
+    override fun getIntOrDefault(key: String, defaultValue: Int): Int =
+        getOrDefault(key, defaultValue.toString()).toInt()
+
+    override fun getShort(key: String): Short? = get(key)?.toShortOrNull()
+
+    override fun getShortOrDefault(key: String, defaultValue: Short): Short =
+        getOrDefault(key, defaultValue.toString()).toShort()
+
+    override fun getByte(key: String): Byte? = get(key)?.toByteOrNull()
+
+    override fun getByteOrDefault(key: String, defaultValue: Byte): Byte =
+        getOrDefault(key, defaultValue.toString()).toByte()
 
     override fun minusAssign(key: String) {
         properties.remove(key)
