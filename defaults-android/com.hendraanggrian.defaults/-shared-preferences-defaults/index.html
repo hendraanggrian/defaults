@@ -8,7 +8,7 @@
 <a href="../../index.html">defaults-android</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.defaults</a>&nbsp;/&nbsp;<a href="./index.html">SharedPreferencesDefaults</a><br/>
 <br/>
 <h1>SharedPreferencesDefaults</h1>
-<code><span class="keyword">class </span><span class="identifier">SharedPreferencesDefaults</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Defaults</span><span class="symbol">&lt;</span><a href="-editor/index.html"><span class="identifier">Editor</span></a><span class="symbol">&gt;</span></code>
+<code><span class="keyword">class </span><span class="identifier">SharedPreferencesDefaults</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Defaults</span><span class="symbol">&lt;</span><a href="-editor/index.html"><span class="identifier">Editor</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier">DoubleReadableDefaultsSupport</span><span class="symbol">, </span><span class="identifier">ShortReadableDefaultsSupport</span><span class="symbol">, </span><span class="identifier">ByteReadableDefaultsSupport</span></code>
 <h3>Types</h3>
 <table>
 <tbody>
@@ -17,7 +17,7 @@
 <p><a href="-editor/index.html">Editor</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">Editor</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">DefaultsEditor</span></code></td>
+<code><span class="keyword">class </span><span class="identifier">Editor</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">DefaultsEditor</span><span class="symbol">, </span><span class="identifier">DoubleDefaultsEditorSupport</span><span class="symbol">, </span><span class="identifier">ShortDefaultsEditorSupport</span><span class="symbol">, </span><span class="identifier">ByteDefaultsEditorSupport</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -63,20 +63,6 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">getBooleanOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.SharedPreferencesDefaults$getBooleanOrDefault(kotlin.String, kotlin.Boolean)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.defaults.SharedPreferencesDefaults$getBooleanOrDefault(kotlin.String, kotlin.Boolean)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="get-byte.html">getByte</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">getByte</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.SharedPreferencesDefaults$getByte(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="get-double.html">getDouble</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">getDouble</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.SharedPreferencesDefaults$getDouble(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -133,13 +119,6 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">getOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.SharedPreferencesDefaults$getOrDefault(kotlin.String, kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.defaults.SharedPreferencesDefaults$getOrDefault(kotlin.String, kotlin.String)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="get-short.html">getShort</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">getShort</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.defaults.SharedPreferencesDefaults$getShort(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a></code></td>
 </tr>
 <tr>
 <td>
