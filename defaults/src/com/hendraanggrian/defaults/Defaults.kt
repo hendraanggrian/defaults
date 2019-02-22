@@ -36,7 +36,7 @@ interface Defaults<E : DefaultsEditor> : ReadableDefaults {
 }
 
 /** Creates defaults instance from file. */
-inline fun File.toDefaults(): PropertiesFileDefaults = PropertiesFileDefaults(this)
+inline fun File.toDefaults(): PropertiesDefaults = PropertiesDefaults(this)
 
 /** Creates defaults instance from file. */
 inline fun File.bindDefaults(target: Any): DefaultsSaver = toDefaults().bindDefaults(target)
@@ -45,7 +45,8 @@ inline fun File.bindDefaults(target: Any): DefaultsSaver = toDefaults().bindDefa
 inline fun Preferences.toDefaults(): PreferencesDefaults = PreferencesDefaults(this)
 
 /** Creates defaults instance from file. */
-inline fun Preferences.bindDefaults(target: Any): DefaultsSaver = toDefaults().bindDefaults(target)
+inline fun Preferences.bindDefaults(target: Any): DefaultsSaver =
+    toDefaults().bindDefaults(target)
 
 /** Bind fields in target (this) annotated with [BindDefault] from this defaults. */
 fun ReadableDefaults.bindDefaults(target: Any): DefaultsSaver {

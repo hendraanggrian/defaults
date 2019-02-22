@@ -1,9 +1,18 @@
 package com.hendraanggrian.defaults
 
 import android.content.SharedPreferences
+import com.hendraanggrian.defaults.internal.ByteDefaultsEditorSupport
+import com.hendraanggrian.defaults.internal.ByteReadableDefaultsSupport
+import com.hendraanggrian.defaults.internal.DoubleDefaultsEditorSupport
+import com.hendraanggrian.defaults.internal.DoubleReadableDefaultsSupport
+import com.hendraanggrian.defaults.internal.ShortDefaultsEditorSupport
+import com.hendraanggrian.defaults.internal.ShortReadableDefaultsSupport
 
 class SharedPreferencesDefaults(private val nativePreferences: SharedPreferences) :
-    Defaults<SharedPreferencesDefaults.Editor> {
+    Defaults<SharedPreferencesDefaults.Editor>,
+    DoubleReadableDefaultsSupport,
+    ShortReadableDefaultsSupport,
+    ByteReadableDefaultsSupport {
 
     override fun contains(key: String): Boolean = key in nativePreferences
 
@@ -18,8 +27,6 @@ class SharedPreferencesDefaults(private val nativePreferences: SharedPreferences
 
     override fun getBooleanOrDefault(key: String, defaultValue: Boolean): Boolean =
         nativePreferences.getBoolean(key, defaultValue)
-
-    override fun getDouble(key: String): Double = throw UnsupportedOperationException()
 
     override fun getFloat(key: String): Float? =
         nativePreferences.getFloat(key, 0f)
@@ -39,17 +46,15 @@ class SharedPreferencesDefaults(private val nativePreferences: SharedPreferences
     override fun getIntOrDefault(key: String, defaultValue: Int): Int =
         nativePreferences.getInt(key, defaultValue)
 
-    override fun getShort(key: String): Short = throw UnsupportedOperationException()
-
-    override fun getByte(key: String): Byte = throw UnsupportedOperationException()
-
     override fun getEditor(): Editor =
         Editor(nativePreferences.edit())
 
     fun toSharedPreferences(): SharedPreferences = nativePreferences
 
-    class Editor(private val nativeEditor: SharedPreferences.Editor) :
-        DefaultsEditor {
+    class Editor(private val nativeEditor: SharedPreferences.Editor) : DefaultsEditor,
+        DoubleDefaultsEditorSupport,
+        ShortDefaultsEditorSupport,
+        ByteDefaultsEditorSupport {
 
         override fun minusAssign(key: String) {
             nativeEditor.remove(key)
@@ -67,8 +72,6 @@ class SharedPreferencesDefaults(private val nativePreferences: SharedPreferences
             nativeEditor.putBoolean(key, value)
         }
 
-        override fun set(key: String, value: Double) = throw UnsupportedOperationException()
-
         override fun set(key: String, value: Float) {
             nativeEditor.putFloat(key, value)
         }
@@ -80,10 +83,6 @@ class SharedPreferencesDefaults(private val nativePreferences: SharedPreferences
         override fun set(key: String, value: Int) {
             nativeEditor.putInt(key, value)
         }
-
-        override fun set(key: String, value: Short) = throw UnsupportedOperationException()
-
-        override fun set(key: String, value: Byte) = throw UnsupportedOperationException()
 
         override fun save() {
             nativeEditor.commit()

@@ -27,33 +27,21 @@ inline fun Context.toDefaults(): SharedPreferencesDefaults =
     PreferenceManager.getDefaultSharedPreferences(this).toDefaults()
 
 /** Creates defaults instance from default shared preferences in context. */
-inline fun Context.bindDefaults(target: Any): DefaultsSaver =
+inline fun Context.bindDefaults(target: Any = this): DefaultsSaver =
     toDefaults().bindDefaults(target)
-
-/** Creates defaults instance from default shared preferences in context. */
-inline fun Context.bindDefaults(): DefaultsSaver =
-    toDefaults().bindDefaults(this)
 
 /** Creates defaults instance from default shared preferences in fragment. */
 inline fun Fragment.toDefaults(): SharedPreferencesDefaults =
     activity.toDefaults()
 
 /** Creates defaults instance from default shared preferences in fragment. */
-inline fun Fragment.bindDefaults(target: Any): DefaultsSaver =
+inline fun Fragment.bindDefaults(target: Any = this): DefaultsSaver =
     toDefaults().bindDefaults(target)
-
-/** Creates defaults instance from default shared preferences in fragment. */
-inline fun Fragment.bindDefaults(): DefaultsSaver =
-    toDefaults().bindDefaults(this)
 
 /** Creates defaults instance from default shared preferences in support fragment. */
 inline fun androidx.fragment.app.Fragment.toDefaults(): SharedPreferencesDefaults =
     checkNotNull(context) { "Context is not yet attached to this fragment" }.toDefaults()
 
 /** Creates defaults instance from default shared preferences in support fragment. */
-inline fun androidx.fragment.app.Fragment.bindDefaults(target: Any): DefaultsSaver =
+inline fun androidx.fragment.app.Fragment.bindDefaults(target: Any = this): DefaultsSaver =
     toDefaults().bindDefaults(target)
-
-/** Creates defaults instance from default shared preferences in support fragment. */
-inline fun androidx.fragment.app.Fragment.bindDefaults(): DefaultsSaver =
-    toDefaults().bindDefaults(this)

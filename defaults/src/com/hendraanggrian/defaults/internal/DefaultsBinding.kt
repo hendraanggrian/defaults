@@ -11,17 +11,26 @@ abstract class DefaultsBinding(protected val source: ReadableDefaults) : Default
     protected fun get(key: String, defaultValue: String?): String? =
         source[key] ?: defaultValue
 
-    protected fun get(key: String, defaultValue: Int): Int =
-        source.getInt(key) ?: defaultValue
+    protected fun get(key: String, defaultValue: Boolean): Boolean =
+        source.getBoolean(key) ?: defaultValue
 
-    protected fun get(key: String, defaultValue: Long): Long =
-        source.getLong(key) ?: defaultValue
+    protected fun get(key: String, defaultValue: Double): Double =
+        source.getDouble(key) ?: defaultValue
 
     protected fun get(key: String, defaultValue: Float): Float =
         source.getFloat(key) ?: defaultValue
 
-    protected fun get(key: String, defaultValue: Boolean): Boolean =
-        source.getBoolean(key) ?: defaultValue
+    protected fun get(key: String, defaultValue: Long): Long =
+        source.getLong(key) ?: defaultValue
+
+    protected fun get(key: String, defaultValue: Int): Int =
+        source.getInt(key) ?: defaultValue
+
+    protected fun get(key: String, defaultValue: Short): Short =
+        source.getShort(key) ?: defaultValue
+
+    protected fun get(key: String, defaultValue: Byte): Byte =
+        source.getByte(key) ?: defaultValue
 
     /**
      * Get editor instance from source defaults. Some defaults may need to open instance, while
@@ -39,11 +48,11 @@ abstract class DefaultsBinding(protected val source: ReadableDefaults) : Default
         editor[key] = value
     }
 
-    protected fun set(editor: DefaultsEditor, key: String, value: Int) {
+    protected fun set(editor: DefaultsEditor, key: String, value: Boolean) {
         editor[key] = value
     }
 
-    protected fun set(editor: DefaultsEditor, key: String, value: Long) {
+    protected fun set(editor: DefaultsEditor, key: String, value: Double) {
         editor[key] = value
     }
 
@@ -51,7 +60,19 @@ abstract class DefaultsBinding(protected val source: ReadableDefaults) : Default
         editor[key] = value
     }
 
-    protected fun set(editor: DefaultsEditor, key: String, value: Boolean) {
+    protected fun set(editor: DefaultsEditor, key: String, value: Long) {
+        editor[key] = value
+    }
+
+    protected fun set(editor: DefaultsEditor, key: String, value: Int) {
+        editor[key] = value
+    }
+
+    protected fun set(editor: DefaultsEditor, key: String, value: Short) {
+        editor[key] = value
+    }
+
+    protected fun set(editor: DefaultsEditor, key: String, value: Byte) {
         editor[key] = value
     }
 }
