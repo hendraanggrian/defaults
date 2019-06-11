@@ -31,7 +31,7 @@ dependencies {
     compile(project(":$RELEASE_ARTIFACT-annotations"))
     compile(google("auto-common", VERSION_AUTOCOMMON))
     compile(google("guava", VERSION_GUAVA))
-    compile(hendraanggrian("javapoet-dsl", "0.2"))
+    compile(hendraanggrian("javapoet-dsl", VERSION_JAVAPOET))
 
     compileOnly(files(org.gradle.internal.jvm.Jvm.current().toolsJar))
 
@@ -56,7 +56,7 @@ tasks {
         outputs.dir("src")
         description = "Check Kotlin code style."
         classpath = ktlint.get()
-        main = "com.github.shyiko.ktlint.Main"
+        main = "com.pinterest.ktlint.Main"
         args("src/**/*.kt")
     }
     "check" {
@@ -68,7 +68,7 @@ tasks {
         outputs.dir("src")
         description = "Fix Kotlin code style deviations."
         classpath = ktlint.get()
-        main = "com.github.shyiko.ktlint.Main"
+        main = "com.pinterest.ktlint.Main"
         args("-F", "src/**/*.kt")
     }
 

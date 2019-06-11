@@ -8,9 +8,6 @@ fun DependencyHandler.google(module: String, version: String, vararg suffixes: S
     else -> "com.google${StringBuilder().apply { suffixes.forEach { append(".$it") } }}:$module:$version"
 }
 
-fun DependencyHandler.javaParser(module: String) =
-    "com.github.javaparser:javaparser-$module:$VERSION_JAVAPARSER"
-
 fun DependencyHandler.kotlinx(
     module: String,
     version: String? = null
@@ -62,8 +59,8 @@ fun DependencyHandler.bintrayRelease() = "com.novoda:bintray-release:0.9"
 inline val PluginDependenciesSpec.`bintray-release` get() = id("com.novoda.bintray-release")
 
 fun DependencyHandler.ktlint(module: String? = null) = when (module) {
-    null -> "com.github.shyiko:ktlint:$VERSION_KTLINT"
-    else -> "com.github.shyiko.ktlint:ktlint-$module:$VERSION_KTLINT"
+    null -> "com.pinterest:ktlint:$VERSION_KTLINT"
+    else -> "com.pinterest.ktlint:ktlint-$module:$VERSION_KTLINT"
 }
 
 private fun String?.wrap(wrapper: (String) -> String) = this?.let(wrapper).orEmpty()

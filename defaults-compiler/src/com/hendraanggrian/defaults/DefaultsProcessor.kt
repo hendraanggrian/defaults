@@ -48,7 +48,7 @@ class DefaultsProcessor : AbstractProcessor() {
             val javaFile = buildJavaFile(packageName) {
                 comment = "Defaults generated class, do not modify."
                 var hasSuperclass = false
-                type(typeElement.measuredName) {
+                classType(typeElement.measuredName) {
                     val superclass = typeElement.superclass
                     if (superclass.kind != TypeKind.NONE && superclass.kind != TypeKind.VOID) {
                         val measuredClassName = MoreTypes.asTypeElement(superclass).measuredName

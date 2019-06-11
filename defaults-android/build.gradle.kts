@@ -8,7 +8,6 @@ plugins {
 
 android {
     compileSdkVersion(SDK_TARGET)
-    buildToolsVersion(BUILD_TOOLS)
     defaultConfig {
         minSdkVersion(SDK_MIN)
         targetSdkVersion(SDK_TARGET)
@@ -66,7 +65,7 @@ tasks {
         outputs.dir("src")
         description = "Check Kotlin code style."
         classpath(configuration.get())
-        main = "com.github.shyiko.ktlint.Main"
+        main = "com.pinterest.ktlint.Main"
         args("src/**/*.kt")
     }
     "check" {
@@ -78,7 +77,7 @@ tasks {
         outputs.dir("src")
         description = "Fix Kotlin code style deviations."
         classpath(configuration.get())
-        main = "com.github.shyiko.ktlint.Main"
+        main = "com.pinterest.ktlint.Main"
         args("-F", "src/**/*.kt")
     }
 
