@@ -3,8 +3,8 @@ package com.hendraanggrian.defaults
 import com.google.auto.common.MoreElements
 import com.google.auto.common.MoreTypes
 import com.google.common.collect.LinkedHashMultimap
-import com.hendraanggrian.javapoet.TypeSpecBuilder
 import com.hendraanggrian.javapoet.buildJavaFile
+import com.hendraanggrian.javapoet.dsl.MethodContainerScope
 import com.squareup.javapoet.ClassName
 import java.io.IOException
 import javax.annotation.processing.AbstractProcessor
@@ -48,7 +48,7 @@ class DefaultsProcessor : AbstractProcessor() {
             val javaFile = buildJavaFile(packageName) {
                 comment = "Defaults generated class, do not modify."
                 var hasSuperclass = false
-                classType(typeElement.measuredName) {
+                addClass(typeElement.measuredName) {
                     val superclass = typeElement.superclass
                     if (superclass.kind != TypeKind.NONE && superclass.kind != TypeKind.VOID) {
                         val measuredClassName = MoreTypes.asTypeElement(superclass).measuredName
@@ -61,24 +61,37 @@ class DefaultsProcessor : AbstractProcessor() {
                         superClass = TYPE_DEFAULTS_BINDING
                     }
                     modifiers = public
-                    field(className, TARGET) {
-                        modifiers = private + final
-                    }
-                    constructor {
-                        modifiers = public
-                        parameter(className, TARGET)
-                        parameter(TYPE_READABLE_DEFAULTS, SOURCE)
-                        when {
-                            !hasSuperclass -> statement("super(\$L)", SOURCE)
-                            else -> statement("super(\$L, \$L)", TARGET, SOURCE)
-                        }
-                        statement("this.\$L = \$L", TARGET, TARGET)
-                        elements.forEachValue { field, key ->
-                            statement("this.$TARGET.\$L = get(\$L, $TARGET.\$L)", field, key, field)
+                    fields {
+                        TARGET(className) {
+                            modifiers = private + final
                         }
                     }
-                    saveMethod("save", hasSuperclass, elements)
-                    saveMethod("saveAsync", hasSuperclass, elements)
+                    methods {
+                        addConstructor {
+                            modifiers = public
+                            parameters {
+                                add(className, TARGET)
+                                add(TYPE_READABLE_DEFAULTS, SOURCE)
+                            }
+                            statements {
+                                when {
+                                    !hasSuperclass -> add("super(\$L)", SOURCE)
+                                    else -> add("super(\$L, \$L)", TARGET, SOURCE)
+                                }
+                                add("this.\$L = \$L", TARGET, TARGET)
+                                elements.forEachValue { field, key ->
+                                    add(
+                                        "this.$TARGET.\$L = get(\$L, $TARGET.\$L)",
+                                        field,
+                                        key,
+                                        field
+                                    )
+                                }
+                            }
+                        }
+                        saveMethod("save", hasSuperclass, elements)
+                        saveMethod("saveAsync", hasSuperclass, elements)
+                    }
                 }
             }
             try {
@@ -90,28 +103,32 @@ class DefaultsProcessor : AbstractProcessor() {
         return false
     }
 
-    private fun TypeSpecBuilder.saveMethod(
+    private fun MethodContainerScope.saveMethod(
         name: String,
         hasSuperclass: Boolean,
         elements: Iterable<Element>
-    ) = method(name) {
-        modifiers = public
-        annotation<Override>()
-        if (hasSuperclass) {
-            statement("super.$name()")
+    ) {
+        name {
+            modifiers = public
+            annotations.add<Override>()
+            statements {
+                if (hasSuperclass) {
+                    add("super.$name()")
+                }
+                add("final \$T editor = getEditor()", TYPE_DEFAULTS_EDITOR)
+                elements.forEachValue { field, key ->
+                    add("editor.set(\$L, $TARGET.\$L)", key, field)
+                }
+                add("editor.$name()")
+            }
         }
-        statement("final \$T editor = getEditor()", TYPE_DEFAULTS_EDITOR)
-        elements.forEachValue { field, key ->
-            statement("editor.set(\$L, $TARGET.\$L)", key, field)
-        }
-        statement("editor.$name()")
     }
 
     private inline fun Iterable<Element>.forEachValue(action: (field: String, key: String) -> Unit) =
         forEach { element ->
             val field = element.simpleName.toString()
             val preference = element.getAnnotation(BindDefault::class.java)
-            val key = "\"${if (!preference!!.value.isEmpty()) preference.value else field}\""
+            val key = "\"${if (preference!!.value.isNotEmpty()) preference.value else field}\""
             action(field, key)
         }
 }
