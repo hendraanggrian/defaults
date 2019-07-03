@@ -6,6 +6,6 @@ include("website")
 includeDir("demo")
 
 fun includeDir(path: String) = file(path)
-    .listFiles()
+    .listFiles()!!
     .filter { it.isDirectory }
     .forEach { include("$path:${it.name}") }

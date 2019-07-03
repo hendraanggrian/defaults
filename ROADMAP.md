@@ -1,7 +1,4 @@
 Roadmap
 =======
-* More features (e.g.: SQLire, SnappyDB).
-
-Also possible
--------------
-Migrate source to Java and create Kotlin extensions.
+* More features (e.g.: SQLite, SnappyDB).
+* Migrate source to Java and create Kotlin extensions.

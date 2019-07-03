@@ -2,9 +2,9 @@
 [![download](https://api.bintray.com/packages/hendraanggrian/defaults/defaults/images/download.svg) ](https://bintray.com/hendraanggrian/defaults/defaults/_latestVersion)
 [![license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
-Defaults
-========
-![icon](/art/defaults-small.png)
+Lokal
+=====
+![icon](/art/lokal-small.png)
 
 Local settings library that runs in plain Java and Android.
 Comes with optional annotation processor to bind properties with existing settings.
@@ -12,15 +12,15 @@ Comes with optional annotation processor to bind properties with existing settin
 ##### JVM
 
 ```kotlin
-val defaults = preferences.toDefaults()
-val username = defaults["username"]
+val lokal = preferences.toLokal()
+val username = lokal["username"]
 ```
 
 ##### Android
 
 ```kotlin
-val defaults = toDefaults() // if this is context/activity, or use `sharedPreferences.toDefaults `
-val username = defaults["username"]
+val lokal = toLokal() // if this is context/activity, or use `sharedPreferences.toLokal()`
+val username = lokal["username"]
 ```
 
 Download
@@ -32,11 +32,11 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile "com.hendraanggrian.defaults:defaults:$version"
-    api "com.hendraanggrian.defaults:defaults-android:$version" // for Android
+    compile "com.hendraanggrian.lokal:lokal:$version"
+    api "com.hendraanggrian.lokal:lokal-android:$version" // for Android
 
     // optional property binding, use kapt when necessary
-    annotationProcessor "com.hendraanggrian.defaults:defaults-compiler:$version"
+    annotationProcessor "com.hendraanggrian.lokal:lokal-compiler:$version"
 }
 ```
 
@@ -48,18 +48,18 @@ Usage
 Create defaults instance from `File`, or `SharedPreferences` in Android.
 
 ```kotlin
-import com.hendraanggrian.defaults.toDefaults
+import com.hendraanggrian.lokal.toLokal
 
 // file defaults can set/get
-val fileDefaults = file.toDefaults()
-val name = fileDefaults["name"]
-val age = fileDefaults.getInt("age", 0)
-fileDefaults["name"] = "Hendra"
-fileDefaults["age"] = 25
+val fileLokal = file.toLokal()
+val name = fileLokal["name"]
+val age = fileLokal.getInt("age", 0)
+fileLokal["name"] = "Hendra"
+fileLokal["age"] = 25
 
 // shared preferences must open to set
-val androidDefaults = context.toDefaults()
-androidDefaults {
+val androidLokal = context.toLokal()
+androidLokal {
     it["name"] = "Hendra"
     it["age"] = 25
 }
@@ -70,17 +70,17 @@ androidDefaults {
 With optional annotation processor, bind these local settings to local variables.
 
 ```kotlin
-import com.hendraanggrian.defaults.DefaultsSaver
-import com.hendraanggrian.defaults.BindDefault
-import com.hendraanggrian.defaults.bindDefaults
+import com.hendraanggrian.lokal.LokalSaver
+import com.hendraanggrian.lokal.BindLokal
+import com.hendraanggrian.lokal.bindLokal
 
 @BindDefault lateinit var name: String
 @BindDefault @JvmField var age: Int = 0
 
-lateinit var saver: DefaultsSaver
+lateinit var saver: LokalSaver
 
 init {
-    saver = file.bindDefaults(this)
+    saver = file.bindLokal(this)
 }
 
 fun applyChanges(name: String, age: Int) {

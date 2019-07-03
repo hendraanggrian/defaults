@@ -18,7 +18,7 @@ const val VERSION_TRUTH = "0.44"
 
 const val VERSION_COMMONS_LANG = "3.8.1"
 const val VERSION_KTFX = "8.4.8"
-const val VERSION_JAVAPOET = "0.3-rc2"
+const val VERSION_JAVAPOET = "0.3-rc3"
 
 internal const val VERSION_DOKKA = "0.9.18"
 internal const val VERSION_TESTFX = "4.0.15-alpha"
