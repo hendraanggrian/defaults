@@ -1,0 +1,133 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SharedPreferencesLokal - lokal-android</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lokal-android</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.lokal</a>&nbsp;/&nbsp;<a href="./index.html">SharedPreferencesLokal</a><br/>
+<br/>
+<h1>SharedPreferencesLokal</h1>
+<code><span class="keyword">class </span><span class="identifier">SharedPreferencesLokal</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Lokal</span><span class="symbol">&lt;</span><a href="-editor/index.html"><span class="identifier">SharedPreferencesLokal.Editor</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier">DoubleReadableLokalSupport</span><span class="symbol">, </span><span class="identifier">ShortReadableLokalSupport</span><span class="symbol">, </span><span class="identifier">ByteReadableLokalSupport</span></code>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-editor/index.html">Editor</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Editor</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">LokalEditor</span><span class="symbol">, </span><span class="identifier">DoubleLokalEditorSupport</span><span class="symbol">, </span><span class="identifier">ShortLokalEditorSupport</span><span class="symbol">, </span><span class="identifier">ByteLokalEditorSupport</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">SharedPreferencesLokal</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$<init>(android.content.SharedPreferences)/nativePreferences">nativePreferences</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/content/SharedPreferences.html"><span class="identifier">SharedPreferences</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="contains.html">contains</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">contains</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$contains(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get.html">get</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$get(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-boolean.html">getBoolean</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getBoolean</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getBoolean(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-boolean-or-default.html">getBooleanOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getBooleanOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getBooleanOrDefault(kotlin.String, kotlin.Boolean)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getBooleanOrDefault(kotlin.String, kotlin.Boolean)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-editor.html">getEditor</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getEditor</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="-editor/index.html"><span class="identifier">SharedPreferencesLokal.Editor</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-float.html">getFloat</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getFloat</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getFloat(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-float-or-default.html">getFloatOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getFloatOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getFloatOrDefault(kotlin.String, kotlin.Float)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getFloatOrDefault(kotlin.String, kotlin.Float)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-int.html">getInt</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getInt</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getInt(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-int-or-default.html">getIntOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getIntOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getIntOrDefault(kotlin.String, kotlin.Int)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getIntOrDefault(kotlin.String, kotlin.Int)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-long.html">getLong</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getLong</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getLong(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-long-or-default.html">getLongOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getLongOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getLongOrDefault(kotlin.String, kotlin.Long)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getLongOrDefault(kotlin.String, kotlin.Long)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-or-default.html">getOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getOrDefault(kotlin.String, kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.SharedPreferencesLokal$getOrDefault(kotlin.String, kotlin.String)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="to-shared-preferences.html">toSharedPreferences</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">toSharedPreferences</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/content/SharedPreferences.html"><span class="identifier">SharedPreferences</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

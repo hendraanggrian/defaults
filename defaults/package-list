@@ -1,8 +1,0 @@
-$dokka.format:html
-$dokka.linkExtension:html
-$dokka.location:com.hendraanggrian.defaults$bindDefaults(java.io.File, kotlin.Any)com.hendraanggrian.defaults/java.io.-file/bind-defaults.html
-$dokka.location:com.hendraanggrian.defaults$bindDefaults(java.util.prefs.Preferences, kotlin.Any)com.hendraanggrian.defaults/java.util.prefs.-preferences/bind-defaults.html
-$dokka.location:com.hendraanggrian.defaults$toDefaults(java.io.File)com.hendraanggrian.defaults/java.io.-file/to-defaults.html
-$dokka.location:com.hendraanggrian.defaults$toDefaults(java.util.prefs.Preferences)com.hendraanggrian.defaults/java.util.prefs.-preferences/to-defaults.html
-com.hendraanggrian.defaults
-com.hendraanggrian.defaults.internal

@@ -1,0 +1,160 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>LokalEditor - lokal</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lokal</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.lokal</a>&nbsp;/&nbsp;<a href="./index.html">LokalEditor</a><br/>
+<br/>
+<h1>LokalEditor</h1>
+<code><span class="keyword">interface </span><span class="identifier">LokalEditor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-lokal-saver/index.html"><span class="identifier">LokalSaver</span></a></code>
+<p>Settings value modifier with Kotlin operators.</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="clear.html">clear</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">clear</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Removes all settings.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="minus-assign.html">minusAssign</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">minusAssign</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$minusAssign(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Removes a setting.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set.html">set</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.String)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change string value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Boolean)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Boolean)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change boolean value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Double)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Double)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change double value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Float)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Float)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change float value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Long)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Long)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change long value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Int)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Int)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change int value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Short)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Short)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change short value.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Byte)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.lokal.LokalEditor$set(kotlin.String, kotlin.Byte)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add/change byte value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-lokal-saver/save.html">save</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">save</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Non-blocking save in the background.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-lokal-saver/save-async.html">saveAsync</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">saveAsync</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Blocking save.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../com.hendraanggrian.lokal.internal/-boolean-lokal-editor-support/index.html">BooleanLokalEditorSupport</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">BooleanLokalEditorSupport</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">LokalEditor</span></a></code>
+<p>Provides support to write boolean as string.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.hendraanggrian.lokal.internal/-byte-lokal-editor-support/index.html">ByteLokalEditorSupport</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ByteLokalEditorSupport</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">LokalEditor</span></a></code>
+<p>Provides support to write byte as string.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.hendraanggrian.lokal.internal/-double-lokal-editor-support/index.html">DoubleLokalEditorSupport</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">DoubleLokalEditorSupport</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">LokalEditor</span></a></code>
+<p>Provides support to write double as string.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.hendraanggrian.lokal.internal/-float-lokal-editor-support/index.html">FloatLokalEditorSupport</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">FloatLokalEditorSupport</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">LokalEditor</span></a></code>
+<p>Provides support to write float as string.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.hendraanggrian.lokal.internal/-int-lokal-editor-support/index.html">IntLokalEditorSupport</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">IntLokalEditorSupport</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">LokalEditor</span></a></code>
+<p>Provides support to write int as string.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.hendraanggrian.lokal.internal/-long-lokal-editor-support/index.html">LongLokalEditorSupport</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">LongLokalEditorSupport</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">LokalEditor</span></a></code>
+<p>Provides support to write long as string.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.hendraanggrian.lokal.internal/-short-lokal-editor-support/index.html">ShortLokalEditorSupport</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ShortLokalEditorSupport</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">LokalEditor</span></a></code>
+<p>Provides support to write short as string.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-writable-lokal/index.html">WritableLokal</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">WritableLokal</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-readable-lokal/index.html"><span class="identifier">ReadableLokal</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">LokalEditor</span></a></code>
+<p>A set of writable local settings, no instance of <a href="./index.html">LokalEditor</a> is created.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

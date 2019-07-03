@@ -1,0 +1,8 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:com.hendraanggrian.lokal$bindLokal(java.io.File, kotlin.Any)com.hendraanggrian.lokal/java.io.-file/bind-lokal.html
+$dokka.location:com.hendraanggrian.lokal$bindLokal(java.util.prefs.Preferences, kotlin.Any)com.hendraanggrian.lokal/java.util.prefs.-preferences/bind-lokal.html
+$dokka.location:com.hendraanggrian.lokal$toLokal(java.io.File)com.hendraanggrian.lokal/java.io.-file/to-lokal.html
+$dokka.location:com.hendraanggrian.lokal$toLokal(java.util.prefs.Preferences)com.hendraanggrian.lokal/java.util.prefs.-preferences/to-lokal.html
+com.hendraanggrian.lokal
+com.hendraanggrian.lokal.internal
