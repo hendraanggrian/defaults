@@ -45,7 +45,7 @@ class PropertiesLokal(val file: File) : WritableLokal,
     override fun getOrDefault(key: String, defaultValue: String): String =
         properties.getProperty(key, defaultValue)
 
-    override fun minusAssign(key: String) {
+    override fun remove(key: String) {
         properties.remove(key)
     }
 

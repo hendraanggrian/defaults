@@ -40,7 +40,7 @@ val configuration = configurations.register("ktlint")
 
 dependencies {
     api(project(":$RELEASE_ARTIFACT"))
-    api(androidx("fragment", version = "$VERSION_ANDROIDX-alpha04")) {
+    api(androidx("fragment", version = "$VERSION_ANDROIDX-rc01")) {
         exclude(module = "listenablefuture")
     }
 

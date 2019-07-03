@@ -21,7 +21,7 @@ dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
     api(kotlinx("coroutines-core", VERSION_COROUTINES))
 
-    compileOnly(androidx("annotation", version = "1.0.0"))
+    compileOnly(androidx("annotation", version = VERSION_ANDROIDX))
 
     testImplementation(kotlin("test-junit", VERSION_KOTLIN))
     testImplementation(truth())

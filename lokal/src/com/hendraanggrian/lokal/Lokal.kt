@@ -1,4 +1,4 @@
-@file:Suppress("NOTHING_TO_INLINE", "DEPRECATION")
+@file:Suppress("NOTHING_TO_INLINE")
 
 package com.hendraanggrian.lokal
 
@@ -35,20 +35,20 @@ interface Lokal<E : LokalEditor> : ReadableLokal {
         apply { getEditor().also { edit(it) }.save() }
 }
 
-/** Creates defaults instance from file. */
+/** Creates lokal instance from file. */
 inline fun File.toLokal(): PropertiesLokal = PropertiesLokal(this)
 
-/** Creates defaults instance from file. */
+/** Creates lokal instance from file. */
 inline fun File.bindLokal(target: Any): LokalSaver = toLokal().bindLokal(target)
 
-/** Creates defaults instance from preferences. */
+/** Creates lokal instance from preferences. */
 inline fun Preferences.toLokal(): PreferencesLokal = PreferencesLokal(this)
 
-/** Creates defaults instance from file. */
+/** Creates lokal instance from file. */
 inline fun Preferences.bindLokal(target: Any): LokalSaver =
     toLokal().bindLokal(target)
 
-/** Bind fields in target (this) annotated with [BindLokal] from this defaults. */
+/** Bind fields in target (this) annotated with [BindLokal] from this lokal. */
 fun ReadableLokal.bindLokal(target: Any): LokalSaver {
     val targetClass = target.javaClass
     Lokal.debug("Looking up binding for ${targetClass.name}")

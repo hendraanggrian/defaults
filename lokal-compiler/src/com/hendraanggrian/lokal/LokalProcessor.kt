@@ -21,7 +21,8 @@ class LokalProcessor : AbstractProcessor() {
 
     private lateinit var _filer: Filer
 
-    override fun getSupportedSourceVersion(): SourceVersion = SourceVersion.latestSupported()
+    override fun getSupportedSourceVersion(): SourceVersion =
+        SourceVersion.latestSupported()
 
     override fun getSupportedAnnotationTypes(): Set<String> =
         setOf(BindLokal::class.java.canonicalName)
@@ -72,7 +73,7 @@ class LokalProcessor : AbstractProcessor() {
                             addModifiers(Modifier.PUBLIC)
                             parameters {
                                 add(className, TARGET)
-                                add(TYPE_LOKAL_DEFAULTS, SOURCE)
+                                add(TYPE_READABLE_LOKAL, SOURCE)
                             }
                             codes {
                                 when {
@@ -83,15 +84,13 @@ class LokalProcessor : AbstractProcessor() {
                                 elements.forEachValue { field, key ->
                                     addStatement(
                                         "this.$TARGET.\$L = get(\$L, $TARGET.\$L)",
-                                        field,
-                                        key,
-                                        field
+                                        field, key, field
                                     )
                                 }
                             }
                         }
-                        saveMethod("save", hasSuperclass, elements)
-                        saveMethod("saveAsync", hasSuperclass, elements)
+                        addSaveMethod("save", hasSuperclass, elements)
+                        addSaveMethod("saveAsync", hasSuperclass, elements)
                     }
                 }
             }
@@ -104,7 +103,7 @@ class LokalProcessor : AbstractProcessor() {
         return false
     }
 
-    private fun MethodContainerScope.saveMethod(
+    private fun MethodContainerScope.addSaveMethod(
         name: String,
         hasSuperclass: Boolean,
         elements: Iterable<Element>

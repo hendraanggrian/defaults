@@ -13,6 +13,10 @@ android {
         applicationId = "$RELEASE_GROUP.demo"
         versionName = RELEASE_VERSION
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
     sourceSets {
         getByName("main") {
             manifest.srcFile("AndroidManifest.xml")
@@ -52,12 +56,12 @@ dependencies {
     kapt(project(":$RELEASE_ARTIFACT-compiler"))
 
     implementation(androidx("multidex", version = VERSION_MULTIDEX))
-    implementation(androidx("core", "core-ktx", "$VERSION_ANDROIDX-alpha03"))
-    implementation(androidx("appcompat", version = "$VERSION_ANDROIDX-alpha01"))
-    implementation(androidx("preference", version = "$VERSION_ANDROIDX-alpha01"))
-    implementation(androidx("coordinatorlayout", version = "$VERSION_ANDROIDX-alpha01"))
-    implementation(androidx("recyclerview", version = "$VERSION_ANDROIDX-alpha01"))
-    implementation(material("$VERSION_ANDROIDX-alpha02"))
+    implementation(androidx("core", "core-ktx", "$VERSION_ANDROIDX-rc02"))
+    implementation(androidx("appcompat", version = "$VERSION_ANDROIDX-rc01"))
+    implementation(androidx("preference", "preference-ktx", version = "$VERSION_ANDROIDX-rc01"))
+    implementation(androidx("coordinatorlayout", version = "$VERSION_ANDROIDX-beta01"))
+    implementation(androidx("recyclerview", version = "$VERSION_ANDROIDX-beta01"))
+    implementation(material("$VERSION_ANDROIDX-alpha07"))
 
     testImplementation(kotlin("test-junit", VERSION_KOTLIN))
     testImplementation(truth())

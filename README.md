@@ -1,5 +1,5 @@
-[![bintray](https://img.shields.io/badge/bintray-defaults-brightgreen.svg)](https://bintray.com/hendraanggrian/defaults)
-[![download](https://api.bintray.com/packages/hendraanggrian/defaults/defaults/images/download.svg) ](https://bintray.com/hendraanggrian/defaults/defaults/_latestVersion)
+[![bintray](https://img.shields.io/badge/bintray-lokal-brightgreen.svg)](https://bintray.com/hendraanggrian/lokal)
+[![download](https://api.bintray.com/packages/hendraanggrian/lokal/lokal/images/download.svg) ](https://bintray.com/hendraanggrian/lokal/lokal/_latestVersion)
 [![license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 Lokal
@@ -74,8 +74,8 @@ import com.hendraanggrian.lokal.LokalSaver
 import com.hendraanggrian.lokal.BindLokal
 import com.hendraanggrian.lokal.bindLokal
 
-@BindDefault lateinit var name: String
-@BindDefault @JvmField var age: Int = 0
+@BindLokal lateinit var name: String
+@BindLokal @JvmField var age: Int = 0
 
 lateinit var saver: LokalSaver
 

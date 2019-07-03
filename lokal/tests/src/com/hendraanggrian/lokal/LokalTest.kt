@@ -7,7 +7,6 @@ import java.util.prefs.Preferences
 import kotlin.test.assertEquals
 
 class LokalTest {
-
     private lateinit var file: File
     private lateinit var preferences: Preferences
 
@@ -19,17 +18,17 @@ class LokalTest {
 
     @Test
     fun file() {
-        val defaults = file.toLokal()
-        defaults["name"] = "Hendra"
-        defaults.save()
-        assertEquals("Hendra", defaults["name"])
+        val lokal = file.toLokal()
+        lokal["name"] = "Hendra"
+        lokal.save()
+        assertEquals("Hendra", lokal["name"])
     }
 
     @Test
     fun preferences() {
-        val defaults = preferences.toLokal()
-        defaults["name"] = "Hendra"
-        defaults.save()
-        assertEquals("Hendra", defaults["name"])
+        val lokal = preferences.toLokal()
+        lokal["name"] = "Hendra"
+        lokal.save()
+        assertEquals("Hendra", lokal["name"])
     }
 }

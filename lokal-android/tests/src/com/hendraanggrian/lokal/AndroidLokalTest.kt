@@ -27,23 +27,23 @@ class AndroidLokalTest {
 
     @Test
     fun sharedPreferences() {
-        val defaults = testPreferences.toLokal()
-        defaults.invoke {
+        val lokal = testPreferences.toLokal()
+        lokal.invoke {
             it["name"] = "Hendra"
             it["age"] = 25
         }
-        assertEquals("Hendra", defaults["name"])
-        assertEquals(25, defaults.getInt("age"))
+        assertEquals("Hendra", lokal["name"])
+        assertEquals(25, lokal.getInt("age"))
     }
 
     @Test
     fun context() {
-        val defaults = context.toLokal()
-        defaults {
+        val lokal = context.toLokal()
+        lokal {
             it["name"] = "Hendra"
             it["age"] = 25
         }
-        assertEquals("Hendra", defaults["name"])
-        assertEquals(25, defaults.getInt("age"))
+        assertEquals("Hendra", lokal["name"])
+        assertEquals(25, lokal.getInt("age"))
     }
 }

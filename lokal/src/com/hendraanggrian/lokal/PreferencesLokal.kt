@@ -49,7 +49,7 @@ class PreferencesLokal(private val nativePreferences: Preferences) : WritableLok
 
     override fun getByte(key: String): Byte = throw UnsupportedOperationException()
 
-    override fun minusAssign(key: String) = nativePreferences.remove(key)
+    override fun remove(key: String) = nativePreferences.remove(key)
 
     override fun clear() = nativePreferences.clear()
 

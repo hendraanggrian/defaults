@@ -4,7 +4,10 @@ package com.hendraanggrian.lokal
 interface LokalEditor : LokalSaver {
 
     /** Removes a setting. */
-    operator fun minusAssign(key: String)
+    fun remove(key: String)
+
+    /** Convenient operator to remove a setting. */
+    operator fun minusAssign(key: String) = remove(key)
 
     /** Removes all settings. */
     fun clear()

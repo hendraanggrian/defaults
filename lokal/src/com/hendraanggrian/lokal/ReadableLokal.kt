@@ -94,11 +94,7 @@ interface ReadableLokal {
     fun getByteOrElse(key: String, defaultValue: () -> Byte): Byte =
         getByteOrDefault(key, defaultValue())
 
-    private inline fun <T> findValue(
-        key: String,
-        defaultValue: T,
-        getValue: (String) -> T?
-    ): T {
+    private inline fun <T> findValue(key: String, defaultValue: T, getValue: (String) -> T?): T {
         if (key !in this) {
             val value = getValue(key)
             if (value != null) {

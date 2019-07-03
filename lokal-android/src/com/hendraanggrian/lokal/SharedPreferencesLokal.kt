@@ -56,7 +56,7 @@ class SharedPreferencesLokal(private val nativePreferences: SharedPreferences) :
         ShortLokalEditorSupport,
         ByteLokalEditorSupport {
 
-        override fun minusAssign(key: String) {
+        override fun remove(key: String) {
             nativeEditor.remove(key)
         }
 

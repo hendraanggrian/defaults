@@ -8,16 +8,15 @@ const val SDK_TARGET = 28
 internal const val VERSION_ANDROID_PLUGIN = "3.5.0-beta05"
 const val VERSION_MULTIDEX = "2.0.1"
 const val VERSION_ANDROIDX = "1.1.0"
-const val VERSION_ESPRESSO = "3.1.1"
-const val VERSION_RUNNER = "1.1.1"
-const val VERSION_RULES = "1.1.1"
+const val VERSION_ESPRESSO = "3.2.0"
+const val VERSION_RUNNER = "1.2.0"
+const val VERSION_RULES = "1.2.0"
 
 const val VERSION_AUTOCOMMON = "0.10"
-const val VERSION_GUAVA = "27.0.1-jre"
-const val VERSION_TRUTH = "0.44"
+const val VERSION_GUAVA = "28.0-jre"
+const val VERSION_TRUTH = "0.46"
 
-const val VERSION_COMMONS_LANG = "3.8.1"
-const val VERSION_KTFX = "8.4.8"
+const val VERSION_COMMONS_LANG = "3.9"
 const val VERSION_JAVAPOET = "0.3-rc3"
 
 internal const val VERSION_DOKKA = "0.9.18"

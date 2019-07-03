@@ -43,8 +43,8 @@ class Demo2Activity : AppCompatActivity() {
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             addPreferencesFromResource(R.xml.settings)
-            preferenceName = findPreference("name") as EditTextPreference
-            preferenceMarried = findPreference("married") as SwitchPreferenceCompat
+            preferenceName = findPreference<EditTextPreference>("name")!!
+            preferenceMarried = findPreference<SwitchPreferenceCompat>("married")!!
             preferenceName.summary = name.orEmpty()
             preferenceName.onPreferenceChangeListener = OnPreferenceChangeListener { _, newValue ->
                 preferenceName.summary = newValue as String
