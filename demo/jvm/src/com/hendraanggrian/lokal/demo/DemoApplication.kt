@@ -2,7 +2,6 @@ package com.hendraanggrian.lokal.demo
 
 import com.hendraanggrian.lokal.BindLokal
 import com.hendraanggrian.lokal.Lokal
-import com.hendraanggrian.lokal.LokalDebugger
 import com.hendraanggrian.lokal.bindLokal
 import org.apache.commons.lang3.SystemUtils
 import java.io.File
@@ -12,7 +11,7 @@ class DemoApplication {
     companion object {
         @JvmStatic
         fun main(@Suppress("UnusedMainParameter") args: Array<String>) {
-            Lokal.setDebugger(LokalDebugger.Default)
+            Lokal.setDebugger(Lokal.Debugger.System)
             DemoApplication()
         }
     }

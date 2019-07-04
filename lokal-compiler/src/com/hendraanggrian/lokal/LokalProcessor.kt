@@ -107,20 +107,18 @@ class LokalProcessor : AbstractProcessor() {
         name: String,
         hasSuperclass: Boolean,
         elements: Iterable<Element>
-    ) {
-        name {
-            addModifiers(Modifier.PUBLIC)
-            annotations.add<Override>()
-            codes {
-                if (hasSuperclass) {
-                    addStatement("super.$name()")
-                }
-                addStatement("final \$T editor = getEditor()", TYPE_LOKAL_EDITOR)
-                elements.forEachValue { field, key ->
-                    addStatement("editor.set(\$L, $TARGET.\$L)", key, field)
-                }
-                addStatement("editor.$name()")
+    ) = name {
+        addModifiers(Modifier.PUBLIC)
+        annotations.add<Override>()
+        codes {
+            if (hasSuperclass) {
+                addStatement("super.$name()")
             }
+            addStatement("final \$T editor = getEditor()", TYPE_LOKAL_EDITOR)
+            elements.forEachValue { field, key ->
+                addStatement("editor.set(\$L, $TARGET.\$L)", key, field)
+            }
+            addStatement("editor.$name()")
         }
     }
 

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.hendraanggrian.lokal.BindLokal
-import com.hendraanggrian.lokal.LokalSaver
+import com.hendraanggrian.lokal.Lokal
 import com.hendraanggrian.lokal.bindLokal
 import kotlinx.android.synthetic.main.activity_demo1.*
 
@@ -21,7 +21,7 @@ class Demo1Activity : AppCompatActivity(), View.OnClickListener {
     @BindLokal("long") @JvmField var mLong: Long = 0L
     @BindLokal("float") @JvmField var mFloat: Float = 0f
 
-    private lateinit var saver: LokalSaver
+    private lateinit var saver: Lokal.Saver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

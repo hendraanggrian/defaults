@@ -5,7 +5,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.prefs.Preferences
 
-class PreferencesLokal(private val nativePreferences: Preferences) : WritableLokal {
+class LokalPreferences(private val nativePreferences: Preferences) : WritableLokal {
 
     override fun contains(key: String): Boolean = nativePreferences.nodeExists(key)
 

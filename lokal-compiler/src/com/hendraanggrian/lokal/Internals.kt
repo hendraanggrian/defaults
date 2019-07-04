@@ -12,7 +12,7 @@ internal val TYPE_LOKAL_BINDING: ClassName =
 internal val TYPE_READABLE_LOKAL: ClassName =
     ClassName.get("com.hendraanggrian.lokal", "ReadableLokal")
 internal val TYPE_LOKAL_EDITOR: ClassName =
-    ClassName.get("com.hendraanggrian.lokal", "LokalEditor")
+    ClassName.get("com.hendraanggrian.lokal", "Lokal").nestedClass("Editor")
 
 internal val TypeElement.measuredName: String
     get() {

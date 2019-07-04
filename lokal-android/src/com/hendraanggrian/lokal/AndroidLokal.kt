@@ -8,40 +8,38 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import android.util.Log
 
-@PublishedApi internal val TAG = Lokal::class.java.simpleName
-
 /** Android debugger, prints to [Log.DEBUG]. */
-val LokalDebugger.Companion.Android: LokalDebugger
-    get() = LokalDebugger { Log.d(TAG, it) }
+inline val Lokal.Debugger.Companion.Android: Lokal.Debugger
+    get() = Lokal.Debugger { Log.d(Lokal::class.java.simpleName, it) }
 
 /** Creates lokal instance from shared preferences. */
-inline fun SharedPreferences.toLokal(): SharedPreferencesLokal =
-    SharedPreferencesLokal(this)
+inline fun SharedPreferences.toLokal(): LokalSharedPreferences =
+    LokalSharedPreferences(this)
 
 /** Creates lokal instance from shared preferences. */
-inline fun SharedPreferences.bindLokal(target: Any): LokalSaver =
+inline fun SharedPreferences.bindLokal(target: Any): Lokal.Saver =
     toLokal().bindLokal(target)
 
 /** Creates lokal instance from default shared preferences in context. */
-inline fun Context.toLokal(): SharedPreferencesLokal =
+inline fun Context.toLokal(): LokalSharedPreferences =
     PreferenceManager.getDefaultSharedPreferences(this).toLokal()
 
 /** Creates lokal instance from default shared preferences in context. */
-inline fun Context.bindLokal(target: Any = this): LokalSaver =
+inline fun Context.bindLokal(target: Any = this): Lokal.Saver =
     toLokal().bindLokal(target)
 
 /** Creates lokal instance from default shared preferences in fragment. */
-inline fun Fragment.toLokal(): SharedPreferencesLokal =
+inline fun Fragment.toLokal(): LokalSharedPreferences =
     activity.toLokal()
 
 /** Creates lokal instance from default shared preferences in fragment. */
-inline fun Fragment.bindLokal(target: Any = this): LokalSaver =
+inline fun Fragment.bindLokal(target: Any = this): Lokal.Saver =
     toLokal().bindLokal(target)
 
 /** Creates lokal instance from default shared preferences in support fragment. */
-inline fun androidx.fragment.app.Fragment.toLokal(): SharedPreferencesLokal =
+inline fun androidx.fragment.app.Fragment.toLokal(): LokalSharedPreferences =
     checkNotNull(context) { "Context is not yet attached to this fragment" }.toLokal()
 
 /** Creates lokal instance from default shared preferences in support fragment. */
-inline fun androidx.fragment.app.Fragment.bindLokal(target: Any = this): LokalSaver =
+inline fun androidx.fragment.app.Fragment.bindLokal(target: Any = this): Lokal.Saver =
     toLokal().bindLokal(target)

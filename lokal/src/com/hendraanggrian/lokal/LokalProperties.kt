@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.util.Properties
 
-class PropertiesLokal(val file: File) : WritableLokal,
+class LokalProperties(private val file: File) : WritableLokal,
     BooleanReadableLokalSupport, BooleanLokalEditorSupport,
     DoubleReadableLokalSupport, DoubleLokalEditorSupport,
     FloatReadableLokalSupport, FloatLokalEditorSupport,
