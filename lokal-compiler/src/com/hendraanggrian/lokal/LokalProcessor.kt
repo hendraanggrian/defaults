@@ -6,7 +6,6 @@ import com.google.common.collect.LinkedHashMultimap
 import com.hendraanggrian.javapoet.buildJavaFile
 import com.hendraanggrian.javapoet.dsl.MethodContainerScope
 import com.squareup.javapoet.ClassName
-import java.io.IOException
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.Filer
 import javax.annotation.processing.ProcessingEnvironment
@@ -40,14 +39,14 @@ class LokalProcessor : AbstractProcessor() {
         roundEnv.getElementsAnnotatedWith(BindLokal::class.java).forEach { element ->
             val typeElement = MoreElements.asType(element.enclosingElement)
             multimap.put(typeElement, element)
-            measuredClassNames.add(typeElement.measuredName)
+            measuredClassNames += typeElement.measuredName
         }
 
         // generate classes
         multimap.keySet().map { it to multimap[it] }.forEach { (typeElement, elements) ->
             val className = ClassName.get(typeElement)
             val packageName = MoreElements.getPackage(typeElement).qualifiedName.toString()
-            val javaFile = buildJavaFile(packageName) {
+            buildJavaFile(packageName) {
                 comment = "Lokal generated class, do not modify."
                 var hasSuperclass = false
                 addClass(typeElement.measuredName) {
@@ -93,12 +92,7 @@ class LokalProcessor : AbstractProcessor() {
                         addSaveMethod("saveAsync", hasSuperclass, elements)
                     }
                 }
-            }
-            try {
-                javaFile.writeTo(_filer)
-            } catch (e: IOException) {
-                throw RuntimeException(e)
-            }
+            }.writeTo(_filer)
         }
         return false
     }
@@ -114,11 +108,11 @@ class LokalProcessor : AbstractProcessor() {
             if (hasSuperclass) {
                 addStatement("super.$name()")
             }
-            addStatement("final \$T editor = getEditor()", TYPE_LOKAL_EDITOR)
+            addStatement("final \$T $EDITOR = getEditor()", TYPE_LOKAL_EDITOR)
             elements.forEachValue { field, key ->
-                addStatement("editor.set(\$L, $TARGET.\$L)", key, field)
+                addStatement("$EDITOR.set(\$L, $TARGET.\$L)", key, field)
             }
-            addStatement("editor.$name()")
+            addStatement("$EDITOR.$name()")
         }
     }
 

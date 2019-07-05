@@ -8,8 +8,7 @@ import com.hendraanggrian.lokal.internal.DoubleReadableLokalSupport
 import com.hendraanggrian.lokal.internal.ShortLokalEditorSupport
 import com.hendraanggrian.lokal.internal.ShortReadableLokalSupport
 
-class LokalSharedPreferences(private val nativePreferences: SharedPreferences) :
-    Lokal<LokalSharedPreferences.Editor>,
+class LokalSharedPreferences(private val nativePreferences: SharedPreferences) : Lokal,
     DoubleReadableLokalSupport,
     ShortReadableLokalSupport,
     ByteReadableLokalSupport {

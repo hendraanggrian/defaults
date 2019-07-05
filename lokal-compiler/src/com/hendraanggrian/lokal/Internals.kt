@@ -4,15 +4,16 @@ import com.google.auto.common.MoreElements
 import com.squareup.javapoet.ClassName
 import javax.lang.model.element.TypeElement
 
-internal const val TARGET = "target"
-internal const val SOURCE = "source"
-
 internal val TYPE_LOKAL_BINDING: ClassName =
     ClassName.get("com.hendraanggrian.lokal.internal", "LokalBinding")
 internal val TYPE_READABLE_LOKAL: ClassName =
     ClassName.get("com.hendraanggrian.lokal", "ReadableLokal")
 internal val TYPE_LOKAL_EDITOR: ClassName =
     ClassName.get("com.hendraanggrian.lokal", "Lokal").nestedClass("Editor")
+
+internal const val TARGET = "target"
+internal const val SOURCE = "source"
+internal val EDITOR = TYPE_LOKAL_EDITOR.simpleName()
 
 internal val TypeElement.measuredName: String
     get() {

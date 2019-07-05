@@ -11,7 +11,7 @@ import java.util.WeakHashMap
 import java.util.prefs.Preferences
 
 /** A set of readable local settings, modify value with editor created with [getEditor]. */
-interface Lokal<E : Lokal.Editor> : ReadableLokal {
+interface Lokal : ReadableLokal {
 
     companion object {
         private var debugger: Debugger? = null
@@ -28,12 +28,12 @@ interface Lokal<E : Lokal.Editor> : ReadableLokal {
 
     /**
      * When editor instance is created, resources must be available (e.g.: opening sql transaction).
-     * Resources may be released upon [LokalEditor.save] or [LokalEditor.saveAsync].
+     * Resources may be released upon [Lokal.Saver.save] or [Lokal.Saver.saveAsync].
      */
-    fun getEditor(): E
+    fun getEditor(): Editor
 
     /** Convenient method to quickly open an editor and apply changes in dsl. */
-    operator fun invoke(edit: (ReadableLokal.(E) -> Unit)): Lokal<E> =
+    operator fun invoke(edit: (ReadableLokal.(Editor) -> Unit)): Lokal =
         apply { getEditor().also { edit(it) }.save() }
 
     /** Base interface to save changes to local settings. */

@@ -37,7 +37,7 @@ abstract class LokalBinding(private val source: ReadableLokal) : Lokal.Saver {
      * @throws IllegalStateException unsupported behavior, contact `github.com/hendraanggrian/lokal/issues`
      */
     protected fun getEditor(): Lokal.Editor = when (source) {
-        is Lokal<*> -> source.getEditor()
+        is Lokal -> source.getEditor()
         is Lokal.Editor -> source
         else -> throw IllegalStateException()
     }
