@@ -5,7 +5,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.prefs.Preferences
 
-class LokalPreferences(private val nativePreferences: Preferences) : WritableLokal {
+class LokalPreferences(private val nativePreferences: Preferences) : Lokal, Lokal.Editor {
 
     override fun contains(key: String): Boolean = nativePreferences.nodeExists(key)
 
@@ -48,6 +48,8 @@ class LokalPreferences(private val nativePreferences: Preferences) : WritableLok
     override fun getShort(key: String): Short = throw UnsupportedOperationException()
 
     override fun getByte(key: String): Byte = throw UnsupportedOperationException()
+
+    override val editor: Lokal.Editor get() = this
 
     override fun remove(key: String) = nativePreferences.remove(key)
 

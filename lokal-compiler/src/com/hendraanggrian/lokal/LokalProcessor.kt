@@ -72,7 +72,7 @@ class LokalProcessor : AbstractProcessor() {
                             addModifiers(Modifier.PUBLIC)
                             parameters {
                                 add(className, TARGET)
-                                add(TYPE_READABLE_LOKAL, SOURCE)
+                                add(TYPE_LOKAL, SOURCE)
                             }
                             codes {
                                 when {

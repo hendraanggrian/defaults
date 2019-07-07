@@ -1,33 +1,33 @@
 package com.hendraanggrian.lokal
 
 import com.hendraanggrian.lokal.internal.BooleanLokalEditorSupport
-import com.hendraanggrian.lokal.internal.BooleanReadableLokalSupport
+import com.hendraanggrian.lokal.internal.BooleanLokalSupport
 import com.hendraanggrian.lokal.internal.ByteLokalEditorSupport
-import com.hendraanggrian.lokal.internal.ByteReadableLokalSupport
+import com.hendraanggrian.lokal.internal.ByteLokalSupport
 import com.hendraanggrian.lokal.internal.DoubleLokalEditorSupport
-import com.hendraanggrian.lokal.internal.DoubleReadableLokalSupport
+import com.hendraanggrian.lokal.internal.DoubleLokalSupport
 import com.hendraanggrian.lokal.internal.FloatLokalEditorSupport
-import com.hendraanggrian.lokal.internal.FloatReadableLokalSupport
+import com.hendraanggrian.lokal.internal.FloatLokalSupport
 import com.hendraanggrian.lokal.internal.IntLokalEditorSupport
-import com.hendraanggrian.lokal.internal.IntReadableLokalSupport
+import com.hendraanggrian.lokal.internal.IntLokalSupport
 import com.hendraanggrian.lokal.internal.LongLokalEditorSupport
-import com.hendraanggrian.lokal.internal.LongReadableLokalSupport
+import com.hendraanggrian.lokal.internal.LongLokalSupport
 import com.hendraanggrian.lokal.internal.ShortLokalEditorSupport
-import com.hendraanggrian.lokal.internal.ShortReadableLokalSupport
+import com.hendraanggrian.lokal.internal.ShortLokalSupport
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
 import java.util.Properties
 
-class LokalProperties(private val file: File) : WritableLokal,
-    BooleanReadableLokalSupport, BooleanLokalEditorSupport,
-    DoubleReadableLokalSupport, DoubleLokalEditorSupport,
-    FloatReadableLokalSupport, FloatLokalEditorSupport,
-    LongReadableLokalSupport, LongLokalEditorSupport,
-    IntReadableLokalSupport, IntLokalEditorSupport,
-    ShortReadableLokalSupport, ShortLokalEditorSupport,
-    ByteReadableLokalSupport, ByteLokalEditorSupport {
+class LokalProperties(private val file: File) : Lokal, Lokal.Editor,
+    BooleanLokalSupport, BooleanLokalEditorSupport,
+    DoubleLokalSupport, DoubleLokalEditorSupport,
+    FloatLokalSupport, FloatLokalEditorSupport,
+    LongLokalSupport, LongLokalEditorSupport,
+    IntLokalSupport, IntLokalEditorSupport,
+    ShortLokalSupport, ShortLokalEditorSupport,
+    ByteLokalSupport, ByteLokalEditorSupport {
 
     private val properties = Properties()
 
@@ -44,6 +44,8 @@ class LokalProperties(private val file: File) : WritableLokal,
 
     override fun getOrDefault(key: String, defaultValue: String): String =
         properties.getProperty(key, defaultValue)
+
+    override val editor: Lokal.Editor get() = this
 
     override fun remove(key: String) {
         properties.remove(key)

@@ -6,8 +6,8 @@ import javax.lang.model.element.TypeElement
 
 internal val TYPE_LOKAL_BINDING: ClassName =
     ClassName.get("com.hendraanggrian.lokal.internal", "LokalBinding")
-internal val TYPE_READABLE_LOKAL: ClassName =
-    ClassName.get("com.hendraanggrian.lokal", "ReadableLokal")
+internal val TYPE_LOKAL: ClassName =
+    ClassName.get("com.hendraanggrian.lokal", "Lokal")
 internal val TYPE_LOKAL_EDITOR: ClassName =
     ClassName.get("com.hendraanggrian.lokal", "Lokal").nestedClass("Editor")
 

@@ -2,16 +2,16 @@ package com.hendraanggrian.lokal
 
 import android.content.SharedPreferences
 import com.hendraanggrian.lokal.internal.ByteLokalEditorSupport
-import com.hendraanggrian.lokal.internal.ByteReadableLokalSupport
+import com.hendraanggrian.lokal.internal.ByteLokalSupport
 import com.hendraanggrian.lokal.internal.DoubleLokalEditorSupport
-import com.hendraanggrian.lokal.internal.DoubleReadableLokalSupport
+import com.hendraanggrian.lokal.internal.DoubleLokalSupport
 import com.hendraanggrian.lokal.internal.ShortLokalEditorSupport
-import com.hendraanggrian.lokal.internal.ShortReadableLokalSupport
+import com.hendraanggrian.lokal.internal.ShortLokalSupport
 
 class LokalSharedPreferences(private val nativePreferences: SharedPreferences) : Lokal,
-    DoubleReadableLokalSupport,
-    ShortReadableLokalSupport,
-    ByteReadableLokalSupport {
+    DoubleLokalSupport,
+    ShortLokalSupport,
+    ByteLokalSupport {
 
     override fun contains(key: String): Boolean = key in nativePreferences
 
@@ -45,12 +45,11 @@ class LokalSharedPreferences(private val nativePreferences: SharedPreferences) :
     override fun getIntOrDefault(key: String, defaultValue: Int): Int =
         nativePreferences.getInt(key, defaultValue)
 
-    override fun getEditor(): Editor =
-        Editor(nativePreferences.edit())
+    override val editor: Lokal.Editor get() = Editor(nativePreferences.edit())
 
     fun toSharedPreferences(): SharedPreferences = nativePreferences
 
-    class Editor(private val nativeEditor: SharedPreferences.Editor) : Lokal.Editor,
+    private class Editor(private val nativeEditor: SharedPreferences.Editor) : Lokal.Editor,
         DoubleLokalEditorSupport,
         ShortLokalEditorSupport,
         ByteLokalEditorSupport {
