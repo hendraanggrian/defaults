@@ -3,27 +3,77 @@ package com.hendraanggrian.lokal.demo
 import com.hendraanggrian.lokal.BindLokal
 import com.hendraanggrian.lokal.Lokal
 import com.hendraanggrian.lokal.bindLokal
+import javafx.application.Application
+import javafx.scene.control.CheckBox
+import javafx.scene.control.TextField
+import javafx.stage.Stage
+import ktfx.controls.gap
+import ktfx.controls.paddingAll
+import ktfx.coroutines.onAction
+import ktfx.dialogs.infoAlert
+import ktfx.layouts.button
+import ktfx.layouts.buttonBar
+import ktfx.layouts.checkBox
+import ktfx.layouts.gridPane
+import ktfx.layouts.label
+import ktfx.layouts.scene
+import ktfx.layouts.textField
 import org.apache.commons.lang3.SystemUtils
 import java.io.File
 
-class DemoApplication {
+class DemoApplication : Application() {
 
     companion object {
         @JvmStatic
-        fun main(@Suppress("UnusedMainParameter") args: Array<String>) {
-            Lokal.setDebugger(Lokal.Debugger.System)
-            DemoApplication()
+        fun main(args: Array<String>) = ktfx.launch<DemoApplication>(*args)
+    }
+
+    private lateinit var nameField: TextField
+    private lateinit var marriedCheck: CheckBox
+    private lateinit var ageField: TextField
+    private lateinit var heightField: TextField
+
+    @BindLokal @JvmField var name: String? = null
+    @BindLokal @JvmField var married: Boolean = false
+    @BindLokal @JvmField var age: Int = 0
+    @BindLokal @JvmField var height: Double = 0.0
+
+    private lateinit var saver: Lokal.Saver
+
+    override fun init() {
+        Lokal.setDebugger(Lokal.Debugger.System)
+        saver = File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties").bindLokal(this)
+    }
+
+    override fun start(stage: Stage) = stage.apply {
+        scene = scene {
+            gridPane {
+                paddingAll = 10.0
+                gap = 10.0
+
+                var row = 0
+                label("Name") row row col 0
+                nameField = textField(name.orEmpty()) row row++ col 1
+                label("Married") row row col 0
+                marriedCheck = checkBox { isSelected = married } row row++ col 1
+                label("Age") row row col 0
+                ageField = textField(age.toString()) row row++ col 1
+                label("Height") row row col 0
+                heightField = textField(this@DemoApplication.height.toString()) row row++ col 1
+                buttonBar {
+                    button("Save") {
+                        onAction {
+                            name = nameField.text
+                            married = marriedCheck.isSelected
+                            age = ageField.text.toInt()
+                            this@DemoApplication.height = heightField.text.toDouble()
+                            saver.saveAsync()
+
+                            infoAlert("Saved!")
+                        }
+                    }
+                } row row col 0 colSpans 2
+            }
         }
-    }
-
-    @BindLokal("first_name") @JvmField var firstName: String
-    @BindLokal("last_name") @JvmField var lastName: String
-
-    init {
-        val file = File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties")
-        val saver = file.bindLokal(this)
-        firstName = "Hendra"
-        lastName = "Anggrian"
-        saver.saveAsync()
-    }
+    }.show()
 }

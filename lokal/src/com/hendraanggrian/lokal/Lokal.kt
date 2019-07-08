@@ -158,9 +158,6 @@ interface Lokal {
         /** Removes a setting. */
         fun remove(key: String)
 
-        /** Convenient operator to remove a setting. */
-        operator fun minusAssign(key: String) = remove(key)
-
         /** Removes all settings. */
         fun clear()
 
@@ -189,7 +186,7 @@ interface Lokal {
         operator fun set(key: String, value: Byte)
 
         /** Convenient method to quickly open an editor and apply changes in dsl. */
-        operator fun invoke(edit: (Editor.() -> Unit)): Editor = also {
+        operator fun invoke(edit: Editor.() -> Unit): Editor = also {
             edit(it)
             it.saveAsync()
         }

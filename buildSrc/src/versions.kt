@@ -16,6 +16,7 @@ const val VERSION_AUTOCOMMON = "0.10"
 const val VERSION_GUAVA = "28.0-jre"
 const val VERSION_TRUTH = "0.46"
 
+const val VERSION_KTFX = "8.5.0"
 const val VERSION_COMMONS_LANG = "3.9"
 const val VERSION_JAVAPOET = "0.3-rc3"
 

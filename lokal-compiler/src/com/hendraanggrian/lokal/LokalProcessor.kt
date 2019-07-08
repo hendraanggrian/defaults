@@ -6,6 +6,7 @@ import com.google.common.collect.LinkedHashMultimap
 import com.hendraanggrian.javapoet.buildJavaFile
 import com.hendraanggrian.javapoet.dsl.MethodContainerScope
 import com.squareup.javapoet.ClassName
+import org.jetbrains.annotations.NotNull
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.Filer
 import javax.annotation.processing.ProcessingEnvironment
@@ -71,8 +72,12 @@ class LokalProcessor : AbstractProcessor() {
                         addConstructor {
                             addModifiers(Modifier.PUBLIC)
                             parameters {
-                                add(className, TARGET)
-                                add(TYPE_LOKAL, SOURCE)
+                                TARGET(className) {
+                                    this.annotations.add<NotNull>()
+                                }
+                                SOURCE(TYPE_LOKAL) {
+                                    this.annotations.add<NotNull>()
+                                }
                             }
                             codes {
                                 when {

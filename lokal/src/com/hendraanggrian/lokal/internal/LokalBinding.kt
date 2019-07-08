@@ -28,10 +28,4 @@ abstract class LokalBinding(private val source: Lokal) : Lokal by source, Lokal.
 
     protected fun get(key: String, defaultValue: Byte): Byte =
         source.getByte(key) ?: defaultValue
-
-    override val editor: Lokal.Editor
-        get() = when (source) {
-            is Lokal.Editor -> source
-            else -> source.editor
-        }
 }
