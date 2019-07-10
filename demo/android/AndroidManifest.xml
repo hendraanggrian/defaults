@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hendraanggrian.lokal.demo">
+    package="com.hendraanggrian.local.demo">
 
     <application
-        android:name="com.hendraanggrian.lokal.demo.DemoApplication"
+        android:name="com.hendraanggrian.local.demo.DemoApplication"
         android:allowBackup="true"
-        android:label="Lokal Demo"
+        android:label="Local Demo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.hendraanggrian.lokal.demo.MainActivity">
+        <activity android:name="com.hendraanggrian.local.demo.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.hendraanggrian.lokal.demo.Demo1Activity" />
-        <activity android:name="com.hendraanggrian.lokal.demo.Demo2Activity" />
+        <activity android:name="com.hendraanggrian.local.demo.Demo1Activity" />
+        <activity android:name="com.hendraanggrian.local.demo.Demo2Activity" />
     </application>
 </manifest>

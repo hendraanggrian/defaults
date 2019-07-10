@@ -22,7 +22,7 @@ tasks["gitPublishCopy"].dependsOn(
 
 val artifacts: List<String>
     get() = listOf(
-        "lokal",
-        "lokal-android",
-        "lokal-compiler"
+        "local",
+        "local-android",
+        "local-compiler"
     )

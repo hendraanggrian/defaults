@@ -1,10 +1,10 @@
-[![bintray](https://img.shields.io/badge/bintray-lokal-brightgreen.svg)](https://bintray.com/hendraanggrian/lokal)
-[![download](https://api.bintray.com/packages/hendraanggrian/lokal/lokal/images/download.svg) ](https://bintray.com/hendraanggrian/lokal/lokal/_latestVersion)
+[![bintray](https://img.shields.io/badge/bintray-local-brightgreen.svg)](https://bintray.com/hendraanggrian/local)
+[![download](https://api.bintray.com/packages/hendraanggrian/local/local/images/download.svg) ](https://bintray.com/hendraanggrian/local/local/_latestVersion)
 [![license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
-Lokal
+Local
 =====
-![icon](/art/lokal-small.png)
+![icon](/art/local-small.png)
 
 Local settings library that runs in plain Java and Android.
 Comes with optional annotation processor to bind properties with existing settings.
@@ -12,15 +12,15 @@ Comes with optional annotation processor to bind properties with existing settin
 ##### JVM
 
 ```kotlin
-val lokal = preferences.toLokal()
-val username = lokal["username"]
+val local = preferences.toLoCal()
+val username = local["username"]
 ```
 
 ##### Android
 
 ```kotlin
-val lokal = toLokal() // if this is context/activity, or use `sharedPreferences.toLokal()`
-val username = lokal["username"]
+val local = toLoCal() // if this is context/activity, or use `sharedPreferences.toLocal()`
+val username = local["username"]
 ```
 
 Download
@@ -32,11 +32,11 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile "com.hendraanggrian.lokal:lokal:$version"
-    api "com.hendraanggrian.lokal:lokal-android:$version" // for Android
+    compile "com.hendraanggrian.local:local:$version"
+    api "com.hendraanggrian.local:local-android:$version" // for Android
 
     // optional property binding, use kapt when necessary
-    annotationProcessor "com.hendraanggrian.lokal:lokal-compiler:$version"
+    annotationProcessor "com.hendraanggrian.local:local-compiler:$version"
 }
 ```
 
@@ -48,18 +48,18 @@ Usage
 Create defaults instance from `File`, or `SharedPreferences` in Android.
 
 ```kotlin
-import com.hendraanggrian.lokal.toLokal
+import com.hendraanggrian.local.toLocal
 
 // file defaults can set/get
-val fileLokal = file.toLokal()
-val name = fileLokal["name"]
-val age = fileLokal.getInt("age", 0)
-fileLokal["name"] = "Hendra"
-fileLokal["age"] = 25
+val fileLocal = file.toLocal()
+val name = fileLocal["name"]
+val age = fileLocal.getInt("age", 0)
+fileLocal["name"] = "Hendra"
+fileLocal["age"] = 25
 
 // shared preferences must open to set
-val androidLokal = context.toLokal()
-androidLokal {
+val androidLocal = context.toLocal()
+androidLocal {
     it["name"] = "Hendra"
     it["age"] = 25
 }
@@ -70,17 +70,16 @@ androidLokal {
 With optional annotation processor, bind these local settings to local variables.
 
 ```kotlin
-import com.hendraanggrian.lokal.LokalSaver
-import com.hendraanggrian.lokal.BindLokal
-import com.hendraanggrian.lokal.bindLokal
+import com.hendraanggrian.local.BindLocal
+import com.hendraanggrian.local.Local.Saver
 
-@BindLokal lateinit var name: String
-@BindLokal @JvmField var age: Int = 0
+@BindLocal lateinit var name: String
+@BindLocal @JvmField var age: Int = 0
 
-lateinit var saver: LokalSaver
+lateinit var saver: Local.Saver
 
 init {
-    saver = file.bindLokal(this)
+    saver = file.bindLocal(this)
 }
 
 fun applyChanges(name: String, age: Int) {
