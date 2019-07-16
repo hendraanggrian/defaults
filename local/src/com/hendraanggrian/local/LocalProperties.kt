@@ -14,11 +14,11 @@ import com.hendraanggrian.local.internal.LongLocalEditorSupport
 import com.hendraanggrian.local.internal.LongLocalSupport
 import com.hendraanggrian.local.internal.ShortLocalEditorSupport
 import com.hendraanggrian.local.internal.ShortLocalSupport
+import java.io.File
+import java.util.Properties
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.io.File
-import java.util.Properties
 
 class LocalProperties(private val file: File) : Local, Local.Editor,
     BooleanLocalSupport, BooleanLocalEditorSupport,

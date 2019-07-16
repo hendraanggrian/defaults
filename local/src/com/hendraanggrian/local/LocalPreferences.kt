@@ -1,9 +1,9 @@
 package com.hendraanggrian.local
 
+import java.util.prefs.Preferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.prefs.Preferences
 
 class LocalPreferences(private val nativePreferences: Preferences) : Local, Local.Editor {
 

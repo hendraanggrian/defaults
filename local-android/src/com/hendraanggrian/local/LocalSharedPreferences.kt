@@ -1,12 +1,12 @@
 package com.hendraanggrian.local
 
 import android.content.SharedPreferences
-import com.hendraanggrian.local.internal.ByteLocalSupport
 import com.hendraanggrian.local.internal.ByteLocalEditorSupport
-import com.hendraanggrian.local.internal.DoubleLocalSupport
+import com.hendraanggrian.local.internal.ByteLocalSupport
 import com.hendraanggrian.local.internal.DoubleLocalEditorSupport
-import com.hendraanggrian.local.internal.ShortLocalSupport
+import com.hendraanggrian.local.internal.DoubleLocalSupport
 import com.hendraanggrian.local.internal.ShortLocalEditorSupport
+import com.hendraanggrian.local.internal.ShortLocalSupport
 
 class LocalSharedPreferences(private val nativePreferences: SharedPreferences) : Local,
     DoubleLocalSupport,

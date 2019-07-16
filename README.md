@@ -1,6 +1,7 @@
 [![bintray](https://img.shields.io/badge/bintray-local-brightgreen.svg)](https://bintray.com/hendraanggrian/local)
 [![download](https://api.bintray.com/packages/hendraanggrian/local/local/images/download.svg) ](https://bintray.com/hendraanggrian/local/local/_latestVersion)
 [![license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 Local
 =====
