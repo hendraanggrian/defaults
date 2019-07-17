@@ -127,10 +127,6 @@ interface Local {
         return defaultValue
     }
 
-    /**
-     * When editor instance is created, resources must be available (e.g.: opening sql transaction).
-     * Resources may be released upon [Local.Saver.save] or [Local.Saver.saveAsync].
-     */
     val editor: Editor
 
     /** Base interface to save changes to local settings. */
@@ -162,7 +158,7 @@ interface Local {
         fun clear()
 
         /** Add/change string value. */
-        operator fun set(key: String, value: String?)
+        operator fun set(key: String, value: String)
 
         /** Add/change boolean value. */
         operator fun set(key: String, value: Boolean)

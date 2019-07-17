@@ -1,17 +1,8 @@
 package com.hendraanggrian.local
 
 import android.content.SharedPreferences
-import com.hendraanggrian.local.internal.ByteLocalEditorSupport
-import com.hendraanggrian.local.internal.ByteLocalSupport
-import com.hendraanggrian.local.internal.DoubleLocalEditorSupport
-import com.hendraanggrian.local.internal.DoubleLocalSupport
-import com.hendraanggrian.local.internal.ShortLocalEditorSupport
-import com.hendraanggrian.local.internal.ShortLocalSupport
 
-class LocalSharedPreferences(private val nativePreferences: SharedPreferences) : Local,
-    DoubleLocalSupport,
-    ShortLocalSupport,
-    ByteLocalSupport {
+open class LocalSharedPreferences(internal val nativePreferences: SharedPreferences) : Local {
 
     override fun contains(key: String): Boolean = key in nativePreferences
 
@@ -26,6 +17,8 @@ class LocalSharedPreferences(private val nativePreferences: SharedPreferences) :
 
     override fun getBooleanOrDefault(key: String, defaultValue: Boolean): Boolean =
         nativePreferences.getBoolean(key, defaultValue)
+
+    override fun getDouble(key: String): Double? = throw UnsupportedOperationException()
 
     override fun getFloat(key: String): Float? =
         nativePreferences.getFloat(key, 0f)
@@ -45,14 +38,13 @@ class LocalSharedPreferences(private val nativePreferences: SharedPreferences) :
     override fun getIntOrDefault(key: String, defaultValue: Int): Int =
         nativePreferences.getInt(key, defaultValue)
 
+    override fun getShort(key: String): Short? = throw UnsupportedOperationException()
+
+    override fun getByte(key: String): Byte? = throw UnsupportedOperationException()
+
     override val editor: Local.Editor get() = Editor(nativePreferences.edit())
 
-    fun toSharedPreferences(): SharedPreferences = nativePreferences
-
-    private class Editor(private val nativeEditor: SharedPreferences.Editor) : Local.Editor,
-        DoubleLocalEditorSupport,
-        ShortLocalEditorSupport,
-        ByteLocalEditorSupport {
+    open class Editor(private val nativeEditor: SharedPreferences.Editor) : Local.Editor {
 
         override fun remove(key: String) {
             nativeEditor.remove(key)
@@ -62,13 +54,15 @@ class LocalSharedPreferences(private val nativePreferences: SharedPreferences) :
             nativeEditor.clear()
         }
 
-        override fun set(key: String, value: String?) {
+        override fun set(key: String, value: String) {
             nativeEditor.putString(key, value)
         }
 
         override fun set(key: String, value: Boolean) {
             nativeEditor.putBoolean(key, value)
         }
+
+        override fun set(key: String, value: Double): Unit = throw UnsupportedOperationException()
 
         override fun set(key: String, value: Float) {
             nativeEditor.putFloat(key, value)
@@ -81,6 +75,10 @@ class LocalSharedPreferences(private val nativePreferences: SharedPreferences) :
         override fun set(key: String, value: Int) {
             nativeEditor.putInt(key, value)
         }
+
+        override fun set(key: String, value: Short): Unit = throw UnsupportedOperationException()
+
+        override fun set(key: String, value: Byte): Unit = throw UnsupportedOperationException()
 
         override fun save() {
             nativeEditor.commit()

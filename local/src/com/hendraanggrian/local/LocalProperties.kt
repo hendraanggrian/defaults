@@ -1,61 +1,69 @@
 package com.hendraanggrian.local
 
-import com.hendraanggrian.local.internal.BooleanLocalEditorSupport
-import com.hendraanggrian.local.internal.BooleanLocalSupport
-import com.hendraanggrian.local.internal.ByteLocalEditorSupport
-import com.hendraanggrian.local.internal.ByteLocalSupport
-import com.hendraanggrian.local.internal.DoubleLocalEditorSupport
-import com.hendraanggrian.local.internal.DoubleLocalSupport
-import com.hendraanggrian.local.internal.FloatLocalEditorSupport
-import com.hendraanggrian.local.internal.FloatLocalSupport
-import com.hendraanggrian.local.internal.IntLocalEditorSupport
-import com.hendraanggrian.local.internal.IntLocalSupport
-import com.hendraanggrian.local.internal.LongLocalEditorSupport
-import com.hendraanggrian.local.internal.LongLocalSupport
-import com.hendraanggrian.local.internal.ShortLocalEditorSupport
-import com.hendraanggrian.local.internal.ShortLocalSupport
-import java.io.File
-import java.util.Properties
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.io.File
+import java.util.Properties
 
-class LocalProperties(private val file: File) : Local, Local.Editor,
-    BooleanLocalSupport, BooleanLocalEditorSupport,
-    DoubleLocalSupport, DoubleLocalEditorSupport,
-    FloatLocalSupport, FloatLocalEditorSupport,
-    LongLocalSupport, LongLocalEditorSupport,
-    IntLocalSupport, IntLocalEditorSupport,
-    ShortLocalSupport, ShortLocalEditorSupport,
-    ByteLocalSupport, ByteLocalEditorSupport {
+open class LocalProperties(
+    private val nativeProperties: Properties,
+    private val targetFile: File
+) : Local, Local.Editor {
 
-    private val properties = Properties()
-
-    init {
-        if (!file.exists()) {
-            file.createNewFile()
+    constructor(targetFile: File) : this(Properties(), targetFile) {
+        if (!targetFile.exists()) {
+            targetFile.createNewFile()
         }
-        file.inputStream().use { properties.load(it) }
+        targetFile.inputStream().use { nativeProperties.load(it) }
     }
 
-    override fun contains(key: String): Boolean = properties.containsKey(key)
+    override fun contains(key: String): Boolean = nativeProperties.containsKey(key)
 
-    override fun get(key: String): String? = properties.getProperty(key)
+    override fun get(key: String): String? = nativeProperties.getProperty(key)
 
     override fun getOrDefault(key: String, defaultValue: String): String =
-        properties.getProperty(key, defaultValue)
+        nativeProperties.getProperty(key, defaultValue)
+
+    override fun getBoolean(key: String): Boolean? = throw UnsupportedOperationException()
+
+    override fun getDouble(key: String): Double? = throw UnsupportedOperationException()
+
+    override fun getFloat(key: String): Float? = throw UnsupportedOperationException()
+
+    override fun getLong(key: String): Long? = throw UnsupportedOperationException()
+
+    override fun getInt(key: String): Int? = throw UnsupportedOperationException()
+
+    override fun getShort(key: String): Short? = throw UnsupportedOperationException()
+
+    override fun getByte(key: String): Byte? = throw UnsupportedOperationException()
 
     override val editor: Local.Editor get() = this
 
     override fun remove(key: String) {
-        properties.remove(key)
+        nativeProperties.remove(key)
     }
 
-    override fun clear() = properties.clear()
+    override fun clear() = nativeProperties.clear()
 
-    override fun set(key: String, value: String?) {
-        properties.setProperty(key, value)
+    override fun set(key: String, value: String) {
+        nativeProperties.setProperty(key, value)
     }
+
+    override fun set(key: String, value: Boolean): Unit = throw UnsupportedOperationException()
+
+    override fun set(key: String, value: Double): Unit = throw UnsupportedOperationException()
+
+    override fun set(key: String, value: Float): Unit = throw UnsupportedOperationException()
+
+    override fun set(key: String, value: Long): Unit = throw UnsupportedOperationException()
+
+    override fun set(key: String, value: Int): Unit = throw UnsupportedOperationException()
+
+    override fun set(key: String, value: Short): Unit = throw UnsupportedOperationException()
+
+    override fun set(key: String, value: Byte): Unit = throw UnsupportedOperationException()
 
     override fun save() {
         GlobalScope.launch(Dispatchers.IO) {
@@ -64,8 +72,8 @@ class LocalProperties(private val file: File) : Local, Local.Editor,
     }
 
     override fun saveAsync() {
-        file.outputStream().use {
-            properties.store(it, null)
+        targetFile.outputStream().use {
+            nativeProperties.store(it, null)
         }
     }
 }
