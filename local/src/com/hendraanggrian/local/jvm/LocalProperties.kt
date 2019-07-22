@@ -1,10 +1,11 @@
-package com.hendraanggrian.local
+package com.hendraanggrian.local.jvm
 
+import com.hendraanggrian.local.Local
+import java.io.File
+import java.util.Properties
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.io.File
-import java.util.Properties
 
 open class LocalProperties(
     private val nativeProperties: Properties,

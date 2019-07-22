@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import android.util.Log
+import com.hendraanggrian.local.android.LocalSharedPreferences
 
 /** Android debugger, prints to [Log.DEBUG]. */
 inline val Local.Debugger.Companion.Android: Local.Debugger

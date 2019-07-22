@@ -4,6 +4,8 @@ package com.hendraanggrian.local
 
 import androidx.annotation.AnyThread
 import androidx.annotation.WorkerThread
+import com.hendraanggrian.local.jvm.LocalPreferences
+import com.hendraanggrian.local.jvm.LocalProperties
 import java.io.File
 import java.lang.reflect.Constructor
 import java.lang.reflect.InvocationTargetException
@@ -117,7 +119,11 @@ interface Local {
     fun getByteOrElse(key: String, defaultValue: () -> Byte): Byte =
         getByteOrDefault(key, defaultValue())
 
-    private inline fun <T> findValue(key: String, defaultValue: T, getValue: (String) -> T?): T {
+    private inline fun <T> findValue(
+        key: String,
+        defaultValue: T,
+        getValue: (key: String) -> T?
+    ): T {
         if (key !in this) {
             val value = getValue(key)
             if (value != null) {
@@ -232,14 +238,11 @@ fun Local.bindLocal(target: Any): Local.Saver {
     } catch (e: InstantiationException) {
         throw RuntimeException("Unable to invoke $constructor", e)
     } catch (e: InvocationTargetException) {
-        val cause = e.cause
-        if (cause is RuntimeException) {
-            throw cause
+        when (val cause = e.cause) {
+            is RuntimeException -> throw cause
+            is Error -> throw cause
+            else -> throw RuntimeException("Unable to create binding instance.", cause)
         }
-        if (cause is Error) {
-            throw cause
-        }
-        throw RuntimeException("Unable to create binding instance.", cause)
     }
 }
 

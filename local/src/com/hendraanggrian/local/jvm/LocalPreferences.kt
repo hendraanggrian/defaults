@@ -1,11 +1,13 @@
-package com.hendraanggrian.local
+package com.hendraanggrian.local.jvm
 
+import com.hendraanggrian.local.Local
+import java.util.prefs.Preferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.prefs.Preferences
 
-open class LocalPreferences(private val nativePreferences: Preferences) : Local, Local.Editor {
+open class LocalPreferences(private val nativePreferences: Preferences) : Local,
+    Local.Editor {
 
     override fun contains(key: String): Boolean = nativePreferences.nodeExists(key)
 

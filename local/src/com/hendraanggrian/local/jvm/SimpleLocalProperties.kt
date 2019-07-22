@@ -1,4 +1,4 @@
-package com.hendraanggrian.local
+package com.hendraanggrian.local.jvm
 
 import java.io.File
 import java.util.Properties

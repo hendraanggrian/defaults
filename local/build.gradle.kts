@@ -60,7 +60,7 @@ tasks {
     }
 }
 
-bintrayReleaseFix()
+publishKotlinFix()
 publish {
     bintrayUser = BINTRAY_USER
     bintrayKey = BINTRAY_KEY
