@@ -71,8 +71,8 @@ androidLocal {
 With optional annotation processor, bind these local settings to local variables.
 
 ```kotlin
-import com.hendraanggrian.local.BindLocal
-import com.hendraanggrian.local.Local.Saver
+import com.hendraanggrian.local.Local
+import com.hendraanggrian.local.ReadableLocal.Saver
 
 @BindLocal lateinit var name: String
 @BindLocal @JvmField var age: Int = 0

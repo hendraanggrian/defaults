@@ -1,16 +1,14 @@
 package com.hendraanggrian.local.jvm
 
-import com.hendraanggrian.local.Local
+import com.hendraanggrian.local.WritableLocal
 import java.io.File
 import java.util.Properties
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-open class LocalProperties(
-    private val nativeProperties: Properties,
-    private val targetFile: File
-) : Local, Local.Editor {
+open class LocalProperties(private val nativeProperties: Properties, private val targetFile: File) :
+    WritableLocal {
 
     constructor(targetFile: File) : this(Properties(), targetFile) {
         if (!targetFile.exists()) {
@@ -39,8 +37,6 @@ open class LocalProperties(
     override fun getShort(key: String): Short? = throw UnsupportedOperationException()
 
     override fun getByte(key: String): Byte? = throw UnsupportedOperationException()
-
-    override val editor: Local.Editor get() = this
 
     override fun remove(key: String) {
         nativeProperties.remove(key)

@@ -8,7 +8,7 @@ import androidx.preference.EditTextPreference
 import androidx.preference.Preference.OnPreferenceChangeListener
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
-import com.hendraanggrian.local.BindLocal
+import com.hendraanggrian.local.Local
 import com.hendraanggrian.local.bindLocal
 import kotlinx.android.synthetic.main.activity_demo2.*
 
@@ -32,7 +32,7 @@ class Demo2Activity : AppCompatActivity() {
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
-        @BindLocal("name") @JvmField var name: String? = null
+        @Local("name") @JvmField var name: String? = null
         lateinit var preferenceName: EditTextPreference
         lateinit var preferenceMarried: SwitchPreferenceCompat
 

@@ -1,13 +1,12 @@
 package com.hendraanggrian.local.jvm
 
-import com.hendraanggrian.local.Local
+import com.hendraanggrian.local.WritableLocal
 import java.util.prefs.Preferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-open class LocalPreferences(private val nativePreferences: Preferences) : Local,
-    Local.Editor {
+open class LocalPreferences(private val nativePreferences: Preferences) : WritableLocal {
 
     override fun contains(key: String): Boolean = nativePreferences.nodeExists(key)
 
@@ -50,8 +49,6 @@ open class LocalPreferences(private val nativePreferences: Preferences) : Local,
     override fun getShort(key: String): Short? = throw UnsupportedOperationException()
 
     override fun getByte(key: String): Byte? = throw UnsupportedOperationException()
-
-    override val editor: Local.Editor get() = this
 
     override fun remove(key: String) = nativePreferences.remove(key)
 

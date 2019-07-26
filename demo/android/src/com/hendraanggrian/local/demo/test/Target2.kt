@@ -1,8 +1,7 @@
 package com.hendraanggrian.local.demo.test
 
-import com.hendraanggrian.local.BindLocal
+import com.hendraanggrian.local.Local
 
 class Target2 : Target1() {
-    @BindLocal
-    lateinit var test2: String
+    @Local lateinit var test2: String
 }

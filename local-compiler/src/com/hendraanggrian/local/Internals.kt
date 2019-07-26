@@ -10,10 +10,10 @@ internal const val EDITOR = "editor"
 
 internal val TYPE_LOCAL_BINDING: ClassName =
     ClassName.get("com.hendraanggrian.local.internal", "LocalBinding")
-internal val TYPE_LOCAL: ClassName =
-    ClassName.get("com.hendraanggrian.local", "Local")
-internal val TYPE_LOCAL_EDITOR: ClassName =
-    ClassName.get("com.hendraanggrian.local", "Local").nestedClass("Editor")
+internal val TYPE_READABLE_LOCAL: ClassName =
+    ClassName.get("com.hendraanggrian.local", "ReadableLocal")
+internal val TYPE_WRITABLE_LOCAL: ClassName =
+    ClassName.get("com.hendraanggrian.local", "WritableLocal")
 
 internal val TypeElement.measuredName: String
     get() {
@@ -26,5 +26,5 @@ internal val TypeElement.measuredName: String
         enclosings.reverse()
         var typeName = enclosings[0]
         for (i in 1 until enclosings.size) typeName += "$${enclosings[i]}"
-        return "$typeName${BindLocal.SUFFIX}"
+        return "$typeName${Local.SUFFIX}"
     }

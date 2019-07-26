@@ -1,10 +1,12 @@
 package com.hendraanggrian.local.android
 
 import android.content.SharedPreferences
-import com.hendraanggrian.local.Local
+import com.hendraanggrian.local.EditableLocal
+import com.hendraanggrian.local.ReadableLocal
+import com.hendraanggrian.local.WritableLocal
 
 open class LocalSharedPreferences(internal val nativePreferences: SharedPreferences) :
-    Local {
+    EditableLocal {
 
     override fun contains(key: String): Boolean = key in nativePreferences
 
@@ -44,13 +46,11 @@ open class LocalSharedPreferences(internal val nativePreferences: SharedPreferen
 
     override fun getByte(key: String): Byte? = throw UnsupportedOperationException()
 
-    override val editor: Local.Editor
-        get() = Editor(
-            nativePreferences.edit()
-        )
+    override val editor: WritableLocal
+        get() = Editor(this, nativePreferences.edit())
 
-    open class Editor(private val nativeEditor: SharedPreferences.Editor) :
-        Local.Editor {
+    open class Editor(source: ReadableLocal, private val nativeEditor: SharedPreferences.Editor) :
+        ReadableLocal by source, WritableLocal {
 
         override fun remove(key: String) {
             nativeEditor.remove(key)

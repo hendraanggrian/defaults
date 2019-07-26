@@ -2,8 +2,6 @@
 
 package com.hendraanggrian.local
 
-import androidx.annotation.AnyThread
-import androidx.annotation.WorkerThread
 import com.hendraanggrian.local.jvm.LocalPreferences
 import com.hendraanggrian.local.jvm.LocalProperties
 import java.io.File
@@ -13,13 +11,13 @@ import java.util.WeakHashMap
 import java.util.prefs.Preferences
 
 /** A set of readable local settings, modify value with editor created with [getEditor]. */
-interface Local {
+interface ReadableLocal {
 
     companion object {
-        private var debugger: Debugger? = null
+        private var debugger: LocalDebugger? = null
 
         /** Modify debugging behavior, default is null. */
-        fun setDebugger(debug: Debugger?) {
+        fun setDebugger(debug: LocalDebugger?) {
             debugger = debug
         }
 
@@ -132,78 +130,6 @@ interface Local {
         }
         return defaultValue
     }
-
-    val editor: Editor
-
-    /** Base interface to save changes to local settings. */
-    interface Saver {
-
-        companion object {
-            internal val EMPTY: Saver = object : Saver {
-                override fun save() = saveAsync()
-                override fun saveAsync() = debug("WARNING: Saving an empty instance.")
-            }
-        }
-
-        /** Non-blocking save in the background. */
-        @WorkerThread
-        fun save()
-
-        /** Blocking save. */
-        @AnyThread
-        fun saveAsync()
-    }
-
-    /** Settings value modifier with Kotlin operators. */
-    interface Editor : Saver {
-
-        /** Removes a setting. */
-        fun remove(key: String)
-
-        /** Removes all settings. */
-        fun clear()
-
-        /** Add/change string value. */
-        operator fun set(key: String, value: String)
-
-        /** Add/change boolean value. */
-        operator fun set(key: String, value: Boolean)
-
-        /** Add/change double value. */
-        operator fun set(key: String, value: Double)
-
-        /** Add/change float value. */
-        operator fun set(key: String, value: Float)
-
-        /** Add/change long value. */
-        operator fun set(key: String, value: Long)
-
-        /** Add/change int value. */
-        operator fun set(key: String, value: Int)
-
-        /** Add/change short value. */
-        operator fun set(key: String, value: Short)
-
-        /** Add/change byte value. */
-        operator fun set(key: String, value: Byte)
-
-        /** Convenient method to quickly open an editor and apply changes in dsl. */
-        operator fun invoke(edit: Editor.() -> Unit): Editor = also {
-            edit(it)
-            it.saveAsync()
-        }
-    }
-
-    /** Represents a runnable with string param. */
-    open class Debugger(debug: (String) -> Unit) : ((String) -> Unit) by debug {
-
-        /** Features often use this companion as receiver. */
-        companion object {
-
-            /** Default debugger, which just prints in system. */
-            val System: Debugger get() = Debugger { println(it) }
-        }
-    }
 }
 
 /** Creates local instance from file. */
@@ -211,7 +137,7 @@ inline fun File.toLocal(): LocalProperties =
     LocalProperties(this)
 
 /** Creates local instance from file. */
-inline fun File.bindLocal(target: Any): Local.Saver =
+inline fun File.bindLocal(target: Any): LocalSaver =
     toLocal().bindLocal(target)
 
 /** Creates local instance from preferences. */
@@ -219,17 +145,17 @@ inline fun Preferences.toLocal(): LocalPreferences =
     LocalPreferences(this)
 
 /** Creates local instance from file. */
-inline fun Preferences.bindLocal(target: Any): Local.Saver =
+inline fun Preferences.bindLocal(target: Any): LocalSaver =
     toLocal().bindLocal(target)
 
-/** Bind fields in target (this) annotated with [BindLocal] from this local. */
-fun Local.bindLocal(target: Any): Local.Saver {
+/** Bind fields in target (this) annotated with [Local] from this local. */
+fun ReadableLocal.bindLocal(target: Any): LocalSaver {
     val targetClass = target.javaClass
-    Local.debug("Looking up binding for ${targetClass.name}")
+    ReadableLocal.debug("Looking up binding for ${targetClass.name}")
     val constructor = findBindingConstructor(targetClass)
     if (constructor == null) {
-        Local.debug("${targetClass.name} binding not found, returning empty saver.")
-        return Local.Saver.EMPTY
+        ReadableLocal.debug("${targetClass.name} binding not found, returning empty saver.")
+        return LocalSaver.EMPTY
     }
     try {
         return constructor.newInstance(target, this)
@@ -246,30 +172,30 @@ fun Local.bindLocal(target: Any): Local.Saver {
     }
 }
 
-private lateinit var bindings: MutableMap<Class<*>, Constructor<Local.Saver>>
+private lateinit var bindings: MutableMap<Class<*>, Constructor<LocalSaver>>
 
 @Suppress("UNCHECKED_CAST")
-private fun findBindingConstructor(cls: Class<*>): Constructor<Local.Saver>? {
+private fun findBindingConstructor(cls: Class<*>): Constructor<LocalSaver>? {
     if (!::bindings.isInitialized) {
         bindings = WeakHashMap()
     }
     var binding = bindings[cls]
     if (binding != null) {
-        Local.debug("HIT: Cache found in binding weak map.")
+        ReadableLocal.debug("HIT: Cache found in binding weak map.")
         return binding
     }
     if (cls.name.startsWith("android.") || cls.name.startsWith("java.")) {
-        Local.debug("MISS: Reached framework class. Abandoning search.")
+        ReadableLocal.debug("MISS: Reached framework class. Abandoning search.")
         return null
     }
     try {
         binding = cls.classLoader!!
-            .loadClass(cls.name + BindLocal.SUFFIX)
-            .getConstructor(cls, Local::class.java) as Constructor<Local.Saver>
-        Local.debug("HIT: Loaded binding class, caching in weak map.")
+            .loadClass(cls.name + Local.SUFFIX)
+            .getConstructor(cls, ReadableLocal::class.java) as Constructor<LocalSaver>
+        ReadableLocal.debug("HIT: Loaded binding class, caching in weak map.")
     } catch (e: ClassNotFoundException) {
         val superclass = cls.superclass
-        Local.debug("Not found. Trying superclass ${superclass!!.name}")
+        ReadableLocal.debug("Not found. Trying superclass ${superclass!!.name}")
         binding = findBindingConstructor(superclass)
     } catch (e: NoSuchMethodException) {
         throw RuntimeException("Unable to find binding constructor for ${cls.name}", e)

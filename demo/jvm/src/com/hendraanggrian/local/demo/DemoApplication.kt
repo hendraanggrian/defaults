@@ -1,7 +1,9 @@
 package com.hendraanggrian.local.demo
 
-import com.hendraanggrian.local.BindLocal
 import com.hendraanggrian.local.Local
+import com.hendraanggrian.local.LocalDebugger
+import com.hendraanggrian.local.LocalSaver
+import com.hendraanggrian.local.ReadableLocal
 import com.hendraanggrian.local.bindLocal
 import javafx.application.Application
 import javafx.scene.control.CheckBox
@@ -33,15 +35,15 @@ class DemoApplication : Application() {
     private lateinit var ageField: TextField
     private lateinit var heightField: TextField
 
-    @BindLocal @JvmField var name: String? = null
-    @BindLocal @JvmField var married: Boolean = false
-    @BindLocal @JvmField var age: Int = 0
-    @BindLocal @JvmField var height: Double = 0.0
+    @Local @JvmField var name: String? = null
+    @Local @JvmField var married: Boolean = false
+    @Local @JvmField var age: Int = 0
+    @Local @JvmField var height: Double = 0.0
 
-    private lateinit var saver: Local.Saver
+    private lateinit var saver: LocalSaver
 
     override fun init() {
-        Local.setDebugger(Local.Debugger.System)
+        ReadableLocal.setDebugger(LocalDebugger.System)
         saver = File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties").bindLocal(this)
     }
 

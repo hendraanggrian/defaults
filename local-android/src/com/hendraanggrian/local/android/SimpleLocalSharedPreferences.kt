@@ -1,7 +1,8 @@
 package com.hendraanggrian.local.android
 
 import android.content.SharedPreferences
-import com.hendraanggrian.local.Local
+import com.hendraanggrian.local.ReadableLocal
+import com.hendraanggrian.local.WritableLocal
 
 class SimpleLocalSharedPreferences(nativePreferences: SharedPreferences) :
     LocalSharedPreferences(nativePreferences) {
@@ -12,13 +13,11 @@ class SimpleLocalSharedPreferences(nativePreferences: SharedPreferences) :
 
     override fun getByte(key: String): Byte? = get(key)?.toByte()
 
-    override val editor: Local.Editor
-        get() = Editor(
-            nativePreferences.edit()
-        )
+    override val editor: WritableLocal
+        get() = Editor(this, nativePreferences.edit())
 
-    class Editor(nativeEditor: SharedPreferences.Editor) :
-        LocalSharedPreferences.Editor(nativeEditor) {
+    class Editor(source: ReadableLocal, nativeEditor: SharedPreferences.Editor) :
+        LocalSharedPreferences.Editor(source, nativeEditor) {
 
         override fun set(key: String, value: Double) = set(key, value.toString())
 

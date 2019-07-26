@@ -6,6 +6,7 @@ import com.google.common.collect.LinkedHashMultimap
 import com.hendraanggrian.javapoet.buildJavaFile
 import com.hendraanggrian.javapoet.dsl.MethodContainerScope
 import com.squareup.javapoet.ClassName
+import org.jetbrains.annotations.NotNull
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.Filer
 import javax.annotation.processing.ProcessingEnvironment
@@ -15,7 +16,6 @@ import javax.lang.model.element.Element
 import javax.lang.model.element.Modifier
 import javax.lang.model.element.TypeElement
 import javax.lang.model.type.TypeKind
-import org.jetbrains.annotations.NotNull
 
 class LocalProcessor : AbstractProcessor() {
 
@@ -25,7 +25,7 @@ class LocalProcessor : AbstractProcessor() {
         SourceVersion.latestSupported()
 
     override fun getSupportedAnnotationTypes(): Set<String> =
-        setOf(BindLocal::class.java.canonicalName)
+        setOf(Local::class.java.canonicalName)
 
     @Synchronized
     override fun init(processingEnv: ProcessingEnvironment) {
@@ -37,7 +37,7 @@ class LocalProcessor : AbstractProcessor() {
         // preparing elements
         val multimap = LinkedHashMultimap.create<TypeElement, Element>()
         val measuredClassNames = mutableSetOf<String>()
-        roundEnv.getElementsAnnotatedWith(BindLocal::class.java).forEach { element ->
+        roundEnv.getElementsAnnotatedWith(Local::class.java).forEach { element ->
             val typeElement = MoreElements.asType(element.enclosingElement)
             multimap.put(typeElement, element)
             measuredClassNames += typeElement.measuredName
@@ -75,7 +75,7 @@ class LocalProcessor : AbstractProcessor() {
                                 TARGET(className) {
                                     this.annotations.add<NotNull>()
                                 }
-                                SOURCE(TYPE_LOCAL) {
+                                SOURCE(TYPE_READABLE_LOCAL) {
                                     this.annotations.add<NotNull>()
                                 }
                             }
@@ -113,7 +113,7 @@ class LocalProcessor : AbstractProcessor() {
             if (hasSuperclass) {
                 addStatement("super.$name()")
             }
-            addStatement("final \$T $EDITOR = getEditor()", TYPE_LOCAL_EDITOR)
+            addStatement("final \$T $EDITOR = getEditor()", TYPE_WRITABLE_LOCAL)
             elements.forEachValue { field, key ->
                 addStatement("$EDITOR.set(\$L, $TARGET.\$L)", key, field)
             }
@@ -124,7 +124,7 @@ class LocalProcessor : AbstractProcessor() {
     private inline fun Iterable<Element>.forEachValue(action: (field: String, key: String) -> Unit) =
         forEach { element ->
             val field = element.simpleName.toString()
-            val preference = element.getAnnotation(BindLocal::class.java)
+            val preference = element.getAnnotation(Local::class.java)
             val key = "\"${if (preference!!.value.isNotEmpty()) preference.value else field}\""
             action(field, key)
         }
