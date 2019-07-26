@@ -26,5 +26,5 @@ internal val TypeElement.measuredName: String
         enclosings.reverse()
         var typeName = enclosings[0]
         for (i in 1 until enclosings.size) typeName += "$${enclosings[i]}"
-        return "$typeName${Local.SUFFIX}"
+        return "$typeName${BindLocal.SUFFIX}"
     }

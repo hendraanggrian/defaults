@@ -25,7 +25,7 @@ class LocalProcessor : AbstractProcessor() {
         SourceVersion.latestSupported()
 
     override fun getSupportedAnnotationTypes(): Set<String> =
-        setOf(Local::class.java.canonicalName)
+        setOf(BindLocal::class.java.canonicalName)
 
     @Synchronized
     override fun init(processingEnv: ProcessingEnvironment) {
@@ -37,7 +37,7 @@ class LocalProcessor : AbstractProcessor() {
         // preparing elements
         val multimap = LinkedHashMultimap.create<TypeElement, Element>()
         val measuredClassNames = mutableSetOf<String>()
-        roundEnv.getElementsAnnotatedWith(Local::class.java).forEach { element ->
+        roundEnv.getElementsAnnotatedWith(BindLocal::class.java).forEach { element ->
             val typeElement = MoreElements.asType(element.enclosingElement)
             multimap.put(typeElement, element)
             measuredClassNames += typeElement.measuredName
@@ -124,7 +124,7 @@ class LocalProcessor : AbstractProcessor() {
     private inline fun Iterable<Element>.forEachValue(action: (field: String, key: String) -> Unit) =
         forEach { element ->
             val field = element.simpleName.toString()
-            val preference = element.getAnnotation(Local::class.java)
+            val preference = element.getAnnotation(BindLocal::class.java)
             val key = "\"${if (preference!!.value.isNotEmpty()) preference.value else field}\""
             action(field, key)
         }

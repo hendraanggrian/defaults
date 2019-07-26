@@ -8,18 +8,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
+import com.hendraanggrian.local.BindLocal
 import com.hendraanggrian.local.Local
 import com.hendraanggrian.local.LocalSaver
-import com.hendraanggrian.local.bindLocal
+import com.hendraanggrian.local.android.bind
 import kotlinx.android.synthetic.main.activity_demo1.*
 
 class Demo1Activity : AppCompatActivity(), View.OnClickListener {
 
-    @Local("name") @JvmField var name: String? = null
-    @Local("married") @JvmField var married: Boolean = false
-    @Local("int") @JvmField var mInt: Int = 0
-    @Local("long") @JvmField var mLong: Long = 0L
-    @Local("float") @JvmField var mFloat: Float = 0f
+    @BindLocal("name") @JvmField var name: String? = null
+    @BindLocal("married") @JvmField var married: Boolean = false
+    @BindLocal("int") @JvmField var mInt: Int = 0
+    @BindLocal("long") @JvmField var mLong: Long = 0L
+    @BindLocal("float") @JvmField var mFloat: Float = 0f
 
     private lateinit var saver: LocalSaver
 
@@ -27,7 +28,7 @@ class Demo1Activity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo1)
         setSupportActionBar(toolbar)
-        saver = bindLocal()
+        saver = Local.bind(this)
 
         nameEditText.setText(name)
         marriedEditText.setText(married.toString())

@@ -8,8 +8,9 @@ import androidx.preference.EditTextPreference
 import androidx.preference.Preference.OnPreferenceChangeListener
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import com.hendraanggrian.local.BindLocal
 import com.hendraanggrian.local.Local
-import com.hendraanggrian.local.bindLocal
+import com.hendraanggrian.local.android.bind
 import kotlinx.android.synthetic.main.activity_demo2.*
 
 class Demo2Activity : AppCompatActivity() {
@@ -32,13 +33,13 @@ class Demo2Activity : AppCompatActivity() {
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
-        @Local("name") @JvmField var name: String? = null
+        @BindLocal("name") @JvmField var name: String? = null
         lateinit var preferenceName: EditTextPreference
         lateinit var preferenceMarried: SwitchPreferenceCompat
 
         override fun onAttach(context: Context) {
             super.onAttach(context)
-            bindLocal()
+            Local.bind(this)
         }
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

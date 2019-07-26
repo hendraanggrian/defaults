@@ -6,6 +6,7 @@ import android.preference.PreferenceManager
 import androidx.test.InstrumentationRegistry
 import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
+import com.hendraanggrian.local.android.LocalSharedPreferences
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -27,18 +28,7 @@ class AndroidLocalTest {
 
     @Test
     fun sharedPreferences() {
-        val local = testPreferences.toLocal()
-        local.editor {
-            this["name"] = "Hendra"
-            this["age"] = 25
-        }
-        assertEquals("Hendra", local["name"])
-        assertEquals(25, local.getInt("age"))
-    }
-
-    @Test
-    fun context() {
-        val local = context.toLocal()
+        val local = LocalSharedPreferences(testPreferences)
         local.editor {
             this["name"] = "Hendra"
             this["age"] = 25

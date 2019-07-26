@@ -1,10 +1,10 @@
 package com.hendraanggrian.local.demo
 
+import com.hendraanggrian.local.BindLocal
 import com.hendraanggrian.local.Local
 import com.hendraanggrian.local.LocalDebugger
 import com.hendraanggrian.local.LocalSaver
-import com.hendraanggrian.local.ReadableLocal
-import com.hendraanggrian.local.bindLocal
+import com.hendraanggrian.local.jvm.bind
 import javafx.application.Application
 import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
@@ -35,16 +35,16 @@ class DemoApplication : Application() {
     private lateinit var ageField: TextField
     private lateinit var heightField: TextField
 
-    @Local @JvmField var name: String? = null
-    @Local @JvmField var married: Boolean = false
-    @Local @JvmField var age: Int = 0
-    @Local @JvmField var height: Double = 0.0
+    @BindLocal @JvmField var name: String? = null
+    @BindLocal @JvmField var married: Boolean = false
+    @BindLocal @JvmField var age: Int = 0
+    @BindLocal @JvmField var height: Double = 0.0
 
     private lateinit var saver: LocalSaver
 
     override fun init() {
-        ReadableLocal.setDebugger(LocalDebugger.System)
-        saver = File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties").bindLocal(this)
+        Local.setDebugger(LocalDebugger.System)
+        Local.bind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this)
     }
 
     override fun start(stage: Stage) = stage.apply {

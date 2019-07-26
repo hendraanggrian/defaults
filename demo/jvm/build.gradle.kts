@@ -16,7 +16,7 @@ dependencies {
 
     implementation(hendraanggrian("ktfx", "ktfx", VERSION_KTFX))
     implementation(apache("commons-lang3", VERSION_COMMONS_LANG))
-    implementation(project(":$RELEASE_ARTIFACT"))
+    implementation(project(":$RELEASE_ARTIFACT-jvm"))
     kapt(project(":$RELEASE_ARTIFACT-compiler"))
 
     testImplementation(kotlin("test-junit", VERSION_KOTLIN))
