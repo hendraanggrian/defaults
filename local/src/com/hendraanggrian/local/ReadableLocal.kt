@@ -2,7 +2,7 @@
 
 package com.hendraanggrian.local
 
-/** A set of readable local settings, modify value with editor created with [getEditor]. */
+/** A set of readable local settings, modify value with writer created with [getEditor]. */
 interface ReadableLocal {
 
     /** Checks if a setting exists. */

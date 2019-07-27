@@ -6,7 +6,6 @@ import com.google.common.collect.LinkedHashMultimap
 import com.hendraanggrian.javapoet.buildJavaFile
 import com.hendraanggrian.javapoet.dsl.MethodContainerScope
 import com.squareup.javapoet.ClassName
-import org.jetbrains.annotations.NotNull
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.Filer
 import javax.annotation.processing.ProcessingEnvironment
@@ -16,6 +15,7 @@ import javax.lang.model.element.Element
 import javax.lang.model.element.Modifier
 import javax.lang.model.element.TypeElement
 import javax.lang.model.type.TypeKind
+import org.jetbrains.annotations.NotNull
 
 class LocalProcessor : AbstractProcessor() {
 
@@ -113,11 +113,11 @@ class LocalProcessor : AbstractProcessor() {
             if (hasSuperclass) {
                 addStatement("super.$name()")
             }
-            addStatement("final \$T $EDITOR = getEditor()", TYPE_WRITABLE_LOCAL)
+            addStatement("final \$T $WRITER = getWriter()", TYPE_LOCAL_WRITER)
             elements.forEachValue { field, key ->
-                addStatement("$EDITOR.set(\$L, $TARGET.\$L)", key, field)
+                addStatement("$WRITER.set(\$L, $TARGET.\$L)", key, field)
             }
-            addStatement("$EDITOR.$name()")
+            addStatement("$WRITER.$name()")
         }
     }
 

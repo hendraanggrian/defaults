@@ -1,7 +1,7 @@
 package com.hendraanggrian.local.internal
 
-import com.hendraanggrian.local.EditableLocal
 import com.hendraanggrian.local.LocalSaver
+import com.hendraanggrian.local.LocalWriter
 import com.hendraanggrian.local.ReadableLocal
 import com.hendraanggrian.local.WritableLocal
 
@@ -32,10 +32,10 @@ abstract class LocalBinding(private val source: ReadableLocal) : LocalSaver {
     protected fun get(key: String, defaultValue: Byte): Byte =
         source.getByte(key) ?: defaultValue
 
-    val editor: WritableLocal
+    val writer: LocalWriter
         get() = when (source) {
-            is WritableLocal -> source
-            is EditableLocal -> source.editor
+            is LocalWriter -> source
+            is WritableLocal -> source.writer
             else -> error("Unsupported local instance.")
         }
 }

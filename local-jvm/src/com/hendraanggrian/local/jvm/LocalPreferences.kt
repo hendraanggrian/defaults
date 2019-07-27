@@ -1,13 +1,14 @@
 package com.hendraanggrian.local.jvm
 
-import com.hendraanggrian.local.WritableLocal
+import com.hendraanggrian.local.LocalWriter
+import com.hendraanggrian.local.ReadableLocal
+import java.util.prefs.Preferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.prefs.Preferences
 
 open class LocalPreferences internal constructor(private val nativePreferences: Preferences) :
-    WritableLocal {
+    ReadableLocal, LocalWriter {
 
     override fun contains(key: String): Boolean = nativePreferences.nodeExists(key)
 

@@ -6,14 +6,14 @@ import javax.lang.model.element.TypeElement
 
 internal const val TARGET = "target"
 internal const val SOURCE = "source"
-internal const val EDITOR = "editor"
+internal const val WRITER = "writer"
 
 internal val TYPE_LOCAL_BINDING: ClassName =
     ClassName.get("com.hendraanggrian.local.internal", "LocalBinding")
 internal val TYPE_READABLE_LOCAL: ClassName =
     ClassName.get("com.hendraanggrian.local", "ReadableLocal")
-internal val TYPE_WRITABLE_LOCAL: ClassName =
-    ClassName.get("com.hendraanggrian.local", "WritableLocal")
+internal val TYPE_LOCAL_WRITER: ClassName =
+    ClassName.get("com.hendraanggrian.local", "LocalWriter")
 
 internal val TypeElement.measuredName: String
     get() {

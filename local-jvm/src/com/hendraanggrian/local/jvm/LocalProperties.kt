@@ -1,15 +1,18 @@
 package com.hendraanggrian.local.jvm
 
-import com.hendraanggrian.local.WritableLocal
+import com.hendraanggrian.local.LocalWriter
+import com.hendraanggrian.local.ReadableLocal
+import java.io.File
+import java.util.Properties
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.io.File
-import java.util.Properties
 
 open class LocalProperties internal constructor(
     private val targetFile: File
-) : WritableLocal {
+) : ReadableLocal, LocalWriter {
+
+    private val nativeProperties: Properties = Properties()
 
     init {
         if (!targetFile.exists()) {
@@ -17,8 +20,6 @@ open class LocalProperties internal constructor(
         }
         targetFile.inputStream().use { nativeProperties.load(it) }
     }
-
-    private val nativeProperties: Properties = Properties()
 
     override fun contains(key: String): Boolean = nativeProperties.containsKey(key)
 

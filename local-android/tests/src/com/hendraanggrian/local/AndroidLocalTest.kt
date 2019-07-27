@@ -14,19 +14,19 @@ import kotlin.test.assertNull
 @LargeTest
 class AndroidLocalTest {
 
-    private lateinit var local: EditableLocal
+    private lateinit var local: WritableLocal
 
     @Before
     fun createTest() {
         val local = Local.of(InstrumentationRegistry.getContext())
-        local.editor { clear() }
+        local.writer { clear() }
     }
 
     @Test
     fun sharedPreferences() {
         assertNull(local["name"])
         assertNull(local.getInt("age"))
-        local.editor {
+        local.writer {
             this["name"] = "Hendra"
             this["age"] = 25
         }
