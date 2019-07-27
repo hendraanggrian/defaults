@@ -1,14 +1,8 @@
 package com.hendraanggrian.local.jvm
 
 import java.io.File
-import java.util.Properties
 
-class SimpleLocalProperties : LocalProperties {
-
-    constructor(nativeProperties: Properties, targetFile: File) :
-        super(nativeProperties, targetFile)
-
-    constructor(targetFile: File) : super(targetFile)
+class SimpleLocalProperties internal constructor(targetFile: File) : LocalProperties(targetFile) {
 
     override fun getBoolean(key: String): Boolean? = get(key)?.toBoolean()
 

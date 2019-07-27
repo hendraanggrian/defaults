@@ -1,21 +1,24 @@
 package com.hendraanggrian.local.jvm
 
 import com.hendraanggrian.local.WritableLocal
-import java.io.File
-import java.util.Properties
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.io.File
+import java.util.Properties
 
-open class LocalProperties(private val nativeProperties: Properties, private val targetFile: File) :
-    WritableLocal {
+open class LocalProperties internal constructor(
+    private val targetFile: File
+) : WritableLocal {
 
-    constructor(targetFile: File) : this(Properties(), targetFile) {
+    init {
         if (!targetFile.exists()) {
             targetFile.createNewFile()
         }
         targetFile.inputStream().use { nativeProperties.load(it) }
     }
+
+    private val nativeProperties: Properties = Properties()
 
     override fun contains(key: String): Boolean = nativeProperties.containsKey(key)
 

@@ -1,7 +1,6 @@
 package com.hendraanggrian.local
 
-import com.hendraanggrian.local.jvm.LocalPreferences
-import com.hendraanggrian.local.jvm.LocalProperties
+import com.hendraanggrian.local.jvm.of
 import org.junit.Before
 import org.junit.Test
 import java.io.File
@@ -20,7 +19,7 @@ class LocalTest {
 
     @Test
     fun file() {
-        val local = LocalProperties(file)
+        val local = Local.of(file)
         local["name"] = "Hendra"
         local.save()
         assertEquals("Hendra", local["name"])
@@ -28,7 +27,7 @@ class LocalTest {
 
     @Test
     fun preferences() {
-        val local = LocalPreferences(preferences)
+        val local = Local.of(preferences)
         local["name"] = "Hendra"
         local.save()
         assertEquals("Hendra", local["name"])

@@ -5,7 +5,7 @@ import com.hendraanggrian.local.EditableLocal
 import com.hendraanggrian.local.ReadableLocal
 import com.hendraanggrian.local.WritableLocal
 
-open class LocalSharedPreferences(internal val nativePreferences: SharedPreferences) :
+open class LocalSharedPreferences internal constructor(internal val nativePreferences: SharedPreferences) :
     EditableLocal {
 
     override fun contains(key: String): Boolean = key in nativePreferences
