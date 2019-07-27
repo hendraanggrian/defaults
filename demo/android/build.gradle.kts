@@ -51,7 +51,7 @@ android {
 dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
 
-    implementation(apache("commons-lang3", VERSION_COMMONS_LANG))
+    implementation(apache("commons", "commons-lang3", VERSION_COMMONS_LANG))
     implementation(project(":$RELEASE_ARTIFACT-android"))
     kapt(project(":$RELEASE_ARTIFACT-compiler"))
 

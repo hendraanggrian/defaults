@@ -6,10 +6,10 @@ import java.util.WeakHashMap
 
 object Local {
 
-    private var debugger: LocalDebugger? = null
+    private var debugger: LocalLogger? = null
     private lateinit var bindings: MutableMap<Class<*>, Constructor<LocalSaver>>
 
-    fun setDebugger(debugger: LocalDebugger) {
+    fun setDebugger(debugger: LocalLogger) {
         this.debugger = debugger
     }
 

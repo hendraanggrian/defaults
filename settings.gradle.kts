@@ -1,10 +1,10 @@
 include(RELEASE_ARTIFACT)
-include("$RELEASE_ARTIFACT-jvm")
-include("$RELEASE_ARTIFACT-android")
 include("$RELEASE_ARTIFACT-annotations")
 include("$RELEASE_ARTIFACT-compiler")
-include("website")
-includeDir("demo")
+includeDir("$RELEASE_ARTIFACT-adapters")
+includeDir("$RELEASE_ARTIFACT-loggers")
+//include("website")
+//includeDir("demo")
 
 fun includeDir(path: String) = file(path)
     .listFiles()!!
