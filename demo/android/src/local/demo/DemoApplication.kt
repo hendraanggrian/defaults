@@ -10,6 +10,6 @@ class DemoApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Local.setDebugger(LocalLogger.Android)
+        Local.setLogger(LocalLogger.Android)
     }
 }

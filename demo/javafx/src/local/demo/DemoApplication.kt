@@ -20,6 +20,7 @@ import local.Local
 import local.LocalLogger
 import local.LocalSaver
 import local.adapter.jvm.bind
+import local.logger.log4j.Log4j
 import org.apache.commons.lang3.SystemUtils
 import java.io.File
 
@@ -43,7 +44,7 @@ class DemoApplication : Application() {
     private lateinit var saver: LocalSaver
 
     override fun init() {
-        Local.setDebugger(LocalLogger.System)
+        Local.setLogger(LocalLogger.Log4j)
         Local.bind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this)
     }
 

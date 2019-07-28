@@ -9,7 +9,7 @@ interface LocalSaver {
     companion object {
         internal val EMPTY: LocalSaver = object : LocalSaver {
             override fun save() = saveAsync()
-            override fun saveAsync() = Local.debug("WARNING: Saving an empty instance.")
+            override fun saveAsync() = Local.log("WARNING: Saving an empty instance.")
         }
     }
 
