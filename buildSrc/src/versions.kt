@@ -29,3 +29,5 @@ internal const val VERSION_TESTFX = "4.0.15-alpha"
 internal const val VERSION_SHADOW = "4.0.1"
 internal const val VERSION_GIT_PUBLISH = "0.3.3"
 internal const val VERSION_KTLINT = "0.34.0"
+
+internal const val VERSION_SLF4J = "1.7.26"
