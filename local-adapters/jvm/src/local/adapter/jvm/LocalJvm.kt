@@ -2,15 +2,16 @@
 
 package local.adapter.jvm
 
-import java.io.File
-import java.util.prefs.Preferences
 import local.Local
 import local.LocalSaver
+import local.WritableLocal
+import java.io.File
+import java.util.prefs.Preferences
 
 fun Local.of(
     source: File,
     useSimple: Boolean = false
-): LocalProperties = when {
+): WritableLocal = when {
     useSimple -> SimpleLocalProperties(source)
     else -> LocalProperties(source)
 }
@@ -18,7 +19,7 @@ fun Local.of(
 fun Local.of(
     source: Preferences,
     useSimple: Boolean = false
-): LocalPreferences = when {
+): WritableLocal = when {
     useSimple -> SimpleLocalPreferences(source)
     else -> LocalPreferences(source)
 }

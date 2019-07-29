@@ -3,10 +3,10 @@ package local.adapter.android
 import android.content.SharedPreferences
 import local.LocalWriter
 import local.ReadableLocal
-import local.WritableLocal
+import local.EditableLocal
 
 open class LocalSharedPreferences internal constructor(internal val nativePreferences: SharedPreferences) :
-    WritableLocal {
+    EditableLocal {
 
     override fun contains(key: String): Boolean = key in nativePreferences
 

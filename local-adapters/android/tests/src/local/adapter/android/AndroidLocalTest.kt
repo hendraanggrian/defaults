@@ -4,7 +4,7 @@ import androidx.test.InstrumentationRegistry
 import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
 import local.Local
-import local.WritableLocal
+import local.EditableLocal
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,7 +15,7 @@ import kotlin.test.assertNull
 @LargeTest
 class AndroidLocalTest {
 
-    private lateinit var local: WritableLocal
+    private lateinit var local: EditableLocal
 
     @Before
     fun createTest() {

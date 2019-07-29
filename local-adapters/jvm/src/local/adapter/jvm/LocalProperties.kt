@@ -1,16 +1,15 @@
 package local.adapter.jvm
 
-import java.io.File
-import java.util.Properties
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import local.LocalWriter
-import local.ReadableLocal
+import local.WritableLocal
+import java.io.File
+import java.util.Properties
 
 open class LocalProperties internal constructor(
     private val targetFile: File
-) : ReadableLocal, LocalWriter {
+) : WritableLocal {
 
     private val nativeProperties: Properties = Properties()
 

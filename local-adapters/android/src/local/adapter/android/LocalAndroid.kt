@@ -7,11 +7,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import android.util.Log
+import local.EditableLocal
 import local.Local
 import local.LocalLogger
 import local.LocalSaver
 import local.ReadableLocal
-import local.WritableLocal
 
 /** Android debugger, prints to [Log.DEBUG]. */
 inline val LocalLogger.Companion.Android: LocalLogger
@@ -22,7 +22,7 @@ inline val LocalLogger.Companion.Android: LocalLogger
 fun Local.of(
     source: SharedPreferences,
     useSimple: Boolean = false
-): LocalSharedPreferences = when {
+): EditableLocal = when {
     useSimple -> SimpleLocalSharedPreferences(source)
     else -> LocalSharedPreferences(source)
 }
@@ -30,17 +30,17 @@ fun Local.of(
 inline fun Local.of(
     source: Context,
     useSimple: Boolean = false
-): WritableLocal = of(PreferenceManager.getDefaultSharedPreferences(source), useSimple)
+): EditableLocal = of(PreferenceManager.getDefaultSharedPreferences(source), useSimple)
 
 inline fun Local.of(
     source: Fragment,
     useSimple: Boolean = false
-): WritableLocal = of(source.activity, useSimple)
+): EditableLocal = of(source.activity, useSimple)
 
 inline fun Local.of(
     source: androidx.fragment.app.Fragment,
     useSimple: Boolean = true
-): WritableLocal =
+): EditableLocal =
     of(checkNotNull(source.context) { "Context is not yet attached to this fragment" }, useSimple)
 
 inline fun Local.bind(
