@@ -1,7 +1,7 @@
 package local
 
 /** Settings value modifier with Kotlin operators. */
-interface LocalWriter : LocalSaver {
+interface LocalEditor : LocalSaver {
 
     /** Removes a setting. */
     fun remove(key: String)
@@ -33,8 +33,8 @@ interface LocalWriter : LocalSaver {
     /** Add/change byte value. */
     operator fun set(key: String, value: Byte)
 
-    /** Convenient method to quickly open an writer and apply changes in dsl. */
-    operator fun invoke(edit: LocalWriter.() -> Unit): LocalWriter = also {
+    /** Convenient method to quickly open an editor and apply changes in dsl. */
+    operator fun invoke(edit: LocalEditor.() -> Unit): LocalEditor = also {
         edit(it)
         it.saveAsync()
     }

@@ -4,7 +4,7 @@ import androidx.test.InstrumentationRegistry
 import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
 import local.Local
-import local.EditableLocal
+import local.WritableLocal
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,19 +15,19 @@ import kotlin.test.assertNull
 @LargeTest
 class AndroidLocalTest {
 
-    private lateinit var local: EditableLocal
+    private lateinit var local: WritableLocal
 
     @Before
     fun createTest() {
-        val local = Local.of(InstrumentationRegistry.getContext())
-        local.writer { clear() }
+        local = Local.of(InstrumentationRegistry.getContext())
+        local.editor { clear() }
     }
 
     @Test
     fun sharedPreferences() {
         assertNull(local["name"])
         assertNull(local.getInt("age"))
-        local.writer {
+        local.editor {
             this["name"] = "Hendra"
             this["age"] = 25
         }

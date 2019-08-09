@@ -1,10 +1,9 @@
 package local.adapter.snappydb
 
 import com.snappydb.DB
-import local.LocalWriter
-import local.ReadableLocal
+import local.EditableLocal
 
-open class LocalDB internal constructor(private val nativeDB: DB) : ReadableLocal, LocalWriter {
+open class LocalDB internal constructor(private val nativeDB: DB) : EditableLocal {
 
     override fun contains(key: String): Boolean = nativeDB.exists(key)
 

@@ -1,3 +1,6 @@
 package local
 
-interface WritableLocal : ReadableLocal, LocalWriter
+interface WritableLocal : Local {
+
+    val editor: LocalEditor
+}

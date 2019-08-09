@@ -75,7 +75,7 @@ class LocalProcessor : AbstractProcessor() {
                                 TARGET(className) {
                                     this.annotations.add<NotNull>()
                                 }
-                                SOURCE(TYPE_READABLE_LOCAL) {
+                                SOURCE(TYPE_LOCAL) {
                                     this.annotations.add<NotNull>()
                                 }
                             }
@@ -113,11 +113,11 @@ class LocalProcessor : AbstractProcessor() {
             if (hasSuperclass) {
                 addStatement("super.$name()")
             }
-            addStatement("final \$T $WRITER = getWriter()", TYPE_LOCAL_WRITER)
+            addStatement("final \$T $EDITOR = getEditor()", TYPE_LOCAL_EDITOR)
             elements.forEachValue { field, key ->
-                addStatement("$WRITER.set(\$L, $TARGET.\$L)", key, field)
+                addStatement("$EDITOR.set(\$L, $TARGET.\$L)", key, field)
             }
-            addStatement("$WRITER.$name()")
+            addStatement("$EDITOR.$name()")
         }
     }
 

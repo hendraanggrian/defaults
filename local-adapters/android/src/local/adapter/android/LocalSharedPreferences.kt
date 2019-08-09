@@ -1,12 +1,12 @@
 package local.adapter.android
 
 import android.content.SharedPreferences
-import local.LocalWriter
-import local.ReadableLocal
-import local.EditableLocal
+import local.Local
+import local.LocalEditor
+import local.WritableLocal
 
 open class LocalSharedPreferences internal constructor(internal val nativePreferences: SharedPreferences) :
-    EditableLocal {
+    WritableLocal {
 
     override fun contains(key: String): Boolean = key in nativePreferences
 
@@ -46,11 +46,11 @@ open class LocalSharedPreferences internal constructor(internal val nativePrefer
 
     override fun getByte(key: String): Byte? = throw UnsupportedOperationException()
 
-    override val writer: LocalWriter
+    override val editor: LocalEditor
         get() = Editor(this, nativePreferences.edit())
 
-    open class Editor(source: ReadableLocal, private val nativeEditor: SharedPreferences.Editor) :
-        ReadableLocal by source, LocalWriter {
+    open class Editor(source: Local, private val nativeEditor: SharedPreferences.Editor) :
+        Local by source, LocalEditor {
 
         override fun remove(key: String) {
             nativeEditor.remove(key)

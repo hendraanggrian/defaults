@@ -7,61 +7,60 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import android.util.Log
-import local.EditableLocal
 import local.Local
 import local.LocalLogger
 import local.LocalSaver
-import local.ReadableLocal
+import local.WritableLocal
 
 /** Android debugger, prints to [Log.DEBUG]. */
 inline val LocalLogger.Companion.Android: LocalLogger
     get() = LocalLogger {
-        Log.d(ReadableLocal::class.java.simpleName, it)
+        Log.d(Local::class.java.simpleName, it)
     }
 
-fun Local.of(
+fun Local.Companion.of(
     source: SharedPreferences,
     useSimple: Boolean = false
-): EditableLocal = when {
+): WritableLocal = when {
     useSimple -> SimpleLocalSharedPreferences(source)
     else -> LocalSharedPreferences(source)
 }
 
-inline fun Local.of(
+inline fun Local.Companion.of(
     source: Context,
     useSimple: Boolean = false
-): EditableLocal = of(PreferenceManager.getDefaultSharedPreferences(source), useSimple)
+): WritableLocal = of(PreferenceManager.getDefaultSharedPreferences(source), useSimple)
 
-inline fun Local.of(
+inline fun Local.Companion.of(
     source: Fragment,
     useSimple: Boolean = false
-): EditableLocal = of(source.activity, useSimple)
+): WritableLocal = of(source.activity, useSimple)
 
-inline fun Local.of(
+inline fun Local.Companion.of(
     source: androidx.fragment.app.Fragment,
     useSimple: Boolean = true
-): EditableLocal =
+): WritableLocal =
     of(checkNotNull(source.context) { "Context is not yet attached to this fragment" }, useSimple)
 
-inline fun Local.bind(
+inline fun Local.Companion.bind(
     source: SharedPreferences,
     target: Any,
     useSimple: Boolean = false
 ): LocalSaver = bind(of(source, useSimple), target)
 
-inline fun Local.bind(
+inline fun Local.Companion.bind(
     source: Context,
     target: Any = source,
     useSimple: Boolean = false
 ): LocalSaver = bind(of(source, useSimple), target)
 
-inline fun Local.bind(
+inline fun Local.Companion.bind(
     source: Fragment,
     target: Any = this,
     useSimple: Boolean = false
 ): LocalSaver = bind(of(source, useSimple), target)
 
-inline fun Local.bind(
+inline fun Local.Companion.bind(
     source: androidx.fragment.app.Fragment,
     target: Any = source,
     useSimple: Boolean = false

@@ -5,7 +5,7 @@ package local.adapter.snappydb
 import com.snappydb.DB
 import local.Local
 
-fun Local.of(
+fun Local.Companion.of(
     source: DB,
     useSimple: Boolean = false
 ) = when {
