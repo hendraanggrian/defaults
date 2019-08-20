@@ -51,8 +51,8 @@ android {
 dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
 
-    implementation(apache("commons-lang3", VERSION_COMMONS_LANG))
-    implementation(project(":$RELEASE_ARTIFACT-android"))
+    implementation(apache("commons", "commons-lang3", VERSION_COMMONS_LANG))
+    implementation(project(":$RELEASE_ARTIFACT-adapters:android"))
     kapt(project(":$RELEASE_ARTIFACT-compiler"))
 
     implementation(androidx("multidex", version = VERSION_MULTIDEX))

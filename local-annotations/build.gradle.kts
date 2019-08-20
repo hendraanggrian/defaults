@@ -14,7 +14,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_7
 }
 
-bintrayReleaseFix()
+publishKotlinFix()
 publish {
     bintrayUser = BINTRAY_USER
     bintrayKey = BINTRAY_KEY

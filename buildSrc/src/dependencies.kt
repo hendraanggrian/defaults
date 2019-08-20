@@ -31,6 +31,9 @@ fun DependencyHandler.androidx(
 fun DependencyHandler.material(version: String = VERSION_ANDROIDX) =
     "com.google.android.material:material:$version"
 
+fun DependencyHandler.snappydb() = "com.snappydb:snappydb-lib:$VERSION_SNAPPYDB"
+fun DependencyHandler.kyro() = "com.esotericsoftware.kryo:kryo:$VERSION_KYRO"
+
 fun DependencyHandler.hendraanggrian(module: String, version: String) =
     "com.hendraanggrian:$module:$version"
 
@@ -40,8 +43,10 @@ fun DependencyHandler.hendraanggrian(
     version: String
 ) = "com.hendraanggrian.$repository:$module:$version"
 
-fun DependencyHandler.apache(module: String, version: String) =
-    "org.apache.${module.split("-")[0]}:$module:$version"
+fun DependencyHandler.apache(repo: String, module: String, version: String) =
+    "org.apache.$repo:$module:$version"
+
+fun DependencyHandler.slf4j() = "org.slf4j:slf4j-api:$VERSION_SLF4J"
 
 fun DependencyHandler.testFx(module: String) = "org.testfx:testfx-$module:$VERSION_TESTFX"
 
