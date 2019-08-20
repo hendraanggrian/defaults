@@ -1,4 +1,4 @@
-package local.demo.test
+package com.example.test
 
 import local.BindLocal
 

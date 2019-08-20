@@ -1,4 +1,4 @@
-package local.demo
+package com.example
 
 import android.app.Application
 import local.Local

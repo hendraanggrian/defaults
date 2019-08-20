@@ -31,7 +31,7 @@ dependencies {
     compile(project(":$RELEASE_ARTIFACT-annotations"))
     compile(google("auto-common", VERSION_AUTOCOMMON))
     compile(google("guava", VERSION_GUAVA))
-    compile(hendraanggrian("javapoet-dsl", VERSION_JAVAPOET))
+    compile(hendraanggrian("javapoet-ktx", VERSION_JAVAPOET_KTX))
 
     compileOnly(files(org.gradle.internal.jvm.Jvm.current().toolsJar))
 

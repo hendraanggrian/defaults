@@ -19,10 +19,8 @@ allprojects {
         google()
         jcenter()
     }
-    tasks {
-        withType<Delete> {
-            delete(projectDir.resolve("out"))
-        }
+    tasks.withType<Delete> {
+        delete(projectDir.resolve("out"))
     }
 }
 

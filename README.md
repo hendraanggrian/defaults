@@ -20,7 +20,7 @@ val username = local["username"]
 ##### Android
 
 ```kotlin
-val local = toLoCal() // if this is context/activity, or use `sharedPreferences.toLocal()`
+val local = toLocal() // if this is context/activity, or use `sharedPreferences.toLocal()`
 val username = local["username"]
 ```
 
