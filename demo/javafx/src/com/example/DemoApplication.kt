@@ -45,7 +45,7 @@ class DemoApplication : Application() {
 
     override fun init() {
         Local.setLogger(LocalLogger.Log4j)
-        Local.bind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this)
+        Local.bind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this, true)
     }
 
     override fun start(stage: Stage) = stage.apply {

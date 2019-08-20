@@ -13,7 +13,7 @@ Comes with optional annotation processor to bind properties with existing settin
 ##### JVM
 
 ```kotlin
-val local = preferences.toLoCal()
+val local = preferences.toLocal()
 val username = local["username"]
 ```
 
@@ -26,17 +26,27 @@ val username = local["username"]
 
 Download
 --------
-All artifacts should be linked to JCenter, otherwise add maven url `https://dl.bintray.com/hendraanggrian/defaults`.
+All artifacts should be linked to JCenter, otherwise add maven url `https://dl.bintray.com/hendraanggrian/local`.
 
 ```gradle
 repositories {
     jcenter()
 }
-dependencies {
-    compile "com.hendraanggrian.local:local:$version"
-    api "com.hendraanggrian.local:local-android:$version" // for Android
 
-    // optional property binding, use kapt when necessary
+dependencies {
+    // base library, must be included
+    compile "com.hendraanggrian.local:local:$version"
+
+    // adapters
+    compile "com.hendraanggrian.local:adapter-jvm:$version"
+    api "com.hendraanggrian.local:adapter-android:$version"
+    api "com.hendraanggrian.local:adapter-snappydb:$version"
+    
+    // loggers
+    compile "com.hendraanggrian.local:logger-log4j:$version"
+    compile "com.hendraanggrian.local:logger-slf4j:$version"
+
+    // optional property binding support, use kapt when necessary
     annotationProcessor "com.hendraanggrian.local:local-compiler:$version"
 }
 ```

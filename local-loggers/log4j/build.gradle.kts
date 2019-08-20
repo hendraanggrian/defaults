@@ -17,7 +17,7 @@ sourceSets {
 val configuration = configurations.register("ktlint")
 
 dependencies {
-    api(project(":$RELEASE_ARTIFACT"))
+    compileOnly(project(":$RELEASE_ARTIFACT"))
     api(kotlin("stdlib", VERSION_KOTLIN))
     api(apache("logging.log4j", "log4j-api", VERSION_LOG4J))
 
