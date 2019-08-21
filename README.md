@@ -34,10 +34,10 @@ repositories {
 }
 
 dependencies {
-    // base library, must be included
+    // base library without implementation
     compile "com.hendraanggrian.local:local:$version"
 
-    // adapters
+    // adapter for each platform
     compile "com.hendraanggrian.local:adapter-jvm:$version"
     api "com.hendraanggrian.local:adapter-android:$version"
     api "com.hendraanggrian.local:adapter-snappydb:$version"
@@ -46,8 +46,11 @@ dependencies {
     compile "com.hendraanggrian.local:logger-log4j:$version"
     compile "com.hendraanggrian.local:logger-slf4j:$version"
 
-    // optional property binding support, use kapt when necessary
+    // property binding support, use kapt when necessary
     annotationProcessor "com.hendraanggrian.local:local-compiler:$version"
+    
+    // define local settings in Gradle, then generate utility classes accordingly
+    compile "com.hendraanggrian.local:gradle-plugin:$version"
 }
 ```
 

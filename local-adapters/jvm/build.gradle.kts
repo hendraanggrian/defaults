@@ -17,7 +17,7 @@ sourceSets {
 val configuration = configurations.register("ktlint")
 
 dependencies {
-    compileOnly(project(":$RELEASE_ARTIFACT"))
+    api(project(":$RELEASE_ARTIFACT"))
     api(kotlin("stdlib", VERSION_KOTLIN))
     api(kotlinx("coroutines-core", VERSION_COROUTINES))
 

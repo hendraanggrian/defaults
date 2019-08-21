@@ -51,7 +51,6 @@ android {
 dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
 
-    implementation(project(":$RELEASE_ARTIFACT"))
     implementation(project(":$RELEASE_ARTIFACT-adapters:android"))
     kapt(project(":$RELEASE_ARTIFACT-compiler"))
 

@@ -1,28 +1,35 @@
-group = RELEASE_GROUP
-version = RELEASE_VERSION
-
 plugins {
-    `java-library`
-    kotlin("jvm")
+    `java-gradle-plugin`
+    `kotlin-dsl`
     dokka()
     bintray
     `bintray-release`
 }
+
+group = RELEASE_GROUP
+version = RELEASE_VERSION
 
 sourceSets {
     get("main").java.srcDir("src")
     get("test").java.srcDir("tests/src")
 }
 
+gradlePlugin {
+    (plugins) {
+        register(RELEASE_ARTIFACT) {
+            id = RELEASE_GROUP
+            implementationClass = "$RELEASE_ARTIFACT.LocalPlugin"
+        }
+    }
+}
+
 val configuration = configurations.register("ktlint")
 
 dependencies {
-    api(project(":$RELEASE_ARTIFACT"))
-    api(kotlin("stdlib", VERSION_KOTLIN))
-    api(slf4j())
+    implementation(kotlin("stdlib", VERSION_KOTLIN))
+    implementation(project(":$RELEASE_ARTIFACT"))
 
-    testImplementation(kotlin("test-junit", VERSION_KOTLIN))
-    testImplementation(truth())
+    testImplementation(kotlin("test-junit"))
 
     configuration {
         invoke(ktlint())
@@ -30,6 +37,13 @@ dependencies {
 }
 
 tasks {
+    register("deploy") {
+        dependsOn("build")
+        projectDir.resolve("build/libs")?.listFiles()?.forEach {
+            it.renameTo(File(rootDir.resolve("demo"), it.name))
+        }
+    }
+
     val ktlint = register("ktlint", JavaExec::class) {
         group = LifecycleBasePlugin.VERIFICATION_GROUP
         inputs.dir("src")
@@ -63,7 +77,6 @@ publish {
     bintrayUser = BINTRAY_USER
     bintrayKey = BINTRAY_KEY
     dryRun = false
-    repoName = RELEASE_ARTIFACT
 
     userOrg = RELEASE_USER
     groupId = RELEASE_GROUP

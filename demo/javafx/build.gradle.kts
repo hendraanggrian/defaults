@@ -1,6 +1,3 @@
-group = RELEASE_GROUP
-version = RELEASE_VERSION
-
 plugins {
     kotlin("jvm")
     kotlin("kapt")
@@ -14,7 +11,6 @@ sourceSets {
 dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
 
-    implementation(project(":$RELEASE_ARTIFACT"))
     implementation(project(":$RELEASE_ARTIFACT-adapters:jvm"))
     implementation(project(":$RELEASE_ARTIFACT-loggers:log4j"))
     implementation(project(":$RELEASE_ARTIFACT-loggers:slf4j"))

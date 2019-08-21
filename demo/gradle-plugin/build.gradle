@@ -1,0 +1,17 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath files('../local-gradle-plugin-0.1.jar')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'com.hendraanggrian.local'
+
+local {
+    configure('hendra') {
+        add('hehe', String.class)
+    }
+}
