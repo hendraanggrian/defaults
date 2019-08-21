@@ -4,7 +4,10 @@ import org.gradle.api.Action
 import org.gradle.kotlin.dsl.invoke
 
 open class LocalExtension {
+
     private val impl = LocalBuilderImpl()
+
+    var packageName: String = ""
 
     fun configure(s: String, action: Action<LocalBuilder>) {
         s.trim()

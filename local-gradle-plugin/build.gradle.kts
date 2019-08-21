@@ -28,6 +28,7 @@ val configuration = configurations.register("ktlint")
 dependencies {
     implementation(kotlin("stdlib", VERSION_KOTLIN))
     implementation(project(":$RELEASE_ARTIFACT"))
+    implementation(hendraanggrian("javapoet-ktx", VERSION_JAVAPOET_KTX))
 
     testImplementation(kotlin("test-junit"))
 

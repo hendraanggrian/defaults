@@ -27,11 +27,11 @@ java {
 val ktlint by configurations.registering
 
 dependencies {
-    api(kotlin("stdlib", VERSION_KOTLIN))
-    api(project(":$RELEASE_ARTIFACT-annotations"))
-    api(google("auto-common", VERSION_AUTOCOMMON))
-    api(google("guava", VERSION_GUAVA))
-    api(hendraanggrian("javapoet-ktx", VERSION_JAVAPOET_KTX))
+    implementation(kotlin("stdlib", VERSION_KOTLIN))
+    implementation(project(":$RELEASE_ARTIFACT-annotations"))
+    implementation(google("auto-common", VERSION_AUTOCOMMON))
+    implementation(google("guava", VERSION_GUAVA))
+    implementation(hendraanggrian("javapoet-ktx", VERSION_JAVAPOET_KTX))
 
     compileOnly(files(org.gradle.internal.jvm.Jvm.current().toolsJar))
 

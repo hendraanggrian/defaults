@@ -10,20 +10,6 @@ Local
 Local settings library that runs in plain Java and Android.
 Comes with optional annotation processor to bind properties with existing settings.
 
-##### JVM
-
-```kotlin
-val local = preferences.toLocal()
-val username = local["username"]
-```
-
-##### Android
-
-```kotlin
-val local = toLocal() // if this is context/activity, or use `sharedPreferences.toLocal()`
-val username = local["username"]
-```
-
 Download
 --------
 All artifacts should be linked to JCenter, otherwise add maven url `https://dl.bintray.com/hendraanggrian/local`.
@@ -58,21 +44,20 @@ Usage
 -----
 
 #### Manual get/set
-
 Create defaults instance from `File`, or `SharedPreferences` in Android.
 
 ```kotlin
 import com.hendraanggrian.local.toLocal
 
 // file defaults can set/get
-val fileLocal = file.toLocal()
+val fileLocal = Local.of(file)
 val name = fileLocal["name"]
 val age = fileLocal.getInt("age", 0)
 fileLocal["name"] = "Hendra"
 fileLocal["age"] = 25
 
 // shared preferences must open to set
-val androidLocal = context.toLocal()
+val androidLocal = Local.of(context)
 androidLocal {
     it["name"] = "Hendra"
     it["age"] = 25
@@ -80,7 +65,6 @@ androidLocal {
 ```
 
 #### Bind properties
-
 With optional annotation processor, bind these local settings to local variables.
 
 ```kotlin
@@ -101,6 +85,53 @@ fun applyChanges(name: String, age: Int) {
     this.age = age
     saver.saveAsync()
 }
+```
+
+#### Gradle plugin
+Add plugin to buildscript and configure local settings.
+
+```gradle
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.hendraanggrian.local:gradle-plugin:$version"
+    }
+}
+
+apply plugin: 'com.hendraanggrian.local'
+
+local {
+    packageName = 'my.package'
+    configure('ContactLocal') {
+        add('id', Int.class)
+        add('name', String.class)
+    }
+}
+```
+
+The configuration is even simpler with Gradle Kotlin DSL.
+
+```kotlin
+local {
+    packageName = "my.package"
+    "ContactLocal" {
+        "id"<Int>()
+        "name"<String>()
+    }
+}
+```
+
+This Gradle plugin will automatically generate custom object accordingly.
+
+```kotlin
+val contactLocal = ContactLocal.of(file)
+val id = contactLocal.id
+val name = contactLocal.name
+
+contactLocal.id = 1
+contactLocal.name = "James"
 ```
 
 License
