@@ -2,7 +2,7 @@ package local.adapter.snappydb
 
 import com.snappydb.DB
 
-class SimpleLocalDB internal constructor(nativeDB: DB) : LocalDB(nativeDB) {
+class SafeLocalDB internal constructor(nativeDB: DB) : LocalDB(nativeDB) {
 
     override fun getByte(key: String): Byte? = get(key)?.toByte()
 

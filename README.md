@@ -20,23 +20,13 @@ repositories {
 }
 
 dependencies {
-    // base library without implementation
-    compile "com.hendraanggrian.local:local:$version"
-
-    // adapter for each platform
-    compile "com.hendraanggrian.local:adapter-jvm:$version"
-    api "com.hendraanggrian.local:adapter-android:$version"
-    api "com.hendraanggrian.local:adapter-snappydb:$version"
-    
-    // loggers
-    compile "com.hendraanggrian.local:logger-log4j:$version"
-    compile "com.hendraanggrian.local:logger-slf4j:$version"
+    // choose variant
+    compile "com.hendraanggrian.local:local-jvm:$version"
+    api "com.hendraanggrian.local:local-android:$version"
+    api "com.hendraanggrian.local:local-snappydb:$version"
 
     // property binding support, use kapt when necessary
-    annotationProcessor "com.hendraanggrian.local:local-compiler:$version"
-    
-    // define local settings in Gradle, then generate utility classes accordingly
-    compile "com.hendraanggrian.local:gradle-plugin:$version"
+    annotationProcessor "com.hendraanggrian.local:local-compiler:$version"   
 }
 ```
 
@@ -85,53 +75,6 @@ fun applyChanges(name: String, age: Int) {
     this.age = age
     saver.saveAsync()
 }
-```
-
-#### Gradle plugin
-Add plugin to buildscript and configure local settings.
-
-```gradle
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath "com.hendraanggrian.local:gradle-plugin:$version"
-    }
-}
-
-apply plugin: 'com.hendraanggrian.local'
-
-local {
-    packageName = 'my.package'
-    configure('ContactLocal') {
-        add('id', Int.class)
-        add('name', String.class)
-    }
-}
-```
-
-The configuration is even simpler with Gradle Kotlin DSL.
-
-```kotlin
-local {
-    packageName = "my.package"
-    "ContactLocal" {
-        "id"<Int>()
-        "name"<String>()
-    }
-}
-```
-
-This Gradle plugin will automatically generate custom object accordingly.
-
-```kotlin
-val contactLocal = ContactLocal.of(file)
-val id = contactLocal.id
-val name = contactLocal.name
-
-contactLocal.id = 1
-contactLocal.name = "James"
 ```
 
 License

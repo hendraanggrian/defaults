@@ -3,7 +3,6 @@ include("$RELEASE_ARTIFACT-annotations")
 include("$RELEASE_ARTIFACT-compiler")
 includeDir("$RELEASE_ARTIFACT-adapters")
 includeDir("$RELEASE_ARTIFACT-loggers")
-include("$RELEASE_ARTIFACT-gradle-plugin")
 include("website")
 includeDir("demo")
 

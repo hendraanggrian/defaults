@@ -2,7 +2,7 @@ package local.adapter.jvm
 
 import java.util.prefs.Preferences
 
-class SimpleLocalPreferences internal constructor(nativePreferences: Preferences) :
+class SafeLocalPreferences internal constructor(nativePreferences: Preferences) :
     LocalPreferences(nativePreferences) {
 
     override fun getShort(key: String): Short? = get(key)?.toShort()

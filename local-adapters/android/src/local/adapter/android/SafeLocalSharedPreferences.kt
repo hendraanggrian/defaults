@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import local.Local
 import local.LocalEditor
 
-class SimpleLocalSharedPreferences internal constructor(nativePreferences: SharedPreferences) :
+class SafeLocalSharedPreferences internal constructor(nativePreferences: SharedPreferences) :
     LocalSharedPreferences(nativePreferences) {
 
     override fun getDouble(key: String): Double? = get(key)?.toDouble()
