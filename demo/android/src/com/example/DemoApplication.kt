@@ -2,14 +2,13 @@ package com.example
 
 import android.app.Application
 import local.Local
-import local.LocalLogger
-import local.adapter.android.Android
+import local.adapter.android.setDebug
 
 @Suppress("unused")
 class DemoApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Local.setLogger(LocalLogger.Android)
+        Local.setDebug(true)
     }
 }

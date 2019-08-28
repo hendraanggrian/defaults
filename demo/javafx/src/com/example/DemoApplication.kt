@@ -17,10 +17,9 @@ import ktfx.layouts.scene
 import ktfx.layouts.textField
 import local.BindLocal
 import local.Local
-import local.LocalLogger
 import local.LocalSaver
 import local.adapter.jvm.safeBind
-import local.logger.log4j.Log4j
+import local.adapter.jvm.setDebug
 import org.apache.commons.lang3.SystemUtils
 import java.io.File
 
@@ -44,7 +43,7 @@ class DemoApplication : Application() {
     private lateinit var saver: LocalSaver
 
     override fun init() {
-        Local.setLogger(LocalLogger.Log4j)
+        Local.setDebug(true)
         Local.safeBind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this)
     }
 

@@ -12,8 +12,6 @@ dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
 
     implementation(project(":$RELEASE_ARTIFACT-adapters:jvm"))
-    implementation(project(":$RELEASE_ARTIFACT-loggers:log4j"))
-    implementation(project(":$RELEASE_ARTIFACT-loggers:slf4j"))
     kapt(project(":$RELEASE_ARTIFACT-compiler"))
 
     implementation(hendraanggrian("ktfx", "ktfx", VERSION_KTFX))

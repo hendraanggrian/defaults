@@ -8,15 +8,12 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import android.util.Log
 import local.Local
-import local.LocalLogger
 import local.LocalSaver
 import local.WritableLocal
+import local.internal.LocalInternal
 
-/** Android debugger, prints to [Log.DEBUG]. */
-inline val LocalLogger.Companion.Android: LocalLogger
-    get() = LocalLogger {
-        Log.d(Local::class.java.simpleName, it)
-    }
+fun Local.Companion.setDebug(debug: Boolean) =
+    LocalInternal.setDebugInternal(debug) { Log.d(Local::class.java.simpleName, it) }
 
 fun Local.Companion.of(source: SharedPreferences): WritableLocal =
     LocalSharedPreferences(source)

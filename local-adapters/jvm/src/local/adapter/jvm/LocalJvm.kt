@@ -7,6 +7,10 @@ import java.util.prefs.Preferences
 import local.EditableLocal
 import local.Local
 import local.LocalSaver
+import local.internal.LocalInternal
+
+fun Local.Companion.setDebug(debug: Boolean) =
+    LocalInternal.setDebugInternal(debug) { println(it) }
 
 fun Local.Companion.of(source: File): EditableLocal =
     LocalProperties(source)

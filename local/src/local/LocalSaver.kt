@@ -2,6 +2,7 @@ package local
 
 import androidx.annotation.AnyThread
 import androidx.annotation.WorkerThread
+import local.internal.LocalInternal
 
 /** Base interface to save changes to local settings. */
 interface LocalSaver {
@@ -9,7 +10,7 @@ interface LocalSaver {
     companion object {
         internal val EMPTY: LocalSaver = object : LocalSaver {
             override fun save() = saveAsync()
-            override fun saveAsync() = Local.log("WARNING: Saving an empty instance.")
+            override fun saveAsync() = LocalInternal.debug("WARNING: Saving an empty instance.")
         }
     }
 
