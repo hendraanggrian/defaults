@@ -20,9 +20,12 @@ tasks["gitPublishCopy"].dependsOn(
         .toTypedArray()
 )
 
+// list of artifacts with Dokka
 val artifacts: List<String>
     get() = listOf(
-        "local",
-        "local-android",
-        "local-compiler"
+        RELEASE_ARTIFACT,
+        "$RELEASE_ARTIFACT-compiler",
+        "$RELEASE_ARTIFACT-jvm",
+        "$RELEASE_ARTIFACT-android",
+        "$RELEASE_ARTIFACT-android-snappydb"
     )

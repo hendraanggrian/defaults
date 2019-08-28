@@ -1,7 +1,10 @@
 include(RELEASE_ARTIFACT)
 include("$RELEASE_ARTIFACT-annotations")
 include("$RELEASE_ARTIFACT-compiler")
-includeDir("$RELEASE_ARTIFACT-adapters")
+
+include("$RELEASE_ARTIFACT-jvm")
+include("$RELEASE_ARTIFACT-android")
+include("$RELEASE_ARTIFACT-android-snappydb")
 include("website")
 includeDir("demo")
 

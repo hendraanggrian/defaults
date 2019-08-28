@@ -1,7 +1,10 @@
 plugins {
     kotlin("jvm")
     kotlin("kapt")
+    application
 }
+
+application.mainClassName = "com.example.DemoApplication"
 
 sourceSets {
     get("main").java.srcDir("src")
@@ -11,7 +14,7 @@ sourceSets {
 dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
 
-    implementation(project(":$RELEASE_ARTIFACT-adapters:jvm"))
+    implementation(project(":$RELEASE_ARTIFACT-jvm"))
     kapt(project(":$RELEASE_ARTIFACT-compiler"))
 
     implementation(hendraanggrian("ktfx", "ktfx", VERSION_KTFX))

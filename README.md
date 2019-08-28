@@ -20,10 +20,12 @@ repositories {
 }
 
 dependencies {
-    // choose variant
+    // for non-Android project
     compile "com.hendraanggrian.local:local-jvm:$version"
+    
+    // for Android project
     api "com.hendraanggrian.local:local-android:$version"
-    api "com.hendraanggrian.local:local-snappydb:$version"
+    api "com.hendraanggrian.local:local-android-snappydb:$version" // snappydb extension
 
     // property binding support, use kapt when necessary
     annotationProcessor "com.hendraanggrian.local:local-compiler:$version"   

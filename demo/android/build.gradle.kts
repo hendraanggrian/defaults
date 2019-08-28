@@ -10,7 +10,7 @@ android {
     defaultConfig {
         minSdkVersion(SDK_MIN)
         targetSdkVersion(SDK_TARGET)
-        applicationId = "$RELEASE_GROUP.demo"
+        applicationId = "com.example"
         versionName = RELEASE_VERSION
     }
     compileOptions {
@@ -51,7 +51,7 @@ android {
 dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
 
-    implementation(project(":$RELEASE_ARTIFACT-adapters:android"))
+    implementation(project(":$RELEASE_ARTIFACT-android"))
     kapt(project(":$RELEASE_ARTIFACT-compiler"))
 
     implementation(apache("commons", "commons-lang3", VERSION_COMMONS_LANG))

@@ -18,8 +18,8 @@ import ktfx.layouts.textField
 import local.BindLocal
 import local.Local
 import local.LocalSaver
-import local.adapter.jvm.safeBind
-import local.adapter.jvm.setDebug
+import local.jvm.safeBind
+import local.jvm.setDebug
 import org.apache.commons.lang3.SystemUtils
 import java.io.File
 

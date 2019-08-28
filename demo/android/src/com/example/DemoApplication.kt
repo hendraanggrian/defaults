@@ -2,7 +2,7 @@ package com.example
 
 import android.app.Application
 import local.Local
-import local.adapter.android.setDebug
+import local.android.setDebug
 
 @Suppress("unused")
 class DemoApplication : Application() {

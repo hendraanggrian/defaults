@@ -11,7 +11,7 @@ import androidx.preference.SwitchPreferenceCompat
 import kotlinx.android.synthetic.main.activity_demo2.*
 import local.BindLocal
 import local.Local
-import local.adapter.android.bind
+import local.android.bind
 
 class Demo2Activity : AppCompatActivity() {
 

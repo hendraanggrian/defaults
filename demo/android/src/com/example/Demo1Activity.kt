@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_demo1.*
 import local.BindLocal
 import local.Local
 import local.LocalSaver
-import local.adapter.android.bind
+import local.android.bind
 
 class Demo1Activity : AppCompatActivity(), View.OnClickListener {
 
