@@ -1,0 +1,20 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:local.adapter.android$bind(local.Local.Companion, android.app.Fragment, kotlin.Any)local.adapter.android/local.-local/bind.html
+$dokka.location:local.adapter.android$bind(local.Local.Companion, android.content.Context, kotlin.Any)local.adapter.android/local.-local/bind.html
+$dokka.location:local.adapter.android$bind(local.Local.Companion, android.content.SharedPreferences, kotlin.Any)local.adapter.android/local.-local/bind.html
+$dokka.location:local.adapter.android$bind(local.Local.Companion, androidx.fragment.app.Fragment, kotlin.Any)local.adapter.android/local.-local/bind.html
+$dokka.location:local.adapter.android$of(local.Local.Companion, android.app.Fragment)local.adapter.android/local.-local/of.html
+$dokka.location:local.adapter.android$of(local.Local.Companion, android.content.Context)local.adapter.android/local.-local/of.html
+$dokka.location:local.adapter.android$of(local.Local.Companion, android.content.SharedPreferences)local.adapter.android/local.-local/of.html
+$dokka.location:local.adapter.android$of(local.Local.Companion, androidx.fragment.app.Fragment)local.adapter.android/local.-local/of.html
+$dokka.location:local.adapter.android$safeBind(local.Local.Companion, android.app.Fragment, kotlin.Any)local.adapter.android/local.-local/safe-bind.html
+$dokka.location:local.adapter.android$safeBind(local.Local.Companion, android.content.Context, kotlin.Any)local.adapter.android/local.-local/safe-bind.html
+$dokka.location:local.adapter.android$safeBind(local.Local.Companion, android.content.SharedPreferences, kotlin.Any)local.adapter.android/local.-local/safe-bind.html
+$dokka.location:local.adapter.android$safeBind(local.Local.Companion, androidx.fragment.app.Fragment, kotlin.Any)local.adapter.android/local.-local/safe-bind.html
+$dokka.location:local.adapter.android$safeOf(local.Local.Companion, android.app.Fragment)local.adapter.android/local.-local/safe-of.html
+$dokka.location:local.adapter.android$safeOf(local.Local.Companion, android.content.Context)local.adapter.android/local.-local/safe-of.html
+$dokka.location:local.adapter.android$safeOf(local.Local.Companion, android.content.SharedPreferences)local.adapter.android/local.-local/safe-of.html
+$dokka.location:local.adapter.android$safeOf(local.Local.Companion, androidx.fragment.app.Fragment)local.adapter.android/local.-local/safe-of.html
+$dokka.location:local.adapter.android$setDebug(local.Local.Companion, kotlin.Boolean)local.adapter.android/local.-local/set-debug.html
+local.adapter.android

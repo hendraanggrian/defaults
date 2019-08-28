@@ -1,0 +1,12 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:local.adapter.jvm$bind(local.Local.Companion, java.io.File, kotlin.Any)local.adapter.jvm/local.-local/bind.html
+$dokka.location:local.adapter.jvm$bind(local.Local.Companion, java.util.prefs.Preferences, kotlin.Any)local.adapter.jvm/local.-local/bind.html
+$dokka.location:local.adapter.jvm$of(local.Local.Companion, java.io.File)local.adapter.jvm/local.-local/of.html
+$dokka.location:local.adapter.jvm$of(local.Local.Companion, java.util.prefs.Preferences)local.adapter.jvm/local.-local/of.html
+$dokka.location:local.adapter.jvm$safeBind(local.Local.Companion, java.io.File, kotlin.Any)local.adapter.jvm/local.-local/safe-bind.html
+$dokka.location:local.adapter.jvm$safeBind(local.Local.Companion, java.util.prefs.Preferences, kotlin.Any)local.adapter.jvm/local.-local/safe-bind.html
+$dokka.location:local.adapter.jvm$safeOf(local.Local.Companion, java.io.File)local.adapter.jvm/local.-local/safe-of.html
+$dokka.location:local.adapter.jvm$safeOf(local.Local.Companion, java.util.prefs.Preferences)local.adapter.jvm/local.-local/safe-of.html
+$dokka.location:local.adapter.jvm$setDebug(local.Local.Companion, kotlin.Boolean)local.adapter.jvm/local.-local/set-debug.html
+local.adapter.jvm

@@ -1,0 +1,255 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>WritableLocal - local</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">local</a>&nbsp;/&nbsp;<a href="../index.html">local</a>&nbsp;/&nbsp;<a href="./index.html">WritableLocal</a><br/>
+<br/>
+<h1>WritableLocal</h1>
+<code><span class="keyword">interface </span><span class="identifier">WritableLocal</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-local/index.html"><span class="identifier">Local</span></a></code>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="editor.html">editor</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">editor</span><span class="symbol">: </span><a href="../-local-editor/index.html"><span class="identifier">LocalEditor</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-local/contains.html">contains</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">contains</span><span class="symbol">(</span><span class="identifier" id="local.Local$contains(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Checks if a setting exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get.html">get</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="local.Local$get(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Returns string value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-boolean.html">getBoolean</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getBoolean</span><span class="symbol">(</span><span class="identifier" id="local.Local$getBoolean(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code>
+<p>Returns boolean value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-boolean-or-default.html">getBooleanOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getBooleanOrDefault</span><span class="symbol">(</span><span class="identifier" id="local.Local$getBooleanOrDefault(kotlin.String, kotlin.Boolean)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getBooleanOrDefault(kotlin.String, kotlin.Boolean)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns boolean value, or <a href="../-local/get-boolean-or-default.html#local.Local$getBooleanOrDefault(kotlin.String, kotlin.Boolean)/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-boolean-or-else.html">getBooleanOrElse</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getBooleanOrElse</span><span class="symbol">(</span><span class="identifier" id="local.Local$getBooleanOrElse(kotlin.String, kotlin.Function0((kotlin.Boolean)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getBooleanOrElse(kotlin.String, kotlin.Function0((kotlin.Boolean)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns boolean value, or <a href="../-local/get-boolean-or-else.html#local.Local$getBooleanOrElse(kotlin.String, kotlin.Function0((kotlin.Boolean)))/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-byte.html">getByte</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getByte</span><span class="symbol">(</span><span class="identifier" id="local.Local$getByte(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a><span class="symbol">?</span></code>
+<p>Returns byte value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-byte-or-default.html">getByteOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getByteOrDefault</span><span class="symbol">(</span><span class="identifier" id="local.Local$getByteOrDefault(kotlin.String, kotlin.Byte)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getByteOrDefault(kotlin.String, kotlin.Byte)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a></code>
+<p>Returns byte value, or <a href="../-local/get-byte-or-default.html#local.Local$getByteOrDefault(kotlin.String, kotlin.Byte)/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-byte-or-else.html">getByteOrElse</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getByteOrElse</span><span class="symbol">(</span><span class="identifier" id="local.Local$getByteOrElse(kotlin.String, kotlin.Function0((kotlin.Byte)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getByteOrElse(kotlin.String, kotlin.Function0((kotlin.Byte)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a></code>
+<p>Returns byte value, or <a href="../-local/get-byte-or-else.html#local.Local$getByteOrElse(kotlin.String, kotlin.Function0((kotlin.Byte)))/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-double.html">getDouble</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getDouble</span><span class="symbol">(</span><span class="identifier" id="local.Local$getDouble(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">?</span></code>
+<p>Returns double value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-double-or-default.html">getDoubleOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getDoubleOrDefault</span><span class="symbol">(</span><span class="identifier" id="local.Local$getDoubleOrDefault(kotlin.String, kotlin.Double)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getDoubleOrDefault(kotlin.String, kotlin.Double)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a></code>
+<p>Returns double value, or <a href="../-local/get-double-or-default.html#local.Local$getDoubleOrDefault(kotlin.String, kotlin.Double)/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-double-or-else.html">getDoubleOrElse</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getDoubleOrElse</span><span class="symbol">(</span><span class="identifier" id="local.Local$getDoubleOrElse(kotlin.String, kotlin.Function0((kotlin.Double)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getDoubleOrElse(kotlin.String, kotlin.Function0((kotlin.Double)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a></code>
+<p>Returns double value, or <a href="../-local/get-double-or-else.html#local.Local$getDoubleOrElse(kotlin.String, kotlin.Function0((kotlin.Double)))/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-float.html">getFloat</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getFloat</span><span class="symbol">(</span><span class="identifier" id="local.Local$getFloat(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">?</span></code>
+<p>Returns float value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-float-or-default.html">getFloatOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getFloatOrDefault</span><span class="symbol">(</span><span class="identifier" id="local.Local$getFloatOrDefault(kotlin.String, kotlin.Float)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getFloatOrDefault(kotlin.String, kotlin.Float)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a></code>
+<p>Returns float value, or <a href="../-local/get-float-or-default.html#local.Local$getFloatOrDefault(kotlin.String, kotlin.Float)/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-float-or-else.html">getFloatOrElse</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getFloatOrElse</span><span class="symbol">(</span><span class="identifier" id="local.Local$getFloatOrElse(kotlin.String, kotlin.Function0((kotlin.Float)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getFloatOrElse(kotlin.String, kotlin.Function0((kotlin.Float)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a></code>
+<p>Returns float value, or <a href="../-local/get-float-or-else.html#local.Local$getFloatOrElse(kotlin.String, kotlin.Function0((kotlin.Float)))/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-int.html">getInt</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getInt</span><span class="symbol">(</span><span class="identifier" id="local.Local$getInt(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>Returns int value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-int-or-default.html">getIntOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getIntOrDefault</span><span class="symbol">(</span><span class="identifier" id="local.Local$getIntOrDefault(kotlin.String, kotlin.Int)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getIntOrDefault(kotlin.String, kotlin.Int)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Returns int value, or <a href="../-local/get-int-or-default.html#local.Local$getIntOrDefault(kotlin.String, kotlin.Int)/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-int-or-else.html">getIntOrElse</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getIntOrElse</span><span class="symbol">(</span><span class="identifier" id="local.Local$getIntOrElse(kotlin.String, kotlin.Function0((kotlin.Int)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getIntOrElse(kotlin.String, kotlin.Function0((kotlin.Int)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Returns int value, or <a href="../-local/get-int-or-else.html#local.Local$getIntOrElse(kotlin.String, kotlin.Function0((kotlin.Int)))/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-long.html">getLong</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getLong</span><span class="symbol">(</span><span class="identifier" id="local.Local$getLong(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">?</span></code>
+<p>Returns long value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-long-or-default.html">getLongOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getLongOrDefault</span><span class="symbol">(</span><span class="identifier" id="local.Local$getLongOrDefault(kotlin.String, kotlin.Long)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getLongOrDefault(kotlin.String, kotlin.Long)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code>
+<p>Returns Long value, or <a href="../-local/get-long-or-default.html#local.Local$getLongOrDefault(kotlin.String, kotlin.Long)/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-long-or-else.html">getLongOrElse</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getLongOrElse</span><span class="symbol">(</span><span class="identifier" id="local.Local$getLongOrElse(kotlin.String, kotlin.Function0((kotlin.Long)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getLongOrElse(kotlin.String, kotlin.Function0((kotlin.Long)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code>
+<p>Returns Long value, or <a href="../-local/get-long-or-else.html#local.Local$getLongOrElse(kotlin.String, kotlin.Function0((kotlin.Long)))/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-or-default.html">getOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getOrDefault</span><span class="symbol">(</span><span class="identifier" id="local.Local$getOrDefault(kotlin.String, kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getOrDefault(kotlin.String, kotlin.String)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns string value, or <a href="../-local/get-or-default.html#local.Local$getOrDefault(kotlin.String, kotlin.String)/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-or-else.html">getOrElse</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getOrElse</span><span class="symbol">(</span><span class="identifier" id="local.Local$getOrElse(kotlin.String, kotlin.Function0((kotlin.String)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getOrElse(kotlin.String, kotlin.Function0((kotlin.String)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns string value, or <a href="../-local/get-or-else.html#local.Local$getOrElse(kotlin.String, kotlin.Function0((kotlin.String)))/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-short.html">getShort</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getShort</span><span class="symbol">(</span><span class="identifier" id="local.Local$getShort(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a><span class="symbol">?</span></code>
+<p>Returns short value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-short-or-default.html">getShortOrDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getShortOrDefault</span><span class="symbol">(</span><span class="identifier" id="local.Local$getShortOrDefault(kotlin.String, kotlin.Short)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getShortOrDefault(kotlin.String, kotlin.Short)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a></code>
+<p>Returns short value, or <a href="../-local/get-short-or-default.html#local.Local$getShortOrDefault(kotlin.String, kotlin.Short)/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-local/get-short-or-else.html">getShortOrElse</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getShortOrElse</span><span class="symbol">(</span><span class="identifier" id="local.Local$getShortOrElse(kotlin.String, kotlin.Function0((kotlin.Short)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="local.Local$getShortOrElse(kotlin.String, kotlin.Function0((kotlin.Short)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a></code>
+<p>Returns short value, or <a href="../-local/get-short-or-else.html#local.Local$getShortOrElse(kotlin.String, kotlin.Function0((kotlin.Short)))/defaultValue">defaultValue</a> if no such value exists.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
