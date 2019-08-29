@@ -1,7 +1,0 @@
-$dokka.format:html
-$dokka.linkExtension:html
-$dokka.location:local.android.snappydb$bind(local.Local.Companion, com.snappydb.DB, kotlin.Any)local.android.snappydb/local.-local/bind.html
-$dokka.location:local.android.snappydb$of(local.Local.Companion, com.snappydb.DB)local.android.snappydb/local.-local/of.html
-$dokka.location:local.android.snappydb$safeBind(local.Local.Companion, com.snappydb.DB, kotlin.Any)local.android.snappydb/local.-local/safe-bind.html
-$dokka.location:local.android.snappydb$safeOf(local.Local.Companion, com.snappydb.DB)local.android.snappydb/local.-local/safe-of.html
-local.android.snappydb

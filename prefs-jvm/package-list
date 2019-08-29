@@ -1,0 +1,12 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:com.hendraanggrian.prefs.jvm$bind(com.hendraanggrian.prefs.Prefs.Companion, java.io.File, kotlin.Any)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/bind.html
+$dokka.location:com.hendraanggrian.prefs.jvm$bind(com.hendraanggrian.prefs.Prefs.Companion, java.util.prefs.Preferences, kotlin.Any)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/bind.html
+$dokka.location:com.hendraanggrian.prefs.jvm$of(com.hendraanggrian.prefs.Prefs.Companion, java.io.File)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/of.html
+$dokka.location:com.hendraanggrian.prefs.jvm$of(com.hendraanggrian.prefs.Prefs.Companion, java.util.prefs.Preferences)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/of.html
+$dokka.location:com.hendraanggrian.prefs.jvm$safeBind(com.hendraanggrian.prefs.Prefs.Companion, java.io.File, kotlin.Any)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/safe-bind.html
+$dokka.location:com.hendraanggrian.prefs.jvm$safeBind(com.hendraanggrian.prefs.Prefs.Companion, java.util.prefs.Preferences, kotlin.Any)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/safe-bind.html
+$dokka.location:com.hendraanggrian.prefs.jvm$safeOf(com.hendraanggrian.prefs.Prefs.Companion, java.io.File)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/safe-of.html
+$dokka.location:com.hendraanggrian.prefs.jvm$safeOf(com.hendraanggrian.prefs.Prefs.Companion, java.util.prefs.Preferences)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/safe-of.html
+$dokka.location:com.hendraanggrian.prefs.jvm$setDebug(com.hendraanggrian.prefs.Prefs.Companion, kotlin.Boolean)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/set-debug.html
+com.hendraanggrian.prefs.jvm
