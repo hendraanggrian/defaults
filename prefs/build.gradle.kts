@@ -5,7 +5,6 @@ plugins {
     `java-library`
     kotlin("jvm")
     dokka()
-    bintray
     `bintray-release`
 }
 

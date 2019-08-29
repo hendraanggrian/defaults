@@ -1,4 +1,4 @@
-@file:Suppress("unused", "NOTHING_TO_INLINE", "DEPRECATION")
+@file:Suppress("NOTHING_TO_INLINE", "DEPRECATION")
 
 package com.hendraanggrian.prefs.android
 
@@ -12,6 +12,7 @@ import com.hendraanggrian.prefs.PrefsSaver
 import com.hendraanggrian.prefs.WritablePrefs
 import com.hendraanggrian.prefs.internal.PrefsInternal
 
+/** Activates/deactivates debugging mode, which prints messages about preferences binding. */
 fun Prefs.Companion.setDebug(debug: Boolean) =
     PrefsInternal.setDebugInternal(debug) { Log.d(Prefs::class.java.simpleName, it) }
 

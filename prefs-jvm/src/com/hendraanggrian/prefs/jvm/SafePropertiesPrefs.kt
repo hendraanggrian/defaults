@@ -2,8 +2,7 @@ package com.hendraanggrian.prefs.jvm
 
 import java.io.File
 
-internal class SafePropertiesPrefs internal constructor(targetFile: File) :
-    PropertiesPrefs(targetFile) {
+internal class SafePropertiesPrefs(targetFile: File) : PropertiesPrefs(targetFile) {
 
     override fun getBoolean(key: String): Boolean? = get(key)?.toBoolean()
 

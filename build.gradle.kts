@@ -9,7 +9,6 @@ buildscript {
         classpath(dokka())
         classpath(dokka("android"))
         classpath(gitPublish())
-        classpath(bintray())
         classpath(bintrayRelease())
     }
 }

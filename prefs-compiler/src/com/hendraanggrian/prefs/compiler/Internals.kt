@@ -11,7 +11,7 @@ internal const val SOURCE = "source"
 internal const val EDITOR = "editor"
 
 internal val TYPE_PREFS_BINDING: ClassName =
-    classNameOf("com.hendraanggrian.prefs.internal", BindPref.SUFFIX)
+    classNameOf("com.hendraanggrian.prefs.internal", "PrefsBinding")
 internal val TYPE_PREFS: ClassName =
     classNameOf("com.hendraanggrian.prefs", "Prefs")
 internal val TYPE_PREFS_EDITOR: ClassName =

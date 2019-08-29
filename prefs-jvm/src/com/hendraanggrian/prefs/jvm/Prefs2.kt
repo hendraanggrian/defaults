@@ -6,8 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-internal open class Prefs2 internal constructor(private val nativePreferences: Preferences) :
-    EditablePrefs {
+internal open class Prefs2(private val nativePreferences: Preferences) : EditablePrefs {
 
     override fun contains(key: String): Boolean = nativePreferences.nodeExists(key)
 

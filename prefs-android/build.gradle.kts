@@ -2,7 +2,6 @@ plugins {
     android("library")
     kotlin("android")
     dokka("android")
-    bintray
     `bintray-release`
 }
 

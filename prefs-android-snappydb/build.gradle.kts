@@ -2,7 +2,6 @@ plugins {
     android("library")
     kotlin("android")
     dokka("android")
-    bintray
     `bintray-release`
 }
 
@@ -98,7 +97,7 @@ publish {
 
     userOrg = RELEASE_USER
     groupId = RELEASE_GROUP
-    artifactId = "adapter-snappydb"
+    artifactId = "$RELEASE_ARTIFACT-android-snappydb"
     publishVersion = RELEASE_VERSION
     desc = RELEASE_DESC
     website = RELEASE_WEBSITE

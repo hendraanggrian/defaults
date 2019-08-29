@@ -1,4 +1,4 @@
-package com.hendraanggrian.prefs.android.snappydb
+package com.hendraanggrian.prefs.android
 
 import com.snappydb.DB
 

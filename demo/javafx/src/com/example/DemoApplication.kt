@@ -22,6 +22,8 @@ import ktfx.layouts.scene
 import ktfx.layouts.textField
 import org.apache.commons.lang3.SystemUtils
 import java.io.File
+import java.util.prefs.AbstractPreferences
+import java.util.prefs.Preferences
 
 class DemoApplication : Application() {
 

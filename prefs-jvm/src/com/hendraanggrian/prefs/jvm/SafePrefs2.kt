@@ -2,8 +2,7 @@ package com.hendraanggrian.prefs.jvm
 
 import java.util.prefs.Preferences
 
-internal class SafePrefs2 internal constructor(nativePreferences: Preferences) :
-    Prefs2(nativePreferences) {
+internal class SafePrefs2(nativePreferences: Preferences) : Prefs2(nativePreferences) {
 
     override fun getShort(key: String): Short? = get(key)?.toShort()
 
