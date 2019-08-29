@@ -1,7 +1,7 @@
 package com.example.test
 
-import local.BindLocal
+import com.hendraanggrian.prefs.BindPref
 
 class Target2 : Target1() {
-    @BindLocal lateinit var test2: String
+    @BindPref lateinit var test2: String
 }

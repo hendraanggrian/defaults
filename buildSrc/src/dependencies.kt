@@ -46,13 +46,7 @@ fun DependencyHandler.hendraanggrian(
 fun DependencyHandler.apache(repo: String, module: String, version: String) =
     "org.apache.$repo:$module:$version"
 
-fun DependencyHandler.slf4j() = "org.slf4j:slf4j-api:$VERSION_SLF4J"
-
-fun DependencyHandler.testFx(module: String) = "org.testfx:testfx-$module:$VERSION_TESTFX"
-
 fun DependencyHandler.truth() = "com.google.truth:truth:$VERSION_TRUTH"
-
-fun DependencyHandler.shadow() = "com.github.jengelman.gradle.plugins:shadow:$VERSION_SHADOW"
 
 fun DependencyHandler.gitPublish() = "org.ajoberstar:gradle-git-publish:$VERSION_GIT_PUBLISH"
 inline val PluginDependenciesSpec.`git-publish` get() = id("org.ajoberstar.git-publish")

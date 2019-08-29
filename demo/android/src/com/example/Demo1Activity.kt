@@ -9,26 +9,26 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.activity_demo1.*
-import local.BindLocal
-import local.Local
-import local.LocalSaver
-import local.android.bind
+import com.hendraanggrian.prefs.BindPref
+import com.hendraanggrian.prefs.Prefs
+import com.hendraanggrian.prefs.PrefsSaver
+import com.hendraanggrian.prefs.android.bind
 
 class Demo1Activity : AppCompatActivity(), View.OnClickListener {
 
-    @BindLocal("name") @JvmField var name: String? = null
-    @BindLocal("married") @JvmField var married: Boolean = false
-    @BindLocal("int") @JvmField var mInt: Int = 0
-    @BindLocal("long") @JvmField var mLong: Long = 0L
-    @BindLocal("float") @JvmField var mFloat: Float = 0f
+    @BindPref("name") @JvmField var name: String? = null
+    @BindPref("married") @JvmField var married: Boolean = false
+    @BindPref("int") @JvmField var mInt: Int = 0
+    @BindPref("long") @JvmField var mLong: Long = 0L
+    @BindPref("float") @JvmField var mFloat: Float = 0f
 
-    private lateinit var saver: LocalSaver
+    private lateinit var saver: PrefsSaver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo1)
         setSupportActionBar(toolbar)
-        saver = Local.bind(this)
+        saver = Prefs.bind(this)
 
         nameEditText.setText(name)
         marriedEditText.setText(married.toString())

@@ -1,5 +1,10 @@
 package com.example
 
+import com.hendraanggrian.prefs.BindPref
+import com.hendraanggrian.prefs.Prefs
+import com.hendraanggrian.prefs.PrefsSaver
+import com.hendraanggrian.prefs.jvm.safeBind
+import com.hendraanggrian.prefs.jvm.setDebug
 import javafx.application.Application
 import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
@@ -15,11 +20,6 @@ import ktfx.layouts.gridPane
 import ktfx.layouts.label
 import ktfx.layouts.scene
 import ktfx.layouts.textField
-import local.BindLocal
-import local.Local
-import local.LocalSaver
-import local.jvm.safeBind
-import local.jvm.setDebug
 import org.apache.commons.lang3.SystemUtils
 import java.io.File
 
@@ -35,47 +35,50 @@ class DemoApplication : Application() {
     private lateinit var ageField: TextField
     private lateinit var heightField: TextField
 
-    @BindLocal @JvmField var name: String? = null
-    @BindLocal @JvmField var married: Boolean = false
-    @BindLocal @JvmField var age: Int = 0
-    @BindLocal @JvmField var height: Double = 0.0
+    @BindPref @JvmField var name: String? = null
+    @BindPref @JvmField var married: Boolean = false
+    @BindPref @JvmField var age: Int = 0
+    @BindPref @JvmField var height: Double = 0.0
 
-    private lateinit var saver: LocalSaver
+    private lateinit var saver: PrefsSaver
 
     override fun init() {
-        Local.setDebug(true)
-        Local.safeBind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this)
+        Prefs.setDebug(true)
     }
 
-    override fun start(stage: Stage) = stage.apply {
-        scene = scene {
-            gridPane {
-                paddingAll = 10.0
-                gap = 10.0
+    override fun start(stage: Stage) {
+        saver =
+            Prefs.safeBind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this)
+        stage.apply {
+            scene = scene {
+                gridPane {
+                    paddingAll = 10.0
+                    gap = 10.0
 
-                var row = 0
-                label("Name") row row col 0
-                nameField = textField(name.orEmpty()) row row++ col 1
-                label("Married") row row col 0
-                marriedCheck = checkBox { isSelected = married } row row++ col 1
-                label("Age") row row col 0
-                ageField = textField(age.toString()) row row++ col 1
-                label("Height") row row col 0
-                heightField = textField(this@DemoApplication.height.toString()) row row++ col 1
-                buttonBar {
-                    button("Save") {
-                        onAction {
-                            name = nameField.text
-                            married = marriedCheck.isSelected
-                            age = ageField.text.toInt()
-                            this@DemoApplication.height = heightField.text.toDouble()
-                            saver.saveAsync()
+                    var row = 0
+                    label("Name") row row col 0
+                    nameField = textField(name.orEmpty()) row row++ col 1
+                    label("Married") row row col 0
+                    marriedCheck = checkBox { isSelected = married } row row++ col 1
+                    label("Age") row row col 0
+                    ageField = textField(age.toString()) row row++ col 1
+                    label("Height") row row col 0
+                    heightField = textField(this@DemoApplication.height.toString()) row row++ col 1
+                    buttonBar {
+                        button("Save") {
+                            onAction {
+                                name = nameField.text
+                                married = marriedCheck.isSelected
+                                age = ageField.text.toInt()
+                                this@DemoApplication.height = heightField.text.toDouble()
+                                saver.saveAsync()
 
-                            infoAlert("Saved!")
+                                infoAlert("Saved!")
+                            }
                         }
-                    }
-                } row row col 0 colSpans 2
+                    } row row col 0 colSpans 2
+                }
             }
-        }
-    }.show()
+        }.show()
+    }
 }
