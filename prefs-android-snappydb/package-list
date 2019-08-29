@@ -1,7 +1,7 @@
 $dokka.format:html
 $dokka.linkExtension:html
-$dokka.location:com.hendraanggrian.prefs.android.snappydb$bind(com.hendraanggrian.prefs.Prefs.Companion, com.snappydb.DB, kotlin.Any)com.hendraanggrian.prefs.android.snappydb/com.hendraanggrian.prefs.-prefs/bind.html
-$dokka.location:com.hendraanggrian.prefs.android.snappydb$of(com.hendraanggrian.prefs.Prefs.Companion, com.snappydb.DB)com.hendraanggrian.prefs.android.snappydb/com.hendraanggrian.prefs.-prefs/of.html
-$dokka.location:com.hendraanggrian.prefs.android.snappydb$safeBind(com.hendraanggrian.prefs.Prefs.Companion, com.snappydb.DB, kotlin.Any)com.hendraanggrian.prefs.android.snappydb/com.hendraanggrian.prefs.-prefs/safe-bind.html
-$dokka.location:com.hendraanggrian.prefs.android.snappydb$safeOf(com.hendraanggrian.prefs.Prefs.Companion, com.snappydb.DB)com.hendraanggrian.prefs.android.snappydb/com.hendraanggrian.prefs.-prefs/safe-of.html
-com.hendraanggrian.prefs.android.snappydb
+$dokka.location:com.hendraanggrian.prefs.android$bind(com.hendraanggrian.prefs.Prefs.Companion, com.snappydb.DB, kotlin.Any)com.hendraanggrian.prefs.android/com.hendraanggrian.prefs.-prefs/bind.html
+$dokka.location:com.hendraanggrian.prefs.android$of(com.hendraanggrian.prefs.Prefs.Companion, com.snappydb.DB)com.hendraanggrian.prefs.android/com.hendraanggrian.prefs.-prefs/of.html
+$dokka.location:com.hendraanggrian.prefs.android$safeBind(com.hendraanggrian.prefs.Prefs.Companion, com.snappydb.DB, kotlin.Any)com.hendraanggrian.prefs.android/com.hendraanggrian.prefs.-prefs/safe-bind.html
+$dokka.location:com.hendraanggrian.prefs.android$safeOf(com.hendraanggrian.prefs.Prefs.Companion, com.snappydb.DB)com.hendraanggrian.prefs.android/com.hendraanggrian.prefs.-prefs/safe-of.html
+com.hendraanggrian.prefs.android
