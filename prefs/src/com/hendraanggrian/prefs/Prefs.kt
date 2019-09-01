@@ -113,32 +113,32 @@ interface Prefs {
         return defaultValue
     }
 
-    companion object {
-        private lateinit var bindings: MutableMap<Class<*>, Constructor<PrefsSaver>>
-
-        /** Bind fields in target (this) annotated with [BindPref] from this local. */
-        fun bind(source: Prefs, target: Any): PrefsSaver {
-            val targetClass = target.javaClass
-            PrefsInternal.debug("Looking up binding for ${targetClass.name}")
-            val constructor = findBindingConstructor(targetClass)
-            if (constructor == null) {
-                PrefsInternal.debug("${targetClass.name} binding not found, returning empty saver.")
-                return PrefsSaver.EMPTY
-            }
-            try {
-                return constructor.newInstance(target, source)
-            } catch (e: IllegalAccessException) {
-                throw RuntimeException("Unable to invoke $constructor", e)
-            } catch (e: InstantiationException) {
-                throw RuntimeException("Unable to invoke $constructor", e)
-            } catch (e: InvocationTargetException) {
-                when (val cause = e.cause) {
-                    is RuntimeException -> throw cause
-                    is Error -> throw cause
-                    else -> throw RuntimeException("Unable to create binding instance.", cause)
-                }
+    /** Bind fields in target (this) annotated with [BindPref] from this local. */
+    fun bind(target: Any): PrefsSaver {
+        val targetClass = target.javaClass
+        PrefsInternal.debug("Looking up binding for ${targetClass.name}")
+        val constructor = findBindingConstructor(targetClass)
+        if (constructor == null) {
+            PrefsInternal.debug("${targetClass.name} binding not found, returning empty saver.")
+            return PrefsSaver.EMPTY
+        }
+        try {
+            return constructor.newInstance(target, this)
+        } catch (e: IllegalAccessException) {
+            throw RuntimeException("Unable to invoke $constructor", e)
+        } catch (e: InstantiationException) {
+            throw RuntimeException("Unable to invoke $constructor", e)
+        } catch (e: InvocationTargetException) {
+            when (val cause = e.cause) {
+                is RuntimeException -> throw cause
+                is Error -> throw cause
+                else -> throw RuntimeException("Unable to create binding instance.", cause)
             }
         }
+    }
+
+    companion object {
+        private lateinit var bindings: MutableMap<Class<*>, Constructor<PrefsSaver>>
 
         @Suppress("UNCHECKED_CAST")
         private fun findBindingConstructor(cls: Class<*>): Constructor<PrefsSaver>? {

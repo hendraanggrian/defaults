@@ -5,8 +5,16 @@ import com.hendraanggrian.prefs.Prefs
 import com.hendraanggrian.prefs.PrefsEditor
 import com.hendraanggrian.prefs.WritablePrefs
 
-internal open class SharedPrefs(protected val nativePreferences: SharedPreferences) :
+open class SharedPrefs internal constructor(protected val nativePreferences: SharedPreferences) :
     WritablePrefs {
+
+    fun setOnChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
+        nativePreferences.registerOnSharedPreferenceChangeListener(listener)
+    }
+
+    fun removeOnChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
+        nativePreferences.unregisterOnSharedPreferenceChangeListener(listener)
+    }
 
     override fun contains(key: String): Boolean = key in nativePreferences
 

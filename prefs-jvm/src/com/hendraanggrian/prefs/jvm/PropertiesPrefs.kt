@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-internal open class PropertiesPrefs(private val targetFile: File) : EditablePrefs {
+open class PropertiesPrefs internal constructor(private val targetFile: File) : EditablePrefs {
 
     private val nativeProperties: Properties = Properties()
 

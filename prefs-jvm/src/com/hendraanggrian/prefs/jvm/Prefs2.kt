@@ -1,12 +1,60 @@
 package com.hendraanggrian.prefs.jvm
 
 import com.hendraanggrian.prefs.EditablePrefs
+import java.io.OutputStream
+import java.util.prefs.NodeChangeListener
+import java.util.prefs.PreferenceChangeListener
 import java.util.prefs.Preferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-internal open class Prefs2(private val nativePreferences: Preferences) : EditablePrefs {
+open class Prefs2 internal constructor(private val nativePreferences: Preferences) : EditablePrefs {
+
+    val keys: Array<String>
+        get() = nativePreferences.keys()
+
+    val childrenNames: Array<String>
+        get() = nativePreferences.childrenNames()
+
+    val parent: Prefs2
+        get() = Prefs2(nativePreferences.parent())
+
+    fun node(pathName: String): Prefs2 =
+        Prefs2(nativePreferences.node(pathName))
+
+    fun nodeExists(pathName: String): Boolean =
+        nativePreferences.nodeExists(pathName)
+
+    fun removeNode(): Unit =
+        nativePreferences.removeNode()
+
+    val name: String
+        get() = nativePreferences.name()
+
+    val absolutePath: String
+        get() = nativePreferences.absolutePath()
+
+    fun isUserNode(): Boolean =
+        nativePreferences.isUserNode
+
+    fun addPreferenceChangeListener(listener: PreferenceChangeListener): PreferenceChangeListener =
+        listener.also { nativePreferences.addPreferenceChangeListener(it) }
+
+    fun removePreferenceChangeListener(listener: PreferenceChangeListener) =
+        nativePreferences.removePreferenceChangeListener(listener)
+
+    fun addNodeChangeListener(listener: NodeChangeListener): NodeChangeListener =
+        listener.also { nativePreferences.addNodeChangeListener(it) }
+
+    fun removeNodeChangeListener(listener: NodeChangeListener) =
+        nativePreferences.removeNodeChangeListener(listener)
+
+    fun exportNode(stream: OutputStream) =
+        nativePreferences.exportNode(stream)
+
+    fun exportSubtree(stream: OutputStream) =
+        nativePreferences.exportSubtree(stream)
 
     override fun contains(key: String): Boolean = nativePreferences.nodeExists(key)
 

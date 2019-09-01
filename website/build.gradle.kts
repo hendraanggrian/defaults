@@ -26,6 +26,5 @@ val artifacts: List<String>
         RELEASE_ARTIFACT,
         "$RELEASE_ARTIFACT-compiler",
         "$RELEASE_ARTIFACT-jvm",
-        "$RELEASE_ARTIFACT-android",
-        "$RELEASE_ARTIFACT-android-snappydb"
+        "$RELEASE_ARTIFACT-android"
     )

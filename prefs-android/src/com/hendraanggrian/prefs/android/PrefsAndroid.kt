@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE", "DEPRECATION")
-
 package com.hendraanggrian.prefs.android
 
 import android.app.Fragment
@@ -9,63 +7,62 @@ import android.preference.PreferenceManager
 import android.util.Log
 import com.hendraanggrian.prefs.Prefs
 import com.hendraanggrian.prefs.PrefsSaver
-import com.hendraanggrian.prefs.WritablePrefs
 import com.hendraanggrian.prefs.internal.PrefsInternal
 
 /** Activates/deactivates debugging mode, which prints messages about preferences binding. */
 fun Prefs.Companion.setDebug(debug: Boolean) =
     PrefsInternal.setDebugInternal(debug) { Log.d(Prefs::class.java.simpleName, it) }
 
-fun Prefs.Companion.of(source: SharedPreferences): WritablePrefs =
+fun Prefs.Companion.of(source: SharedPreferences): SharedPrefs =
     SharedPrefs(source)
 
-inline fun Prefs.Companion.of(source: Context): WritablePrefs =
+fun Prefs.Companion.of(source: Context): SharedPrefs =
     of(PreferenceManager.getDefaultSharedPreferences(source))
 
-inline fun Prefs.Companion.of(source: Fragment): WritablePrefs =
+fun Prefs.Companion.of(source: Fragment): SharedPrefs =
     of(source.activity)
 
-inline fun Prefs.Companion.of(source: androidx.fragment.app.Fragment): WritablePrefs =
+fun Prefs.Companion.of(source: androidx.fragment.app.Fragment): SharedPrefs =
     of(checkNotNull(source.context) { "Context is not yet attached to this fragment" })
 
-fun Prefs.Companion.safeOf(source: SharedPreferences): WritablePrefs =
+fun Prefs.Companion.safeOf(source: SharedPreferences): SharedPrefs =
     SafeSharedPrefs(source)
 
-inline fun Prefs.Companion.safeOf(source: Context): WritablePrefs =
+fun Prefs.Companion.safeOf(source: Context): SharedPrefs =
     safeOf(PreferenceManager.getDefaultSharedPreferences(source))
 
-inline fun Prefs.Companion.safeOf(source: Fragment): WritablePrefs =
+fun Prefs.Companion.safeOf(source: Fragment): SharedPrefs =
     safeOf(source.activity)
 
-inline fun Prefs.Companion.safeOf(source: androidx.fragment.app.Fragment): WritablePrefs =
+fun Prefs.Companion.safeOf(source: androidx.fragment.app.Fragment): SharedPrefs =
     safeOf(checkNotNull(source.context) { "Context is not yet attached to this fragment" })
 
-inline fun Prefs.Companion.bind(source: SharedPreferences, target: Any): PrefsSaver =
-    bind(of(source), target)
+fun Prefs.Companion.bind(source: SharedPreferences, target: Any): PrefsSaver =
+    of(source).bind(target)
 
-inline fun Prefs.Companion.bind(source: Context, target: Any = source): PrefsSaver =
-    bind(of(source), target)
+fun Prefs.Companion.bind(source: Context, target: Any = source): PrefsSaver =
+    of(source).bind(target)
 
-inline fun Prefs.Companion.bind(source: Fragment, target: Any = this): PrefsSaver =
-    bind(of(source), target)
+fun Prefs.Companion.bind(source: Fragment, target: Any = this): PrefsSaver =
+    of(source).bind(target)
 
-inline fun Prefs.Companion.bind(
+fun Prefs.Companion.bind(
     source: androidx.fragment.app.Fragment,
     target: Any = source
 ): PrefsSaver =
-    bind(of(source), target)
+    of(source).bind(target)
 
-inline fun Prefs.Companion.safeBind(source: SharedPreferences, target: Any): PrefsSaver =
-    bind(safeOf(source), target)
+fun Prefs.Companion.safeBind(source: SharedPreferences, target: Any): PrefsSaver =
+    safeOf(source).bind(target)
 
-inline fun Prefs.Companion.safeBind(source: Context, target: Any = source): PrefsSaver =
-    bind(safeOf(source), target)
+fun Prefs.Companion.safeBind(source: Context, target: Any = source): PrefsSaver =
+    safeOf(source).bind(target)
 
-inline fun Prefs.Companion.safeBind(source: Fragment, target: Any = this): PrefsSaver =
-    bind(safeOf(source), target)
+fun Prefs.Companion.safeBind(source: Fragment, target: Any = this): PrefsSaver =
+    safeOf(source).bind(target)
 
-inline fun Prefs.Companion.safeBind(
+fun Prefs.Companion.safeBind(
     source: androidx.fragment.app.Fragment,
     target: Any = source
 ): PrefsSaver =
-    bind(safeOf(source), target)
+    safeOf(source).bind(target)
