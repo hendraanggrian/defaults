@@ -28,14 +28,14 @@ val ktlint by configurations.registering
 dependencies {
     implementation(kotlin("stdlib", VERSION_KOTLIN))
     implementation(project(":$RELEASE_ARTIFACT-annotations"))
-    implementation(google("auto-common", VERSION_AUTOCOMMON))
-    implementation(google("guava", VERSION_GUAVA))
+    implementation(google("auto", "auto-common", VERSION_AUTOCOMMON))
+    implementation(google("guava", "guava", VERSION_GUAVA))
     implementation(hendraanggrian("javapoet-ktx", VERSION_JAVAPOET_KTX))
 
     compileOnly(files(org.gradle.internal.jvm.Jvm.current().toolsJar))
 
     testImplementation(kotlin("test-junit", VERSION_KOTLIN))
-    testImplementation(google("truth", VERSION_TRUTH))
+    testImplementation(google("truth", "truth", VERSION_TRUTH))
 
     ktlint {
         invoke(ktlint())

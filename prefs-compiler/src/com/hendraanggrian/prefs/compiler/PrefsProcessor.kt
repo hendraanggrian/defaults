@@ -3,10 +3,12 @@ package com.hendraanggrian.prefs.compiler
 import com.google.auto.common.MoreElements
 import com.google.auto.common.MoreTypes
 import com.google.common.collect.LinkedHashMultimap
+import com.hendraanggrian.javapoet.asClassName
 import com.hendraanggrian.javapoet.buildJavaFile
 import com.hendraanggrian.javapoet.classNameOf
-import com.hendraanggrian.javapoet.dsl.MethodContainerScope
+import com.hendraanggrian.javapoet.dsl.MethodSpecContainerScope
 import com.hendraanggrian.prefs.BindPref
+import com.squareup.javapoet.MethodSpec
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.Filer
 import javax.annotation.processing.ProcessingEnvironment
@@ -34,6 +36,7 @@ class PrefsProcessor : AbstractProcessor() {
         _filer = processingEnv.filer
     }
 
+    @Suppress("UnstableApiUsage")
     override fun process(annotations: Set<TypeElement>, roundEnv: RoundEnvironment): Boolean {
         // preparing elements
         val multimap = LinkedHashMultimap.create<TypeElement, Element>()
@@ -46,7 +49,7 @@ class PrefsProcessor : AbstractProcessor() {
 
         // generate classes
         multimap.keySet().map { it to multimap[it] }.forEach { (typeElement, elements) ->
-            val className = classNameOf(typeElement)
+            val className = typeElement.asClassName()
             val packageName = MoreElements.getPackage(typeElement).qualifiedName.toString()
             buildJavaFile(packageName) {
                 comment = "Prefs generated class, do not modify."
@@ -64,8 +67,7 @@ class PrefsProcessor : AbstractProcessor() {
                         superClass = TYPE_PREFS_BINDING
                     }
                     addModifiers(Modifier.PUBLIC)
-                    fields.add(className,
-                        TARGET, Modifier.PUBLIC, Modifier.FINAL)
+                    fields.add(className, TARGET, Modifier.PUBLIC, Modifier.FINAL)
                     methods {
                         addConstructor {
                             addModifiers(Modifier.PUBLIC)
@@ -78,23 +80,12 @@ class PrefsProcessor : AbstractProcessor() {
                                 }
                             }
                             when {
-                                !hasSuperclass -> appendln("super(%L)",
-                                    SOURCE
-                                )
-                                else -> appendln("super(%L, %L)",
-                                    TARGET,
-                                    SOURCE
-                                )
+                                !hasSuperclass -> appendln("super(%L)", SOURCE)
+                                else -> appendln("super(%L, %L)", TARGET, SOURCE)
                             }
-                            appendln("this.%L = %L",
-                                TARGET,
-                                TARGET
-                            )
+                            appendln("this.%L = %L", TARGET, TARGET)
                             elements.forEachValue { field, key ->
-                                appendln(
-                                    "this.$TARGET.%L = get(%L, $TARGET.%L)",
-                                    field, key, field
-                                )
+                                appendln("this.$TARGET.%L = get(%L, $TARGET.%L)", field, key, field)
                             }
                         }
                         addSaveMethod("save", hasSuperclass, elements)
@@ -106,19 +97,17 @@ class PrefsProcessor : AbstractProcessor() {
         return false
     }
 
-    private fun MethodContainerScope.addSaveMethod(
+    private fun MethodSpecContainerScope.addSaveMethod(
         name: String,
         hasSuperclass: Boolean,
         elements: Iterable<Element>
-    ) = name {
+    ): MethodSpec = name {
         addModifiers(Modifier.PUBLIC)
         annotations.add<Override>()
         if (hasSuperclass) {
             appendln("super.$name()")
         }
-        appendln("final %T $EDITOR = getEditor()",
-            TYPE_PREFS_EDITOR
-        )
+        appendln("final %T $EDITOR = getEditor()", TYPE_PREFS_EDITOR)
         elements.forEachValue { field, key ->
             appendln("$EDITOR.set(%L, $TARGET.%L)", key, field)
         }

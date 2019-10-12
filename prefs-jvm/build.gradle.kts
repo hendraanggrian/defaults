@@ -21,7 +21,7 @@ dependencies {
     api(kotlinx("coroutines-core", VERSION_COROUTINES))
 
     testImplementation(kotlin("test-junit", VERSION_KOTLIN))
-    testImplementation(truth())
+    testImplementation(google("truth", "truth", VERSION_TRUTH))
 
     configuration {
         invoke(ktlint())

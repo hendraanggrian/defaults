@@ -51,8 +51,8 @@ class DemoApplication : Application() {
     override fun start(stage: Stage) {
         saver =
             Prefs.safeBind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this)
-        stage.apply {
-            scene = scene {
+        stage.run {
+            scene {
                 gridPane {
                     paddingAll = 10.0
                     gap = 10.0
@@ -74,13 +74,13 @@ class DemoApplication : Application() {
                                 age = ageField.text.toInt()
                                 this@DemoApplication.height = heightField.text.toDouble()
                                 saver.saveAsync()
-
                                 infoAlert("Saved!")
                             }
                         }
                     } row row col 0 colSpans 2
                 }
             }
-        }.show()
+            show()
+        }
     }
 }

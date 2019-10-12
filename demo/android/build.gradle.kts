@@ -57,13 +57,10 @@ dependencies {
     implementation(apache("commons", "commons-lang3", VERSION_COMMONS_LANG))
 
     implementation(androidx("multidex", version = VERSION_MULTIDEX))
-    implementation(androidx("core", "core-ktx", "$VERSION_ANDROIDX-rc02"))
-    implementation(androidx("appcompat", version = "$VERSION_ANDROIDX-rc01"))
-    implementation(androidx("preference", "preference-ktx", version = "$VERSION_ANDROIDX-rc01"))
+    implementation(androidx("core", "core-ktx", VERSION_ANDROIDX))
+    implementation(androidx("appcompat", version = VERSION_ANDROIDX))
+    implementation(androidx("preference", "preference-ktx", version = VERSION_ANDROIDX))
     implementation(androidx("coordinatorlayout", version = "$VERSION_ANDROIDX-beta01"))
-    implementation(androidx("recyclerview", version = "$VERSION_ANDROIDX-beta01"))
-    implementation(material("$VERSION_ANDROIDX-alpha07"))
-
-    testImplementation(kotlin("test-junit", VERSION_KOTLIN))
-    testImplementation(truth())
+    implementation(androidx("recyclerview", version = "$VERSION_ANDROIDX-beta05"))
+    implementation(material("$VERSION_ANDROIDX-beta01"))
 }

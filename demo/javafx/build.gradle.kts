@@ -19,9 +19,6 @@ dependencies {
 
     implementation(hendraanggrian("ktfx", "ktfx", VERSION_KTFX))
     implementation(apache("commons", "commons-lang3", VERSION_COMMONS_LANG))
-
-    testImplementation(kotlin("test-junit", VERSION_KOTLIN))
-    testImplementation(truth())
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

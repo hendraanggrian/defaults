@@ -23,7 +23,7 @@ dependencies {
     compileOnly(androidx("annotation", version = VERSION_ANDROIDX))
 
     testImplementation(kotlin("test-junit", VERSION_KOTLIN))
-    testImplementation(truth())
+    testImplementation(google("truth", "truth", VERSION_TRUTH))
 
     configuration {
         invoke(ktlint())
