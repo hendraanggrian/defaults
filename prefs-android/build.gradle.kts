@@ -28,6 +28,9 @@ android {
             resources.srcDir("tests/src")
         }
     }
+    lintOptions {
+        isCheckTestSources = true
+    }
     libraryVariants.all {
         generateBuildConfigProvider?.configure {
             enabled = false
