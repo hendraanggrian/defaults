@@ -1,4 +1,4 @@
-package com.example.test
+package com.example.prefs.test
 
 import com.hendraanggrian.prefs.BindPref
 

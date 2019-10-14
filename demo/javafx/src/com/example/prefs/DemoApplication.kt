@@ -1,4 +1,4 @@
-package com.example
+package com.example.prefs
 
 import com.hendraanggrian.prefs.BindPref
 import com.hendraanggrian.prefs.Prefs
@@ -22,8 +22,6 @@ import ktfx.layouts.scene
 import ktfx.layouts.textField
 import org.apache.commons.lang3.SystemUtils
 import java.io.File
-import java.util.prefs.AbstractPreferences
-import java.util.prefs.Preferences
 
 class DemoApplication : Application() {
 

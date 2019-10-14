@@ -1,4 +1,4 @@
-package com.example
+package com.example.prefs
 
 import android.content.Intent
 import android.os.Bundle

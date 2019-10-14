@@ -1,4 +1,4 @@
-package com.example
+package com.example.prefs
 
 import android.app.Application
 import com.hendraanggrian.prefs.Prefs

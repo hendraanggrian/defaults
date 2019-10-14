@@ -4,7 +4,7 @@ plugins {
     application
 }
 
-application.mainClassName = "com.example.DemoApplication"
+application.mainClassName = "com.example.prefs.DemoApplication"
 
 sourceSets {
     get("main").java.srcDir("src")

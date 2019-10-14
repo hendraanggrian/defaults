@@ -1,4 +1,4 @@
-package com.example
+package com.example.prefs
 
 import android.os.Bundle
 import android.view.Menu
