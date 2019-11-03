@@ -5,7 +5,7 @@
     <application
         android:name=".DemoApplication"
         android:allowBackup="true"
-        android:label="Prefs Demo"
+        android:label="Prefs"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.example.prefs.MainActivity">
