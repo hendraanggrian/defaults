@@ -21,7 +21,6 @@ import javax.lang.model.type.TypeKind
 import org.jetbrains.annotations.NotNull
 
 class PrefsProcessor : AbstractProcessor() {
-
     private lateinit var _filer: Filer
 
     override fun getSupportedSourceVersion(): SourceVersion =

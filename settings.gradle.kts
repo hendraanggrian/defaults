@@ -1,9 +1,9 @@
-include(RELEASE_ARTIFACT)
-include("$RELEASE_ARTIFACT-annotations")
-include("$RELEASE_ARTIFACT-compiler")
+include("prefs")
+include("prefs-annotations")
+include("prefs-compiler")
 
-include("$RELEASE_ARTIFACT-jvm")
-include("$RELEASE_ARTIFACT-android")
+include("prefs-jvm")
+include("prefs-android")
 
 include("website")
 includeDir("demo")
