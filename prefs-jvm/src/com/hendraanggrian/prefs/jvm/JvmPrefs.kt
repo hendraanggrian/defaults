@@ -7,15 +7,15 @@ package com.hendraanggrian.prefs.jvm
 import com.hendraanggrian.prefs.EditablePrefs
 import com.hendraanggrian.prefs.Prefs
 import com.hendraanggrian.prefs.PrefsSaver
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.io.File
 import java.io.OutputStream
 import java.util.prefs.NodeChangeListener
 import java.util.prefs.PreferenceChangeListener
 import java.util.prefs.Preferences
 import kotlin.reflect.KClass
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * Create a [JvmPrefs] from jvm preferences.

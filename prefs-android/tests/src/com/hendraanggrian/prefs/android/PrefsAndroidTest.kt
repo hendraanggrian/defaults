@@ -14,8 +14,7 @@ import kotlin.test.assertNull
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class PrefsAndroidTest {
-
-    private lateinit var prefs: WritablePrefs
+    private lateinit var prefs: SharedPrefs
 
     @Before
     fun createTest() {

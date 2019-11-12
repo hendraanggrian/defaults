@@ -7,12 +7,12 @@ package com.hendraanggrian.prefs.jvm
 import com.hendraanggrian.prefs.EditablePrefs
 import com.hendraanggrian.prefs.Prefs
 import com.hendraanggrian.prefs.PrefsSaver
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.io.File
 import java.util.Properties
 import java.util.prefs.Preferences
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * Create a [PropertiesPrefs] from file.

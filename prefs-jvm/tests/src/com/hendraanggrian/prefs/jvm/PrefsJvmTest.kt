@@ -4,33 +4,29 @@ import com.hendraanggrian.prefs.Prefs
 import org.junit.Before
 import org.junit.Test
 import java.io.File
-import java.util.prefs.Preferences
 import kotlin.test.assertEquals
 
 class PrefsJvmTest {
-
-    private lateinit var file: File
-    private lateinit var preferences: Preferences
+    private lateinit var propertiesPrefs: PropertiesPrefs
+    private lateinit var jvmPrefs: JvmPrefs
 
     @Before
     fun createTest() {
-        file = File("test.properties").apply { if (exists()) delete() }
-        preferences = Preferences.userRoot().node(Prefs::class.java.canonicalName)
+        propertiesPrefs = Prefs.of(File("test.properties").apply { if (exists()) delete() })
+        jvmPrefs = Prefs.userNode<Prefs>()
     }
 
     @Test
-    fun file() {
-        val prefs = Prefs.of(file)
-        prefs["name"] = "Hendra"
-        prefs.save()
-        assertEquals("Hendra", prefs["name"])
+    fun properties() {
+        propertiesPrefs["name"] = "Hendra"
+        propertiesPrefs.save()
+        assertEquals("Hendra", propertiesPrefs["name"])
     }
 
     @Test
-    fun preferences() {
-        val prefs = Prefs.of(preferences)
-        prefs["name"] = "Hendra"
-        prefs.save()
-        assertEquals("Hendra", prefs["name"])
+    fun jvm() {
+        jvmPrefs["name"] = "Hendra"
+        jvmPrefs.save()
+        assertEquals("Hendra", jvmPrefs["name"])
     }
 }

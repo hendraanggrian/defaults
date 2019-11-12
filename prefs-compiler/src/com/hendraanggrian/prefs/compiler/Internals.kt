@@ -3,7 +3,6 @@ package com.hendraanggrian.prefs.compiler
 import com.google.auto.common.MoreElements
 import com.hendraanggrian.javapoet.classNameOf
 import com.hendraanggrian.prefs.BindPref
-import com.squareup.javapoet.ClassName
 import javax.lang.model.element.TypeElement
 
 internal const val TARGET = "target"
