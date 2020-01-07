@@ -9,15 +9,16 @@ import javafx.application.Application
 import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
 import javafx.stage.Stage
+import ktfx.controls.gap
+import ktfx.controls.paddingAll
 import ktfx.coroutines.onAction
 import ktfx.dialogs.infoAlert
+import ktfx.launchApplication
 import ktfx.layouts.button
 import ktfx.layouts.buttonBar
 import ktfx.layouts.checkBox
-import ktfx.layouts.gap
 import ktfx.layouts.gridPane
 import ktfx.layouts.label
-import ktfx.layouts.paddingAll
 import ktfx.layouts.scene
 import ktfx.layouts.textField
 import org.apache.commons.lang3.SystemUtils
@@ -26,8 +27,7 @@ import java.io.File
 class DemoApplication : Application() {
 
     companion object {
-        @JvmStatic
-        fun main(args: Array<String>) = ktfx.launch<DemoApplication>(*args)
+        @JvmStatic fun main(args: Array<String>) = launchApplication<DemoApplication>(*args)
     }
 
     private lateinit var nameField: TextField
@@ -47,39 +47,22 @@ class DemoApplication : Application() {
     }
 
     override fun start(stage: Stage) {
-        saver = Prefs.safeBind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this)
+        saver =
+            Prefs.safeBind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this)
         stage.run {
             scene {
                 gridPane {
                     paddingAll = 10.0
                     gap = 10.0
-                    label("Name") {
-                        gridAt(0, 1)
-                    }
-                    nameField = textField(name.orEmpty()) {
-                        gridAt(0, 1)
-                    }
-                    label("Married") {
-                        gridAt(1, 0)
-                    }
-                    marriedCheck = checkBox {
-                        gridAt(1, 1)
-                        isSelected = married
-                    }
-                    label("Age") {
-                        gridAt(2, 0)
-                    }
-                    ageField = textField(age.toString()) {
-                        gridAt(2, 1)
-                    }
-                    label("Height") {
-                        gridAt(3, 0)
-                    }
-                    heightField = textField(this@DemoApplication.height.toString()) {
-                        gridAt(3, 1)
-                    }
+                    label("Name") row 0 col 0
+                    nameField = textField(name.orEmpty()) row 0 col 1
+                    label("Married") row 1 col 0
+                    marriedCheck = checkBox { isSelected = married } row 1 col 1
+                    label("Age") row 2 col 0
+                    ageField = textField(age.toString()) row 2 col 1
+                    label("Height") row 3 col 0
+                    heightField = textField(this@DemoApplication.height.toString()) row 3 col 1
                     buttonBar {
-                        gridAt(4, 0, colSpans = 2)
                         button("Save") {
                             onAction {
                                 name = nameField.text
@@ -90,7 +73,7 @@ class DemoApplication : Application() {
                                 infoAlert("Saved!")
                             }
                         }
-                    }
+                    } row 4 col (0 to 2)
                 }
             }
             show()
