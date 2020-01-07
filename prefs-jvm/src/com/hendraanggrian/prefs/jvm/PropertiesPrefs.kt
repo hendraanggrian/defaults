@@ -19,8 +19,7 @@ import kotlinx.coroutines.launch
  *
  * @param file source of this preferences.
  */
-fun Prefs.Companion.of(file: File): PropertiesPrefs =
-    PropertiesPrefs(file)
+fun Prefs.Companion.of(file: File): PropertiesPrefs = PropertiesPrefs(file)
 
 /**
  * Create a [PropertiesPrefs] from file.
@@ -28,8 +27,7 @@ fun Prefs.Companion.of(file: File): PropertiesPrefs =
  *
  * @param file source of this preferences.
  */
-fun Prefs.Companion.safeOf(file: File): PropertiesPrefs =
-    SafePropertiesPrefs(file)
+fun Prefs.Companion.safeOf(file: File): PropertiesPrefs = SafePropertiesPrefs(file)
 
 /**
  * Convenient method to bind [PropertiesPrefs] to target.
@@ -37,8 +35,7 @@ fun Prefs.Companion.safeOf(file: File): PropertiesPrefs =
  * @param file source of this preferences.
  * @param target parent of fields that will be binded to.
  */
-inline fun Prefs.Companion.bind(file: File, target: Any): PrefsSaver =
-    of(file).bind(target)
+inline fun Prefs.Companion.bind(file: File, target: Any): PrefsSaver = of(file).bind(target)
 
 /**
  * Convenient method to bind [PropertiesPrefs] to target.
@@ -47,8 +44,7 @@ inline fun Prefs.Companion.bind(file: File, target: Any): PrefsSaver =
  * @param file source of this preferences.
  * @param target parent of fields that will be binded to.
  */
-inline fun Prefs.Companion.safeBind(file: File, target: Any): PrefsSaver =
-    safeOf(file).bind(target)
+inline fun Prefs.Companion.safeBind(file: File, target: Any): PrefsSaver = safeOf(file).bind(target)
 
 open class PropertiesPrefs internal constructor(private val targetFile: File) : EditablePrefs {
     private val nativeProperties: Properties = Properties()

@@ -22,8 +22,7 @@ import kotlinx.coroutines.launch
  *
  * @param preferences source of this preferences.
  */
-fun Prefs.Companion.of(preferences: Preferences): JvmPrefs =
-    JvmPrefs(preferences)
+fun Prefs.Companion.of(preferences: Preferences): JvmPrefs = JvmPrefs(preferences)
 
 /**
  * Create a [JvmPrefs] from jvm preferences.
@@ -31,8 +30,7 @@ fun Prefs.Companion.of(preferences: Preferences): JvmPrefs =
  *
  * @param preferences source of this preferences.
  */
-fun Prefs.Companion.safeOf(preferences: Preferences): JvmPrefs =
-    SafeJvmPrefs(preferences)
+fun Prefs.Companion.safeOf(preferences: Preferences): JvmPrefs = SafeJvmPrefs(preferences)
 
 /**
  * Create a user root [JvmPrefs] from Kotlin class.
@@ -171,32 +169,23 @@ inline fun Prefs.Companion.safeBind(preferences: Preferences, target: Any): Pref
 
 open class JvmPrefs internal constructor(private val nativePreferences: Preferences) : EditablePrefs {
 
-    val keys: Array<String>
-        get() = nativePreferences.keys()
+    val keys: Array<String> get() = nativePreferences.keys()
 
-    val childrenNames: Array<String>
-        get() = nativePreferences.childrenNames()
+    val childrenNames: Array<String> get() = nativePreferences.childrenNames()
 
-    val parent: JvmPrefs
-        get() = JvmPrefs(nativePreferences.parent())
+    val parent: JvmPrefs get() = JvmPrefs(nativePreferences.parent())
 
-    fun node(pathName: String): JvmPrefs =
-        JvmPrefs(nativePreferences.node(pathName))
+    fun node(pathName: String): JvmPrefs = JvmPrefs(nativePreferences.node(pathName))
 
-    fun nodeExists(pathName: String): Boolean =
-        nativePreferences.nodeExists(pathName)
+    fun nodeExists(pathName: String): Boolean = nativePreferences.nodeExists(pathName)
 
-    fun removeNode(): Unit =
-        nativePreferences.removeNode()
+    fun removeNode(): Unit = nativePreferences.removeNode()
 
-    val name: String
-        get() = nativePreferences.name()
+    val name: String get() = nativePreferences.name()
 
-    val absolutePath: String
-        get() = nativePreferences.absolutePath()
+    val absolutePath: String get() = nativePreferences.absolutePath()
 
-    fun isUserNode(): Boolean =
-        nativePreferences.isUserNode
+    fun isUserNode(): Boolean = nativePreferences.isUserNode
 
     fun addPreferenceChangeListener(listener: PreferenceChangeListener): PreferenceChangeListener =
         listener.also { nativePreferences.addPreferenceChangeListener(it) }
@@ -210,11 +199,9 @@ open class JvmPrefs internal constructor(private val nativePreferences: Preferen
     fun removeNodeChangeListener(listener: NodeChangeListener) =
         nativePreferences.removeNodeChangeListener(listener)
 
-    fun exportNode(stream: OutputStream) =
-        nativePreferences.exportNode(stream)
+    fun exportNode(stream: OutputStream) = nativePreferences.exportNode(stream)
 
-    fun exportSubtree(stream: OutputStream) =
-        nativePreferences.exportSubtree(stream)
+    fun exportSubtree(stream: OutputStream) = nativePreferences.exportSubtree(stream)
 
     override fun contains(key: String): Boolean = nativePreferences.nodeExists(key)
 

@@ -2,7 +2,7 @@ package com.hendraanggrian.prefs
 
 import com.google.common.collect.HashMultimap
 import org.junit.Assert.assertEquals
-import org.junit.Test
+import kotlin.test.Test
 
 class MultimapTest {
 

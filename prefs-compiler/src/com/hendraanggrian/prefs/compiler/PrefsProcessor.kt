@@ -21,10 +21,9 @@ import javax.lang.model.type.TypeKind
 import org.jetbrains.annotations.NotNull
 
 class PrefsProcessor : AbstractProcessor() {
-    private lateinit var _filer: Filer
+    private lateinit var filer: Filer
 
-    override fun getSupportedSourceVersion(): SourceVersion =
-        SourceVersion.latestSupported()
+    override fun getSupportedSourceVersion(): SourceVersion = SourceVersion.latestSupported()
 
     override fun getSupportedAnnotationTypes(): Set<String> =
         setOf(BindPref::class.java.canonicalName)
@@ -32,7 +31,7 @@ class PrefsProcessor : AbstractProcessor() {
     @Synchronized
     override fun init(processingEnv: ProcessingEnvironment) {
         super.init(processingEnv)
-        _filer = processingEnv.filer
+        filer = processingEnv.filer
     }
 
     @Suppress("UnstableApiUsage")
@@ -91,7 +90,7 @@ class PrefsProcessor : AbstractProcessor() {
                         addSaveMethod("saveAsync", hasSuperclass, elements)
                     }
                 }
-            }.writeTo(_filer)
+            }.writeTo(filer)
         }
         return false
     }

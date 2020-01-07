@@ -7,7 +7,6 @@ buildscript {
         classpath(kotlin("gradle-plugin", VERSION_KOTLIN))
         classpath(android())
         classpath(dokka())
-        classpath(dokka("android"))
         classpath(gitPublish())
         classpath(bintrayRelease())
     }

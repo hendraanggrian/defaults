@@ -18,8 +18,7 @@ import com.hendraanggrian.prefs.WritablePrefs
  *
  * @param preferences source of this preferences.
  */
-fun Prefs.Companion.of(preferences: SharedPreferences): SharedPrefs =
-    SharedPrefs(preferences)
+fun Prefs.Companion.of(preferences: SharedPreferences): SharedPrefs = SharedPrefs(preferences)
 
 /**
  * Create a [SharedPrefs] from context.
@@ -34,8 +33,7 @@ fun Prefs.Companion.of(context: Context): SharedPrefs =
  *
  * @param fragment source of this preferences.
  */
-fun Prefs.Companion.of(fragment: Fragment): SharedPrefs =
-    of(fragment.activity)
+fun Prefs.Companion.of(fragment: Fragment): SharedPrefs = of(fragment.activity)
 
 /**
  * Create a [SharedPrefs] from fragment.
@@ -69,8 +67,7 @@ fun Prefs.Companion.safeOf(context: Context): SharedPrefs =
  *
  * @param fragment source of this preferences.
  */
-fun Prefs.Companion.safeOf(fragment: Fragment): SharedPrefs =
-    safeOf(fragment.activity)
+fun Prefs.Companion.safeOf(fragment: Fragment): SharedPrefs = safeOf(fragment.activity)
 
 /**
  * Create a [SharedPrefs] from fragment.

@@ -15,10 +15,8 @@ interface PrefsSaver {
     }
 
     /** Non-blocking save in the background. */
-    @WorkerThread
-    fun save()
+    @WorkerThread fun save()
 
     /** Blocking save. */
-    @AnyThread
-    fun saveAsync()
+    @AnyThread fun saveAsync()
 }
