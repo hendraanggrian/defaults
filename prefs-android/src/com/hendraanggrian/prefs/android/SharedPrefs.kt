@@ -7,154 +7,84 @@ package com.hendraanggrian.prefs.android
 import android.app.Fragment
 import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import androidx.annotation.AnyThread
+import androidx.annotation.WorkerThread
+import androidx.preference.PreferenceManager
+import com.hendraanggrian.prefs.BindPref
+import com.hendraanggrian.prefs.EditablePrefs
 import com.hendraanggrian.prefs.Prefs
-import com.hendraanggrian.prefs.PrefsEditor
-import com.hendraanggrian.prefs.PrefsSaver
-import com.hendraanggrian.prefs.WritablePrefs
 
 /**
- * Create a [SharedPrefs] from shared preferences.
- *
- * @param preferences source of this preferences.
+ * Create a [SharedPrefs] from source [SharedPreferences].
+ * @param source native Android preferences.
+ * @return preferences that reads/writes to [SharedPreferences].
  */
-fun Prefs.Companion.of(preferences: SharedPreferences): SharedPrefs = SharedPrefs(preferences)
+fun Prefs.Companion.of(source: SharedPreferences): SharedPrefs = SharedPrefs(source)
 
 /**
- * Create a [SharedPrefs] from context.
- *
- * @param context source of this preferences.
+ * Create a [SharedPrefs] from source [Context].
+ * @param source application context.
+ * @return preferences that reads/writes to [SharedPreferences].
  */
-fun Prefs.Companion.of(context: Context): SharedPrefs =
-    of(PreferenceManager.getDefaultSharedPreferences(context))
+fun Prefs.Companion.of(source: Context): SharedPrefs =
+    of(PreferenceManager.getDefaultSharedPreferences(source))
 
 /**
- * Create a [SharedPrefs] from fragment.
- *
- * @param fragment source of this preferences.
+ * Create a [SharedPrefs] from source [Fragment].
+ * @param source deprecated fragment.
+ * @return preferences that reads/writes to [SharedPreferences].
  */
-fun Prefs.Companion.of(fragment: Fragment): SharedPrefs = of(fragment.activity)
+fun Prefs.Companion.of(source: Fragment): SharedPrefs = of(source.activity)
 
 /**
- * Create a [SharedPrefs] from fragment.
- *
- * @param fragment source of this preferences.
+ * Create a [SharedPrefs] from source [androidx.fragment.app.Fragment].
+ * @param source support fragment.
+ * @return preferences that reads/writes to [SharedPreferences].
  */
-fun Prefs.Companion.of(fragment: androidx.fragment.app.Fragment): SharedPrefs =
-    of(checkNotNull(fragment.context) { "Context is not yet attached to this fragment" })
+fun Prefs.Companion.of(source: androidx.fragment.app.Fragment): SharedPrefs =
+    of(checkNotNull(source.context) { "Context is not yet attached to this fragment" })
 
 /**
- * Create a [SharedPrefs] from shared preferences.
- * Preferences created from this function will have an automatic value conversion.
- *
- * @param preferences source of this preferences.
+ * Bind fields annotated with [BindPref] from source [SharedPrefs].
+ * @param source native Android preferences.
+ * @param target fields' owner.
+ * @return saver instance to apply changes made to the fields.
+ * @throws RuntimeException when constructor of binding class cannot be found.
  */
-fun Prefs.Companion.safeOf(preferences: SharedPreferences): SharedPrefs =
-    SafeSharedPrefs(preferences)
+inline fun Prefs.Companion.bind(source: SharedPreferences, target: Any): Prefs.Saver =
+    bind(of(source), target)
 
 /**
- * Create a [SharedPrefs] from context.
- * Preferences created from this function will have an automatic value conversion.
- *
- * @param context source of this preferences.
+ * Bind fields annotated with [BindPref] from source [Context].
+ * @param source application context.
+ * @param target fields' owner.
+ * @return saver instance to apply changes made to the fields.
+ * @throws RuntimeException when constructor of binding class cannot be found.
  */
-fun Prefs.Companion.safeOf(context: Context): SharedPrefs =
-    safeOf(PreferenceManager.getDefaultSharedPreferences(context))
+inline fun Prefs.Companion.bind(source: Context, target: Any = source): Prefs.Saver =
+    bind(of(source), target)
 
 /**
- * Create a [SharedPrefs] from fragment.
- * Preferences created from this function will have an automatic value conversion.
- *
- * @param fragment source of this preferences.
+ * Bind fields annotated with [BindPref] from source [Fragment].
+ * @param source deprecated fragment.
+ * @param target fields' owner.
+ * @return saver instance to apply changes made to the fields.
+ * @throws RuntimeException when constructor of binding class cannot be found.
  */
-fun Prefs.Companion.safeOf(fragment: Fragment): SharedPrefs = safeOf(fragment.activity)
+inline fun Prefs.Companion.bind(source: Fragment, target: Any = source): Prefs.Saver =
+    bind(of(source), target)
 
 /**
- * Create a [SharedPrefs] from fragment.
- * Preferences created from this function will have an automatic value conversion.
- *
- * @param fragment source of this preferences.
+ * Bind fields annotated with [BindPref] from source [androidx.fragment.app.Fragment].
+ * @param source a support fragment.
+ * @param target fields' owner.
+ * @return saver instance to apply changes made to the fields.
+ * @throws RuntimeException when constructor of binding class cannot be found.
  */
-fun Prefs.Companion.safeOf(fragment: androidx.fragment.app.Fragment): SharedPrefs =
-    safeOf(checkNotNull(fragment.context) { "Context is not yet attached to this fragment" })
+inline fun Prefs.Companion.bind(source: androidx.fragment.app.Fragment, target: Any = source): Prefs.Saver =
+    bind(of(source), target)
 
-/**
- * Convenient method to bind [SharedPrefs] to target.
- *
- * @param preferences source of this preferences.
- * @param target parent of fields that will be binded to.
- */
-fun Prefs.Companion.bind(preferences: SharedPreferences, target: Any): PrefsSaver =
-    of(preferences).bind(target)
-
-/**
- * Convenient method to bind [SharedPrefs] to target.
- *
- * @param context source of this preferences.
- * @param target parent of fields that will be binded to.
- */
-fun Prefs.Companion.bind(context: Context, target: Any = context): PrefsSaver =
-    of(context).bind(target)
-
-/**
- * Convenient method to bind [SharedPrefs] to target.
- *
- * @param fragment source of this preferences.
- * @param target parent of fields that will be binded to.
- */
-fun Prefs.Companion.bind(fragment: Fragment, target: Any = fragment): PrefsSaver =
-    of(fragment).bind(target)
-
-/**
- * Convenient method to bind [SharedPrefs] to target.
- *
- * @param fragment source of this preferences.
- * @param target parent of fields that will be binded to.
- */
-fun Prefs.Companion.bind(fragment: androidx.fragment.app.Fragment, target: Any = fragment): PrefsSaver =
-    of(fragment).bind(target)
-
-/**
- * Convenient method to bind [SharedPrefs] to target.
- * Preferences created from this function will have an automatic value conversion.
- *
- * @param preferences source of this preferences.
- * @param target parent of fields that will be binded to.
- */
-fun Prefs.Companion.safeBind(preferences: SharedPreferences, target: Any): PrefsSaver =
-    safeOf(preferences).bind(target)
-
-/**
- * Convenient method to bind [SharedPrefs] to target.
- * Preferences created from this function will have an automatic value conversion.
- *
- * @param context source of this preferences.
- * @param target parent of fields that will be binded to.
- */
-fun Prefs.Companion.safeBind(context: Context, target: Any = context): PrefsSaver =
-    safeOf(context).bind(target)
-
-/**
- * Convenient method to bind [SharedPrefs] to target.
- * Preferences created from this function will have an automatic value conversion.
- *
- * @param fragment source of this preferences.
- * @param target parent of fields that will be binded to.
- */
-fun Prefs.Companion.safeBind(fragment: Fragment, target: Any = fragment): PrefsSaver =
-    safeOf(fragment).bind(target)
-
-/**
- * Convenient method to bind [SharedPrefs] to target.
- * Preferences created from this function will have an automatic value conversion.
- *
- * @param fragment source of this preferences.
- * @param target parent of fields that will be binded to.
- */
-fun Prefs.Companion.safeBind(fragment: androidx.fragment.app.Fragment, target: Any = fragment): PrefsSaver =
-    safeOf(fragment).bind(target)
-
-open class SharedPrefs internal constructor(protected val nativePreferences: SharedPreferences) : WritablePrefs {
+class SharedPrefs internal constructor(protected val nativePreferences: SharedPreferences) : EditablePrefs {
 
     fun setOnChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
         nativePreferences.registerOnSharedPreferenceChangeListener(listener)
@@ -192,8 +122,7 @@ open class SharedPrefs internal constructor(protected val nativePreferences: Sha
     override fun getLongOrDefault(key: String, defaultValue: Long): Long =
         nativePreferences.getLong(key, defaultValue)
 
-    override fun getInt(key: String): Int =
-        nativePreferences.getInt(key, 0)
+    override fun getInt(key: String): Int? = nativePreferences.getInt(key, 0)
 
     override fun getIntOrDefault(key: String, defaultValue: Int): Int =
         nativePreferences.getInt(key, defaultValue)
@@ -201,11 +130,10 @@ open class SharedPrefs internal constructor(protected val nativePreferences: Sha
     override fun getShort(key: String): Short? = throw UnsupportedOperationException()
     override fun getByte(key: String): Byte? = throw UnsupportedOperationException()
 
-    override val editor: PrefsEditor
-        get() = Editor(this, nativePreferences.edit())
+    override val editor: Prefs.Editor get() = Editor(this, nativePreferences.edit())
 
     open class Editor(source: Prefs, private val nativeEditor: SharedPreferences.Editor) : Prefs by source,
-        PrefsEditor {
+        Prefs.Editor {
 
         override fun remove(key: String) {
             nativeEditor.remove(key)
@@ -215,7 +143,7 @@ open class SharedPrefs internal constructor(protected val nativePreferences: Sha
             nativeEditor.clear()
         }
 
-        override fun set(key: String, value: String) {
+        override fun set(key: String, value: String?) {
             nativeEditor.putString(key, value)
         }
 
@@ -240,25 +168,19 @@ open class SharedPrefs internal constructor(protected val nativePreferences: Sha
         override fun set(key: String, value: Short): Unit = throw UnsupportedOperationException()
         override fun set(key: String, value: Byte): Unit = throw UnsupportedOperationException()
 
-        override fun save() {
+        /**
+         * When using this from application's main thread, consider using [saveAsync] instead.
+         * Due to its blocking thread nature, it is only ideal to use [save] on small edits
+         * and you want to make sure the edits are changed before going on the next task.
+         */
+        @WorkerThread override fun save() {
             nativeEditor.commit()
         }
 
-        override fun saveAsync() {
-            nativeEditor.apply()
-        }
-    }
-}
-
-internal class SafeSharedPrefs(nativePreferences: SharedPreferences) : SharedPrefs(nativePreferences) {
-    override fun getDouble(key: String): Double? = get(key)?.toDouble()
-    override fun getShort(key: String): Short? = get(key)?.toShort()
-    override fun getByte(key: String): Byte? = get(key)?.toByte()
-    override val editor: PrefsEditor get() = Editor(this, nativePreferences.edit())
-
-    class Editor(source: Prefs, nativeEditor: SharedPreferences.Editor) : SharedPrefs.Editor(source, nativeEditor) {
-        override fun set(key: String, value: Double) = set(key, value.toString())
-        override fun set(key: String, value: Short) = set(key, value.toString())
-        override fun set(key: String, value: Byte) = set(key, value.toString())
+        /**
+         * Saving in background, and thus, it is always preferable on heavy edits
+         * and/or when timing aren't priority.
+         */
+        @AnyThread fun saveAsync() = nativeEditor.apply()
     }
 }

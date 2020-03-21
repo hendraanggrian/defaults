@@ -8,11 +8,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
-import kotlinx.android.synthetic.main.activity_demo1.*
 import com.hendraanggrian.prefs.BindPref
 import com.hendraanggrian.prefs.Prefs
-import com.hendraanggrian.prefs.PrefsSaver
 import com.hendraanggrian.prefs.android.bind
+import kotlinx.android.synthetic.main.activity_demo1.*
 
 class Demo1Activity : AppCompatActivity(), View.OnClickListener {
 
@@ -22,7 +21,7 @@ class Demo1Activity : AppCompatActivity(), View.OnClickListener {
     @BindPref("long") @JvmField var mLong: Long = 0L
     @BindPref("float") @JvmField var mFloat: Float = 0f
 
-    private lateinit var saver: PrefsSaver
+    private lateinit var saver: Prefs.Saver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +42,7 @@ class Demo1Activity : AppCompatActivity(), View.OnClickListener {
         mInt = intEditText.text.toString().toInt()
         mLong = longEditText.text.toString().toLong()
         mFloat = floatEditText.text.toString().toFloat()
-        saver.saveAsync()
+        saver.save()
         Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
     }
 

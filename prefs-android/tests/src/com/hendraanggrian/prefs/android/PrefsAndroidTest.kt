@@ -4,10 +4,9 @@ import androidx.test.InstrumentationRegistry
 import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
 import com.hendraanggrian.prefs.Prefs
-import com.hendraanggrian.prefs.WritablePrefs
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
@@ -16,17 +15,16 @@ import kotlin.test.assertNull
 class PrefsAndroidTest {
     private lateinit var prefs: SharedPrefs
 
-    @Before
-    fun createTest() {
+    @BeforeTest fun createTest() {
+        Prefs.setLogger(Prefs.Logger.AndroidDebug)
         prefs = Prefs.of(InstrumentationRegistry.getContext())
-        prefs.editor { clear() }
+        prefs.edit { clear() }
     }
 
-    @Test
-    fun sharedPreferences() {
+    @Test fun sharedPreferences() {
         assertNull(prefs["name"])
         assertNull(prefs.getInt("age"))
-        prefs.editor {
+        prefs.edit {
             this["name"] = "Hendra"
             this["age"] = 25
         }

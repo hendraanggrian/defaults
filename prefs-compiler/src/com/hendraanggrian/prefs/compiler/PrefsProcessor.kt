@@ -5,10 +5,8 @@ import com.google.auto.common.MoreTypes
 import com.google.common.collect.LinkedHashMultimap
 import com.hendraanggrian.javapoet.asClassName
 import com.hendraanggrian.javapoet.buildJavaFile
-import com.hendraanggrian.javapoet.classNameOf
-import com.hendraanggrian.javapoet.dsl.MethodSpecContainerScope
+import com.hendraanggrian.javapoet.classOf
 import com.hendraanggrian.prefs.BindPref
-import com.squareup.javapoet.MethodSpec
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.Filer
 import javax.annotation.processing.ProcessingEnvironment
@@ -25,11 +23,9 @@ class PrefsProcessor : AbstractProcessor() {
 
     override fun getSupportedSourceVersion(): SourceVersion = SourceVersion.latestSupported()
 
-    override fun getSupportedAnnotationTypes(): Set<String> =
-        setOf(BindPref::class.java.canonicalName)
+    override fun getSupportedAnnotationTypes(): Set<String> = setOf(BindPref::class.java.canonicalName)
 
-    @Synchronized
-    override fun init(processingEnv: ProcessingEnvironment) {
+    @Synchronized override fun init(processingEnv: ProcessingEnvironment) {
         super.init(processingEnv)
         filer = processingEnv.filer
     }
@@ -57,59 +53,44 @@ class PrefsProcessor : AbstractProcessor() {
                     if (superclass.kind != TypeKind.NONE && superclass.kind != TypeKind.VOID) {
                         val measuredClassName = MoreTypes.asTypeElement(superclass).measuredName
                         if (measuredClassName in measuredClassNames) {
-                            superClass = classNameOf(packageName, measuredClassName)
+                            superClass = packageName.classOf(measuredClassName)
                             hasSuperclass = true
                         }
                     }
-                    if (!hasSuperclass) {
-                        superClass = TYPE_PREFS_BINDING
-                    }
+                    if (!hasSuperclass) superClass = PREFS_BINDING
                     addModifiers(Modifier.PUBLIC)
                     fields.add(className, TARGET, Modifier.PUBLIC, Modifier.FINAL)
                     methods {
                         addConstructor {
                             addModifiers(Modifier.PUBLIC)
                             parameters {
-                                TARGET(className) {
-                                    this.annotations.add<NotNull>()
-                                }
-                                SOURCE(TYPE_PREFS) {
-                                    this.annotations.add<NotNull>()
-                                }
+                                SOURCE(PREFS) { this.annotations.add<NotNull>() }
+                                TARGET(className) { this.annotations.add<NotNull>() }
                             }
                             when {
                                 !hasSuperclass -> appendln("super(%L)", SOURCE)
-                                else -> appendln("super(%L, %L)", TARGET, SOURCE)
+                                else -> appendln("super(%L, %L)", SOURCE, TARGET)
                             }
                             appendln("this.%L = %L", TARGET, TARGET)
                             elements.forEachValue { field, key ->
                                 appendln("this.$TARGET.%L = get(%L, $TARGET.%L)", field, key, field)
                             }
                         }
-                        addSaveMethod("save", hasSuperclass, elements)
-                        addSaveMethod("saveAsync", hasSuperclass, elements)
+                        "save" {
+                            addModifiers(Modifier.PUBLIC)
+                            this.annotations.add<Override>()
+                            if (hasSuperclass) appendln("super.save()")
+                            appendln("final %T $EDITOR = getEditor()", PREFS_EDITOR)
+                            elements.forEachValue { field, key ->
+                                appendln("$EDITOR.set(%L, $TARGET.%L)", key, field)
+                            }
+                            appendln("$EDITOR.save()")
+                        }
                     }
                 }
             }.writeTo(filer)
         }
         return false
-    }
-
-    private fun MethodSpecContainerScope.addSaveMethod(
-        name: String,
-        hasSuperclass: Boolean,
-        elements: Iterable<Element>
-    ): MethodSpec = name {
-        addModifiers(Modifier.PUBLIC)
-        annotations.add<Override>()
-        if (hasSuperclass) {
-            appendln("super.$name()")
-        }
-        appendln("final %T $EDITOR = getEditor()", TYPE_PREFS_EDITOR)
-        elements.forEachValue { field, key ->
-            appendln("$EDITOR.set(%L, $TARGET.%L)", key, field)
-        }
-        appendln("$EDITOR.$name()")
     }
 
     private inline fun Iterable<Element>.forEachValue(action: (field: String, key: String) -> Unit) =
