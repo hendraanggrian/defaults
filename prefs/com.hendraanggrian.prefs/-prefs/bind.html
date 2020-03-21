@@ -8,8 +8,18 @@
 <a href="../../index.html">prefs</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.prefs</a>&nbsp;/&nbsp;<a href="index.html">Prefs</a>&nbsp;/&nbsp;<a href="./bind.html">bind</a><br/>
 <br/>
 <h1>bind</h1>
-<a name="com.hendraanggrian.prefs.Prefs$bind(kotlin.Any)"></a>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.Prefs$bind(kotlin.Any)/target">target</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-prefs-saver/index.html"><span class="identifier">PrefsSaver</span></a></code>
-<p>Bind fields in target (this) annotated with <a href="#">BindPref</a> from this local.</p>
+<a name="com.hendraanggrian.prefs.Prefs.Companion$bind(com.hendraanggrian.prefs.Prefs, kotlin.Any)"></a>
+<code><span class="keyword">fun </span><span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.Prefs.Companion$bind(com.hendraanggrian.prefs.Prefs, kotlin.Any)/source">source</span><span class="symbol">:</span>&nbsp;<a href="index.html"><span class="identifier">Prefs</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.Prefs.Companion$bind(com.hendraanggrian.prefs.Prefs, kotlin.Any)/target">target</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Saver</span></code>
+<p>Bind fields annotated with <a href="#">BindPref</a> from source <a href="index.html">Prefs</a>.</p>
+<h3>Parameters</h3>
+<p><a name="source"></a>
+<code>source</code> - preferences.</p>
+<p><a name="target"></a>
+<code>target</code> - fields' owner.</p>
+<h3>Exceptions</h3>
+<p><a name="RuntimeException"></a>
+<code>RuntimeException</code> - when constructor of binding class cannot be found.</p>
+<p><strong>Return</strong><br/>
+saver instance to apply changes made to the fields.</p>
 </BODY>
 </HTML>

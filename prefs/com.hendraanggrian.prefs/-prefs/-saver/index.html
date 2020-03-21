@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Prefs.Saver - prefs</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">prefs</a>&nbsp;/&nbsp;<a href="../../index.html">com.hendraanggrian.prefs</a>&nbsp;/&nbsp;<a href="../index.html">Prefs</a>&nbsp;/&nbsp;<a href="./index.html">Saver</a><br/>
+<br/>
+<h1>Saver</h1>
+<code><span class="keyword">interface </span><span class="identifier">Saver</span></code>
+<p>Interface used for applying changes made in <a href="../-editor/index.html">Editor</a> object.
+When using <a href="../bind.html">bind</a> to inject preferences' values to JVM fields,
+<a href="./index.html">Saver</a> is returned back to save changes made in JVM fields.</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="save.html">save</a></h4>
+</td>
+<td>
+<p>Commit your preferences changes back from <a href="../-editor/index.html">Editor</a> to the <a href="../index.html">Prefs</a> object it is editing.
+This atomically performs the requested modifications, replacing whatever is currently in the <a href="../index.html">Prefs</a>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">save</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
