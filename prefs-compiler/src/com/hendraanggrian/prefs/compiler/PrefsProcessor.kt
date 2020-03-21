@@ -16,7 +16,6 @@ import javax.lang.model.element.Element
 import javax.lang.model.element.Modifier
 import javax.lang.model.element.TypeElement
 import javax.lang.model.type.TypeKind
-import org.jetbrains.annotations.NotNull
 
 class PrefsProcessor : AbstractProcessor() {
     private lateinit var filer: Filer
@@ -47,8 +46,8 @@ class PrefsProcessor : AbstractProcessor() {
             val packageName = MoreElements.getPackage(typeElement).qualifiedName.toString()
             buildJavaFile(packageName) {
                 comment = "Prefs generated class, do not modify."
-                var hasSuperclass = false
                 addClass(typeElement.measuredName) {
+                    var hasSuperclass = false
                     val superclass = typeElement.superclass
                     if (superclass.kind != TypeKind.NONE && superclass.kind != TypeKind.VOID) {
                         val measuredClassName = MoreTypes.asTypeElement(superclass).measuredName
@@ -59,13 +58,13 @@ class PrefsProcessor : AbstractProcessor() {
                     }
                     if (!hasSuperclass) superClass = PREFS_BINDING
                     addModifiers(Modifier.PUBLIC)
-                    fields.add(className, TARGET, Modifier.PUBLIC, Modifier.FINAL)
+                    fields.add(className, TARGET, Modifier.PRIVATE, Modifier.FINAL)
                     methods {
                         addConstructor {
                             addModifiers(Modifier.PUBLIC)
                             parameters {
-                                SOURCE(PREFS) { this.annotations.add<NotNull>() }
-                                TARGET(className) { this.annotations.add<NotNull>() }
+                                add(PREFS, SOURCE, Modifier.FINAL)
+                                add(className, TARGET, Modifier.FINAL)
                             }
                             when {
                                 !hasSuperclass -> appendln("super(%L)", SOURCE)

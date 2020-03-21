@@ -83,8 +83,8 @@ interface Prefs {
             }
             try {
                 binding = cls.classLoader!!
-                    .loadClass(cls.name + BindPref.SUFFIX)
-                    .getConstructor(cls, Prefs::class.java) as Constructor<Saver>
+                    .loadClass("${cls.name}_PrefsBinding")
+                    .getConstructor(Prefs::class.java, cls) as Constructor<Saver>
                 info("HIT: Loaded binding class, caching in weak map.")
             } catch (e: ClassNotFoundException) {
                 val superclass = cls.superclass
@@ -425,15 +425,13 @@ interface Prefs {
 
         /**
          * Commit your preferences changes back from [Editor] to the [Prefs] object it is editing.
-         * This atomically performs the requested modifications,
-         * replacing whatever is currently in the [Prefs].
+         * This atomically performs the requested modifications, replacing whatever is currently in the [Prefs].
          */
         fun save()
     }
 
     /** Interface that determines preferences logging behavior. */
     interface Logger {
-
         companion object {
             /** Logger that prints to [System.out] with type prefix. */
             val System: Logger

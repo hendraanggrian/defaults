@@ -2,7 +2,6 @@ package com.hendraanggrian.prefs.compiler
 
 import com.google.auto.common.MoreElements
 import com.hendraanggrian.javapoet.classOf
-import com.hendraanggrian.prefs.BindPref
 import javax.lang.model.element.TypeElement
 
 internal const val TARGET = "target"
@@ -26,5 +25,5 @@ internal val TypeElement.measuredName: String
         for (i in 1 until enclosings.size) {
             typeName += "$${enclosings[i]}"
         }
-        return "$typeName${BindPref.SUFFIX}"
+        return "${typeName}_PrefsBinding"
     }

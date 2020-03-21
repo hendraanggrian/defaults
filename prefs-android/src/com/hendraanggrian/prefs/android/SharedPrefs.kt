@@ -1,6 +1,6 @@
 @file:JvmMultifileClass
 @file:JvmName("PrefsAndroidKt")
-@file:Suppress("NOTHING_TO_INLINE")
+@file:Suppress("NOTHING_TO_INLINE", "DEPRECATION", "DeprecatedCallableAddReplaceWith")
 
 package com.hendraanggrian.prefs.android
 
@@ -34,6 +34,7 @@ fun Prefs.Companion.of(source: Context): SharedPrefs =
  * @param source deprecated fragment.
  * @return preferences that reads/writes to [SharedPreferences].
  */
+@Deprecated("Use support androidx.fragment.app.Fragment.")
 fun Prefs.Companion.of(source: Fragment): SharedPrefs = of(source.activity)
 
 /**
@@ -71,6 +72,7 @@ inline fun Prefs.Companion.bind(source: Context, target: Any = source): Prefs.Sa
  * @return saver instance to apply changes made to the fields.
  * @throws RuntimeException when constructor of binding class cannot be found.
  */
+@Deprecated("Use support androidx.fragment.app.Fragment.")
 inline fun Prefs.Companion.bind(source: Fragment, target: Any = source): Prefs.Saver =
     bind(of(source), target)
 
@@ -84,7 +86,7 @@ inline fun Prefs.Companion.bind(source: Fragment, target: Any = source): Prefs.S
 inline fun Prefs.Companion.bind(source: androidx.fragment.app.Fragment, target: Any = source): Prefs.Saver =
     bind(of(source), target)
 
-class SharedPrefs internal constructor(protected val nativePreferences: SharedPreferences) : EditablePrefs {
+class SharedPrefs internal constructor(private val nativePreferences: SharedPreferences) : EditablePrefs {
 
     fun setOnChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
         nativePreferences.registerOnSharedPreferenceChangeListener(listener)
@@ -96,45 +98,33 @@ class SharedPrefs internal constructor(protected val nativePreferences: SharedPr
 
     override fun contains(key: String): Boolean = key in nativePreferences
 
-    override fun get(key: String): String? =
-        nativePreferences.getString(key, null)
-
+    override fun get(key: String): String? = nativePreferences.getString(key, null)
     override fun getOrDefault(key: String, defaultValue: String): String =
         nativePreferences.getString(key, defaultValue)!!
 
-    override fun getBoolean(key: String): Boolean? =
-        nativePreferences.getBoolean(key, false)
-
+    override fun getBoolean(key: String): Boolean? = nativePreferences.getBoolean(key, false)
     override fun getBooleanOrDefault(key: String, defaultValue: Boolean): Boolean =
         nativePreferences.getBoolean(key, defaultValue)
 
     override fun getDouble(key: String): Double? = throw UnsupportedOperationException()
 
-    override fun getFloat(key: String): Float? =
-        nativePreferences.getFloat(key, 0f)
-
+    override fun getFloat(key: String): Float? = nativePreferences.getFloat(key, 0f)
     override fun getFloatOrDefault(key: String, defaultValue: Float): Float =
         nativePreferences.getFloat(key, defaultValue)
 
-    override fun getLong(key: String): Long? =
-        nativePreferences.getLong(key, 0L)
-
-    override fun getLongOrDefault(key: String, defaultValue: Long): Long =
-        nativePreferences.getLong(key, defaultValue)
+    override fun getLong(key: String): Long? = nativePreferences.getLong(key, 0L)
+    override fun getLongOrDefault(key: String, defaultValue: Long): Long = nativePreferences.getLong(key, defaultValue)
 
     override fun getInt(key: String): Int? = nativePreferences.getInt(key, 0)
-
     override fun getIntOrDefault(key: String, defaultValue: Int): Int =
         nativePreferences.getInt(key, defaultValue)
 
     override fun getShort(key: String): Short? = throw UnsupportedOperationException()
     override fun getByte(key: String): Byte? = throw UnsupportedOperationException()
 
-    override val editor: Prefs.Editor get() = Editor(this, nativePreferences.edit())
+    override val editor: Prefs.Editor get() = Editor(nativePreferences.edit())
 
-    open class Editor(source: Prefs, private val nativeEditor: SharedPreferences.Editor) : Prefs by source,
-        Prefs.Editor {
-
+    class Editor(private val nativeEditor: SharedPreferences.Editor) : Prefs.Editor {
         override fun remove(key: String) {
             nativeEditor.remove(key)
         }
@@ -169,17 +159,14 @@ class SharedPrefs internal constructor(protected val nativePreferences: SharedPr
         override fun set(key: String, value: Byte): Unit = throw UnsupportedOperationException()
 
         /**
-         * When using this from application's main thread, consider using [saveAsync] instead.
-         * Due to its blocking thread nature, it is only ideal to use [save] on small edits
-         * and you want to make sure the edits are changed before going on the next task.
+         * @see SharedPreferences.Editor.commit
          */
         @WorkerThread override fun save() {
             nativeEditor.commit()
         }
 
         /**
-         * Saving in background, and thus, it is always preferable on heavy edits
-         * and/or when timing aren't priority.
+         * @see SharedPreferences.Editor.apply
          */
         @AnyThread fun saveAsync() = nativeEditor.apply()
     }
