@@ -20,10 +20,7 @@ class Demo2Activity : AppCompatActivity() {
         setContentView(R.layout.activity_demo2)
         setSupportActionBar(toolbar)
         supportFragmentManager.beginTransaction()
-            .add(
-                R.id.viewgroup_example2,
-                SettingsFragment()
-            )
+            .add(R.id.viewgroup_example2, SettingsFragment())
             .commitNow()
     }
 
@@ -44,8 +41,8 @@ class Demo2Activity : AppCompatActivity() {
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             addPreferencesFromResource(R.xml.settings)
-            preferenceName = findPreference<EditTextPreference>("name")!!
-            preferenceMarried = findPreference<SwitchPreferenceCompat>("married")!!
+            preferenceName = findPreference("name")!!
+            preferenceMarried = findPreference("married")!!
             preferenceName.summary = name.orEmpty()
             preferenceName.onPreferenceChangeListener = OnPreferenceChangeListener { _, newValue ->
                 preferenceName.summary = newValue as String

@@ -2,13 +2,12 @@ package com.example.prefs
 
 import android.app.Application
 import com.hendraanggrian.prefs.Prefs
-import com.hendraanggrian.prefs.android.setDebug
+import com.hendraanggrian.prefs.android.Android
 
-@Suppress("unused")
 class DemoApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Prefs.setDebug(true)
+        Prefs.setLogger(Prefs.Logger.Android)
     }
 }

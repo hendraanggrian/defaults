@@ -6,11 +6,15 @@ package com.hendraanggrian.prefs.android
 
 import android.util.Log
 import com.hendraanggrian.prefs.Prefs
-import com.hendraanggrian.prefs.internal.PrefsInternal
 
-/**
- * Activates/deactivates debugging messages about preferences binding.
- * The messages will be printed in Android [Log.d].
- */
-fun Prefs.Companion.setDebug(debug: Boolean) =
-    PrefsInternal.setDebugInternal(debug) { Log.d(Prefs::class.java.simpleName, it) }
+/** Logger that prints to [Log], matching its supported channels. */
+val Prefs.Logger.Companion.Android: Prefs.Logger
+    get() = object : Prefs.Logger {
+        override fun info(message: String) {
+            Log.i(Prefs::class.java.simpleName, message)
+        }
+
+        override fun warn(message: String) {
+            Log.e(Prefs::class.java.simpleName, message)
+        }
+    }

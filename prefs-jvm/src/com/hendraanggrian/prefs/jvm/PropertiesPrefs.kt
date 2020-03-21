@@ -4,49 +4,29 @@
 
 package com.hendraanggrian.prefs.jvm
 
-import com.hendraanggrian.prefs.EditablePrefs
+import com.hendraanggrian.prefs.BindPref
 import com.hendraanggrian.prefs.Prefs
-import com.hendraanggrian.prefs.PrefsSaver
+import com.hendraanggrian.prefs.SimplePrefs
 import java.io.File
 import java.util.Properties
-import java.util.prefs.Preferences
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 /**
- * Create a [PropertiesPrefs] from file.
- *
- * @param file source of this preferences.
+ * Create a [PropertiesPrefs] from source [File].
+ * @param source file containing [Properties] elements.
+ * @return preferences that reads/writes to [Properties].
  */
-fun Prefs.Companion.of(file: File): PropertiesPrefs = PropertiesPrefs(file)
+fun Prefs.Companion.of(source: File): PropertiesPrefs = PropertiesPrefs(source)
 
 /**
- * Create a [PropertiesPrefs] from file.
- * Preferences created from this function will have an automatic value conversion.
- *
- * @param file source of this preferences.
+ * Bind fields annotated with [BindPref] from source [File].
+ * @param source file containing [Properties] elements.
+ * @param target fields' owner.
+ * @return saver instance to apply changes made to the fields.
+ * @throws RuntimeException when constructor of binding class cannot be found.
  */
-fun Prefs.Companion.safeOf(file: File): PropertiesPrefs = SafePropertiesPrefs(file)
+inline fun Prefs.Companion.bind(source: File, target: Any): Prefs.Saver = bind(of(source), target)
 
-/**
- * Convenient method to bind [PropertiesPrefs] to target.
- *
- * @param file source of this preferences.
- * @param target parent of fields that will be binded to.
- */
-inline fun Prefs.Companion.bind(file: File, target: Any): PrefsSaver = of(file).bind(target)
-
-/**
- * Convenient method to bind [PropertiesPrefs] to target.
- * Preferences created from this function will have an automatic value conversion.
- *
- * @param file source of this preferences.
- * @param target parent of fields that will be binded to.
- */
-inline fun Prefs.Companion.safeBind(file: File, target: Any): PrefsSaver = safeOf(file).bind(target)
-
-open class PropertiesPrefs internal constructor(private val targetFile: File) : EditablePrefs {
+class PropertiesPrefs internal constructor(private val targetFile: File) : SimplePrefs {
     private val nativeProperties: Properties = Properties()
 
     init {
@@ -76,7 +56,7 @@ open class PropertiesPrefs internal constructor(private val targetFile: File) : 
 
     override fun clear() = nativeProperties.clear()
 
-    override fun set(key: String, value: String) {
+    override fun set(key: String, value: String?) {
         nativeProperties.setProperty(key, value)
     }
 
@@ -88,22 +68,5 @@ open class PropertiesPrefs internal constructor(private val targetFile: File) : 
     override fun set(key: String, value: Short): Unit = throw UnsupportedOperationException()
     override fun set(key: String, value: Byte): Unit = throw UnsupportedOperationException()
 
-    override fun save() {
-        GlobalScope.launch(Dispatchers.IO) {
-            saveAsync()
-        }
-    }
-
-    override fun saveAsync() {
-        targetFile.outputStream().use {
-            nativeProperties.store(it, null)
-        }
-    }
-}
-
-internal class SafeJvmPrefs(nativePreferences: Preferences) : JvmPrefs(nativePreferences) {
-    override fun getShort(key: String): Short? = get(key)?.toShort()
-    override fun getByte(key: String): Byte? = get(key)?.toByte()
-    override fun set(key: String, value: Short) = set(key, value.toString())
-    override fun set(key: String, value: Byte) = set(key, value.toString())
+    override fun save() = targetFile.outputStream().use { nativeProperties.store(it, null) }
 }

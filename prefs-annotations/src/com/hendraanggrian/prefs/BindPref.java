@@ -6,15 +6,18 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Bind SharedPreferences value to field with this annotation.
- * Key of SharedPreferences entry of which value will be injected to annotated field.
- * If no key is supplied (default behavior), field name will be used as the key.
+ * Bind a preference value to JVM field with this annotation.
+ * Keep in mind that in order to use this feature, `prefs-compiler` must be imported as annotation processor.
  */
 @Retention(RetentionPolicy.CLASS)
 @Target(ElementType.FIELD)
 public @interface BindPref {
 
-    String SUFFIX = "_PrefsBinding";
-
+    /**
+     * Key of the preference which value will be injected into the annotated field.
+     * If no key is supplied (default behavior), field name will be used as the key.
+     *
+     * @return preference key/name.
+     */
     String value() default "";
 }

@@ -1,20 +1,19 @@
 package com.hendraanggrian.prefs.compiler
 
 import com.google.auto.common.MoreElements
-import com.hendraanggrian.javapoet.classNameOf
-import com.hendraanggrian.prefs.BindPref
+import com.hendraanggrian.javapoet.classOf
 import javax.lang.model.element.TypeElement
 
 internal const val TARGET = "target"
 internal const val SOURCE = "source"
 internal const val EDITOR = "editor"
 
-internal val TYPE_PREFS_BINDING = classNameOf("com.hendraanggrian.prefs.internal", "PrefsBinding")
-internal val TYPE_PREFS = classNameOf("com.hendraanggrian.prefs", "Prefs")
-internal val TYPE_PREFS_EDITOR = classNameOf("com.hendraanggrian.prefs", "PrefsEditor")
+internal val PREFS_BINDING = "com.hendraanggrian.prefs.internal".classOf("PrefsBinding")
+internal val PREFS = "com.hendraanggrian.prefs".classOf("Prefs")
+internal val PREFS_EDITOR = PREFS.nestedClass("Editor")
 
 internal val TypeElement.measuredName: String
-    get() {
+    @Suppress("UnstableApiUsage") get() {
         val enclosings = mutableListOf(simpleName.toString())
         var typeElement = this
         while (typeElement.nestingKind.isNested) {
@@ -26,5 +25,5 @@ internal val TypeElement.measuredName: String
         for (i in 1 until enclosings.size) {
             typeName += "$${enclosings[i]}"
         }
-        return "$typeName${BindPref.SUFFIX}"
+        return "${typeName}_PrefsBinding"
     }

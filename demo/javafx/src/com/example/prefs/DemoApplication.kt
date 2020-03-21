@@ -2,15 +2,13 @@ package com.example.prefs
 
 import com.hendraanggrian.prefs.BindPref
 import com.hendraanggrian.prefs.Prefs
-import com.hendraanggrian.prefs.PrefsSaver
-import com.hendraanggrian.prefs.jvm.safeBind
-import com.hendraanggrian.prefs.jvm.setDebug
+import com.hendraanggrian.prefs.jvm.bind
 import javafx.application.Application
 import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
 import javafx.stage.Stage
 import ktfx.controls.gap
-import ktfx.controls.paddingAll
+import ktfx.controls.paddings
 import ktfx.coroutines.onAction
 import ktfx.dialogs.infoAlert
 import ktfx.launchApplication
@@ -36,47 +34,42 @@ class DemoApplication : Application() {
     private lateinit var heightField: TextField
 
     @BindPref @JvmField var name: String? = null
-    @BindPref @JvmField var married: Boolean = false
-    @BindPref @JvmField var age: Int = 0
-    @BindPref @JvmField var height: Double = 0.0
+    @BindPref @JvmField var married: String = "false"
+    @BindPref @JvmField var age: String = "0"
+    @BindPref @JvmField var height: String = "0.0"
 
-    private lateinit var saver: PrefsSaver
+    private lateinit var saver: Prefs.Saver
 
-    override fun init() {
-        Prefs.setDebug(true)
-    }
+    override fun init() = Prefs.setLogger(Prefs.Logger.System)
 
     override fun start(stage: Stage) {
-        saver =
-            Prefs.safeBind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this)
-        stage.run {
-            scene {
-                gridPane {
-                    paddingAll = 10.0
-                    gap = 10.0
-                    label("Name") row 0 col 0
-                    nameField = textField(name.orEmpty()) row 0 col 1
-                    label("Married") row 1 col 0
-                    marriedCheck = checkBox { isSelected = married } row 1 col 1
-                    label("Age") row 2 col 0
-                    ageField = textField(age.toString()) row 2 col 1
-                    label("Height") row 3 col 0
-                    heightField = textField(this@DemoApplication.height.toString()) row 3 col 1
-                    buttonBar {
-                        button("Save") {
-                            onAction {
-                                name = nameField.text
-                                married = marriedCheck.isSelected
-                                age = ageField.text.toInt()
-                                this@DemoApplication.height = heightField.text.toDouble()
-                                saver.saveAsync()
-                                infoAlert("Saved!")
-                            }
+        saver = Prefs.bind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this)
+        stage.scene {
+            gridPane {
+                paddings = 10.0
+                gap = 10.0
+                label("Name") row 0 col 0
+                nameField = textField(name.orEmpty()) row 0 col 1
+                label("Married") row 1 col 0
+                marriedCheck = checkBox { isSelected = married.toBoolean() } row 1 col 1
+                label("Age") row 2 col 0
+                ageField = textField(age) row 2 col 1
+                label("Height") row 3 col 0
+                heightField = textField(this@DemoApplication.height) row 3 col 1
+                buttonBar {
+                    button("Save") {
+                        onAction {
+                            name = nameField.text
+                            married = marriedCheck.isSelected.toString()
+                            age = ageField.text.toString()
+                            this@DemoApplication.height = heightField.text.toString()
+                            saver.save()
+                            infoAlert("Saved!")
                         }
-                    } row 4 col (0 to 2)
-                }
+                    }
+                } row 4 col (0 to 2)
             }
-            show()
         }
+        stage.show()
     }
 }
