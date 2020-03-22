@@ -24,7 +24,7 @@
 <td>
 <p>Interface used for modifying values in a <a href="./index.html">Prefs</a> object.
 All changes you make in an editor are batched,
-and not copied back to the original <a href="./index.html">Prefs</a> until you call <a href="-saver/save.html">save</a> or <a href="#">saveAsync</a>.</p>
+and not copied back to the original <a href="./index.html">Prefs</a> until you call <a href="-saver/save.html">save</a>.</p>
 <code><span class="keyword">interface </span><span class="identifier">Editor</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Saver</span></code></td>
 </tr>
 <tr>
@@ -50,6 +50,14 @@ When using <a href="bind.html">bind</a> to inject preferences' values to JVM fie
 <h3>Functions</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<h4><a href="bind.html">bind</a></h4>
+</td>
+<td>
+<p>Bind fields annotated with <a href="#">BindPref</a> with values from this preferences.</p>
+<code><span class="keyword">open</span> <span class="keyword">infix</span> <span class="keyword">fun </span><span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.Prefs$bind(kotlin.Any)/target">target</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Saver</span></code></td>
+</tr>
 <tr>
 <td>
 <h4><a href="contains.html">contains</a></h4>
@@ -255,14 +263,6 @@ When using <a href="bind.html">bind</a> to inject preferences' values to JVM fie
 <h3>Companion Object Functions</h3>
 <table>
 <tbody>
-<tr>
-<td>
-<h4><a href="bind.html">bind</a></h4>
-</td>
-<td>
-<p>Bind fields annotated with <a href="#">BindPref</a> from source <a href="./index.html">Prefs</a>.</p>
-<code><span class="keyword">fun </span><span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.Prefs.Companion$bind(com.hendraanggrian.prefs.Prefs, kotlin.Any)/source">source</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Prefs</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.Prefs.Companion$bind(com.hendraanggrian.prefs.Prefs, kotlin.Any)/target">target</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Saver</span></code></td>
-</tr>
 <tr>
 <td>
 <h4><a href="set-logger.html">setLogger</a></h4>
