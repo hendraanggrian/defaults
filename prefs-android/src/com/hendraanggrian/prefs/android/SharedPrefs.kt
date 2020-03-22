@@ -35,7 +35,8 @@ fun Prefs.Companion.of(source: Context): SharedPrefs =
  * @return preferences that reads/writes to [SharedPreferences].
  */
 @Deprecated("Use support androidx.fragment.app.Fragment.")
-fun Prefs.Companion.of(source: Fragment): SharedPrefs = of(source.activity)
+fun Prefs.Companion.of(source: Fragment): SharedPrefs =
+    of(source.activity)
 
 /**
  * Create a [SharedPrefs] from source [androidx.fragment.app.Fragment].
@@ -46,45 +47,33 @@ fun Prefs.Companion.of(source: androidx.fragment.app.Fragment): SharedPrefs =
     of(checkNotNull(source.context) { "Context is not yet attached to this fragment" })
 
 /**
- * Bind fields annotated with [BindPref] from source [SharedPrefs].
- * @param source native Android preferences.
- * @param target fields' owner.
- * @return saver instance to apply changes made to the fields.
- * @throws RuntimeException when constructor of binding class cannot be found.
- */
-inline fun Prefs.Companion.bind(source: SharedPreferences, target: Any): Prefs.Saver =
-    bind(of(source), target)
-
-/**
  * Bind fields annotated with [BindPref] from source [Context].
- * @param source application context.
- * @param target fields' owner.
+ * @param source application context and also target fields' owner.
  * @return saver instance to apply changes made to the fields.
  * @throws RuntimeException when constructor of binding class cannot be found.
  */
-inline fun Prefs.Companion.bind(source: Context, target: Any = source): Prefs.Saver =
-    bind(of(source), target)
+inline fun Prefs.Companion.bind(source: Context): Prefs.Saver =
+    of(source).bind(source)
 
 /**
  * Bind fields annotated with [BindPref] from source [Fragment].
- * @param source deprecated fragment.
- * @param target fields' owner.
+ * @param source deprecated fragment and also target fields' owner.
  * @return saver instance to apply changes made to the fields.
  * @throws RuntimeException when constructor of binding class cannot be found.
  */
 @Deprecated("Use support androidx.fragment.app.Fragment.")
-inline fun Prefs.Companion.bind(source: Fragment, target: Any = source): Prefs.Saver =
-    bind(of(source), target)
+fun Prefs.Companion.bind(source: Fragment): Prefs.Saver =
+    of(source).bind(source)
 
 /**
  * Bind fields annotated with [BindPref] from source [androidx.fragment.app.Fragment].
- * @param source a support fragment.
+ * @param source a support fragment and also target fields' owner.
  * @param target fields' owner.
  * @return saver instance to apply changes made to the fields.
  * @throws RuntimeException when constructor of binding class cannot be found.
  */
-inline fun Prefs.Companion.bind(source: androidx.fragment.app.Fragment, target: Any = source): Prefs.Saver =
-    bind(of(source), target)
+inline fun Prefs.Companion.bind(source: androidx.fragment.app.Fragment): Prefs.Saver =
+    of(source).bind(source)
 
 class SharedPrefs internal constructor(private val nativePreferences: SharedPreferences) : EditablePrefs {
 

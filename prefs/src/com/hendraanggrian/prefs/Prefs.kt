@@ -12,10 +12,6 @@ import java.util.WeakHashMap
  */
 interface Prefs {
 
-    /**
-     * To users, this companion object is the starting point to create an instance of [Prefs],
-     * or simply just use the field binding feature without [Prefs] instance.
-     */
     companion object {
         private val EMPTY_SAVER: Saver = object : Saver {
             override fun save() = warn("Prefs.Saver: Saving an empty instance")
@@ -37,36 +33,6 @@ interface Prefs {
 
         internal fun warn(message: String) {
             if (::LOGGER.isInitialized) LOGGER.warn(message)
-        }
-
-        /**
-         * Bind fields annotated with [BindPref] from source [Prefs].
-         * @param source preferences.
-         * @param target fields' owner.
-         * @return saver instance to apply changes made to the fields.
-         * @throws RuntimeException when constructor of binding class cannot be found.
-         */
-        fun bind(source: Prefs, target: Any): Saver {
-            val targetClass = target.javaClass
-            info("Looking up binding for ${targetClass.name}")
-            val constructor = findBindingConstructor(targetClass)
-            if (constructor == null) {
-                info("${targetClass.name} binding not found, returning empty saver.")
-                return EMPTY_SAVER
-            }
-            try {
-                return constructor.newInstance(source, target)
-            } catch (e: IllegalAccessException) {
-                throw RuntimeException("Unable to invoke $constructor", e)
-            } catch (e: InstantiationException) {
-                throw RuntimeException("Unable to invoke $constructor", e)
-            } catch (e: InvocationTargetException) {
-                when (val cause = e.cause) {
-                    is RuntimeException -> throw cause
-                    is Error -> throw cause
-                    else -> throw RuntimeException("Unable to create binding instance.", cause)
-                }
-            }
         }
 
         @Suppress("UNCHECKED_CAST")
@@ -326,6 +292,35 @@ interface Prefs {
     fun getByteOrElse(key: String, defaultValue: () -> Byte): Byte =
         getByteOrDefault(key, defaultValue())
 
+    /**
+     * Bind fields annotated with [BindPref] with values from this preferences.
+     * @param target fields' owner.
+     * @return saver instance to apply changes made to the fields.
+     * @throws RuntimeException when constructor of binding class cannot be found.
+     */
+    fun bind(target: Any): Saver {
+        val targetClass = target.javaClass
+        info("Looking up binding for ${targetClass.name}")
+        val constructor = findBindingConstructor(targetClass)
+        if (constructor == null) {
+            info("${targetClass.name} binding not found, returning empty saver.")
+            return EMPTY_SAVER
+        }
+        try {
+            return constructor.newInstance(this, target)
+        } catch (e: IllegalAccessException) {
+            throw RuntimeException("Unable to invoke $constructor", e)
+        } catch (e: InstantiationException) {
+            throw RuntimeException("Unable to invoke $constructor", e)
+        } catch (e: InvocationTargetException) {
+            when (val cause = e.cause) {
+                is RuntimeException -> throw cause
+                is Error -> throw cause
+                else -> throw RuntimeException("Unable to create binding instance.", cause)
+            }
+        }
+    }
+
     private inline fun <T> findValue(key: String, defaultValue: T, getValue: (key: String) -> T?): T {
         if (key !in this) {
             val value = getValue(key)
@@ -339,7 +334,7 @@ interface Prefs {
     /**
      * Interface used for modifying values in a [Prefs] object.
      * All changes you make in an editor are batched,
-     * and not copied back to the original [Prefs] until you call [save] or [saveAsync].
+     * and not copied back to the original [Prefs] until you call [save].
      */
     interface Editor : Saver {
 

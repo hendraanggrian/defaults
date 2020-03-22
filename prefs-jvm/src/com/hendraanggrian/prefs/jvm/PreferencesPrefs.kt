@@ -4,7 +4,6 @@
 
 package com.hendraanggrian.prefs.jvm
 
-import com.hendraanggrian.prefs.BindPref
 import com.hendraanggrian.prefs.Prefs
 import com.hendraanggrian.prefs.SimplePrefs
 import java.io.OutputStream
@@ -77,15 +76,6 @@ private fun Preferences.nodes(vararg paths: String): Preferences {
     paths.forEach { root = root.node(it) }
     return root
 }
-
-/**
- * Bind fields annotated with [BindPref] from source [Preferences].
- * @param source native JVM preferences.
- * @param target fields' owner.
- * @return saver instance to apply changes made to the fields.
- * @throws RuntimeException when constructor of binding class cannot be found.
- */
-inline fun Prefs.Companion.bind(source: Preferences, target: Any): Prefs.Saver = bind(of(source), target)
 
 class JvmPrefs internal constructor(private val nativePreferences: Preferences) : SimplePrefs {
 
