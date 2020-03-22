@@ -2,7 +2,8 @@ package com.example.prefs
 
 import com.hendraanggrian.prefs.BindPref
 import com.hendraanggrian.prefs.Prefs
-import com.hendraanggrian.prefs.jvm.bind
+import com.hendraanggrian.prefs.bind
+import com.hendraanggrian.prefs.jvm.get
 import javafx.application.Application
 import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
@@ -43,7 +44,7 @@ class DemoApplication : Application() {
     override fun init() = Prefs.setLogger(Prefs.Logger.System)
 
     override fun start(stage: Stage) {
-        saver = Prefs.bind(File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties"), this)
+        saver = Prefs[File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties")].bind(this)
         stage.scene {
             gridPane {
                 paddings = 10.0

@@ -1,16 +1,9 @@
 package com.hendraanggrian.prefs
 
 import com.google.common.truth.Truth.assertThat
-import kotlin.test.BeforeTest
 import kotlin.test.Test
-import kotlin.test.assertFails
 
 class LoggerTest {
-
-    @BeforeTest fun initial() {
-        assertFails { Prefs.LOGGER.info("") }
-        assertFails { Prefs.LOGGER.warn("") }
-    }
 
     @Test fun setLogger() {
         val infos = mutableListOf<String>()

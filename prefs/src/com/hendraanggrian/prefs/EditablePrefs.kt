@@ -1,10 +1,10 @@
 package com.hendraanggrian.prefs
 
 /**
- * Subinterface of [Prefs] that, in contrast to [SimplePrefs],
+ * Subinterface of [ReadablePrefs] that, in contrast to [WritablePrefs],
  * requires an instance of [Prefs.Editor] to modify preferences.
  */
-interface EditablePrefs : Prefs {
+interface EditablePrefs : ReadablePrefs {
 
     /** Returns an editor to modify preferences. */
     val editor: Prefs.Editor

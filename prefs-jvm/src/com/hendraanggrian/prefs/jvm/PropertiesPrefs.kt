@@ -4,9 +4,8 @@
 
 package com.hendraanggrian.prefs.jvm
 
-import com.hendraanggrian.prefs.BindPref
 import com.hendraanggrian.prefs.Prefs
-import com.hendraanggrian.prefs.SimplePrefs
+import com.hendraanggrian.prefs.WritablePrefs
 import java.io.File
 import java.util.Properties
 
@@ -15,24 +14,13 @@ import java.util.Properties
  * @param source file containing [Properties] elements.
  * @return preferences that reads/writes to [Properties].
  */
-fun Prefs.Companion.of(source: File): PropertiesPrefs = PropertiesPrefs(source)
+operator fun Prefs.get(source: File): PropertiesPrefs = PropertiesPrefs(source)
 
-/**
- * Bind fields annotated with [BindPref] from source [File].
- * @param source file containing [Properties] elements.
- * @param target fields' owner.
- * @return saver instance to apply changes made to the fields.
- * @throws RuntimeException when constructor of binding class cannot be found.
- */
-inline fun Prefs.Companion.bind(source: File, target: Any): Prefs.Saver = bind(of(source), target)
-
-class PropertiesPrefs internal constructor(private val targetFile: File) : SimplePrefs {
+class PropertiesPrefs internal constructor(private val targetFile: File) : WritablePrefs {
     private val nativeProperties: Properties = Properties()
 
     init {
-        if (!targetFile.exists()) {
-            targetFile.createNewFile()
-        }
+        if (!targetFile.exists()) targetFile.createNewFile()
         targetFile.inputStream().use { nativeProperties.load(it) }
     }
 

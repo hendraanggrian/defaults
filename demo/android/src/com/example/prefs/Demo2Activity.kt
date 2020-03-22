@@ -8,10 +8,10 @@ import androidx.preference.EditTextPreference
 import androidx.preference.Preference.OnPreferenceChangeListener
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
-import kotlinx.android.synthetic.main.activity_demo2.*
 import com.hendraanggrian.prefs.BindPref
 import com.hendraanggrian.prefs.Prefs
 import com.hendraanggrian.prefs.android.bind
+import kotlinx.android.synthetic.main.activity_demo2.*
 
 class Demo2Activity : AppCompatActivity() {
 

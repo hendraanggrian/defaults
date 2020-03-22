@@ -1,8 +1,8 @@
 package com.hendraanggrian.prefs.android
 
-import androidx.test.InstrumentationRegistry
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import androidx.test.runner.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import com.hendraanggrian.prefs.Prefs
 import org.junit.runner.RunWith
 import kotlin.test.BeforeTest
@@ -16,8 +16,8 @@ class PrefsAndroidTest {
     private lateinit var prefs: SharedPrefs
 
     @BeforeTest fun createTest() {
-        Prefs.setLogger(Prefs.Logger.AndroidDebug)
-        prefs = Prefs.of(InstrumentationRegistry.getContext())
+        Prefs.setLogger(Prefs.Logger.Android)
+        prefs = Prefs[InstrumentationRegistry.getInstrumentation().context]
         prefs.edit { clear() }
     }
 
