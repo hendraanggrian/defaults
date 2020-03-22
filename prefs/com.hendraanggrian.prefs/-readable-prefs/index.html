@@ -1,0 +1,259 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ReadablePrefs - prefs</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">prefs</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.prefs</a>&nbsp;/&nbsp;<a href="./index.html">ReadablePrefs</a><br/>
+<br/>
+<h1>ReadablePrefs</h1>
+<code><span class="keyword">interface </span><span class="identifier">ReadablePrefs</span></code>
+<p>Interface for accessing and modifying preference data on any target platform (JVM, Android, etc.).</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-writable-prefs.html">WritablePrefs</a></p>
+<p><a href="../-editable-prefs/index.html">EditablePrefs</a></p>
+</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="contains.html">contains</a></h4>
+</td>
+<td>
+<p>Checks whether the preferences contains a preference.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">contains</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$contains(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get.html">get</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a> value from the preferences.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$get(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-boolean.html">getBoolean</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> value from the preferences.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getBoolean</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getBoolean(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-boolean-or-default.html">getBooleanOrDefault</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> value from the preferences, providing default value as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getBooleanOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getBooleanOrDefault(kotlin.String, kotlin.Boolean)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getBooleanOrDefault(kotlin.String, kotlin.Boolean)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-boolean-or-else.html">getBooleanOrElse</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> value from the preferences, calling default value getter as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getBooleanOrElse</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getBooleanOrElse(kotlin.String, kotlin.Function0((kotlin.Boolean)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getBooleanOrElse(kotlin.String, kotlin.Function0((kotlin.Boolean)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-byte.html">getByte</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a> value from the preferences.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getByte</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getByte(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-byte-or-default.html">getByteOrDefault</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a> value from the preferences, providing default value as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getByteOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getByteOrDefault(kotlin.String, kotlin.Byte)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getByteOrDefault(kotlin.String, kotlin.Byte)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-byte-or-else.html">getByteOrElse</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a> value from the preferences, calling default value getter as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getByteOrElse</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getByteOrElse(kotlin.String, kotlin.Function0((kotlin.Byte)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getByteOrElse(kotlin.String, kotlin.Function0((kotlin.Byte)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-double.html">getDouble</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a> value from the preferences.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getDouble</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getDouble(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-double-or-default.html">getDoubleOrDefault</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a> value from the preferences, providing default value as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getDoubleOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getDoubleOrDefault(kotlin.String, kotlin.Double)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getDoubleOrDefault(kotlin.String, kotlin.Double)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-double-or-else.html">getDoubleOrElse</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a> value from the preferences, calling default value getter as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getDoubleOrElse</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getDoubleOrElse(kotlin.String, kotlin.Function0((kotlin.Double)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getDoubleOrElse(kotlin.String, kotlin.Function0((kotlin.Double)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-float.html">getFloat</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a> value from the preferences.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getFloat</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getFloat(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-float-or-default.html">getFloatOrDefault</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a> value from the preferences, providing default value as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getFloatOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getFloatOrDefault(kotlin.String, kotlin.Float)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getFloatOrDefault(kotlin.String, kotlin.Float)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-float-or-else.html">getFloatOrElse</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a> value from the preferences, calling default value getter as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getFloatOrElse</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getFloatOrElse(kotlin.String, kotlin.Function0((kotlin.Float)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getFloatOrElse(kotlin.String, kotlin.Function0((kotlin.Float)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-int.html">getInt</a></h4>
+</td>
+<td>
+<p>Retrieve an <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> value from the preferences.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getInt</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getInt(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-int-or-default.html">getIntOrDefault</a></h4>
+</td>
+<td>
+<p>Retrieve an <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> value from the preferences, providing default value as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getIntOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getIntOrDefault(kotlin.String, kotlin.Int)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getIntOrDefault(kotlin.String, kotlin.Int)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-int-or-else.html">getIntOrElse</a></h4>
+</td>
+<td>
+<p>Retrieve an <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> value from the preferences, calling default value getter as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getIntOrElse</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getIntOrElse(kotlin.String, kotlin.Function0((kotlin.Int)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getIntOrElse(kotlin.String, kotlin.Function0((kotlin.Int)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-long.html">getLong</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a> value from the preferences.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getLong</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getLong(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-long-or-default.html">getLongOrDefault</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a> value from the preferences, providing default value as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getLongOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getLongOrDefault(kotlin.String, kotlin.Long)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getLongOrDefault(kotlin.String, kotlin.Long)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-long-or-else.html">getLongOrElse</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a> value from the preferences, calling default value getter as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getLongOrElse</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getLongOrElse(kotlin.String, kotlin.Function0((kotlin.Long)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getLongOrElse(kotlin.String, kotlin.Function0((kotlin.Long)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-or-default.html">getOrDefault</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a> value from the preferences, providing default value as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getOrDefault(kotlin.String, kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getOrDefault(kotlin.String, kotlin.String)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-or-else.html">getOrElse</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a> value from the preferences, calling default value getter as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getOrElse</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getOrElse(kotlin.String, kotlin.Function0((kotlin.String)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getOrElse(kotlin.String, kotlin.Function0((kotlin.String)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-short.html">getShort</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html">Short</a> value from the preferences.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getShort</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getShort(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-short-or-default.html">getShortOrDefault</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html">Short</a> value from the preferences, providing default value as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getShortOrDefault</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getShortOrDefault(kotlin.String, kotlin.Short)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getShortOrDefault(kotlin.String, kotlin.Short)/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-short-or-else.html">getShortOrElse</a></h4>
+</td>
+<td>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html">Short</a> value from the preferences, calling default value getter as a fallback.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getShortOrElse</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getShortOrElse(kotlin.String, kotlin.Function0((kotlin.Short)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefs.ReadablePrefs$getShortOrElse(kotlin.String, kotlin.Function0((kotlin.Short)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../bind.html">bind</a></h4>
+</td>
+<td>
+<p>Bind fields annotated with <a href="#">BindPref</a> with values from this preferences.</p>
+<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">ReadablePrefs</span></a><span class="symbol">.</span><span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs$bind(com.hendraanggrian.prefs.ReadablePrefs, kotlin.Any)/target">target</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Saver</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../-editable-prefs/index.html">EditablePrefs</a></h4>
+</td>
+<td>
+<p>Subinterface of <a href="./index.html">ReadablePrefs</a> that, in contrast to <a href="../-writable-prefs.html">WritablePrefs</a>,
+requires an instance of <a href="../-prefs/-editor/index.html">Prefs.Editor</a> to modify preferences.</p>
+<code><span class="keyword">interface </span><span class="identifier">EditablePrefs</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ReadablePrefs</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-writable-prefs.html">WritablePrefs</a></h4>
+</td>
+<td>
+<p>Subinterface of <a href="./index.html">ReadablePrefs</a> that, in contrast to <a href="../-editable-prefs/index.html">EditablePrefs</a>,
+can directly modify preferences since it also inherits <a href="../-prefs/-editor/index.html">Prefs.Editor</a>.</p>
+<code><span class="keyword">interface </span><span class="identifier">WritablePrefs</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ReadablePrefs</span></a><span class="symbol">, </span><span class="identifier">Editor</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

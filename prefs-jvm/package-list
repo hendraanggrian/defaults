@@ -1,11 +1,11 @@
 $dokka.format:html
 $dokka.linkExtension:html
-$dokka.location:com.hendraanggrian.prefs.jvm$of(com.hendraanggrian.prefs.Prefs.Companion, java.io.File)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/of.html
-$dokka.location:com.hendraanggrian.prefs.jvm$of(com.hendraanggrian.prefs.Prefs.Companion, java.util.prefs.Preferences)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/of.html
-$dokka.location:com.hendraanggrian.prefs.jvm$systemNode(com.hendraanggrian.prefs.Prefs.Companion, kotlin.Array((kotlin.String)))com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/system-node.html
-$dokka.location:com.hendraanggrian.prefs.jvm$systemNode(com.hendraanggrian.prefs.Prefs.Companion, kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/system-node.html
-$dokka.location:com.hendraanggrian.prefs.jvm$systemRoot(com.hendraanggrian.prefs.Prefs.Companion, kotlin.Array((kotlin.String)))com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/system-root.html
-$dokka.location:com.hendraanggrian.prefs.jvm$userNode(com.hendraanggrian.prefs.Prefs.Companion, kotlin.Array((kotlin.String)))com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/user-node.html
-$dokka.location:com.hendraanggrian.prefs.jvm$userNode(com.hendraanggrian.prefs.Prefs.Companion, kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/user-node.html
-$dokka.location:com.hendraanggrian.prefs.jvm$userRoot(com.hendraanggrian.prefs.Prefs.Companion, kotlin.Array((kotlin.String)))com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/user-root.html
+$dokka.location:com.hendraanggrian.prefs.jvm$get(com.hendraanggrian.prefs.Prefs, java.io.File)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/get.html
+$dokka.location:com.hendraanggrian.prefs.jvm$get(com.hendraanggrian.prefs.Prefs, java.util.prefs.Preferences)com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/get.html
+$dokka.location:com.hendraanggrian.prefs.jvm$systemNode(com.hendraanggrian.prefs.Prefs, kotlin.Array((kotlin.String)))com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/system-node.html
+$dokka.location:com.hendraanggrian.prefs.jvm$systemNode(com.hendraanggrian.prefs.Prefs, kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/system-node.html
+$dokka.location:com.hendraanggrian.prefs.jvm$systemRoot(com.hendraanggrian.prefs.Prefs, kotlin.Array((kotlin.String)))com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/system-root.html
+$dokka.location:com.hendraanggrian.prefs.jvm$userNode(com.hendraanggrian.prefs.Prefs, kotlin.Array((kotlin.String)))com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/user-node.html
+$dokka.location:com.hendraanggrian.prefs.jvm$userNode(com.hendraanggrian.prefs.Prefs, kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/user-node.html
+$dokka.location:com.hendraanggrian.prefs.jvm$userRoot(com.hendraanggrian.prefs.Prefs, kotlin.Array((kotlin.String)))com.hendraanggrian.prefs.jvm/com.hendraanggrian.prefs.-prefs/user-root.html
 com.hendraanggrian.prefs.jvm

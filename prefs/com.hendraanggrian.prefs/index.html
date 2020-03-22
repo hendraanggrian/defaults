@@ -16,26 +16,47 @@
 <h4><a href="-editable-prefs/index.html">EditablePrefs</a></h4>
 </td>
 <td>
-<p>Subinterface of <a href="-prefs/index.html">Prefs</a> that, in contrast to <a href="-simple-prefs.html">SimplePrefs</a>,
+<p>Subinterface of <a href="-readable-prefs/index.html">ReadablePrefs</a> that, in contrast to <a href="-writable-prefs.html">WritablePrefs</a>,
 requires an instance of <a href="-prefs/-editor/index.html">Prefs.Editor</a> to modify preferences.</p>
-<code><span class="keyword">interface </span><span class="identifier">EditablePrefs</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-prefs/index.html"><span class="identifier">Prefs</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">EditablePrefs</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-readable-prefs/index.html"><span class="identifier">ReadablePrefs</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="-prefs/index.html">Prefs</a></h4>
 </td>
 <td>
-<p>Interface for accessing and modifying preference data on any target platform (JVM, Android, etc.).</p>
-<code><span class="keyword">interface </span><span class="identifier">Prefs</span></code></td>
+<p>Create an instance of <a href="-writable-prefs.html">WritablePrefs</a> or <a href="-editable-prefs/index.html">EditablePrefs</a> and bind its values to JVM fields with this object.</p>
+<code><span class="keyword">object </span><span class="identifier">Prefs</span></code></td>
 </tr>
 <tr>
 <td>
-<h4><a href="-simple-prefs.html">SimplePrefs</a></h4>
+<h4><a href="-readable-prefs/index.html">ReadablePrefs</a></h4>
 </td>
 <td>
-<p>Subinterface of <a href="-prefs/index.html">Prefs</a> that, in contrast to <a href="-editable-prefs/index.html">EditablePrefs</a>,
+<p>Interface for accessing and modifying preference data on any target platform (JVM, Android, etc.).</p>
+<code><span class="keyword">interface </span><span class="identifier">ReadablePrefs</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-writable-prefs.html">WritablePrefs</a></h4>
+</td>
+<td>
+<p>Subinterface of <a href="-readable-prefs/index.html">ReadablePrefs</a> that, in contrast to <a href="-editable-prefs/index.html">EditablePrefs</a>,
 can directly modify preferences since it also inherits <a href="-prefs/-editor/index.html">Prefs.Editor</a>.</p>
-<code><span class="keyword">interface </span><span class="identifier">SimplePrefs</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-prefs/index.html"><span class="identifier">Prefs</span></a><span class="symbol">, </span><span class="identifier">Editor</span></code></td>
+<code><span class="keyword">interface </span><span class="identifier">WritablePrefs</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-readable-prefs/index.html"><span class="identifier">ReadablePrefs</span></a><span class="symbol">, </span><span class="identifier">Editor</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="bind.html">bind</a></h4>
+</td>
+<td>
+<p>Bind fields annotated with <a href="#">BindPref</a> with values from this preferences.</p>
+<code><span class="keyword">fun </span><a href="-readable-prefs/index.html"><span class="identifier">ReadablePrefs</span></a><span class="symbol">.</span><span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs$bind(com.hendraanggrian.prefs.ReadablePrefs, kotlin.Any)/target">target</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Saver</span></code></td>
 </tr>
 </tbody>
 </table>

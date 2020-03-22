@@ -8,8 +8,8 @@
 <a href="../../index.html">prefs</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.prefs</a>&nbsp;/&nbsp;<a href="./index.html">EditablePrefs</a><br/>
 <br/>
 <h1>EditablePrefs</h1>
-<code><span class="keyword">interface </span><span class="identifier">EditablePrefs</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-prefs/index.html"><span class="identifier">Prefs</span></a></code>
-<p>Subinterface of <a href="../-prefs/index.html">Prefs</a> that, in contrast to <a href="../-simple-prefs.html">SimplePrefs</a>,
+<code><span class="keyword">interface </span><span class="identifier">EditablePrefs</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-readable-prefs/index.html"><span class="identifier">ReadablePrefs</span></a></code>
+<p>Subinterface of <a href="../-readable-prefs/index.html">ReadablePrefs</a> that, in contrast to <a href="../-writable-prefs.html">WritablePrefs</a>,
 requires an instance of <a href="../-prefs/-editor/index.html">Prefs.Editor</a> to modify preferences.</p>
 <h3>Properties</h3>
 <table>
@@ -34,6 +34,19 @@ requires an instance of <a href="../-prefs/-editor/index.html">Prefs.Editor</a> 
 <td>
 <p>Convenient method to open an editor and apply changes in dsl.</p>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">edit</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.EditablePrefs$edit(kotlin.Function1((com.hendraanggrian.prefs.Prefs.Editor, kotlin.Unit)))/editAction">editAction</span><span class="symbol">:</span>&nbsp;<span class="identifier">Editor</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../bind.html">bind</a></h4>
+</td>
+<td>
+<p>Bind fields annotated with <a href="#">BindPref</a> with values from this preferences.</p>
+<code><span class="keyword">fun </span><a href="../-readable-prefs/index.html"><span class="identifier">ReadablePrefs</span></a><span class="symbol">.</span><span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs$bind(com.hendraanggrian.prefs.ReadablePrefs, kotlin.Any)/target">target</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Saver</span></code></td>
 </tr>
 </tbody>
 </table>
