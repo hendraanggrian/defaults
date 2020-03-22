@@ -5,7 +5,7 @@
 package com.hendraanggrian.prefs.jvm
 
 import com.hendraanggrian.prefs.Prefs
-import com.hendraanggrian.prefs.SimplePrefs
+import com.hendraanggrian.prefs.WritablePrefs
 import java.io.OutputStream
 import java.util.prefs.NodeChangeListener
 import java.util.prefs.PreferenceChangeListener
@@ -17,7 +17,7 @@ import kotlin.reflect.KClass
  * @param source native JVM preferences.
  * @return preferences that reads/writes to [Preferences].
  */
-fun Prefs.Companion.of(source: Preferences): JvmPrefs = JvmPrefs(source)
+operator fun Prefs.get(source: Preferences): JvmPrefs = JvmPrefs(source)
 
 /**
  * Create a user root [JvmPrefs] from Kotlin class.
@@ -25,7 +25,7 @@ fun Prefs.Companion.of(source: Preferences): JvmPrefs = JvmPrefs(source)
  * @param paths path to specific children node, or empty for root.
  * @return preferences that reads/writes to [Preferences].
  */
-fun Prefs.Companion.userNode(type: KClass<*>, vararg paths: String): JvmPrefs =
+fun Prefs.userNode(type: KClass<*>, vararg paths: String): JvmPrefs =
     JvmPrefs(Preferences.userNodeForPackage(type.java).nodes(*paths))
 
 /**
@@ -34,7 +34,7 @@ fun Prefs.Companion.userNode(type: KClass<*>, vararg paths: String): JvmPrefs =
  * @param paths path to specific children node, or empty for root.
  * @return preferences that reads/writes to [Preferences].
  */
-inline fun <reified T> Prefs.Companion.userNode(vararg paths: String): JvmPrefs =
+inline fun <reified T> Prefs.userNode(vararg paths: String): JvmPrefs =
     userNode(T::class, *paths)
 
 /**
@@ -43,7 +43,7 @@ inline fun <reified T> Prefs.Companion.userNode(vararg paths: String): JvmPrefs 
  * @param paths path to specific children node, or empty for root.
  * @return preferences that reads/writes to [Preferences].
  */
-fun Prefs.Companion.systemNode(type: KClass<*>, vararg paths: String): JvmPrefs =
+fun Prefs.systemNode(type: KClass<*>, vararg paths: String): JvmPrefs =
     JvmPrefs(Preferences.systemNodeForPackage(type.java).nodes(*paths))
 
 /**
@@ -52,7 +52,7 @@ fun Prefs.Companion.systemNode(type: KClass<*>, vararg paths: String): JvmPrefs 
  * @param paths path to specific children node, or empty for root.
  * @return preferences that reads/writes to [Preferences].
  */
-inline fun <reified T> Prefs.Companion.systemNode(vararg paths: String): JvmPrefs =
+inline fun <reified T> Prefs.systemNode(vararg paths: String): JvmPrefs =
     systemNode(T::class, *paths)
 
 /**
@@ -60,7 +60,7 @@ inline fun <reified T> Prefs.Companion.systemNode(vararg paths: String): JvmPref
  * @param paths path to specific children node, or empty for root.
  * @return preferences that reads/writes to [Preferences].
  */
-fun Prefs.Companion.userRoot(vararg paths: String): JvmPrefs =
+fun Prefs.userRoot(vararg paths: String): JvmPrefs =
     JvmPrefs(Preferences.userRoot().nodes(*paths))
 
 /**
@@ -68,16 +68,16 @@ fun Prefs.Companion.userRoot(vararg paths: String): JvmPrefs =
  * @param paths path to specific children node, or empty for root.
  * @return preferences that reads/writes to [Preferences].
  */
-fun Prefs.Companion.systemRoot(vararg paths: String): JvmPrefs =
+fun Prefs.systemRoot(vararg paths: String): JvmPrefs =
     JvmPrefs(Preferences.systemRoot().nodes(*paths))
 
-private fun Preferences.nodes(vararg paths: String): Preferences {
+private inline fun Preferences.nodes(vararg paths: String): Preferences {
     var root = this
     paths.forEach { root = root.node(it) }
     return root
 }
 
-class JvmPrefs internal constructor(private val nativePreferences: Preferences) : SimplePrefs {
+class JvmPrefs internal constructor(private val nativePreferences: Preferences) : WritablePrefs {
 
     val keys: Array<String> get() = nativePreferences.keys()
 

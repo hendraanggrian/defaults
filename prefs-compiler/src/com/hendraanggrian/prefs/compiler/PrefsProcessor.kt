@@ -63,7 +63,7 @@ class PrefsProcessor : AbstractProcessor() {
                         addConstructor {
                             addModifiers(Modifier.PUBLIC)
                             parameters {
-                                add(PREFS, SOURCE, Modifier.FINAL)
+                                add(READABLE_PREFS, SOURCE, Modifier.FINAL)
                                 add(className, TARGET, Modifier.FINAL)
                             }
                             when {

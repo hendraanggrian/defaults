@@ -1,6 +1,7 @@
 package com.hendraanggrian.prefs.jvm
 
 import com.hendraanggrian.prefs.Prefs
+import com.hendraanggrian.prefs.ReadablePrefs
 import java.io.File
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -12,8 +13,8 @@ class PrefsJvmTest {
 
     @BeforeTest fun createTest() {
         Prefs.setLogger(Prefs.Logger.System)
-        propertiesPrefs = Prefs.of(File("test.properties").apply { if (exists()) delete() })
-        jvmPrefs = Prefs.userNode<Prefs>()
+        propertiesPrefs = Prefs[File("test.properties").apply { if (exists()) delete() }]
+        jvmPrefs = Prefs.userNode<ReadablePrefs>()
     }
 
     @Test fun properties() {

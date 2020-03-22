@@ -5,7 +5,7 @@
 package com.hendraanggrian.prefs.jvm
 
 import com.hendraanggrian.prefs.Prefs
-import com.hendraanggrian.prefs.SimplePrefs
+import com.hendraanggrian.prefs.WritablePrefs
 import java.io.File
 import java.util.Properties
 
@@ -14,9 +14,9 @@ import java.util.Properties
  * @param source file containing [Properties] elements.
  * @return preferences that reads/writes to [Properties].
  */
-fun Prefs.Companion.of(source: File): PropertiesPrefs = PropertiesPrefs(source)
+operator fun Prefs.get(source: File): PropertiesPrefs = PropertiesPrefs(source)
 
-class PropertiesPrefs internal constructor(private val targetFile: File) : SimplePrefs {
+class PropertiesPrefs internal constructor(private val targetFile: File) : WritablePrefs {
     private val nativeProperties: Properties = Properties()
 
     init {

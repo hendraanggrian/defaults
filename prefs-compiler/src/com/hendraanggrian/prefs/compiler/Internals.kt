@@ -9,8 +9,8 @@ internal const val SOURCE = "source"
 internal const val EDITOR = "editor"
 
 internal val PREFS_BINDING = "com.hendraanggrian.prefs.internal".classOf("PrefsBinding")
-internal val PREFS = "com.hendraanggrian.prefs".classOf("Prefs")
-internal val PREFS_EDITOR = PREFS.nestedClass("Editor")
+internal val READABLE_PREFS = "com.hendraanggrian.prefs".classOf("ReadablePrefs")
+internal val PREFS_EDITOR = "com.hendraanggrian.prefs".classOf("Prefs").nestedClass("Editor")
 
 internal val TypeElement.measuredName: String
     @Suppress("UnstableApiUsage") get() {

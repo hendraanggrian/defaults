@@ -48,13 +48,14 @@ dependencies {
     }
 
     testImplementation(kotlin("test-junit", VERSION_KOTLIN))
-    testImplementation(google("truth", "truth", VERSION_TRUTH))
-    androidTestImplementation(google("truth", "truth", VERSION_TRUTH))
     androidTestImplementation(kotlin("stdlib", VERSION_KOTLIN))
     androidTestImplementation(kotlin("test", VERSION_KOTLIN))
+    androidTestImplementation(androidx("test", "core-ktx", VERSION_ANDROIDX_TEST))
+    androidTestImplementation(androidx("test", "runner", VERSION_ANDROIDX_TEST))
+    androidTestImplementation(androidx("test", "rules", VERSION_ANDROIDX_TEST))
+    androidTestImplementation(androidx("test.ext", "junit-ktx", VERSION_ANDROIDX_JUNIT))
+    androidTestImplementation(androidx("test.ext", "truth", VERSION_ANDROIDX_TRUTH))
     androidTestImplementation(androidx("test.espresso", "espresso-core", VERSION_ESPRESSO))
-    androidTestImplementation(androidx("test", "runner", VERSION_RUNNER))
-    androidTestImplementation(androidx("test", "rules", VERSION_RULES))
 
     configuration {
         invoke(ktlint())
