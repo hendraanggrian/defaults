@@ -8,9 +8,12 @@
 <a href="../../index.html">prefs</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.prefs</a>&nbsp;/&nbsp;<a href="./index.html">EditablePrefs</a><br/>
 <br/>
 <h1>EditablePrefs</h1>
-<code><span class="keyword">interface </span><span class="identifier">EditablePrefs</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-readable-prefs/index.html"><span class="identifier">ReadablePrefs</span></a></code>
+<code><span class="keyword">interface </span><span class="identifier">EditablePrefs</span><span class="symbol">&lt;</span><span class="identifier">E</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Editor</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-readable-prefs/index.html"><span class="identifier">ReadablePrefs</span></a></code>
 <p>Subinterface of <a href="../-readable-prefs/index.html">ReadablePrefs</a> that, in contrast to <a href="../-writable-prefs.html">WritablePrefs</a>,
 requires an instance of <a href="../-prefs/-editor/index.html">Prefs.Editor</a> to modify preferences.</p>
+<h3>Parameters</h3>
+<p><a name="E"></a>
+<code>E</code> - editor of this preferences.</p>
 <h3>Properties</h3>
 <table>
 <tbody>
@@ -20,7 +23,7 @@ requires an instance of <a href="../-prefs/-editor/index.html">Prefs.Editor</a> 
 </td>
 <td>
 <p>Returns an editor to modify preferences.</p>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">editor</span><span class="symbol">: </span><span class="identifier">Editor</span></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">editor</span><span class="symbol">: </span><span class="identifier">E</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -33,7 +36,7 @@ requires an instance of <a href="../-prefs/-editor/index.html">Prefs.Editor</a> 
 </td>
 <td>
 <p>Convenient method to open an editor and apply changes in dsl.</p>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">edit</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.EditablePrefs$edit(kotlin.Function1((com.hendraanggrian.prefs.Prefs.Editor, kotlin.Unit)))/editAction">editAction</span><span class="symbol">:</span>&nbsp;<span class="identifier">Editor</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">edit</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.EditablePrefs$edit(kotlin.Function1((com.hendraanggrian.prefs.EditablePrefs.E, kotlin.Unit)))/editAction">editAction</span><span class="symbol">:</span>&nbsp;<span class="identifier">E</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 </tbody>
 </table>

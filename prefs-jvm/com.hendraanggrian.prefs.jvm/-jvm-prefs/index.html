@@ -9,6 +9,7 @@
 <br/>
 <h1>JvmPrefs</h1>
 <code><span class="keyword">class </span><span class="identifier">JvmPrefs</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">WritablePrefs</span></code>
+<p>A wrapper of <a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/Preferences.html">Preferences</a> with <a href="#">WritablePrefs</a> implementation.</p>
 <h3>Properties</h3>
 <table>
 <tbody>
@@ -17,6 +18,7 @@
 <h4><a href="absolute-path.html">absolutePath</a></h4>
 </td>
 <td>
+<p>Returns this preference node's absolute path name.</p>
 <code><span class="keyword">val </span><span class="identifier">absolutePath</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -24,6 +26,7 @@
 <h4><a href="children-names.html">childrenNames</a></h4>
 </td>
 <td>
+<p>Returns the names of the children of this preference node, relative to this node.</p>
 <code><span class="keyword">val </span><span class="identifier">childrenNames</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
@@ -31,6 +34,7 @@
 <h4><a href="keys.html">keys</a></h4>
 </td>
 <td>
+<p>Returns all of the keys that have an associated value in this preference node.</p>
 <code><span class="keyword">val </span><span class="identifier">keys</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
@@ -38,6 +42,7 @@
 <h4><a href="name.html">name</a></h4>
 </td>
 <td>
+<p>Returns this preference node's name, relative to its parent.</p>
 <code><span class="keyword">val </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
@@ -45,6 +50,7 @@
 <h4><a href="parent.html">parent</a></h4>
 </td>
 <td>
+<p>Returns the parent of this preference node, or <code>null</code> if this is the root.</p>
 <code><span class="keyword">val </span><span class="identifier">parent</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">JvmPrefs</span></a></code></td>
 </tr>
 </tbody>
@@ -57,14 +63,16 @@
 <h4><a href="add-node-change-listener.html">addNodeChangeListener</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">addNodeChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.jvm.JvmPrefs$addNodeChangeListener(java.util.prefs.NodeChangeListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/NodeChangeListener.html"><span class="identifier">NodeChangeListener</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/NodeChangeListener.html"><span class="identifier">NodeChangeListener</span></a></code></td>
+<p>Registers the specified listener to receive <code>node change events</code> for this node.</p>
+<code><span class="keyword">fun </span><span class="identifier">addNodeChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.jvm.JvmPrefs$addNodeChangeListener(java.util.prefs.NodeChangeListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/NodeChangeListener.html"><span class="identifier">NodeChangeListener</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="add-preference-change-listener.html">addPreferenceChangeListener</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">addPreferenceChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.jvm.JvmPrefs$addPreferenceChangeListener(java.util.prefs.PreferenceChangeListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/PreferenceChangeListener.html"><span class="identifier">PreferenceChangeListener</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/PreferenceChangeListener.html"><span class="identifier">PreferenceChangeListener</span></a></code></td>
+<p>Registers the specified listener to receive <code>preference change events</code> for this preference node.</p>
+<code><span class="keyword">fun </span><span class="identifier">addPreferenceChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.jvm.JvmPrefs$addPreferenceChangeListener(java.util.prefs.PreferenceChangeListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/PreferenceChangeListener.html"><span class="identifier">PreferenceChangeListener</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -85,6 +93,8 @@
 <h4><a href="export-node.html">exportNode</a></h4>
 </td>
 <td>
+<p>Emits on the specified output stream an XML document representing all
+of the preferences contained in this node (but not its descendants).</p>
 <code><span class="keyword">fun </span><span class="identifier">exportNode</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.jvm.JvmPrefs$exportNode(java.io.OutputStream)/stream">stream</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html"><span class="identifier">OutputStream</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
@@ -92,6 +102,8 @@
 <h4><a href="export-subtree.html">exportSubtree</a></h4>
 </td>
 <td>
+<p>Emits an XML document representing all of the preferences contained
+in this node and all of its descendants.</p>
 <code><span class="keyword">fun </span><span class="identifier">exportSubtree</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.jvm.JvmPrefs$exportSubtree(java.io.OutputStream)/stream">stream</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html"><span class="identifier">OutputStream</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
@@ -197,6 +209,8 @@
 <h4><a href="is-user-node.html">isUserNode</a></h4>
 </td>
 <td>
+<p>Returns <code>true</code> if this preference node is in the user
+preference tree, <code>false</code> if it's in the system preference tree.</p>
 <code><span class="keyword">fun </span><span class="identifier">isUserNode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
@@ -204,6 +218,8 @@
 <h4><a href="node.html">node</a></h4>
 </td>
 <td>
+<p>Returns the named preference node in the same tree as this node,
+creating it and any of its ancestors if they do not already exist.</p>
 <code><span class="keyword">fun </span><span class="identifier">node</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.jvm.JvmPrefs$node(kotlin.String)/pathName">pathName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">JvmPrefs</span></a></code></td>
 </tr>
 <tr>
@@ -211,7 +227,16 @@
 <h4><a href="node-exists.html">nodeExists</a></h4>
 </td>
 <td>
+<p>Returns true if the named preference node exists in the same tree as this node.</p>
 <code><span class="keyword">fun </span><span class="identifier">nodeExists</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.jvm.JvmPrefs$nodeExists(kotlin.String)/pathName">pathName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-preference-change.html">onPreferenceChange</a></h4>
+</td>
+<td>
+<p>Convenient method to <a href="add-preference-change-listener.html">addPreferenceChangeListener</a> with Kotlin function type.</p>
+<code><span class="keyword">fun </span><span class="identifier">onPreferenceChange</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.jvm.JvmPrefs$onPreferenceChange(kotlin.Function2((kotlin.String, , kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/PreferenceChangeListener.html"><span class="identifier">PreferenceChangeListener</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -225,6 +250,8 @@
 <h4><a href="remove-node.html">removeNode</a></h4>
 </td>
 <td>
+<p>Removes this preference node and all of its descendants,
+invalidating any preferences contained in the removed nodes.</p>
 <code><span class="keyword">fun </span><span class="identifier">removeNode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
@@ -232,6 +259,7 @@
 <h4><a href="remove-node-change-listener.html">removeNodeChangeListener</a></h4>
 </td>
 <td>
+<p>Removes the specified <a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/NodeChangeListener.html">NodeChangeListener</a>, so it no longer receives change events.</p>
 <code><span class="keyword">fun </span><span class="identifier">removeNodeChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.jvm.JvmPrefs$removeNodeChangeListener(java.util.prefs.NodeChangeListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/NodeChangeListener.html"><span class="identifier">NodeChangeListener</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
@@ -239,6 +267,7 @@
 <h4><a href="remove-preference-change-listener.html">removePreferenceChangeListener</a></h4>
 </td>
 <td>
+<p>Removes the specified preference change listener, so it no longer receives preference change events.</p>
 <code><span class="keyword">fun </span><span class="identifier">removePreferenceChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefs.jvm.JvmPrefs$removePreferenceChangeListener(java.util.prefs.PreferenceChangeListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/PreferenceChangeListener.html"><span class="identifier">PreferenceChangeListener</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
