@@ -23,7 +23,7 @@ abstract class PrefsBinding(private val source: ReadablePrefs) : Prefs.Saver {
     protected val editor: Prefs.Editor
         get() = when (source) {
             is WritablePrefs -> source
-            is EditablePrefs -> source.editor
+            is EditablePrefs<*> -> source.editor
             else -> error("Unrecognizable prefs instance")
         }
 }

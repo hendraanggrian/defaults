@@ -77,40 +77,114 @@ private inline fun Preferences.nodes(vararg paths: String): Preferences {
     return root
 }
 
+/** A wrapper of [Preferences] with [WritablePrefs] implementation. */
 class JvmPrefs internal constructor(private val nativePreferences: Preferences) : WritablePrefs {
 
+    /**
+     * Returns all of the keys that have an associated value in this preference node.
+     * @see Preferences.keys
+     */
     val keys: Array<String> get() = nativePreferences.keys()
 
+    /**
+     * Returns the names of the children of this preference node, relative to this node.
+     * @see Preferences.childrenNames
+     */
     val childrenNames: Array<String> get() = nativePreferences.childrenNames()
 
+    /**
+     * Returns the parent of this preference node, or `null` if this is the root.
+     * @see Preferences.parent
+     */
     val parent: JvmPrefs get() = JvmPrefs(nativePreferences.parent())
 
+    /**
+     * Returns the named preference node in the same tree as this node,
+     * creating it and any of its ancestors if they do not already exist.
+     * @see Preferences.node
+     */
     fun node(pathName: String): JvmPrefs = JvmPrefs(nativePreferences.node(pathName))
 
+    /**
+     * Returns true if the named preference node exists in the same tree as this node.
+     * @see Preferences.nodeExists
+     */
     fun nodeExists(pathName: String): Boolean = nativePreferences.nodeExists(pathName)
 
+    /**
+     * Removes this preference node and all of its descendants,
+     * invalidating any preferences contained in the removed nodes.
+     * @see Preferences.removeNode
+     */
     fun removeNode(): Unit = nativePreferences.removeNode()
 
+    /**
+     * Returns this preference node's name, relative to its parent.
+     * @see Preferences.name
+     */
     val name: String get() = nativePreferences.name()
 
+    /**
+     * Returns this preference node's absolute path name.
+     * @see Preferences.absolutePath
+     */
     val absolutePath: String get() = nativePreferences.absolutePath()
 
+    /**
+     * Returns `true` if this preference node is in the user
+     * preference tree, `false` if it's in the system preference tree.
+     * @see Preferences.isUserNode
+     */
     fun isUserNode(): Boolean = nativePreferences.isUserNode
 
-    fun addPreferenceChangeListener(listener: PreferenceChangeListener): PreferenceChangeListener =
-        listener.also { nativePreferences.addPreferenceChangeListener(it) }
+    /**
+     * Registers the specified listener to receive `preference change events` for this preference node.
+     * @see Preferences.addPreferenceChangeListener
+     */
+    fun addPreferenceChangeListener(listener: PreferenceChangeListener): Unit =
+        nativePreferences.addPreferenceChangeListener(listener)
 
+    /**
+     * Convenient method to [addPreferenceChangeListener] with Kotlin function type.
+     * @param action the callback that will run.
+     * @return instance of Java listener, in case to [removePreferenceChangeListener] later.
+     */
+    inline fun onPreferenceChange(crossinline action: (key: String, value: String) -> Unit): PreferenceChangeListener =
+        PreferenceChangeListener { evt -> action(evt.key, evt.newValue) }.also { addPreferenceChangeListener(it) }
+
+    /**
+     * Removes the specified preference change listener, so it no longer receives preference change events.
+     * @see Preferences.removePreferenceChangeListener
+     */
     fun removePreferenceChangeListener(listener: PreferenceChangeListener) =
         nativePreferences.removePreferenceChangeListener(listener)
 
-    fun addNodeChangeListener(listener: NodeChangeListener): NodeChangeListener =
-        listener.also { nativePreferences.addNodeChangeListener(it) }
+    /**
+     * Registers the specified listener to receive `node change events` for this node.
+     * @see Preferences.addNodeChangeListener
+     */
+    fun addNodeChangeListener(listener: NodeChangeListener): Unit =
+        nativePreferences.addNodeChangeListener(listener)
 
+    /**
+     * Removes the specified [NodeChangeListener], so it no longer receives change events.
+     * @see Preferences.removeNodeChangeListener
+     */
     fun removeNodeChangeListener(listener: NodeChangeListener) =
         nativePreferences.removeNodeChangeListener(listener)
 
+    /**
+     * Emits on the specified output stream an XML document representing all
+     * of the preferences contained in this node (but not its descendants).
+     * @see Preferences.exportNode
+     */
     fun exportNode(stream: OutputStream) = nativePreferences.exportNode(stream)
 
+    /**
+     * Emits an XML document representing all of the preferences contained
+     * in this node and all of its descendants.
+     * @see Preferences.exportSubtree
+     */
     fun exportSubtree(stream: OutputStream) = nativePreferences.exportSubtree(stream)
 
     override fun contains(key: String): Boolean = nativePreferences.nodeExists(key)

@@ -16,35 +16,35 @@ import com.hendraanggrian.prefs.Prefs
 import com.hendraanggrian.prefs.bind
 
 /**
- * Create a [SharedPrefs] from source [SharedPreferences].
+ * Create a [AndroidPrefs] from source [SharedPreferences].
  * @param source native Android preferences.
  * @return preferences that reads/writes to [SharedPreferences].
  */
-operator fun Prefs.get(source: SharedPreferences): SharedPrefs = SharedPrefs(source)
+operator fun Prefs.get(source: SharedPreferences): AndroidPrefs = AndroidPrefs(source)
 
 /**
- * Create a [SharedPrefs] from source [Context].
+ * Create a [AndroidPrefs] from source [Context].
  * @param source application context.
  * @return preferences that reads/writes to [SharedPreferences].
  */
-operator fun Prefs.get(source: Context): SharedPrefs =
+operator fun Prefs.get(source: Context): AndroidPrefs =
     get(PreferenceManager.getDefaultSharedPreferences(source))
 
 /**
- * Create a [SharedPrefs] from source [Fragment].
+ * Create a [AndroidPrefs] from source [Fragment].
  * @param source deprecated fragment.
  * @return preferences that reads/writes to [SharedPreferences].
  */
 @Deprecated("Use support androidx.fragment.app.Fragment.")
-operator fun Prefs.get(source: Fragment): SharedPrefs =
+operator fun Prefs.get(source: Fragment): AndroidPrefs =
     get(source.activity)
 
 /**
- * Create a [SharedPrefs] from source [androidx.fragment.app.Fragment].
+ * Create a [AndroidPrefs] from source [androidx.fragment.app.Fragment].
  * @param source support fragment.
  * @return preferences that reads/writes to [SharedPreferences].
  */
-operator fun Prefs.get(source: androidx.fragment.app.Fragment): SharedPrefs =
+operator fun Prefs.get(source: androidx.fragment.app.Fragment): AndroidPrefs =
     get(checkNotNull(source.context) { "Context is not yet attached to this fragment" })
 
 /**
@@ -75,15 +75,31 @@ inline fun Prefs.bind(source: Fragment): Prefs.Saver =
 inline fun Prefs.bind(source: androidx.fragment.app.Fragment): Prefs.Saver =
     get(source).bind(source)
 
-class SharedPrefs internal constructor(private val nativePreferences: SharedPreferences) : EditablePrefs {
+/** A wrapper of [SharedPreferences] with [EditablePrefs] implementation. */
+class AndroidPrefs internal constructor(private val nativePreferences: SharedPreferences) :
+    EditablePrefs<AndroidPrefs.Editor> {
 
-    fun setOnChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
+    /**
+     * Registers a callback to be invoked when a change happens to a preference.
+     * @see SharedPreferences.registerOnSharedPreferenceChangeListener
+     */
+    fun setChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener): Unit =
         nativePreferences.registerOnSharedPreferenceChangeListener(listener)
-    }
 
-    fun removeOnChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
+    /**
+     * Convenient method to [setChangeListener] with Kotlin function type.
+     * @param action the callback that will run.
+     * @return instance of Java listener, in case to [removeChangeListener] later.
+     */
+    inline fun onChange(crossinline action: (key: String) -> Unit): SharedPreferences.OnSharedPreferenceChangeListener =
+        SharedPreferences.OnSharedPreferenceChangeListener { _, key -> action(key) }.also { setChangeListener(it) }
+
+    /**
+     * Unregisters a previous callback.
+     * @see SharedPreferences.unregisterOnSharedPreferenceChangeListener
+     */
+    fun removeChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener): Unit =
         nativePreferences.unregisterOnSharedPreferenceChangeListener(listener)
-    }
 
     override fun contains(key: String): Boolean = key in nativePreferences
 
@@ -111,9 +127,10 @@ class SharedPrefs internal constructor(private val nativePreferences: SharedPref
     override fun getShort(key: String): Short? = throw UnsupportedOperationException()
     override fun getByte(key: String): Byte? = throw UnsupportedOperationException()
 
-    override val editor: Prefs.Editor get() = Editor(nativePreferences.edit())
+    override val editor: Editor get() = Editor(nativePreferences.edit())
 
-    class Editor(private val nativeEditor: SharedPreferences.Editor) : Prefs.Editor {
+    /** A wrapper of [SharedPreferences.Editor] with [Prefs.Editor] implementation. */
+    class Editor internal constructor(private val nativeEditor: SharedPreferences.Editor) : Prefs.Editor {
         override fun remove(key: String) {
             nativeEditor.remove(key)
         }
@@ -148,6 +165,7 @@ class SharedPrefs internal constructor(private val nativePreferences: SharedPref
         override fun set(key: String, value: Byte): Unit = throw UnsupportedOperationException()
 
         /**
+         * Save changes blocking thread.
          * @see SharedPreferences.Editor.commit
          */
         @WorkerThread override fun save() {
@@ -155,6 +173,7 @@ class SharedPrefs internal constructor(private val nativePreferences: SharedPref
         }
 
         /**
+         * Save preferences changes in the background.
          * @see SharedPreferences.Editor.apply
          */
         @AnyThread fun saveAsync() = nativeEditor.apply()

@@ -16,6 +16,7 @@ import java.util.Properties
  */
 operator fun Prefs.get(source: File): PropertiesPrefs = PropertiesPrefs(source)
 
+/** A wrapper of [Properties] with [WritablePrefs] implementation. */
 class PropertiesPrefs internal constructor(private val targetFile: File) : WritablePrefs {
     private val nativeProperties: Properties = Properties()
 

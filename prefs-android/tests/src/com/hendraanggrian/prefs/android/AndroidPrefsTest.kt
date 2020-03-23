@@ -12,8 +12,8 @@ import kotlin.test.assertNull
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class PrefsAndroidTest {
-    private lateinit var prefs: SharedPrefs
+class AndroidPrefsTest {
+    private lateinit var prefs: AndroidPrefs
 
     @BeforeTest fun createTest() {
         Prefs.setLogger(Prefs.Logger.Android)
