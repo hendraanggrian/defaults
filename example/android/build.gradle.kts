@@ -62,5 +62,5 @@ dependencies {
     implementation(androidx("preference", "preference-ktx", version = VERSION_ANDROIDX))
     implementation(androidx("coordinatorlayout", version = "$VERSION_ANDROIDX-beta01"))
     implementation(androidx("recyclerview", version = "$VERSION_ANDROIDX-beta05"))
-    implementation(material("$VERSION_ANDROIDX-beta01"))
+    implementation(material())
 }
