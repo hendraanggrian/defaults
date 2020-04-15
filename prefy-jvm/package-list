@@ -1,0 +1,11 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:com.hendraanggrian.prefy.jvm$get(com.hendraanggrian.prefy.Prefy, java.io.File)com.hendraanggrian.prefy.jvm/com.hendraanggrian.prefy.-prefy/get.html
+$dokka.location:com.hendraanggrian.prefy.jvm$get(com.hendraanggrian.prefy.Prefy, java.util.prefs.Preferences)com.hendraanggrian.prefy.jvm/com.hendraanggrian.prefy.-prefy/get.html
+$dokka.location:com.hendraanggrian.prefy.jvm$systemNode(com.hendraanggrian.prefy.Prefy, kotlin.Array((kotlin.String)))com.hendraanggrian.prefy.jvm/com.hendraanggrian.prefy.-prefy/system-node.html
+$dokka.location:com.hendraanggrian.prefy.jvm$systemNode(com.hendraanggrian.prefy.Prefy, kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))com.hendraanggrian.prefy.jvm/com.hendraanggrian.prefy.-prefy/system-node.html
+$dokka.location:com.hendraanggrian.prefy.jvm$systemRoot(com.hendraanggrian.prefy.Prefy, kotlin.Array((kotlin.String)))com.hendraanggrian.prefy.jvm/com.hendraanggrian.prefy.-prefy/system-root.html
+$dokka.location:com.hendraanggrian.prefy.jvm$userNode(com.hendraanggrian.prefy.Prefy, kotlin.Array((kotlin.String)))com.hendraanggrian.prefy.jvm/com.hendraanggrian.prefy.-prefy/user-node.html
+$dokka.location:com.hendraanggrian.prefy.jvm$userNode(com.hendraanggrian.prefy.Prefy, kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))com.hendraanggrian.prefy.jvm/com.hendraanggrian.prefy.-prefy/user-node.html
+$dokka.location:com.hendraanggrian.prefy.jvm$userRoot(com.hendraanggrian.prefy.Prefy, kotlin.Array((kotlin.String)))com.hendraanggrian.prefy.jvm/com.hendraanggrian.prefy.-prefy/user-root.html
+com.hendraanggrian.prefy.jvm

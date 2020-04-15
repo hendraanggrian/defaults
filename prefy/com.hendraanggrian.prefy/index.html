@@ -1,0 +1,92 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.hendraanggrian.prefy - prefy</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">prefy</a>&nbsp;/&nbsp;<a href="./index.html">com.hendraanggrian.prefy</a><br/>
+<br/>
+<h2>Package com.hendraanggrian.prefy</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-editable-preferences/index.html">EditablePreferences</a></h4>
+</td>
+<td>
+<p>Subinterface of <a href="-readable-preferences/index.html">ReadablePreferences</a> that, in contrast to <a href="-writable-preferences.html">WritablePreferences</a>,
+requires an instance of <a href="-preferences-editor/index.html">PreferencesEditor</a> to modify preferences.</p>
+<code><span class="keyword">interface </span><span class="identifier">EditablePreferences</span><span class="symbol">&lt;</span><span class="identifier">E</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-preferences-editor/index.html"><span class="identifier">PreferencesEditor</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-readable-preferences/index.html"><span class="identifier">ReadablePreferences</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-preferences-editor/index.html">PreferencesEditor</a></h4>
+</td>
+<td>
+<p>Interface used for modifying values in a <a href="-readable-preferences/index.html">ReadablePreferences</a> object.
+All changes you make in an editor are batched,
+and not copied back to the original <a href="-readable-preferences/index.html">ReadablePreferences</a> until you call <a href="-preferences-saver/save.html">save</a>.</p>
+<code><span class="keyword">interface </span><span class="identifier">PreferencesEditor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-preferences-saver/index.html"><span class="identifier">PreferencesSaver</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-preferences-logger/index.html">PreferencesLogger</a></h4>
+</td>
+<td>
+<p>Interface that determines preferences logging behavior.</p>
+<code><span class="keyword">interface </span><span class="identifier">PreferencesLogger</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-preferences-saver/index.html">PreferencesSaver</a></h4>
+</td>
+<td>
+<p>Interface used for applying changes made in <a href="-preferences-editor/index.html">PreferencesEditor</a> object.
+When using <a href="bind.html">ReadablePreferences.bind</a> to inject preferences' values to JVM fields,
+<a href="-preferences-saver/index.html">PreferencesSaver</a> is returned back to save changes made in JVM fields.</p>
+<code><span class="keyword">interface </span><span class="identifier">PreferencesSaver</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-prefy/index.html">Prefy</a></h4>
+</td>
+<td>
+<p>Create an instance of <a href="-writable-preferences.html">WritablePreferences</a> or <a href="-editable-preferences/index.html">EditablePreferences</a> and bind its values to JVM fields with this object.</p>
+<code><span class="keyword">object </span><span class="identifier">Prefy</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-readable-preferences/index.html">ReadablePreferences</a></h4>
+</td>
+<td>
+<p>Interface for accessing and modifying preference data on any target platform (JVM, Android, etc.).</p>
+<code><span class="keyword">interface </span><span class="identifier">ReadablePreferences</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-writable-preferences.html">WritablePreferences</a></h4>
+</td>
+<td>
+<p>Subinterface of <a href="-readable-preferences/index.html">ReadablePreferences</a> that, in contrast to <a href="-editable-preferences/index.html">EditablePreferences</a>,
+can directly modify preferences since it also inherits <a href="-preferences-editor/index.html">PreferencesEditor</a>.</p>
+<code><span class="keyword">interface </span><span class="identifier">WritablePreferences</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-readable-preferences/index.html"><span class="identifier">ReadablePreferences</span></a><span class="symbol">, </span><a href="-preferences-editor/index.html"><span class="identifier">PreferencesEditor</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="bind.html">bind</a></h4>
+</td>
+<td>
+<p>Bind fields annotated with <a href="#">BindPreference</a> with values from this preferences.</p>
+<code><span class="keyword">fun </span><a href="-readable-preferences/index.html"><span class="identifier">ReadablePreferences</span></a><span class="symbol">.</span><span class="identifier">bind</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy$bind(com.hendraanggrian.prefy.ReadablePreferences, kotlin.Any)/target">target</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-preferences-saver/index.html"><span class="identifier">PreferencesSaver</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

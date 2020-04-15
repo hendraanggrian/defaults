@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ReadablePreferences.getLongOrElse - prefy</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">prefy</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.prefy</a>&nbsp;/&nbsp;<a href="index.html">ReadablePreferences</a>&nbsp;/&nbsp;<a href="./get-long-or-else.html">getLongOrElse</a><br/>
+<br/>
+<h1>getLongOrElse</h1>
+<a name="com.hendraanggrian.prefy.ReadablePreferences$getLongOrElse(kotlin.String, kotlin.Function0((kotlin.Long)))"></a>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getLongOrElse</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.ReadablePreferences$getLongOrElse(kotlin.String, kotlin.Function0((kotlin.Long)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.ReadablePreferences$getLongOrElse(kotlin.String, kotlin.Function0((kotlin.Long)))/defaultValue">defaultValue</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code>
+<p>Retrieve a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a> value from the preferences, calling default value getter as a fallback.</p>
+<h3>Parameters</h3>
+<p><a name="key"></a>
+<code>key</code> - name of the preference to retrieve.</p>
+<p><a name="defaultValue"></a>
+<code>defaultValue</code> - value to return if this preference does not exist.</p>
+<h3>Exceptions</h3>
+<p><a name="UnsupportedOperationException"></a>
+<code>UnsupportedOperationException</code> - if <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a> is not a supported type of this preferences.</p>
+<p><strong>Return</strong><br/>
+preference value if it exists, or default value.</p>
+</BODY>
+</HTML>

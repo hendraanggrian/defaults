@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>systemNode - prefy-jvm</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">prefy-jvm</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.prefy.jvm</a>&nbsp;/&nbsp;<a href="index.html">com.hendraanggrian.prefy.Prefy</a>&nbsp;/&nbsp;<a href="./system-node.html">systemNode</a><br/>
+<br/>
+<h1>systemNode</h1>
+<a name="com.hendraanggrian.prefy.jvm$systemNode(com.hendraanggrian.prefy.Prefy, kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))"></a>
+<code><span class="keyword">fun </span><span class="identifier">Prefy</span><span class="symbol">.</span><span class="identifier">systemNode</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm$systemNode(com.hendraanggrian.prefy.Prefy, kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.prefy.jvm$systemNode(com.hendraanggrian.prefy.Prefy, kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))/paths">paths</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-jvm-preferences/index.html"><span class="identifier">JvmPreferences</span></a></code>
+<p>Create a system root <a href="../-jvm-preferences/index.html">JvmPreferences</a> from Kotlin class.</p>
+<h3>Parameters</h3>
+<p><a name="type"></a>
+<code>type</code> - the class for whose package a user preference node is desired.</p>
+<p><a name="paths"></a>
+<code>paths</code> - path to specific children node, or empty for root.</p>
+<p><strong>Return</strong><br/>
+preferences that reads/writes to <a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/Preferences.html">Preferences</a>.</p>
+<a name="com.hendraanggrian.prefy.jvm$systemNode(com.hendraanggrian.prefy.Prefy, kotlin.Array((kotlin.String)))"></a>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="keyword">reified</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">Prefy</span><span class="symbol">.</span><span class="identifier">systemNode</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.prefy.jvm$systemNode(com.hendraanggrian.prefy.Prefy, kotlin.Array((kotlin.String)))/paths">paths</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-jvm-preferences/index.html"><span class="identifier">JvmPreferences</span></a></code>
+<p>Create a system root <a href="../-jvm-preferences/index.html">JvmPreferences</a> from Kotlin reified type.</p>
+<h3>Parameters</h3>
+<p><a name="T"></a>
+<code>T</code> - the class for whose package a user preference node is desired.</p>
+<p><a name="paths"></a>
+<code>paths</code> - path to specific children node, or empty for root.</p>
+<p><strong>Return</strong><br/>
+preferences that reads/writes to <a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/Preferences.html">Preferences</a>.</p>
+</BODY>
+</HTML>
