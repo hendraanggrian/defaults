@@ -1,15 +1,15 @@
-[![bintray](https://img.shields.io/badge/bintray-prefs-brightgreen.svg)](https://bintray.com/hendraanggrian/prefs)
-[![download](https://api.bintray.com/packages/hendraanggrian/prefs/prefs/images/download.svg) ](https://bintray.com/hendraanggrian/prefs/prefs/_latestVersion)
+[![bintray](https://img.shields.io/badge/bintray-prefy-brightgreen.svg)](https://bintray.com/hendraanggrian/prefy)
+[![download](https://api.bintray.com/packages/hendraanggrian/prefy/prefy/images/download.svg) ](https://bintray.com/hendraanggrian/prefy/prefy/_latestVersion)
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
-Prefs
+Prefy
 =====
 Local settings library that runs in plain Java and Android.
 Comes with optional annotation processor to bind properties with existing settings.
 
 Download
 --------
-All artifacts should be linked to JCenter, otherwise add maven url `https://dl.bintray.com/hendraanggrian/prefs`.
+All artifacts should be linked to JCenter, otherwise add maven url `https://dl.bintray.com/hendraanggrian/prefy`.
 
 ```gradle
 repositories {
@@ -17,15 +17,11 @@ repositories {
 }
 
 dependencies {
-    // for non-Android project
-    compile "com.hendraanggrian.prefs:prefs-jvm:$version"
-    
-    // for Android project
-    api "com.hendraanggrian.prefs:prefs-android:$version"
-    api "com.hendraanggrian.prefs:prefs-android-snappydb:$version" // snappydb extension
+    compile "com.hendraanggrian.prefy:prefy-jvm:$version" // for non-Android project
+    api "com.hendraanggrian.prefy:prefy-android:$version" // for Android project
 
     // property binding support, use kapt when necessary
-    annotationProcessor "com.hendraanggrian.prefs:prefs-compiler:$version"   
+    annotationProcessor "com.hendraanggrian.prefy:prefy-compiler:$version"   
 }
 ```
 
@@ -36,17 +32,17 @@ Usage
 Create defaults instance from `File`, or `SharedPreferences` in Android.
 
 ```kotlin
-import com.hendraanggrian.prefs.Prefs
+import com.hendraanggrian.prefy.Prefy
 
 // file defaults can set/get
-val filePreferences = Prefs.of(file)
+val filePreferences = Prefy[file]
 val name = filePreferences["name"]
 val age = filePreferences.getInt("age", 0)
 filePreferences["name"] = "Hendra"
 filePreferences["age"] = 25
 
 // shared preferences must open to set
-val androidPreferences = Prefs.of(context)
+val androidPreferences = Prefy[context]
 androidPreferences {
     it["name"] = "Hendra"
     it["age"] = 25
@@ -57,16 +53,16 @@ androidPreferences {
 With optional annotation processor, bind these local settings to local variables.
 
 ```kotlin
-import com.hendraanggrian.prefs.Prefs
-import com.hendraanggrian.prefs.PrefsSaver
+import com.hendraanggrian.prefy.Prefy
+import com.hendraanggrian.prefy.PreferencesSaver
 
 @BindPref lateinit var name: String
 @BindPref @JvmField var age: Int = 0
 
-lateinit var saver: PrefsSaver
+lateinit var saver: PreferencesSaver
 
 init {
-    saver = Prefs.bind(file, this)
+    saver = Prefy.bind(file, this)
 }
 
 fun applyChanges(name: String, age: Int) {
