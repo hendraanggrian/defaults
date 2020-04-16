@@ -15,7 +15,8 @@ sourceSets {
 
 val configuration = configurations.register("ktlint")
 
-dependencies { api(project(":$RELEASE_ARTIFACT-annotations"))
+dependencies {
+    api(project(":$RELEASE_ARTIFACT-annotations"))
     api(kotlin("stdlib", VERSION_KOTLIN))
 
     testImplementation(kotlin("test-junit", VERSION_KOTLIN))

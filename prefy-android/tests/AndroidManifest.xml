@@ -4,7 +4,6 @@
     package="com.hendraanggrian.prefy.android">
 
     <uses-sdk
-        android:minSdkVersion="14"
         android:targetSdkVersion="29"
         tools:overrideLibrary="androidx.test, android.app, androidx.test.rule, androidx.test.espresso, androidx.test.espresso.idling" />
 </manifest>

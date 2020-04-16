@@ -85,16 +85,16 @@ class AndroidPreferences internal constructor(private val nativePreferences: Sha
      * Registers a callback to be invoked when a change happens to a preference.
      * @see SharedPreferences.registerOnSharedPreferenceChangeListener
      */
-    fun setChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener): Unit =
+    fun addChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener): Unit =
         nativePreferences.registerOnSharedPreferenceChangeListener(listener)
 
     /**
-     * Convenient method to [setChangeListener] with Kotlin function type.
+     * Convenient method to [addChangeListener] with Kotlin function type.
      * @param action the callback that will run.
      * @return instance of Java listener, in case to [removeChangeListener] later.
      */
     inline fun onChange(crossinline action: (key: String) -> Unit): SharedPreferences.OnSharedPreferenceChangeListener =
-        SharedPreferences.OnSharedPreferenceChangeListener { _, key -> action(key) }.also { setChangeListener(it) }
+        SharedPreferences.OnSharedPreferenceChangeListener { _, key -> action(key) }.also { addChangeListener(it) }
 
     /**
      * Unregisters a previous callback.
