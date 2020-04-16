@@ -7,10 +7,21 @@ Prefy
 Local settings library that runs in plain Java and Android.
 Comes with optional annotation processor to bind properties with existing settings.
 
+```kotlin
+@BindPreference lateinit var name: String
+@BindPreference @JvmField var age: Int = 0
+
+lateinit var saver: PreferencesSaver = Prefy.bind(this)
+
+fun applyChanges(person: Person) {
+    name = person.name
+    age = person.age
+    saver.save()
+}
+```
+
 Download
 --------
-All artifacts should be linked to JCenter, otherwise add maven url `https://dl.bintray.com/hendraanggrian/prefy`.
-
 ```gradle
 repositories {
     jcenter()
@@ -20,57 +31,14 @@ dependencies {
     compile "com.hendraanggrian.prefy:prefy-jvm:$version" // for non-Android project
     api "com.hendraanggrian.prefy:prefy-android:$version" // for Android project
 
-    // property binding support, use kapt when necessary
-    annotationProcessor "com.hendraanggrian.prefy:prefy-compiler:$version"   
+    // optional annotation processor
+    annotationProcessor "com.hendraanggrian.prefy:prefy-compiler:$version" // use kapt when necessary
 }
 ```
 
 Usage
 -----
-
-#### Manual get/set
-Create defaults instance from `File`, or `SharedPreferences` in Android.
-
-```kotlin
-import com.hendraanggrian.prefy.Prefy
-
-// file defaults can set/get
-val filePreferences = Prefy[file]
-val name = filePreferences["name"]
-val age = filePreferences.getInt("age", 0)
-filePreferences["name"] = "Hendra"
-filePreferences["age"] = 25
-
-// shared preferences must open to set
-val androidPreferences = Prefy[context]
-androidPreferences {
-    it["name"] = "Hendra"
-    it["age"] = 25
-}
-```
-
-#### Bind properties
-With optional annotation processor, bind these local settings to local variables.
-
-```kotlin
-import com.hendraanggrian.prefy.Prefy
-import com.hendraanggrian.prefy.PreferencesSaver
-
-@BindPref lateinit var name: String
-@BindPref @JvmField var age: Int = 0
-
-lateinit var saver: PreferencesSaver
-
-init {
-    saver = Prefy.bind(file, this)
-}
-
-fun applyChanges(name: String, age: Int) {
-    this.name = name
-    this.age = age
-    saver.saveAsync()
-}
-```
+Coming soon.
 
 License
 -------
