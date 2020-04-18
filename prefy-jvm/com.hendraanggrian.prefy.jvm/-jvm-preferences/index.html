@@ -8,9 +8,9 @@
 <a href="../../index.html">prefy-jvm</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.prefy.jvm</a>&nbsp;/&nbsp;<a href="./index.html">JvmPreferences</a><br/>
 <br/>
 <h1>JvmPreferences</h1>
-<code><span class="keyword">class </span><span class="identifier">JvmPreferences</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">WritablePreferences</span></code>
+<code><span class="keyword">class </span><span class="identifier">JvmPreferences</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/Preferences.html"><span class="identifier">Preferences</span></a><span class="symbol">, </span><span class="identifier">WritablePreferences</span></code>
 <p>A wrapper of <a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/Preferences.html">Preferences</a> with <a href="#">WritablePreferences</a> implementation.</p>
-<h3>Properties</h3>
+<h3>Functions</h3>
 <table>
 <tbody>
 <tr>
@@ -18,61 +18,28 @@
 <h4><a href="absolute-path.html">absolutePath</a></h4>
 </td>
 <td>
-<p>Returns this preference node's absolute path name.</p>
-<code><span class="keyword">val </span><span class="identifier">absolutePath</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">absolutePath</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
-<tr>
-<td>
-<h4><a href="children-names.html">childrenNames</a></h4>
-</td>
-<td>
-<p>Returns the names of the children of this preference node, relative to this node.</p>
-<code><span class="keyword">val </span><span class="identifier">childrenNames</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="keys.html">keys</a></h4>
-</td>
-<td>
-<p>Returns all of the keys that have an associated value in this preference node.</p>
-<code><span class="keyword">val </span><span class="identifier">keys</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="name.html">name</a></h4>
-</td>
-<td>
-<p>Returns this preference node's name, relative to its parent.</p>
-<code><span class="keyword">val </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="parent.html">parent</a></h4>
-</td>
-<td>
-<p>Returns the parent of this preference node, or <code>null</code> if this is the root.</p>
-<code><span class="keyword">val </span><span class="identifier">parent</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">JvmPreferences</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Functions</h3>
-<table>
-<tbody>
 <tr>
 <td>
 <h4><a href="add-node-change-listener.html">addNodeChangeListener</a></h4>
 </td>
 <td>
-<p>Registers the specified listener to receive <code>node change events</code> for this node.</p>
-<code><span class="keyword">fun </span><span class="identifier">addNodeChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$addNodeChangeListener(java.util.prefs.NodeChangeListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/NodeChangeListener.html"><span class="identifier">NodeChangeListener</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">addNodeChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$addNodeChangeListener(java.util.prefs.NodeChangeListener)/ncl">ncl</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/NodeChangeListener.html"><span class="identifier">NodeChangeListener</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="add-preference-change-listener.html">addPreferenceChangeListener</a></h4>
 </td>
 <td>
-<p>Registers the specified listener to receive <code>preference change events</code> for this preference node.</p>
-<code><span class="keyword">fun </span><span class="identifier">addPreferenceChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$addPreferenceChangeListener(java.util.prefs.PreferenceChangeListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/PreferenceChangeListener.html"><span class="identifier">PreferenceChangeListener</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">addPreferenceChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$addPreferenceChangeListener(java.util.prefs.PreferenceChangeListener)/pcl">pcl</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/PreferenceChangeListener.html"><span class="identifier">PreferenceChangeListener</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="children-names.html">childrenNames</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">childrenNames</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
@@ -93,24 +60,28 @@
 <h4><a href="export-node.html">exportNode</a></h4>
 </td>
 <td>
-<p>Emits on the specified output stream an XML document representing all
-of the preferences contained in this node (but not its descendants).</p>
-<code><span class="keyword">fun </span><span class="identifier">exportNode</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$exportNode(java.io.OutputStream)/stream">stream</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html"><span class="identifier">OutputStream</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">exportNode</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$exportNode(java.io.OutputStream)/os">os</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html"><span class="identifier">OutputStream</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="export-subtree.html">exportSubtree</a></h4>
 </td>
 <td>
-<p>Emits an XML document representing all of the preferences contained
-in this node and all of its descendants.</p>
-<code><span class="keyword">fun </span><span class="identifier">exportSubtree</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$exportSubtree(java.io.OutputStream)/stream">stream</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html"><span class="identifier">OutputStream</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">exportSubtree</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$exportSubtree(java.io.OutputStream)/os">os</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html"><span class="identifier">OutputStream</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="flush.html">flush</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">flush</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="get.html">get</a></h4>
 </td>
 <td>
+<code><span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$get(kotlin.String, kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$get(kotlin.String, kotlin.String)/def">def</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code><br/>
 <code><span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$get(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
@@ -118,6 +89,7 @@ in this node and all of its descendants.</p>
 <h4><a href="get-boolean.html">getBoolean</a></h4>
 </td>
 <td>
+<code><span class="keyword">fun </span><span class="identifier">getBoolean</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getBoolean(kotlin.String, kotlin.Boolean)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getBoolean(kotlin.String, kotlin.Boolean)/def">def</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><br/>
 <code><span class="keyword">fun </span><span class="identifier">getBoolean</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getBoolean(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
@@ -136,9 +108,17 @@ in this node and all of its descendants.</p>
 </tr>
 <tr>
 <td>
+<h4><a href="get-byte-array.html">getByteArray</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getByteArray</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getByteArray(kotlin.String, kotlin.ByteArray)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getByteArray(kotlin.String, kotlin.ByteArray)/def">def</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a></code></td>
+</tr>
+<tr>
+<td>
 <h4><a href="get-double.html">getDouble</a></h4>
 </td>
 <td>
+<code><span class="keyword">fun </span><span class="identifier">getDouble</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getDouble(kotlin.String, kotlin.Double)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getDouble(kotlin.String, kotlin.Double)/def">def</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a></code><br/>
 <code><span class="keyword">fun </span><span class="identifier">getDouble</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getDouble(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
@@ -153,6 +133,7 @@ in this node and all of its descendants.</p>
 <h4><a href="get-float.html">getFloat</a></h4>
 </td>
 <td>
+<code><span class="keyword">fun </span><span class="identifier">getFloat</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getFloat(kotlin.String, kotlin.Float)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getFloat(kotlin.String, kotlin.Float)/def">def</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a></code><br/>
 <code><span class="keyword">fun </span><span class="identifier">getFloat</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getFloat(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
@@ -167,6 +148,7 @@ in this node and all of its descendants.</p>
 <h4><a href="get-int.html">getInt</a></h4>
 </td>
 <td>
+<code><span class="keyword">fun </span><span class="identifier">getInt</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getInt(kotlin.String, kotlin.Int)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getInt(kotlin.String, kotlin.Int)/def">def</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code><br/>
 <code><span class="keyword">fun </span><span class="identifier">getInt</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getInt(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
@@ -181,6 +163,7 @@ in this node and all of its descendants.</p>
 <h4><a href="get-long.html">getLong</a></h4>
 </td>
 <td>
+<code><span class="keyword">fun </span><span class="identifier">getLong</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getLong(kotlin.String, kotlin.Long)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getLong(kotlin.String, kotlin.Long)/def">def</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code><br/>
 <code><span class="keyword">fun </span><span class="identifier">getLong</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$getLong(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
@@ -209,34 +192,91 @@ in this node and all of its descendants.</p>
 <h4><a href="is-user-node.html">isUserNode</a></h4>
 </td>
 <td>
-<p>Returns <code>true</code> if this preference node is in the user
-preference tree, <code>false</code> if it's in the system preference tree.</p>
 <code><span class="keyword">fun </span><span class="identifier">isUserNode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="keys.html">keys</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">keys</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="name.html">name</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">name</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="node.html">node</a></h4>
 </td>
 <td>
-<p>Returns the named preference node in the same tree as this node,
-creating it and any of its ancestors if they do not already exist.</p>
-<code><span class="keyword">fun </span><span class="identifier">node</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$node(kotlin.String)/pathName">pathName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">JvmPreferences</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">node</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$node(kotlin.String)/pathName">pathName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">JvmPreferences</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="node-exists.html">nodeExists</a></h4>
 </td>
 <td>
-<p>Returns true if the named preference node exists in the same tree as this node.</p>
-<code><span class="keyword">fun </span><span class="identifier">nodeExists</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$nodeExists(kotlin.String)/pathName">pathName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">nodeExists</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$nodeExists(kotlin.String)/pathName">pathName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
-<h4><a href="on-preference-change.html">onPreferenceChange</a></h4>
+<h4><a href="parent.html">parent</a></h4>
 </td>
 <td>
-<p>Convenient method to <a href="add-preference-change-listener.html">addPreferenceChangeListener</a> with Kotlin function type.</p>
-<code><span class="keyword">fun </span><span class="identifier">onPreferenceChange</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$onPreferenceChange(kotlin.Function2((kotlin.String, , kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/PreferenceChangeListener.html"><span class="identifier">PreferenceChangeListener</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">parent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">JvmPreferences</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="put.html">put</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">put</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$put(kotlin.String, kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$put(kotlin.String, kotlin.String)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="put-boolean.html">putBoolean</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">putBoolean</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$putBoolean(kotlin.String, kotlin.Boolean)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$putBoolean(kotlin.String, kotlin.Boolean)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="put-byte-array.html">putByteArray</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">putByteArray</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$putByteArray(kotlin.String, kotlin.ByteArray)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$putByteArray(kotlin.String, kotlin.ByteArray)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="put-double.html">putDouble</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">putDouble</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$putDouble(kotlin.String, kotlin.Double)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$putDouble(kotlin.String, kotlin.Double)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="put-float.html">putFloat</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">putFloat</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$putFloat(kotlin.String, kotlin.Float)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$putFloat(kotlin.String, kotlin.Float)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html"><span class="identifier">Float</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="put-int.html">putInt</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">putInt</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$putInt(kotlin.String, kotlin.Int)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$putInt(kotlin.String, kotlin.Int)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="put-long.html">putLong</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">putLong</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$putLong(kotlin.String, kotlin.Long)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$putLong(kotlin.String, kotlin.Long)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -250,8 +290,6 @@ creating it and any of its ancestors if they do not already exist.</p>
 <h4><a href="remove-node.html">removeNode</a></h4>
 </td>
 <td>
-<p>Removes this preference node and all of its descendants,
-invalidating any preferences contained in the removed nodes.</p>
 <code><span class="keyword">fun </span><span class="identifier">removeNode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
@@ -259,16 +297,14 @@ invalidating any preferences contained in the removed nodes.</p>
 <h4><a href="remove-node-change-listener.html">removeNodeChangeListener</a></h4>
 </td>
 <td>
-<p>Removes the specified <a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/NodeChangeListener.html">NodeChangeListener</a>, so it no longer receives change events.</p>
-<code><span class="keyword">fun </span><span class="identifier">removeNodeChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$removeNodeChangeListener(java.util.prefs.NodeChangeListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/NodeChangeListener.html"><span class="identifier">NodeChangeListener</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">removeNodeChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$removeNodeChangeListener(java.util.prefs.NodeChangeListener)/ncl">ncl</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/NodeChangeListener.html"><span class="identifier">NodeChangeListener</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="remove-preference-change-listener.html">removePreferenceChangeListener</a></h4>
 </td>
 <td>
-<p>Removes the specified preference change listener, so it no longer receives preference change events.</p>
-<code><span class="keyword">fun </span><span class="identifier">removePreferenceChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$removePreferenceChangeListener(java.util.prefs.PreferenceChangeListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/PreferenceChangeListener.html"><span class="identifier">PreferenceChangeListener</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">removePreferenceChangeListener</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$removePreferenceChangeListener(java.util.prefs.PreferenceChangeListener)/pcl">pcl</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/util/prefs/PreferenceChangeListener.html"><span class="identifier">PreferenceChangeListener</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -290,6 +326,20 @@ invalidating any preferences contained in the removed nodes.</p>
 <code><span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$set(kotlin.String, kotlin.Int)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$set(kotlin.String, kotlin.Int)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
 <code><span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$set(kotlin.String, kotlin.Short)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$set(kotlin.String, kotlin.Short)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-short/index.html"><span class="identifier">Short</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
 <code><span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$set(kotlin.String, kotlin.Byte)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.prefy.jvm.JvmPreferences$set(kotlin.String, kotlin.Byte)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="sync.html">sync</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">sync</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="to-string.html">toString</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">toString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 </tbody>
 </table>
