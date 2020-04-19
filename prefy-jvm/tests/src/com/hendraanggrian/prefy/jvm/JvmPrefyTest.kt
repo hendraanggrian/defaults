@@ -8,16 +8,16 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class JvmPrefyTest {
-    private lateinit var jvmPrefs: JvmPreferences
+    private lateinit var preferences: JvmPreferences
 
     @BeforeTest fun createTest() {
         Prefy.setLogger(PreferencesLogger.System)
-        jvmPrefs = Prefy.userNode<ReadablePreferences>()
+        preferences = Prefy.userNode<ReadablePreferences>()
     }
 
     @Test fun jvm() {
-        jvmPrefs["name"] = "Hendra"
-        jvmPrefs.save()
-        assertEquals("Hendra", jvmPrefs["name"])
+        preferences["name"] = "Hendra"
+        preferences.save()
+        assertEquals("Hendra", preferences["name"])
     }
 }

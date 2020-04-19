@@ -79,52 +79,24 @@ inline fun Prefy.bind(source: androidx.fragment.app.Fragment): PreferencesSaver 
 
 /** A wrapper of [SharedPreferences] with [EditablePreferences] implementation. */
 class AndroidPreferences internal constructor(private val nativePreferences: SharedPreferences) :
-    EditablePreferences<AndroidPreferences.Editor> {
+    SharedPreferences by nativePreferences, EditablePreferences<AndroidPreferences.Editor> {
 
-    /**
-     * Registers a callback to be invoked when a change happens to a preference.
-     * @see SharedPreferences.registerOnSharedPreferenceChangeListener
-     */
-    fun addChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener): Unit =
-        nativePreferences.registerOnSharedPreferenceChangeListener(listener)
+    override fun get(key: String): String? = getString(key, null)
+    override fun getOrDefault(key: String, defaultValue: String): String = getString(key, defaultValue)!!
 
-    /**
-     * Convenient method to [addChangeListener] with Kotlin function type.
-     * @param action the callback that will run.
-     * @return instance of Java listener, in case to [removeChangeListener] later.
-     */
-    inline fun onChange(crossinline action: (key: String) -> Unit): SharedPreferences.OnSharedPreferenceChangeListener =
-        SharedPreferences.OnSharedPreferenceChangeListener { _, key -> action(key) }.also { addChangeListener(it) }
-
-    /**
-     * Unregisters a previous callback.
-     * @see SharedPreferences.unregisterOnSharedPreferenceChangeListener
-     */
-    fun removeChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener): Unit =
-        nativePreferences.unregisterOnSharedPreferenceChangeListener(listener)
-
-    override fun contains(key: String): Boolean = key in nativePreferences
-
-    override fun get(key: String): String? = nativePreferences.getString(key, null)
-    override fun getOrDefault(key: String, defaultValue: String): String =
-        nativePreferences.getString(key, defaultValue)!!
-
-    override fun getBoolean(key: String): Boolean? = nativePreferences.getBoolean(key, false)
-    override fun getBooleanOrDefault(key: String, defaultValue: Boolean): Boolean =
-        nativePreferences.getBoolean(key, defaultValue)
+    override fun getBoolean(key: String): Boolean? = getBoolean(key, false)
+    override fun getBooleanOrDefault(key: String, defaultValue: Boolean): Boolean = getBoolean(key, defaultValue)
 
     override fun getDouble(key: String): Double? = throw UnsupportedOperationException()
 
-    override fun getFloat(key: String): Float? = nativePreferences.getFloat(key, 0f)
-    override fun getFloatOrDefault(key: String, defaultValue: Float): Float =
-        nativePreferences.getFloat(key, defaultValue)
+    override fun getFloat(key: String): Float? = getFloat(key, 0f)
+    override fun getFloatOrDefault(key: String, defaultValue: Float): Float = getFloat(key, defaultValue)
 
-    override fun getLong(key: String): Long? = nativePreferences.getLong(key, 0L)
-    override fun getLongOrDefault(key: String, defaultValue: Long): Long = nativePreferences.getLong(key, defaultValue)
+    override fun getLong(key: String): Long? = getLong(key, 0L)
+    override fun getLongOrDefault(key: String, defaultValue: Long): Long = getLong(key, defaultValue)
 
-    override fun getInt(key: String): Int? = nativePreferences.getInt(key, 0)
-    override fun getIntOrDefault(key: String, defaultValue: Int): Int =
-        nativePreferences.getInt(key, defaultValue)
+    override fun getInt(key: String): Int? = getInt(key, 0)
+    override fun getIntOrDefault(key: String, defaultValue: Int): Int = getInt(key, defaultValue)
 
     override fun getShort(key: String): Short? = throw UnsupportedOperationException()
     override fun getByte(key: String): Byte? = throw UnsupportedOperationException()

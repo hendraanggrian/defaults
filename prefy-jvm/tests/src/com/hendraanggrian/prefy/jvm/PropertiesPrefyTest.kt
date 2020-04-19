@@ -8,16 +8,16 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class PropertiesPrefyTest {
-    private lateinit var propertiesPrefs: PropertiesPreferences
+    private lateinit var preferences: PropertiesPreferences
 
     @BeforeTest fun createTest() {
         Prefy.setLogger(PreferencesLogger.System)
-        propertiesPrefs = Prefy[File("test.properties").apply { if (exists()) delete() }]
+        preferences = Prefy[File("test.properties").apply { if (exists()) delete() }]
     }
 
     @Test fun properties() {
-        propertiesPrefs["name"] = "Hendra"
-        propertiesPrefs.save()
-        assertEquals("Hendra", propertiesPrefs["name"])
+        preferences["name"] = "Hendra"
+        preferences.save()
+        assertEquals("Hendra", preferences["name"])
     }
 }

@@ -78,156 +78,89 @@ private inline fun Preferences.nodes(vararg paths: String): Preferences {
 }
 
 /** A wrapper of [Preferences] with [WritablePreferences] implementation. */
-class JvmPreferences internal constructor(private val nativePreferences: Preferences) : WritablePreferences {
+class JvmPreferences internal constructor(private val nativePreferences: Preferences) :
+    Preferences(), WritablePreferences {
 
-    /**
-     * Returns all of the keys that have an associated value in this preference node.
-     * @see Preferences.keys
-     */
-    val keys: Array<String> get() = nativePreferences.keys()
+    override fun put(key: String?, value: String?) = nativePreferences.put(key, value)
+    override fun get(key: String?, def: String?): String = nativePreferences.get(key, def)
+    override fun remove(key: String) = nativePreferences.remove(key)
+    override fun clear() = nativePreferences.clear()
+    override fun putInt(key: String?, value: Int) = nativePreferences.putInt(key, value)
+    override fun getInt(key: String?, def: Int): Int = nativePreferences.getInt(key, def)
+    override fun putLong(key: String?, value: Long) = nativePreferences.putLong(key, value)
+    override fun getLong(key: String?, def: Long): Long = nativePreferences.getLong(key, def)
+    override fun putBoolean(key: String?, value: Boolean) = nativePreferences.putBoolean(key, value)
+    override fun getBoolean(key: String?, def: Boolean): Boolean = nativePreferences.getBoolean(key, def)
+    override fun putFloat(key: String?, value: Float) = nativePreferences.putFloat(key, value)
+    override fun getFloat(key: String?, def: Float): Float = nativePreferences.getFloat(key, def)
+    override fun putDouble(key: String?, value: Double) = nativePreferences.putDouble(key, value)
+    override fun getDouble(key: String?, def: Double): Double = nativePreferences.getDouble(key, def)
+    override fun putByteArray(key: String?, value: ByteArray?) = nativePreferences.putByteArray(key, value)
+    override fun getByteArray(key: String?, def: ByteArray?): ByteArray = nativePreferences.getByteArray(key, def)
+    override fun keys(): Array<String> = nativePreferences.keys()
+    override fun childrenNames(): Array<String> = nativePreferences.childrenNames()
 
-    /**
-     * Returns the names of the children of this preference node, relative to this node.
-     * @see Preferences.childrenNames
-     */
-    val childrenNames: Array<String> get() = nativePreferences.childrenNames()
+    override fun parent(): JvmPreferences = JvmPreferences(nativePreferences.parent())
+    override fun node(pathName: String?): JvmPreferences = JvmPreferences(nativePreferences.node(pathName))
 
-    /**
-     * Returns the parent of this preference node, or `null` if this is the root.
-     * @see Preferences.parent
-     */
-    val parent: JvmPreferences get() = JvmPreferences(nativePreferences.parent())
+    override fun nodeExists(pathName: String?): Boolean = nativePreferences.nodeExists(pathName)
+    override fun removeNode() = nativePreferences.removeNode()
+    override fun name(): String = nativePreferences.name()
+    override fun absolutePath(): String = nativePreferences.absolutePath()
+    override fun isUserNode(): Boolean = nativePreferences.isUserNode
+    override fun toString(): String = nativePreferences.toString()
+    override fun flush() = nativePreferences.flush()
+    override fun sync() = nativePreferences.sync()
 
-    /**
-     * Returns the named preference node in the same tree as this node,
-     * creating it and any of its ancestors if they do not already exist.
-     * @see Preferences.node
-     */
-    fun node(pathName: String): JvmPreferences = JvmPreferences(nativePreferences.node(pathName))
+    override fun addPreferenceChangeListener(pcl: PreferenceChangeListener?) =
+        nativePreferences.addPreferenceChangeListener(pcl)
 
-    /**
-     * Returns true if the named preference node exists in the same tree as this node.
-     * @see Preferences.nodeExists
-     */
-    fun nodeExists(pathName: String): Boolean = nativePreferences.nodeExists(pathName)
+    override fun removePreferenceChangeListener(pcl: PreferenceChangeListener?) =
+        nativePreferences.removePreferenceChangeListener(pcl)
 
-    /**
-     * Removes this preference node and all of its descendants,
-     * invalidating any preferences contained in the removed nodes.
-     * @see Preferences.removeNode
-     */
-    fun removeNode(): Unit = nativePreferences.removeNode()
+    override fun addNodeChangeListener(ncl: NodeChangeListener?) =
+        nativePreferences.removeNodeChangeListener(ncl)
 
-    /**
-     * Returns this preference node's name, relative to its parent.
-     * @see Preferences.name
-     */
-    val name: String get() = nativePreferences.name()
+    override fun removeNodeChangeListener(ncl: NodeChangeListener?) =
+        nativePreferences.removeNodeChangeListener(ncl)
 
-    /**
-     * Returns this preference node's absolute path name.
-     * @see Preferences.absolutePath
-     */
-    val absolutePath: String get() = nativePreferences.absolutePath()
+    override fun exportNode(os: OutputStream?) = nativePreferences.exportNode(os)
+    override fun exportSubtree(os: OutputStream?) = nativePreferences.exportSubtree(os)
 
-    /**
-     * Returns `true` if this preference node is in the user
-     * preference tree, `false` if it's in the system preference tree.
-     * @see Preferences.isUserNode
-     */
-    fun isUserNode(): Boolean = nativePreferences.isUserNode
+    override fun contains(key: String): Boolean = nodeExists(key)
 
-    /**
-     * Registers the specified listener to receive `preference change events` for this preference node.
-     * @see Preferences.addPreferenceChangeListener
-     */
-    fun addPreferenceChangeListener(listener: PreferenceChangeListener): Unit =
-        nativePreferences.addPreferenceChangeListener(listener)
+    override fun get(key: String): String? = get(key, null)
+    override fun getOrDefault(key: String, defaultValue: String): String = get(key, defaultValue)
 
-    /**
-     * Convenient method to [addPreferenceChangeListener] with Kotlin function type.
-     * @param action the callback that will run.
-     * @return instance of Java listener, in case to [removePreferenceChangeListener] later.
-     */
-    inline fun onPreferenceChange(crossinline action: (key: String, value: String) -> Unit): PreferenceChangeListener =
-        PreferenceChangeListener { evt -> action(evt.key, evt.newValue) }.also { addPreferenceChangeListener(it) }
+    override fun getBoolean(key: String): Boolean? = getBoolean(key, false)
+    override fun getBooleanOrDefault(key: String, defaultValue: Boolean): Boolean = getBoolean(key, defaultValue)
 
-    /**
-     * Removes the specified preference change listener, so it no longer receives preference change events.
-     * @see Preferences.removePreferenceChangeListener
-     */
-    fun removePreferenceChangeListener(listener: PreferenceChangeListener) =
-        nativePreferences.removePreferenceChangeListener(listener)
+    override fun getDouble(key: String): Double? = getDouble(key, 0.0)
+    override fun getDoubleOrDefault(key: String, defaultValue: Double): Double = getDouble(key, defaultValue)
 
-    /**
-     * Registers the specified listener to receive `node change events` for this node.
-     * @see Preferences.addNodeChangeListener
-     */
-    fun addNodeChangeListener(listener: NodeChangeListener): Unit =
-        nativePreferences.addNodeChangeListener(listener)
+    override fun getFloat(key: String): Float? = getFloat(key, 0f)
+    override fun getFloatOrDefault(key: String, defaultValue: Float): Float = getFloat(key, defaultValue)
 
-    /**
-     * Removes the specified [NodeChangeListener], so it no longer receives change events.
-     * @see Preferences.removeNodeChangeListener
-     */
-    fun removeNodeChangeListener(listener: NodeChangeListener) =
-        nativePreferences.removeNodeChangeListener(listener)
+    override fun getLong(key: String): Long? = getLong(key, 0L)
+    override fun getLongOrDefault(key: String, defaultValue: Long): Long = getLong(key, defaultValue)
 
-    /**
-     * Emits on the specified output stream an XML document representing all
-     * of the preferences contained in this node (but not its descendants).
-     * @see Preferences.exportNode
-     */
-    fun exportNode(stream: OutputStream) = nativePreferences.exportNode(stream)
-
-    /**
-     * Emits an XML document representing all of the preferences contained
-     * in this node and all of its descendants.
-     * @see Preferences.exportSubtree
-     */
-    fun exportSubtree(stream: OutputStream) = nativePreferences.exportSubtree(stream)
-
-    override fun contains(key: String): Boolean = nativePreferences.nodeExists(key)
-
-    override fun get(key: String): String? = nativePreferences.get(key, null)
-    override fun getOrDefault(key: String, defaultValue: String): String = nativePreferences.get(key, defaultValue)
-
-    override fun getBoolean(key: String): Boolean? = nativePreferences.getBoolean(key, false)
-    override fun getBooleanOrDefault(key: String, defaultValue: Boolean): Boolean =
-        nativePreferences.getBoolean(key, defaultValue)
-
-    override fun getDouble(key: String): Double? = nativePreferences.getDouble(key, 0.0)
-    override fun getDoubleOrDefault(key: String, defaultValue: Double): Double =
-        nativePreferences.getDouble(key, defaultValue)
-
-    override fun getFloat(key: String): Float? = nativePreferences.getFloat(key, 0f)
-    override fun getFloatOrDefault(key: String, defaultValue: Float): Float =
-        nativePreferences.getFloat(key, defaultValue)
-
-    override fun getLong(key: String): Long? = nativePreferences.getLong(key, 0L)
-    override fun getLongOrDefault(key: String, defaultValue: Long): Long = nativePreferences.getLong(key, defaultValue)
-
-    override fun getInt(key: String): Int? = nativePreferences.getInt(key, 0)
-    override fun getIntOrDefault(key: String, defaultValue: Int): Int = nativePreferences.getInt(key, defaultValue)
+    override fun getInt(key: String): Int? = getInt(key, 0)
+    override fun getIntOrDefault(key: String, defaultValue: Int): Int = getInt(key, defaultValue)
 
     override fun getShort(key: String): Short? = throw UnsupportedOperationException()
     override fun getByte(key: String): Byte? = throw UnsupportedOperationException()
 
-    override fun remove(key: String) = nativePreferences.remove(key)
-
-    override fun clear() = nativePreferences.clear()
-
-    override fun set(key: String, value: String?) = nativePreferences.put(key, value)
-    override fun set(key: String, value: Boolean) = nativePreferences.putBoolean(key, value)
-    override fun set(key: String, value: Double) = nativePreferences.putDouble(key, value)
-    override fun set(key: String, value: Float) = nativePreferences.putFloat(key, value)
-    override fun set(key: String, value: Long) = nativePreferences.putLong(key, value)
-    override fun set(key: String, value: Int) = nativePreferences.putInt(key, value)
+    override fun set(key: String, value: String?) = put(key, value)
+    override fun set(key: String, value: Boolean) = putBoolean(key, value)
+    override fun set(key: String, value: Double) = putDouble(key, value)
+    override fun set(key: String, value: Float) = putFloat(key, value)
+    override fun set(key: String, value: Long) = putLong(key, value)
+    override fun set(key: String, value: Int) = putInt(key, value)
     override fun set(key: String, value: Short): Unit = throw UnsupportedOperationException()
     override fun set(key: String, value: Byte): Unit = throw UnsupportedOperationException()
 
     override fun save() {
-        nativePreferences.sync()
-        nativePreferences.flush()
+        sync()
+        flush()
     }
 }
