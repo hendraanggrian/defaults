@@ -5,7 +5,8 @@
 Prefy
 =====
 Local settings library that runs in plain Java and Android.
-Comes with optional annotation processor to bind properties with existing settings.
+* Retrieve and assign values with Kotlin operator functions.
+* Annotation processor to bind preferences' values to JVM fields, similar to [ButterKnife].
 
 ```kotlin
 @BindPreference lateinit var name: String
@@ -55,3 +56,5 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+[ButterKnife]: https://github.com/JakeWharton/butterknife
