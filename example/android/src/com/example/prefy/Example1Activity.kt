@@ -15,7 +15,6 @@ import com.hendraanggrian.prefy.android.bind
 import kotlinx.android.synthetic.main.activity_example1.*
 
 class Example1Activity : AppCompatActivity(), View.OnClickListener {
-
     @BindPreference("name") @JvmField var name: String? = null
     @BindPreference("married") @JvmField var married: Boolean = false
     @BindPreference("int") @JvmField var mInt: Int = 0
@@ -48,7 +47,7 @@ class Example1Activity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.demo1, menu)
+        menuInflater.inflate(R.menu.activity_example1, menu)
         return super.onCreateOptionsMenu(menu)
     }
 

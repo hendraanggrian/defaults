@@ -68,5 +68,5 @@ publish {
     artifactId = "$RELEASE_ARTIFACT-jvm"
     publishVersion = RELEASE_VERSION
     desc = RELEASE_DESC
-    website = RELEASE_WEBSITE
+    website = RELEASE_WEB
 }

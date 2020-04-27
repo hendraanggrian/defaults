@@ -40,7 +40,7 @@ class Example2Activity : AppCompatActivity() {
         }
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-            addPreferencesFromResource(R.xml.settings)
+            addPreferencesFromResource(R.xml.activity_example2)
             preferenceName = findPreference("name")!!
             preferenceMarried = findPreference("married")!!
             preferenceName.summary = name.orEmpty()

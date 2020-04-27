@@ -3,11 +3,11 @@
     package="com.example.prefy">
 
     <application
-        android:name=".ExampleApplication"
+        android:name=".ExampleApp"
         android:allowBackup="true"
         android:label="Prefy Example"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.MaterialComponents.NoActionBar">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
