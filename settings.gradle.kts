@@ -1,11 +1,12 @@
 include("prefy")
 include("prefy-annotations")
-include("prefy-compiler")
-include("prefy-jvm")
-include("prefy-android")
+include("prefy-ktx")
+// include("prefy-compiler")
+// include("prefy-jvm")
+// include("prefy-android")
 
-include("website")
-includeDir("example")
+// include("website")
+// includeDir("example")
 
 fun includeDir(path: String) = file(path)
     .listFiles()!!
