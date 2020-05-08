@@ -22,12 +22,6 @@ android {
             manifest.srcFile("AndroidManifest.xml")
             java.srcDir("src")
             res.srcDir("res")
-            resources.srcDir("src")
-        }
-    }
-    applicationVariants.all {
-        generateBuildConfigProvider?.configure {
-            enabled = false
         }
     }
     buildTypes {
@@ -56,11 +50,8 @@ dependencies {
 
     implementation(apache("commons", "commons-lang3", VERSION_COMMONS_LANG))
 
-    implementation(androidx("multidex", version = VERSION_MULTIDEX))
     implementation(androidx("core", "core-ktx", VERSION_ANDROIDX))
     implementation(androidx("appcompat", version = VERSION_ANDROIDX))
     implementation(androidx("preference", "preference-ktx", version = VERSION_ANDROIDX))
-    implementation(androidx("coordinatorlayout", version = "$VERSION_ANDROIDX-beta01"))
-    implementation(androidx("recyclerview", version = "$VERSION_ANDROIDX-beta05"))
     implementation(material())
 }

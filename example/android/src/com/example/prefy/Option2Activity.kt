@@ -9,15 +9,14 @@ import androidx.preference.Preference.OnPreferenceChangeListener
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.hendraanggrian.prefy.BindPreference
-import com.hendraanggrian.prefy.Prefy
-import com.hendraanggrian.prefy.android.bind
-import kotlinx.android.synthetic.main.activity_example2.*
+import com.hendraanggrian.prefy.android.bindPreferences
+import kotlinx.android.synthetic.main.activity_option2.*
 
-class Example2Activity : AppCompatActivity() {
+class Option2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_example2)
+        setContentView(R.layout.activity_option2)
         setSupportActionBar(toolbar)
         supportFragmentManager.beginTransaction()
             .add(R.id.viewgroup_example2, SettingsFragment())
@@ -36,11 +35,11 @@ class Example2Activity : AppCompatActivity() {
 
         override fun onAttach(context: Context) {
             super.onAttach(context)
-            Prefy.bind(this)
+            bindPreferences()
         }
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-            addPreferencesFromResource(R.xml.activity_example2)
+            addPreferencesFromResource(R.xml.activity_option2)
             preferenceName = findPreference("name")!!
             preferenceMarried = findPreference("married")!!
             preferenceName.summary = name.orEmpty()

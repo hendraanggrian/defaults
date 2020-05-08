@@ -12,7 +12,7 @@ Local settings library that runs in plain Java and Android.
 @BindPreference lateinit var name: String
 @BindPreference @JvmField var age: Int = 0
 
-lateinit var saver: PreferencesSaver = Prefy.bind(this)
+lateinit var saver: PreferencesSaver = bindPreferences()
 
 fun applyChanges(person: Person) {
     name = person.name
@@ -33,7 +33,7 @@ dependencies {
     api "com.hendraanggrian.prefy:prefy-android:$version" // for Android project
 
     // optional annotation processor
-    annotationProcessor "com.hendraanggrian.prefy:prefy-compiler:$version" // use kapt when necessary
+    annotationProcessor "com.hendraanggrian.prefy:prefy-compiler:$version" // or kapt
 }
 ```
 

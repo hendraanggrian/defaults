@@ -13,17 +13,15 @@ sourceSets {
         java.srcDir("src")
         resources.srcDir("res")
     }
-    getByName("test") {
-        java.srcDir("tests/src")
-    }
+    get("test").java.srcDir("tests/src")
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
 }
 
-val ktlint by configurations.registering
+val configuration = configurations.register("ktlint")
 
 dependencies {
     implementation(kotlin("stdlib", VERSION_KOTLIN))
@@ -37,24 +35,18 @@ dependencies {
     testImplementation(kotlin("test-junit", VERSION_KOTLIN))
     testImplementation(google("truth", "truth", VERSION_TRUTH))
 
-    ktlint {
+    configuration {
         invoke(ktlint())
     }
 }
 
 tasks {
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
-    }
-
     register<JavaExec>("ktlint") {
         group = LifecycleBasePlugin.VERIFICATION_GROUP
         inputs.dir("src")
         outputs.dir("src")
         description = "Check Kotlin code style."
-        classpath = ktlint.get()
+        classpath = configuration.get()
         main = "com.pinterest.ktlint.Main"
         args("src/**/*.kt")
     }
@@ -66,7 +58,7 @@ tasks {
         inputs.dir("src")
         outputs.dir("src")
         description = "Fix Kotlin code style deviations."
-        classpath = ktlint.get()
+        classpath = configuration.get()
         main = "com.pinterest.ktlint.Main"
         args("-F", "src/**/*.kt")
     }

@@ -18,7 +18,7 @@ class AndroidPrefyTest {
 
     @BeforeTest fun createTest() {
         Prefy.setLogger(PreferencesLogger.Android)
-        preferences = Prefy[InstrumentationRegistry.getInstrumentation().context]
+        preferences = InstrumentationRegistry.getInstrumentation().context.preferences
         preferences.edit { clear() }
     }
 

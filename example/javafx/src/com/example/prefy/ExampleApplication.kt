@@ -4,7 +4,6 @@ import com.hendraanggrian.prefy.BindPreference
 import com.hendraanggrian.prefy.PreferencesLogger
 import com.hendraanggrian.prefy.PreferencesSaver
 import com.hendraanggrian.prefy.Prefy
-import com.hendraanggrian.prefy.bind
 import com.hendraanggrian.prefy.jvm.get
 import javafx.application.Application
 import javafx.scene.control.CheckBox
@@ -46,7 +45,7 @@ class ExampleApplication : Application() {
     override fun init() = Prefy.setLogger(PreferencesLogger.System)
 
     override fun start(stage: Stage) {
-        saver = Prefy[File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties")].bind(this)
+        saver = Prefy.bind(Prefy[File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties")], this)
         stage.scene {
             gridPane {
                 paddings = 10.0

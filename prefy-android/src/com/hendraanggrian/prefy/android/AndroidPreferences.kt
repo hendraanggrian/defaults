@@ -15,7 +15,6 @@ import com.hendraanggrian.prefy.EditablePreferences
 import com.hendraanggrian.prefy.PreferencesEditor
 import com.hendraanggrian.prefy.PreferencesSaver
 import com.hendraanggrian.prefy.Prefy
-import com.hendraanggrian.prefy.bind
 
 /**
  * Create a [AndroidPreferences] from source [SharedPreferences].
@@ -26,56 +25,56 @@ operator fun Prefy.get(source: SharedPreferences): AndroidPreferences = AndroidP
 
 /**
  * Create a [AndroidPreferences] from source [Context].
- * @param source application context.
+ * @receiver application context.
  * @return preferences that reads/writes to [SharedPreferences].
  */
-operator fun Prefy.get(source: Context): AndroidPreferences =
-    get(PreferenceManager.getDefaultSharedPreferences(source))
+inline val Context.preferences: AndroidPreferences
+    get() = Prefy[PreferenceManager.getDefaultSharedPreferences(this)]
 
 /**
  * Create a [AndroidPreferences] from source [Fragment].
- * @param source deprecated fragment.
+ * @receiver deprecated fragment.
  * @return preferences that reads/writes to [SharedPreferences].
  */
 @Deprecated("Use support androidx.fragment.app.Fragment.")
-operator fun Prefy.get(source: Fragment): AndroidPreferences =
-    get(source.activity)
+inline val Fragment.preferences: AndroidPreferences
+    get() = Prefy[PreferenceManager.getDefaultSharedPreferences(activity)]
 
 /**
  * Create a [AndroidPreferences] from source [androidx.fragment.app.Fragment].
- * @param source support fragment.
+ * @receiver support fragment.
  * @return preferences that reads/writes to [SharedPreferences].
  */
-operator fun Prefy.get(source: androidx.fragment.app.Fragment): AndroidPreferences =
-    get(checkNotNull(source.context) { "Context is not yet attached to this fragment" })
+inline val androidx.fragment.app.Fragment.preferences: AndroidPreferences
+    get() = Prefy[PreferenceManager.getDefaultSharedPreferences(context)]
 
 /**
  * Bind fields annotated with [BindPreference] from source [Context].
- * @param source application context and also target fields' owner.
+ * @receiver application context and also target fields' owner.
  * @return saver instance to apply changes made to the fields.
  * @throws RuntimeException when constructor of binding class cannot be found.
  */
-inline fun Prefy.bind(source: Context): PreferencesSaver =
-    get(source).bind(source)
+inline fun Context.bindPreferences(): PreferencesSaver =
+    Prefy.bind(preferences, this)
 
 /**
  * Bind fields annotated with [BindPreference] from source [Fragment].
- * @param source deprecated fragment and also target fields' owner.
+ * @receiver deprecated fragment and also target fields' owner.
  * @return saver instance to apply changes made to the fields.
  * @throws RuntimeException when constructor of binding class cannot be found.
  */
 @Deprecated("Use support androidx.fragment.app.Fragment.")
-inline fun Prefy.bind(source: Fragment): PreferencesSaver =
-    get(source).bind(source)
+inline fun Fragment.bindPreferences(): PreferencesSaver =
+    Prefy.bind(preferences, this)
 
 /**
  * Bind fields annotated with [BindPreference] from source [androidx.fragment.app.Fragment].
- * @param source a support fragment and also target fields' owner.
+ * @receiver support fragment and also target fields' owner.
  * @return saver instance to apply changes made to the fields.
  * @throws RuntimeException when constructor of binding class cannot be found.
  */
-inline fun Prefy.bind(source: androidx.fragment.app.Fragment): PreferencesSaver =
-    get(source).bind(source)
+inline fun androidx.fragment.app.Fragment.bindPreferences(): PreferencesSaver =
+    Prefy.bind(preferences, this)
 
 /** A wrapper of [SharedPreferences] with [EditablePreferences] implementation. */
 class AndroidPreferences internal constructor(private val nativePreferences: SharedPreferences) :

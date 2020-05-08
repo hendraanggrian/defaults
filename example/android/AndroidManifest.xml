@@ -6,7 +6,6 @@
         android:name=".ExampleApp"
         android:allowBackup="true"
         android:label="Prefy Example"
-        android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.NoActionBar">
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -15,7 +14,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Example1Activity" />
-        <activity android:name=".Example2Activity" />
+        <activity android:name=".Option1Activity" />
+        <activity android:name=".Option2Activity" />
     </application>
 </manifest>

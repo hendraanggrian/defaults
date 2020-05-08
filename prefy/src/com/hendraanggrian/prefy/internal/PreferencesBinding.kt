@@ -13,13 +13,13 @@ import com.hendraanggrian.prefy.WritablePreferences
 abstract class PreferencesBinding(private val source: ReadablePreferences) : PreferencesSaver {
 
     protected fun get(key: String, defaultValue: String?): String? = source[key] ?: defaultValue
-    protected fun get(key: String, defaultValue: Boolean): Boolean = source.getBoolean(key) ?: defaultValue
-    protected fun get(key: String, defaultValue: Double): Double = source.getDouble(key) ?: defaultValue
-    protected fun get(key: String, defaultValue: Float): Float = source.getFloat(key) ?: defaultValue
-    protected fun get(key: String, defaultValue: Long): Long = source.getLong(key) ?: defaultValue
-    protected fun get(key: String, defaultValue: Int): Int = source.getInt(key) ?: defaultValue
-    protected fun get(key: String, defaultValue: Short): Short = source.getShort(key) ?: defaultValue
-    protected fun get(key: String, defaultValue: Byte): Byte = source.getByte(key) ?: defaultValue
+    protected fun get(key: String, defaultValue: Boolean): Boolean = source.getBooleanOrDefault(key, defaultValue)
+    protected fun get(key: String, defaultValue: Double): Double = source.getDoubleOrDefault(key, defaultValue)
+    protected fun get(key: String, defaultValue: Float): Float = source.getFloatOrDefault(key, defaultValue)
+    protected fun get(key: String, defaultValue: Long): Long = source.getLongOrDefault(key, defaultValue)
+    protected fun get(key: String, defaultValue: Int): Int = source.getIntOrDefault(key, defaultValue)
+    protected fun get(key: String, defaultValue: Short): Short = source.getShortOrDefault(key, defaultValue)
+    protected fun get(key: String, defaultValue: Byte): Byte = source.getByteOrDefault(key, defaultValue)
 
     protected val editor: PreferencesEditor
         get() = when (source) {
