@@ -9,12 +9,12 @@ class MainFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.fragment_main)
-        findPreference<Preference>("option1")!!.setOnPreferenceClickListener {
-            startActivity(Intent(context, Option1Activity::class.java))
+        findPreference<Preference>("example1")!!.setOnPreferenceClickListener {
+            startActivity(Intent(context, Example1Activity::class.java))
             false
         }
-        findPreference<Preference>("option2")!!.setOnPreferenceClickListener {
-            startActivity(Intent(context, Option2Activity::class.java))
+        findPreference<Preference>("example2")!!.setOnPreferenceClickListener {
+            startActivity(Intent(context, Example2Activity::class.java))
             false
         }
     }

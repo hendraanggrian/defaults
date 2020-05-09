@@ -4,6 +4,8 @@
 
 package com.hendraanggrian.prefy.jvm
 
+import com.hendraanggrian.prefy.BindPreference
+import com.hendraanggrian.prefy.PreferencesSaver
 import com.hendraanggrian.prefy.Prefy
 import com.hendraanggrian.prefy.WritablePreferences
 import java.io.File
@@ -15,6 +17,16 @@ import java.util.Properties
  * @return preferences that reads/writes to [Properties].
  */
 operator fun Prefy.get(source: File): PropertiesPreferences = PropertiesPreferences(source)
+
+/**
+ * Bind fields annotated with [BindPreference] from source [PropertiesPreferences].
+ * @receiver target fields' owner.
+ * @param source preferences to extract
+ * @return saver instance to apply changes made to the fields.
+ * @throws RuntimeException when constructor of binding class cannot be found.
+ */
+inline fun <reified T : Any> T.bindPreferences(source: PropertiesPreferences): PreferencesSaver =
+    Prefy.bind(source, this)
 
 /** A wrapper of [Properties] with [WritablePreferences] implementation. */
 class PropertiesPreferences internal constructor(private val targetFile: File) :

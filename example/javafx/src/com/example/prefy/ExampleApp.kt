@@ -4,6 +4,7 @@ import com.hendraanggrian.prefy.BindPreference
 import com.hendraanggrian.prefy.PreferencesLogger
 import com.hendraanggrian.prefy.PreferencesSaver
 import com.hendraanggrian.prefy.Prefy
+import com.hendraanggrian.prefy.jvm.bindPreferences
 import com.hendraanggrian.prefy.jvm.get
 import javafx.application.Application
 import javafx.scene.control.CheckBox
@@ -24,10 +25,10 @@ import ktfx.layouts.textField
 import org.apache.commons.lang3.SystemUtils
 import java.io.File
 
-class ExampleApplication : Application() {
+class ExampleApp : Application() {
 
     companion object {
-        @JvmStatic fun main(args: Array<String>) = launchApplication<ExampleApplication>(*args)
+        @JvmStatic fun main(args: Array<String>) = launchApplication<ExampleApp>(*args)
     }
 
     private lateinit var nameField: TextField
@@ -45,7 +46,7 @@ class ExampleApplication : Application() {
     override fun init() = Prefy.setLogger(PreferencesLogger.System)
 
     override fun start(stage: Stage) {
-        saver = Prefy.bind(Prefy[File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties")], this)
+        saver = bindPreferences(Prefy[File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties")])
         stage.scene {
             gridPane {
                 paddings = 10.0
@@ -57,14 +58,14 @@ class ExampleApplication : Application() {
                 label("Age") row 2 col 0
                 ageField = textField(age) row 2 col 1
                 label("Height") row 3 col 0
-                heightField = textField(this@ExampleApplication.height) row 3 col 1
+                heightField = textField(this@ExampleApp.height) row 3 col 1
                 buttonBar {
                     button("Save") {
                         onAction {
                             name = nameField.text
                             married = marriedCheck.isSelected.toString()
                             age = ageField.text.toString()
-                            this@ExampleApplication.height = heightField.text.toString()
+                            this@ExampleApp.height = heightField.text.toString()
                             saver.save()
                             infoAlert("Saved!")
                         }

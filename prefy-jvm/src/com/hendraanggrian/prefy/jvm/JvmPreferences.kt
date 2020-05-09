@@ -4,6 +4,8 @@
 
 package com.hendraanggrian.prefy.jvm
 
+import com.hendraanggrian.prefy.BindPreference
+import com.hendraanggrian.prefy.PreferencesSaver
 import com.hendraanggrian.prefy.Prefy
 import com.hendraanggrian.prefy.WritablePreferences
 import java.io.OutputStream
@@ -76,6 +78,16 @@ private inline fun Preferences.nodes(vararg paths: String): Preferences {
     paths.forEach { root = root.node(it) }
     return root
 }
+
+/**
+ * Bind fields annotated with [BindPreference] from source [JvmPreferences].
+ * @receiver target fields' owner.
+ * @param source preferences to extract
+ * @return saver instance to apply changes made to the fields.
+ * @throws RuntimeException when constructor of binding class cannot be found.
+ */
+inline fun <T : Any> T.bindPreferences(source: JvmPreferences): PreferencesSaver =
+    Prefy.bind(source, this)
 
 /** A wrapper of [Preferences] with [WritablePreferences] implementation. */
 class JvmPreferences internal constructor(private val nativePreferences: Preferences) :

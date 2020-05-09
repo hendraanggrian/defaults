@@ -4,7 +4,7 @@ plugins {
     application
 }
 
-application.mainClassName = "com.example.$RELEASE_ARTIFACT.ExampleApplication"
+application.mainClassName = "com.example.$RELEASE_ARTIFACT.ExampleApp"
 
 sourceSets {
     get("main").java.srcDir("src")

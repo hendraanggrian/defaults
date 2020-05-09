@@ -10,13 +10,13 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.hendraanggrian.prefy.BindPreference
 import com.hendraanggrian.prefy.android.bindPreferences
-import kotlinx.android.synthetic.main.activity_option2.*
+import kotlinx.android.synthetic.main.activity_example2.*
 
-class Option2Activity : AppCompatActivity() {
+class Example2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_option2)
+        setContentView(R.layout.activity_example2)
         setSupportActionBar(toolbar)
         supportFragmentManager.beginTransaction()
             .add(R.id.viewgroup_example2, SettingsFragment())
@@ -39,7 +39,7 @@ class Option2Activity : AppCompatActivity() {
         }
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-            addPreferencesFromResource(R.xml.activity_option2)
+            addPreferencesFromResource(R.xml.activity_example2)
             preferenceName = findPreference("name")!!
             preferenceMarried = findPreference("married")!!
             preferenceName.summary = name.orEmpty()

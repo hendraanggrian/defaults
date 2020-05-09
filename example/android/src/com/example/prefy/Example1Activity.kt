@@ -11,9 +11,9 @@ import androidx.preference.PreferenceManager
 import com.hendraanggrian.prefy.BindPreference
 import com.hendraanggrian.prefy.PreferencesSaver
 import com.hendraanggrian.prefy.android.bindPreferences
-import kotlinx.android.synthetic.main.activity_option1.*
+import kotlinx.android.synthetic.main.activity_example1.*
 
-class Option1Activity : AppCompatActivity(), View.OnClickListener {
+class Example1Activity : AppCompatActivity(), View.OnClickListener {
     @BindPreference("name") @JvmField var name: String? = null
     @BindPreference("married") @JvmField var married: Boolean = false
     @BindPreference("int") @JvmField var mInt: Int = 0
@@ -24,7 +24,7 @@ class Option1Activity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_option1)
+        setContentView(R.layout.activity_example1)
         setSupportActionBar(toolbar)
         saver = bindPreferences()
 
@@ -46,7 +46,7 @@ class Option1Activity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.activity_option1, menu)
+        menuInflater.inflate(R.menu.activity_example1, menu)
         return super.onCreateOptionsMenu(menu)
     }
 

@@ -2,20 +2,20 @@ package com.hendraanggrian.prefy.jvm
 
 import com.hendraanggrian.prefy.PreferencesLogger
 import com.hendraanggrian.prefy.Prefy
-import com.hendraanggrian.prefy.ReadablePreferences
+import java.io.File
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class JvmPrefyTest {
-    private lateinit var preferences: JvmPreferences
+class PropertiesPreferencesTest {
+    private lateinit var preferences: PropertiesPreferences
 
     @BeforeTest fun createTest() {
         Prefy.setLogger(PreferencesLogger.System)
-        preferences = Prefy.userNode<ReadablePreferences>()
+        preferences = Prefy[File("test.properties").apply { if (exists()) delete() }]
     }
 
-    @Test fun jvm() {
+    @Test fun properties() {
         preferences["name"] = "Hendra"
         preferences.save()
         assertEquals("Hendra", preferences["name"])

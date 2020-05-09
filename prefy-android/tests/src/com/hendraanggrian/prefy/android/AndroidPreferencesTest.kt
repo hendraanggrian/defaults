@@ -13,7 +13,7 @@ import kotlin.test.assertNull
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class AndroidPrefyTest {
+class AndroidPreferencesTest {
     private lateinit var preferences: AndroidPreferences
 
     @BeforeTest fun createTest() {
