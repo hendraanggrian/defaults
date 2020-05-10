@@ -17,6 +17,10 @@ import javax.lang.model.element.Modifier
 import javax.lang.model.element.TypeElement
 import javax.lang.model.type.TypeKind
 
+/**
+ * Annotation processor responsible for generating sources necessary for binding preferences.
+ * The binding API is available at core repository.
+ */
 class PrefyProcessor : AbstractProcessor() {
     private lateinit var filer: Filer
 
@@ -43,20 +47,22 @@ class PrefyProcessor : AbstractProcessor() {
         // generate classes
         multimap.keySet().map { it to multimap[it] }.forEach { (typeElement, elements) ->
             val className = typeElement.asClassName()
-            val packageName = MoreElements.getPackage(typeElement).qualifiedName.toString()
+            val packageName = typeElement.measuredPackageName
             buildJavaFile(packageName) {
-                comment = "Prefy generated class, do not modify."
+                comment = "Prefy generated class, do not modify!"
                 addClass(typeElement.measuredName) {
-                    var hasSuperclass = false
-                    val superclass = typeElement.superclass
-                    if (superclass.kind != TypeKind.NONE && superclass.kind != TypeKind.VOID) {
-                        val measuredClassName = MoreTypes.asTypeElement(superclass).measuredName
+                    var hasSupercls = false
+                    val supercls = typeElement.superclass
+                    if (supercls.kind != TypeKind.NONE && supercls.kind != TypeKind.VOID) {
+                        val measuredClassName = MoreTypes.asTypeElement(supercls).measuredName
                         if (measuredClassName in measuredClassNames) {
-                            superClass = packageName.classOf(measuredClassName)
-                            hasSuperclass = true
+                            superclass = packageName.classOf(measuredClassName)
+                            hasSupercls = true
                         }
                     }
-                    if (!hasSuperclass) superClass = PREFERENCES_BINDING
+                    if (!hasSupercls) {
+                        superclass = PREFERENCES_BINDING
+                    }
                     addModifiers(Modifier.PUBLIC)
                     fields.add(className, TARGET, Modifier.PRIVATE, Modifier.FINAL)
                     methods {
@@ -67,7 +73,7 @@ class PrefyProcessor : AbstractProcessor() {
                                 add(className, TARGET, Modifier.FINAL)
                             }
                             when {
-                                !hasSuperclass -> appendln("super(%L)", SOURCE)
+                                !hasSupercls -> appendln("super(%L)", SOURCE)
                                 else -> appendln("super(%L, %L)", SOURCE, TARGET)
                             }
                             appendln("this.%L = %L", TARGET, TARGET)
@@ -78,7 +84,9 @@ class PrefyProcessor : AbstractProcessor() {
                         "save" {
                             addModifiers(Modifier.PUBLIC)
                             this.annotations.add<Override>()
-                            if (hasSuperclass) appendln("super.save()")
+                            if (hasSupercls) {
+                                appendln("super.save()")
+                            }
                             appendln("final %T $EDITOR = getEditor()", PREFERENCES_EDITOR)
                             elements.forEachValue { field, key ->
                                 appendln("$EDITOR.set(%L, $TARGET.%L)", key, field)

@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 package com.hendraanggrian.prefy.compiler
 
 import com.google.auto.common.MoreElements
@@ -13,8 +15,11 @@ internal val PREFERENCES_BINDING = "com.hendraanggrian.prefy.internal".classOf("
 internal val READABLE_PREFERENCES = "com.hendraanggrian.prefy".classOf("ReadablePreferences")
 internal val PREFERENCES_EDITOR = "com.hendraanggrian.prefy".classOf("PreferencesEditor")
 
+internal val TypeElement.measuredPackageName: String
+    get() = MoreElements.getPackage(this).qualifiedName.toString()
+
 internal val TypeElement.measuredName: String
-    @Suppress("UnstableApiUsage") get() {
+    get() {
         val enclosings = mutableListOf(simpleName.toString())
         var typeElement = this
         while (typeElement.nestingKind.isNested) {
