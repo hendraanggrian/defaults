@@ -3,6 +3,9 @@ package com.hendraanggrian.prefy.compiler
 import com.google.auto.common.MoreElements
 import com.google.auto.common.MoreTypes
 import com.google.common.collect.LinkedHashMultimap
+import com.hendraanggrian.javapoet.FINAL
+import com.hendraanggrian.javapoet.PRIVATE
+import com.hendraanggrian.javapoet.PUBLIC
 import com.hendraanggrian.javapoet.asClassName
 import com.hendraanggrian.javapoet.buildJavaFile
 import com.hendraanggrian.javapoet.classOf
@@ -13,7 +16,6 @@ import javax.annotation.processing.ProcessingEnvironment
 import javax.annotation.processing.RoundEnvironment
 import javax.lang.model.SourceVersion
 import javax.lang.model.element.Element
-import javax.lang.model.element.Modifier
 import javax.lang.model.element.TypeElement
 import javax.lang.model.type.TypeKind
 
@@ -26,7 +28,8 @@ class PrefyProcessor : AbstractProcessor() {
 
     override fun getSupportedSourceVersion(): SourceVersion = SourceVersion.latestSupported()
 
-    override fun getSupportedAnnotationTypes(): Set<String> = setOf(BindPreference::class.java.canonicalName)
+    override fun getSupportedAnnotationTypes(): Set<String> =
+        setOf(BindPreference::class.java.canonicalName)
 
     @Synchronized override fun init(processingEnv: ProcessingEnvironment) {
         super.init(processingEnv)
@@ -63,35 +66,38 @@ class PrefyProcessor : AbstractProcessor() {
                     if (!hasSupercls) {
                         superclass = PREFERENCES_BINDING
                     }
-                    addModifiers(Modifier.PUBLIC)
-                    fields.add(className, TARGET, Modifier.PRIVATE, Modifier.FINAL)
+                    addModifiers(PUBLIC)
+                    fields.add(className, TARGET, PRIVATE, FINAL)
                     methods {
                         addConstructor {
-                            addModifiers(Modifier.PUBLIC)
+                            addModifiers(PUBLIC)
                             parameters {
-                                add(READABLE_PREFERENCES, SOURCE, Modifier.FINAL)
-                                add(className, TARGET, Modifier.FINAL)
+                                add(READABLE_PREFERENCES, SOURCE, FINAL)
+                                add(className, TARGET, FINAL)
                             }
                             when {
-                                !hasSupercls -> appendln("super(%L)", SOURCE)
-                                else -> appendln("super(%L, %L)", SOURCE, TARGET)
+                                !hasSupercls -> appendLine("super(%L)", SOURCE)
+                                else -> appendLine("super(%L, %L)", SOURCE, TARGET)
                             }
-                            appendln("this.%L = %L", TARGET, TARGET)
+                            appendLine("this.%L = %L", TARGET, TARGET)
                             elements.forEachValue { field, key ->
-                                appendln("this.$TARGET.%L = get(%L, $TARGET.%L)", field, key, field)
+                                appendLine(
+                                    "this.$TARGET.%L = get(%L, $TARGET.%L)",
+                                    field, key, field
+                                )
                             }
                         }
                         "save" {
-                            addModifiers(Modifier.PUBLIC)
+                            addModifiers(PUBLIC)
                             this.annotations.add<Override>()
                             if (hasSupercls) {
-                                appendln("super.save()")
+                                appendLine("super.save()")
                             }
-                            appendln("final %T $EDITOR = getEditor()", PREFERENCES_EDITOR)
+                            appendLine("final %T $EDITOR = getEditor()", PREFERENCES_EDITOR)
                             elements.forEachValue { field, key ->
-                                appendln("$EDITOR.set(%L, $TARGET.%L)", key, field)
+                                appendLine("$EDITOR.set(%L, $TARGET.%L)", key, field)
                             }
-                            appendln("$EDITOR.save()")
+                            appendLine("$EDITOR.save()")
                         }
                     }
                 }

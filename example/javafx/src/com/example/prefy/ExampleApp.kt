@@ -10,8 +10,7 @@ import javafx.application.Application
 import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
 import javafx.stage.Stage
-import ktfx.controls.gap
-import ktfx.controls.paddings
+import ktfx.controls.insetsOf
 import ktfx.coroutines.onAction
 import ktfx.dialogs.infoAlert
 import ktfx.launchApplication
@@ -46,19 +45,21 @@ class ExampleApp : Application() {
     override fun init() = Prefy.setLogger(PreferencesLogger.System)
 
     override fun start(stage: Stage) {
-        saver = bindPreferences(Prefy[File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties")])
+        saver = bindPreferences(
+            Prefy[File(SystemUtils.USER_HOME, "Desktop").resolve("test.properties")]
+        )
         stage.scene {
             gridPane {
-                paddings = 10.0
-                gap = 10.0
-                label("Name") row 0 col 0
-                nameField = textField(name.orEmpty()) row 0 col 1
-                label("Married") row 1 col 0
-                marriedCheck = checkBox { isSelected = married.toBoolean() } row 1 col 1
-                label("Age") row 2 col 0
-                ageField = textField(age) row 2 col 1
-                label("Height") row 3 col 0
-                heightField = textField(this@ExampleApp.height) row 3 col 1
+                padding = insetsOf(0)
+                hgap = 0.0; vgap = 0.0
+                label("Name").grid(0, 0)
+                nameField = textField(name.orEmpty()).grid(0, 1)
+                label("Married").grid(1, 0)
+                marriedCheck = checkBox { isSelected = married.toBoolean() }.grid(1, 1)
+                label("Age").grid(2, 0)
+                ageField = textField(age).grid(2, 1)
+                label("Height").grid(3, 0)
+                heightField = textField(this@ExampleApp.height).grid(3, 1)
                 buttonBar {
                     button("Save") {
                         onAction {
@@ -70,7 +71,7 @@ class ExampleApp : Application() {
                             infoAlert("Saved!")
                         }
                     }
-                } row 4 col (0 to 2)
+                }.grid(4, 0 to 2)
             }
         }
         stage.show()

@@ -66,22 +66,25 @@ object Prefy {
             info("HIT: Cache found in binding weak map.")
             return binding
         }
-        val clsName = cls.simpleName
-        if (clsName.startsWith("android.") || clsName.startsWith("java.")) {
+        if (cls.canonicalName.startsWith("android.") ||
+            cls.canonicalName.startsWith("java.") ||
+            cls.canonicalName.startsWith("kotlin.")
+        ) {
             info("MISS: Reached framework class. Abandoning search.")
             return null
         }
         try {
             binding = cls.classLoader!!
-                .loadClass(clsName + BindPreference.SUFFIX)
-                .getConstructor(ReadablePreferences::class.java, cls) as Constructor<PreferencesSaver>
+                .loadClass(cls.simpleName + BindPreference.SUFFIX)
+                .getConstructor(ReadablePreferences::class.java, cls)
+                as Constructor<PreferencesSaver>
             info("HIT: Loaded binding class, caching in weak map.")
         } catch (e: ClassNotFoundException) {
             val supercls = cls.superclass!!
             warn("Not found. Trying superclass ${supercls.simpleName} ...")
             binding = findBindingConstructor(supercls)
         } catch (e: NoSuchMethodException) {
-            throw RuntimeException("Unable to find binding constructor for $clsName", e)
+            throw RuntimeException("Unable to find binding constructor for ${cls.simpleName}", e)
         }
         BINDINGS!![cls] = checkNotNull(binding) {
             "Unable to find preferences binding, is `prefy-compiler` correctly installed?"
